@@ -1,0 +1,24 @@
+{
+  "experiment_id": "imc-01-agentic-bullwhip-effect",
+  "run_id": "20260208_084724",
+  "start_time": "2026-02-08T08:47:24.442212",
+  "end_time": "2026-02-08T08:47:24.442356",
+  "parameters": {},
+  "events": [
+    {
+      "timestamp": "2026-02-08T08:47:24.442341",
+      "type": "start",
+      "data": {
+        "status": "initialized"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T08:47:24.442351",
+      "type": "complete",
+      "data": {
+        "status": "done"
+      }
+    }
+  ],
+  "results": {}
+}
