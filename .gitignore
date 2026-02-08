@@ -1,0 +1,20 @@
+# Environment
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+
+# Large result logs
+results/logs/*.log
+
+# Jupyter
+.ipynb_checkpoints/
