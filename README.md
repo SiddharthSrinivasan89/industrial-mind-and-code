@@ -3,7 +3,7 @@
 **The factory mind, brought to life through code.**
 
 A research initiative exploring what happens when cutting-edge AI
-meets the hard, physical reality of manufacturing.
+meets the hard, physical reality of industrial engineering.
 
 ## Quick Start
 
