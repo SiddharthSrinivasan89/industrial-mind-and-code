@@ -18,3 +18,16 @@ results/logs/*.log
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Python virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Experiment results and logs (keep structure, not data)
+experiments/*/results/**/*.csv
+experiments/*/results/**/*.json
+experiments/*/results/**/*.png
+experiments/*/results/**/*.pdf
+!experiments/*/results/.gitkeep
