@@ -136,6 +136,13 @@ Spending 7x more on tokens and using a stronger reasoning model does not guarant
 - **LLM non-determinism**: Even at low temperature (0.2), gpt-4.1-mini outputs vary between runs. The o1 model's temperature is fixed at 1.0, adding further variance. Multi-run aggregation is essential for robust conclusions.
 - **No backorder cost modelling**: Agents are told to "balance stockouts against holding costs" but there is no explicit cost function — the trade-off is left to the LLM's judgement.
 
+### Methodology Fixes (post-run01)
+
+The following issues were identified during peer review and have been patched in the codebase. **Existing run01 results in `results/` predate these fixes and should be re-run for valid comparisons.**
+
+1. **Blind agent system prompt leaked context.** The base system prompt contained "Indian automotive component industry", giving blind agents geography and product context. Fixed: blind agents now receive a generic system prompt; only context agents receive the domain-specific one.
+2. **0.2x minimum order floor was not enforced.** The spec documented a 20%-of-demand floor to prevent zero orders, but the implementation only enforced a ceiling clamp. Fixed: orders below 0.2x demand are now clamped upward (when demand > 0).
+
 ---
 
 ## How to Run

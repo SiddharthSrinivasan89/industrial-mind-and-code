@@ -42,8 +42,10 @@ class OrderDecision:
 class BaseAgent(ABC):
     """Abstract base for supply chain ordering agents."""
 
+    # Generic system prompt — no geography, product, or market context.
+    # Subclasses can override to add domain context (see ContextAgent).
     SYSTEM_PROMPT = (
-        "You are a supply chain ordering agent in the Indian automotive component industry. "
+        "You are a supply chain ordering agent. "
         "Always respond with valid JSON only. "
         "No additional text before or after the JSON object."
     )
@@ -99,15 +101,25 @@ class BaseAgent(ABC):
         reasoning = response.get("reasoning", "No reasoning provided")
         pattern_analysis = response.get("pattern_analysis", None)
 
-        # Clamp to bounds (floor scales with demand magnitude)
+        # Clamp to bounds: floor = 0.2x demand, ceiling = 5x demand.
+        # Floor prevents zero-order "inventory illusion" behaviour.
+        # When demand is 0, both floor and ceiling are 0.
         was_clamped = False
-        max_order = max(int(demand * max_order_multiplier), int(demand * 0.2))
+        min_order = int(demand * 0.2) if demand > 0 else 0
+        max_order = int(demand * max_order_multiplier) if demand > 0 else 0
         if order_qty < 0:
             logger.warning(
                 f"[{self.state.role}] P{self.state.current_period}: "
-                f"negative ({order_qty}) -> 0"
+                f"negative ({order_qty}) -> {min_order}"
             )
-            order_qty = 0
+            order_qty = min_order
+            was_clamped = True
+        elif demand > 0 and order_qty < min_order:
+            logger.warning(
+                f"[{self.state.role}] P{self.state.current_period}: "
+                f"below floor ({order_qty}) -> {min_order}"
+            )
+            order_qty = min_order
             was_clamped = True
         elif order_qty > max_order:
             logger.warning(

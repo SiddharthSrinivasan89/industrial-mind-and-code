@@ -12,6 +12,13 @@ from base_agent import BaseAgent
 
 class ContextAgent(BaseAgent):
 
+    # Override base system prompt with domain-specific context.
+    SYSTEM_PROMPT = (
+        "You are a supply chain ordering agent in the Indian automotive component industry. "
+        "Always respond with valid JSON only. "
+        "No additional text before or after the JSON object."
+    )
+
     ROLE_DESC = {
         "oem": (
             "You are Tatva Motors' vehicle assembly plant in India. You receive "
