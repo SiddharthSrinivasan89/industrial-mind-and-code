@@ -1,0 +1,142 @@
+{
+  "description": "Ground truth patterns embedded in synthetic Tata car sales data. The CSV contains NO labels - only numbers and dates. These patterns exist for context agents to discover.",
+  "product": "Passenger vehicles (Tata Motors)",
+  "market": "India (domestic sales)",
+  "base_weekly_sales": 11250,
+  "base_monthly_sales": 45000,
+  "calibration_source": "Real Tata Motors monthly sales Dec-24 to Dec-25 (publicly available)",
+  "seed": 42,
+  "total_weeks": 104,
+  "start_date": "2024-01-01",
+  "patterns": [
+    {
+      "name": "Year-over-Year Growth",
+      "type": "trend",
+      "annual_rate": "11.1%",
+      "weekly_rate": 1.002025566461789,
+      "weeks": "0-103"
+    },
+    {
+      "name": "Navratri + Diwali Surge",
+      "type": "cultural",
+      "multiplier": "1.5-1.8x",
+      "duration": "4-5 weeks",
+      "recurring": true,
+      "description": "Peak car buying season in India. Auspicious period for major purchases.",
+      "occurrences": [
+        {
+          "weeks": "39-43",
+          "peak_week": 41,
+          "peak_multiplier": 1.63,
+          "date_range": "2024-09-30 to 2024-10-28"
+        },
+        {
+          "weeks": "90-95",
+          "peak_week": 93,
+          "peak_multiplier": 1.76,
+          "date_range": "2025-09-22 to 2025-10-27"
+        }
+      ]
+    },
+    {
+      "name": "Year-End Wholesale Push",
+      "type": "seasonal",
+      "multiplier": 1.22,
+      "months": [
+        11,
+        12
+      ],
+      "recurring": true,
+      "description": "Dealers push stock to meet annual sales targets."
+    },
+    {
+      "name": "Winter Wedding Season",
+      "type": "seasonal",
+      "multiplier": 1.09,
+      "months": [
+        12,
+        1,
+        2
+      ],
+      "recurring": true,
+      "description": "Elevated car purchases during wedding season."
+    },
+    {
+      "name": "Summer Wedding Season + Akshaya Tritiya",
+      "type": "seasonal",
+      "multiplier": 1.12,
+      "months": [
+        4,
+        5
+      ],
+      "recurring": true,
+      "description": "Akshaya Tritiya is considered auspicious for buying vehicles."
+    },
+    {
+      "name": "Monsoon Demand Dip",
+      "type": "seasonal",
+      "multiplier": 0.86,
+      "months": [
+        7,
+        8
+      ],
+      "recurring": true,
+      "description": "Reduced showroom footfall during monsoon. Flood/waterlogging concerns delay purchases."
+    },
+    {
+      "name": "Makar Sankranti / Pongal",
+      "type": "cultural",
+      "multiplier": "1.10-1.20x",
+      "duration": "2 weeks",
+      "recurring": true,
+      "occurrences": [
+        {
+          "center_week": 2,
+          "peak": 1.18,
+          "date": "2024-01-15"
+        },
+        {
+          "center_week": 54,
+          "peak": 1.11,
+          "date": "2025-01-13"
+        }
+      ]
+    },
+    {
+      "name": "March Financial Year-End Push",
+      "type": "seasonal",
+      "multiplier": 1.25,
+      "months": [
+        3
+      ],
+      "recurring": true,
+      "description": "Dealers and corporates rush purchases before financial year-end (March 31). Depreciation benefits drive fleet sales."
+    },
+    {
+      "name": "New Model Launch Spike",
+      "type": "promotional",
+      "multiplier": 1.19,
+      "weeks": "22-24",
+      "date": "2024-06-03",
+      "duration": "3 weeks",
+      "recurring": false,
+      "description": "One-time demand spike from a new model/facelift launch."
+    },
+    {
+      "name": "Promotional Discount Event",
+      "type": "promotional",
+      "multiplier": 1.24,
+      "week": 70,
+      "date": "2025-05-05",
+      "recurring": false,
+      "description": "One-time clearance/exchange offer event."
+    },
+    {
+      "name": "Month-End Wholesale Push",
+      "type": "operational",
+      "multiplier": 1.05,
+      "recurring": true,
+      "description": "Dealers push dispatches in last week of month to meet monthly targets."
+    }
+  ]
+}

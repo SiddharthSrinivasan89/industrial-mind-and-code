@@ -1,0 +1,1026 @@
+{
+  "metadata": {
+    "agent_category": "blind",
+    "model_tier": "reasoning",
+    "initial_inventory": 180000,
+    "lead_time_periods": 1,
+    "periods_simulated": 13,
+    "time_unit": "month"
+  },
+  "consumer_demand": [
+    43812,
+    46318,
+    47095,
+    49287,
+    44653,
+    39841,
+    36478,
+    38193,
+    40756,
+    56892,
+    59608,
+    55347,
+    48491
+  ],
+  "tiers": {
+    "oem": {
+      "period_records": [
+        {
+          "period": 1,
+          "role": "oem",
+          "incoming_demand": 43812,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 136188,
+          "deliveries_received": 0,
+          "fulfilled": 43812,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 2,
+          "role": "oem",
+          "incoming_demand": 46318,
+          "order_placed": 0,
+          "inventory_before": 136188,
+          "inventory_after": 89870,
+          "deliveries_received": 0,
+          "fulfilled": 46318,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 3,
+          "role": "oem",
+          "incoming_demand": 47095,
+          "order_placed": 10000,
+          "inventory_before": 89870,
+          "inventory_after": 42775,
+          "deliveries_received": 0,
+          "fulfilled": 47095,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 4,
+          "role": "oem",
+          "incoming_demand": 49287,
+          "order_placed": 44000,
+          "inventory_before": 42775,
+          "inventory_after": 3488,
+          "deliveries_received": 10000,
+          "fulfilled": 49287,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 5,
+          "role": "oem",
+          "incoming_demand": 44653,
+          "order_placed": 40000,
+          "inventory_before": 3488,
+          "inventory_after": 2835,
+          "deliveries_received": 44000,
+          "fulfilled": 44653,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 6,
+          "role": "oem",
+          "incoming_demand": 39841,
+          "order_placed": 37000,
+          "inventory_before": 2835,
+          "inventory_after": 2994,
+          "deliveries_received": 40000,
+          "fulfilled": 39841,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 7,
+          "role": "oem",
+          "incoming_demand": 36478,
+          "order_placed": 37000,
+          "inventory_before": 2994,
+          "inventory_after": 3516,
+          "deliveries_received": 37000,
+          "fulfilled": 36478,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 8,
+          "role": "oem",
+          "incoming_demand": 38193,
+          "order_placed": 40000,
+          "inventory_before": 3516,
+          "inventory_after": 2323,
+          "deliveries_received": 37000,
+          "fulfilled": 38193,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 9,
+          "role": "oem",
+          "incoming_demand": 40756,
+          "order_placed": 58000,
+          "inventory_before": 2323,
+          "inventory_after": 1567,
+          "deliveries_received": 40000,
+          "fulfilled": 40756,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 10,
+          "role": "oem",
+          "incoming_demand": 56892,
+          "order_placed": 57000,
+          "inventory_before": 1567,
+          "inventory_after": 2675,
+          "deliveries_received": 58000,
+          "fulfilled": 56892,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 11,
+          "role": "oem",
+          "incoming_demand": 59608,
+          "order_placed": 56000,
+          "inventory_before": 2675,
+          "inventory_after": 67,
+          "deliveries_received": 57000,
+          "fulfilled": 59608,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 12,
+          "role": "oem",
+          "incoming_demand": 55347,
+          "order_placed": 49000,
+          "inventory_before": 67,
+          "inventory_after": 720,
+          "deliveries_received": 56000,
+          "fulfilled": 55347,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 13,
+          "role": "oem",
+          "incoming_demand": 48491,
+          "order_placed": 50000,
+          "inventory_before": 720,
+          "inventory_after": 1229,
+          "deliveries_received": 49000,
+          "fulfilled": 48491,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        }
+      ],
+      "decisions": [
+        {
+          "period": 1,
+          "role": "oem",
+          "order_quantity": 0,
+          "reasoning": "We have enough on-hand inventory (180000 units) to fulfill this month\u2019s production (43812), leaving 136188 units for next month\u2019s demand (46318). This avoids excess holding costs while still preventing stockouts.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 2,
+          "role": "oem",
+          "order_quantity": 0,
+          "reasoning": "Current inventory exceeds near-term needs, allowing us to defer orders until next month.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 3,
+          "role": "oem",
+          "order_quantity": 10000,
+          "reasoning": "After meeting Month 3 demand, 42775 units remain. Month 4 needs 49287, leaving a shortfall. Ordering 10000 covers the gap and maintains a small safety stock.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 4,
+          "role": "oem",
+          "order_quantity": 44000,
+          "reasoning": "We need about 41165 additional units for month 5 after using leftover stock (3488), and we include a small safety buffer to avoid stockouts without holding too much inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 5,
+          "role": "oem",
+          "order_quantity": 40000,
+          "reasoning": "After using 44653 units in month 5, about 2835 remain. Month 6 demand is 39841, requiring roughly 37006 more. Ordering 40000 covers the forecast and provides a small safety buffer without overstocking.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 6,
+          "role": "oem",
+          "order_quantity": 37000,
+          "reasoning": "Ordering 37000 covers next month's forecast (36478) plus a small safety buffer, minimizing risk of stockouts while avoiding excessive inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 7,
+          "role": "oem",
+          "order_quantity": 37000,
+          "reasoning": "Sufficient to cover the upcoming forecast of 38193 (using leftover stock plus this new order) while maintaining a modest buffer without excessive inventory",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 8,
+          "role": "oem",
+          "order_quantity": 40000,
+          "reasoning": "We will have about 2300 units left after month 8\u2019s production. With a forecast of around 40756 units for month 9, ordering 40000 provides enough coverage plus a small safety buffer without carrying excessive inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 9,
+          "role": "oem",
+          "order_quantity": 58000,
+          "reasoning": "Ordering enough to cover the forecast of 56892 units for next month plus a small safety buffer, given leftover inventory from this month.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 10,
+          "role": "oem",
+          "order_quantity": 57000,
+          "reasoning": "After using 56892 units in Month 10, we expect about 2675 units left. We need nearly 59608 units in Month 11, so ordering 57000 covers the shortfall and provides a small buffer.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 11,
+          "role": "oem",
+          "order_quantity": 56000,
+          "reasoning": "Month 12 forecast is 55347 and we will have about 67 units left from month 11, so ordering 56000 provides a small safety buffer while minimizing excess inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 12,
+          "role": "oem",
+          "order_quantity": 49000,
+          "reasoning": "We expect 720 leftover after this month's usage. Adding 49000 provides a small buffer above next month's forecast of 48491 while avoiding excessive inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 13,
+          "role": "oem",
+          "order_quantity": 50000,
+          "reasoning": "With 49720 units available this month against a requirement of 48491, we expect a similar demand next month. Ordering 50000 units maintains safety stock and prevents stockouts.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        }
+      ],
+      "orders_placed": [
+        0,
+        0,
+        10000,
+        44000,
+        40000,
+        37000,
+        37000,
+        40000,
+        58000,
+        57000,
+        56000,
+        49000,
+        50000
+      ],
+      "incoming_demands": [
+        43812,
+        46318,
+        47095,
+        49287,
+        44653,
+        39841,
+        36478,
+        38193,
+        40756,
+        56892,
+        59608,
+        55347,
+        48491
+      ],
+      "inventory_levels": [
+        136188,
+        89870,
+        42775,
+        3488,
+        2835,
+        2994,
+        3516,
+        2323,
+        1567,
+        2675,
+        67,
+        720,
+        1229
+      ],
+      "stockout_periods": []
+    },
+    "ancillary": {
+      "period_records": [
+        {
+          "period": 1,
+          "role": "ancillary",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 2,
+          "role": "ancillary",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 3,
+          "role": "ancillary",
+          "incoming_demand": 10000,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 170000,
+          "deliveries_received": 0,
+          "fulfilled": 10000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 4,
+          "role": "ancillary",
+          "incoming_demand": 44000,
+          "order_placed": 0,
+          "inventory_before": 170000,
+          "inventory_after": 126000,
+          "deliveries_received": 0,
+          "fulfilled": 44000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 5,
+          "role": "ancillary",
+          "incoming_demand": 40000,
+          "order_placed": 0,
+          "inventory_before": 126000,
+          "inventory_after": 86000,
+          "deliveries_received": 0,
+          "fulfilled": 40000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 6,
+          "role": "ancillary",
+          "incoming_demand": 37000,
+          "order_placed": 0,
+          "inventory_before": 86000,
+          "inventory_after": 49000,
+          "deliveries_received": 0,
+          "fulfilled": 37000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 7,
+          "role": "ancillary",
+          "incoming_demand": 37000,
+          "order_placed": 30000,
+          "inventory_before": 49000,
+          "inventory_after": 12000,
+          "deliveries_received": 0,
+          "fulfilled": 37000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 8,
+          "role": "ancillary",
+          "incoming_demand": 40000,
+          "order_placed": 40000,
+          "inventory_before": 12000,
+          "inventory_after": 2000,
+          "deliveries_received": 30000,
+          "fulfilled": 40000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 9,
+          "role": "ancillary",
+          "incoming_demand": 58000,
+          "order_placed": 75000,
+          "inventory_before": 2000,
+          "inventory_after": 0,
+          "deliveries_received": 40000,
+          "fulfilled": 42000,
+          "backlog": 16000,
+          "stockout": true,
+          "was_clamped": false
+        },
+        {
+          "period": 10,
+          "role": "ancillary",
+          "incoming_demand": 57000,
+          "order_placed": 70000,
+          "inventory_before": 0,
+          "inventory_after": 2000,
+          "deliveries_received": 75000,
+          "fulfilled": 73000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 11,
+          "role": "ancillary",
+          "incoming_demand": 56000,
+          "order_placed": 60000,
+          "inventory_before": 2000,
+          "inventory_after": 16000,
+          "deliveries_received": 70000,
+          "fulfilled": 56000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 12,
+          "role": "ancillary",
+          "incoming_demand": 49000,
+          "order_placed": 40000,
+          "inventory_before": 16000,
+          "inventory_after": 27000,
+          "deliveries_received": 60000,
+          "fulfilled": 49000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 13,
+          "role": "ancillary",
+          "incoming_demand": 50000,
+          "order_placed": 50000,
+          "inventory_before": 27000,
+          "inventory_after": 17000,
+          "deliveries_received": 40000,
+          "fulfilled": 50000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        }
+      ],
+      "decisions": [
+        {
+          "period": 1,
+          "role": "ancillary",
+          "order_quantity": 0,
+          "reasoning": "No immediate demand this month and existing inventory of 180000 units is sufficient. Avoiding unnecessary inventory buildup.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 2,
+          "role": "ancillary",
+          "order_quantity": 0,
+          "reasoning": "There is no current demand and sufficient inventory to cover potential short-term variability, so no new order is placed.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 3,
+          "role": "ancillary",
+          "order_quantity": 0,
+          "reasoning": "With 180000 units already on hand and only a 10000-unit order this month, we have enough stock to cover demand without ordering more.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 4,
+          "role": "ancillary",
+          "order_quantity": 0,
+          "reasoning": "Current inventory of 170000 can meet the 44000 demand with ample surplus, and with a 1-month lead time, we can react quickly next month if needed.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 5,
+          "role": "ancillary",
+          "order_quantity": 0,
+          "reasoning": "Current inventory of 126k is sufficient to cover this month\u2019s 40k order, leaving 86k on hand for next month without a clear forecast. Thus, no additional order is placed to avoid excess inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 6,
+          "role": "ancillary",
+          "order_quantity": 0,
+          "reasoning": "Current inventory (86000) covers the 37000-unit demand, leaving 49000 units for month 7. With a 1-month lead time and no further known demand, placing no order avoids excess inventory carrying costs.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 7,
+          "role": "ancillary",
+          "order_quantity": 30000,
+          "reasoning": "After fulfilling this month's demand of 37000 from current stock (49000), we will have 12000 units left. Ordering 30000 ensures we maintain a modest buffer if next month\u2019s demand remains around 37000, balancing stockout risk and holding costs.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 8,
+          "role": "ancillary",
+          "order_quantity": 40000,
+          "reasoning": "We have 42000 units to fulfill the current 40000 demand, leaving 2000 units on hand. Ordering 40000 now covers a similar demand next month while minimizing excess inventory costs.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 9,
+          "role": "ancillary",
+          "order_quantity": 75000,
+          "reasoning": "Expecting a backlog of 16k from this month and similar or slightly higher demand next month, ordering 75k balances avoiding future shortfalls with not overstocking too heavily.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 10,
+          "role": "ancillary",
+          "order_quantity": 70000,
+          "reasoning": "We expect next month's demand could be near 60\u201375k units. Ordering 70k plus the 2k leftover from this month helps avoid stockouts while keeping inventory costs manageable.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 11,
+          "role": "ancillary",
+          "order_quantity": 60000,
+          "reasoning": "After fulfilling this month\u2019s demand (56K) with on-hand + incoming stock (72K total), we\u2019ll carry ~16K into next month. Ordering 60K ensures coverage for potentially higher demand (up to 75K) and avoids excessive overstock.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 12,
+          "role": "ancillary",
+          "order_quantity": 40000,
+          "reasoning": "With 76k available in Month 12 and 49k demand, we expect 27k left. Ordering 40k for Month 13 covers a likely 60k demand range and maintains a reasonable buffer without overstocking.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 13,
+          "role": "ancillary",
+          "order_quantity": 50000,
+          "reasoning": "We\u2019ll fulfill the current 50k demand using on-hand plus arriving stock and still have about 17k left. Ordering an additional 50k ensures we can likely meet the next month\u2019s typical demand without excess inventory buildup.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        }
+      ],
+      "orders_placed": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        30000,
+        40000,
+        75000,
+        70000,
+        60000,
+        40000,
+        50000
+      ],
+      "incoming_demands": [
+        0,
+        0,
+        10000,
+        44000,
+        40000,
+        37000,
+        37000,
+        40000,
+        58000,
+        57000,
+        56000,
+        49000,
+        50000
+      ],
+      "inventory_levels": [
+        180000,
+        180000,
+        170000,
+        126000,
+        86000,
+        49000,
+        12000,
+        2000,
+        0,
+        2000,
+        16000,
+        27000,
+        17000
+      ],
+      "stockout_periods": [
+        9
+      ]
+    },
+    "ancillary_supplier": {
+      "period_records": [
+        {
+          "period": 1,
+          "role": "ancillary_supplier",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 2,
+          "role": "ancillary_supplier",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 3,
+          "role": "ancillary_supplier",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 4,
+          "role": "ancillary_supplier",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 5,
+          "role": "ancillary_supplier",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 6,
+          "role": "ancillary_supplier",
+          "incoming_demand": 0,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 180000,
+          "deliveries_received": 0,
+          "fulfilled": 0,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 7,
+          "role": "ancillary_supplier",
+          "incoming_demand": 30000,
+          "order_placed": 0,
+          "inventory_before": 180000,
+          "inventory_after": 150000,
+          "deliveries_received": 0,
+          "fulfilled": 30000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 8,
+          "role": "ancillary_supplier",
+          "incoming_demand": 40000,
+          "order_placed": 0,
+          "inventory_before": 150000,
+          "inventory_after": 110000,
+          "deliveries_received": 0,
+          "fulfilled": 40000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 9,
+          "role": "ancillary_supplier",
+          "incoming_demand": 75000,
+          "order_placed": 50000,
+          "inventory_before": 110000,
+          "inventory_after": 35000,
+          "deliveries_received": 0,
+          "fulfilled": 75000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 10,
+          "role": "ancillary_supplier",
+          "incoming_demand": 70000,
+          "order_placed": 70000,
+          "inventory_before": 35000,
+          "inventory_after": 15000,
+          "deliveries_received": 50000,
+          "fulfilled": 70000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 11,
+          "role": "ancillary_supplier",
+          "incoming_demand": 60000,
+          "order_placed": 50000,
+          "inventory_before": 15000,
+          "inventory_after": 25000,
+          "deliveries_received": 70000,
+          "fulfilled": 60000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 12,
+          "role": "ancillary_supplier",
+          "incoming_demand": 40000,
+          "order_placed": 35000,
+          "inventory_before": 25000,
+          "inventory_after": 35000,
+          "deliveries_received": 50000,
+          "fulfilled": 40000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        },
+        {
+          "period": 13,
+          "role": "ancillary_supplier",
+          "incoming_demand": 50000,
+          "order_placed": 50000,
+          "inventory_before": 35000,
+          "inventory_after": 20000,
+          "deliveries_received": 35000,
+          "fulfilled": 50000,
+          "backlog": 0,
+          "stockout": false,
+          "was_clamped": false
+        }
+      ],
+      "decisions": [
+        {
+          "period": 1,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "No current orders and robust existing inventory, so no new production is necessary this month.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 2,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "No current demand or backlog, and inventory of 180000 units is sufficient to cover near-term needs, so no new production is required this month.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 3,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "No current demand and sufficient on-hand inventory; producing more would incur unnecessary carrying costs.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 4,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "With zero current demand and sufficient existing inventory, no additional production is necessary this month.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 5,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "No demand for multiple months, sufficient existing inventory, and no backlog or forecasted orders.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 6,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "No current demand, sufficient existing inventory, and no backlog\u2014producing more would increase holding costs unnecessarily.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 7,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "Current on-hand inventory of 180000 units is sufficient to cover the 30000-unit order, leaving ample stock without new production.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 8,
+          "role": "ancillary_supplier",
+          "order_quantity": 0,
+          "reasoning": "Current inventory of 150000 is sufficient to cover the 40000 demand with enough buffer, so no additional order is needed this month.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 9,
+          "role": "ancillary_supplier",
+          "order_quantity": 50000,
+          "reasoning": "After fulfilling 75k from current stock, 35k remain. Ordering 50k provides sufficient coverage if demand repeats next month without excessive inventory buildup.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 10,
+          "role": "ancillary_supplier",
+          "order_quantity": 70000,
+          "reasoning": "Current on-hand plus in-transit inventory covers this month's 70k demand, leaving 15k remaining. Ordering 70k balances avoiding potential stockouts if next month's order remains at or above 70k while minimizing excessive inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 11,
+          "role": "ancillary_supplier",
+          "order_quantity": 50000,
+          "reasoning": "We will have about 25k leftover after month 11. Anticipating next month's demand could be around 60-70k, ordering 50k should prevent stockouts while keeping inventory costs reasonable.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 12,
+          "role": "ancillary_supplier",
+          "order_quantity": 35000,
+          "reasoning": "After fulfilling 40k this month, we will have 35k left in stock. Producing 35k more helps ensure sufficient coverage for potential demand next month without carrying excessive inventory.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        },
+        {
+          "period": 13,
+          "role": "ancillary_supplier",
+          "order_quantity": 50000,
+          "reasoning": "We will have 70k available this month (35k on hand + 35k incoming) to meet the 50k order, leaving 20k in inventory. Ordering 50k more ensures we have adequate stock (around 70k again next month) to cover similar demand without overstocking.",
+          "pattern_analysis": null,
+          "was_clamped": false
+        }
+      ],
+      "orders_placed": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        50000,
+        70000,
+        50000,
+        35000,
+        50000
+      ],
+      "incoming_demands": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        30000,
+        40000,
+        75000,
+        70000,
+        60000,
+        40000,
+        50000
+      ],
+      "inventory_levels": [
+        180000,
+        180000,
+        180000,
+        180000,
+        180000,
+        180000,
+        150000,
+        110000,
+        35000,
+        15000,
+        25000,
+        35000,
+        20000
+      ],
+      "stockout_periods": []
+    }
+  },
+  "run_metadata": {
+    "run_number": 1,
+    "agent_category": "blind",
+    "model_tier": "reasoning",
+    "elapsed_seconds": 835.5,
+    "timestamp": "2026-02-15T14:22:04"
+  },
+  "api_usage": {
+    "total_calls": 39,
+    "successful": 39,
+    "failed": 0,
+    "total_tokens": 60630,
+    "avg_latency_ms": 16550.1,
+    "by_model": {
+      "o1": {
+        "calls": 39,
+        "tokens": 60630,
+        "latency_ms": 645455.0000000001,
+        "avg_latency_ms": 16550.1
+      }
+    }
+  }
+}

@@ -1,0 +1,665 @@
+[
+  {
+    "timestamp": "2026-02-15T14:08:27",
+    "model": "o1",
+    "prompt_hash": "a03e9ba7839f",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"We have enough on-hand inventory (180,000 units) to fulfill this month\u2019s production (43,812), leaving 136,188 units for next month\u2019s demand (46,318). This avoids excess holding costs while still preventing stockouts.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "We have enough on-hand inventory (180000 units) to fulfill this month\u2019s production (43812), leaving 136188 units for next month\u2019s demand (46318). This avoids excess holding costs while still preventing stockouts."
+    },
+    "latency_ms": 18670.9,
+    "prompt_tokens": 225,
+    "completion_tokens": 1804,
+    "total_tokens": 2029,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:08:38",
+    "model": "o1",
+    "prompt_hash": "ae353eb50724",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No immediate demand this month and existing inventory of 180,000 units is sufficient. Avoiding unnecessary inventory buildup.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "No immediate demand this month and existing inventory of 180000 units is sufficient. Avoiding unnecessary inventory buildup."
+    },
+    "latency_ms": 5918.9,
+    "prompt_tokens": 203,
+    "completion_tokens": 495,
+    "total_tokens": 698,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:08:50",
+    "model": "o1",
+    "prompt_hash": "7a0c65616612",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No current orders and robust existing inventory, so no new production is necessary this month.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "No current orders and robust existing inventory, so no new production is necessary this month."
+    },
+    "latency_ms": 6930.5,
+    "prompt_tokens": 196,
+    "completion_tokens": 553,
+    "total_tokens": 749,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:09:13",
+    "model": "o1",
+    "prompt_hash": "1c07aaa5cf1b",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory exceeds near-term needs, allowing us to defer orders until next month.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory exceeds near-term needs, allowing us to defer orders until next month."
+    },
+    "latency_ms": 18044.3,
+    "prompt_tokens": 237,
+    "completion_tokens": 1256,
+    "total_tokens": 1493,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:09:24",
+    "model": "o1",
+    "prompt_hash": "d67bcf6bd6c9",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"There is no current demand and sufficient inventory to cover potential short-term variability, so no new order is placed.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "There is no current demand and sufficient inventory to cover potential short-term variability, so no new order is placed."
+    },
+    "latency_ms": 5493.7,
+    "prompt_tokens": 215,
+    "completion_tokens": 366,
+    "total_tokens": 581,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:09:34",
+    "model": "o1",
+    "prompt_hash": "14f1a5189b2f",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No current demand or backlog, and inventory of 180,000 units is sufficient to cover near-term needs, so no new production is required this month.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "No current demand or backlog, and inventory of 180000 units is sufficient to cover near-term needs, so no new production is required this month."
+    },
+    "latency_ms": 5506.7,
+    "prompt_tokens": 208,
+    "completion_tokens": 439,
+    "total_tokens": 647,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:09:53",
+    "model": "o1",
+    "prompt_hash": "f101232592e5",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 10000, \"reasoning\": \"After meeting Month 3 demand, 42,775 units remain. Month 4 needs 49,287, leaving a shortfall. Ordering 10,000 covers the gap and maintains a small safety stock.\"}",
+    "response_parsed": {
+      "order_quantity": 10000,
+      "reasoning": "After meeting Month 3 demand, 42775 units remain. Month 4 needs 49287, leaving a shortfall. Ordering 10000 covers the gap and maintains a small safety stock."
+    },
+    "latency_ms": 13884.9,
+    "prompt_tokens": 248,
+    "completion_tokens": 1284,
+    "total_tokens": 1532,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:10:07",
+    "model": "o1",
+    "prompt_hash": "9d7609d42ff0",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"With 180,000 units already on hand and only a 10,000-unit order this month, we have enough stock to cover demand without ordering more.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "With 180000 units already on hand and only a 10000-unit order this month, we have enough stock to cover demand without ordering more."
+    },
+    "latency_ms": 8688.8,
+    "prompt_tokens": 228,
+    "completion_tokens": 760,
+    "total_tokens": 988,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:10:17",
+    "model": "o1",
+    "prompt_hash": "7fa3a1394215",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No current demand and sufficient on-hand inventory; producing more would incur unnecessary carrying costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "No current demand and sufficient on-hand inventory; producing more would incur unnecessary carrying costs."
+    },
+    "latency_ms": 5365.1,
+    "prompt_tokens": 219,
+    "completion_tokens": 361,
+    "total_tokens": 580,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:10:39",
+    "model": "o1",
+    "prompt_hash": "ecd991637721",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 44000, \"reasoning\": \"We need about 41,165 additional units for month 5 after using leftover stock (3,488), and we include a small safety buffer to avoid stockouts without holding too much inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 44000,
+      "reasoning": "We need about 41165 additional units for month 5 after using leftover stock (3488), and we include a small safety buffer to avoid stockouts without holding too much inventory."
+    },
+    "latency_ms": 17154.1,
+    "prompt_tokens": 263,
+    "completion_tokens": 1672,
+    "total_tokens": 1935,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:10:53",
+    "model": "o1",
+    "prompt_hash": "c7ec577145fc",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory of 170,000 can meet the 44,000 demand with ample surplus, and with a 1-month lead time, we can react quickly next month if needed.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory of 170000 can meet the 44000 demand with ample surplus, and with a 1-month lead time, we can react quickly next month if needed."
+    },
+    "latency_ms": 8827.3,
+    "prompt_tokens": 239,
+    "completion_tokens": 765,
+    "total_tokens": 1004,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:11:03",
+    "model": "o1",
+    "prompt_hash": "8de557dfc954",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"With zero current demand and sufficient existing inventory, no additional production is necessary this month.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "With zero current demand and sufficient existing inventory, no additional production is necessary this month."
+    },
+    "latency_ms": 5367.0,
+    "prompt_tokens": 230,
+    "completion_tokens": 425,
+    "total_tokens": 655,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:12:09",
+    "model": "o1",
+    "prompt_hash": "91842a9c636b",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 40000, \"reasoning\": \"After using 44,653 units in month 5, about 2,835 remain. Month 6 demand is 39,841, requiring roughly 37,006 more. Ordering 40,000 covers the forecast and provides a small safety buffer without overstocking.\"}",
+    "response_parsed": {
+      "order_quantity": 40000,
+      "reasoning": "After using 44653 units in month 5, about 2835 remain. Month 6 demand is 39841, requiring roughly 37006 more. Ordering 40000 covers the forecast and provides a small safety buffer without overstocking."
+    },
+    "latency_ms": 60976.6,
+    "prompt_tokens": 276,
+    "completion_tokens": 1425,
+    "total_tokens": 1701,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:13:25",
+    "model": "o1",
+    "prompt_hash": "330ad8194f96",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory of 126k is sufficient to cover this month\u2019s 40k order, leaving 86k on hand for next month without a clear forecast. Thus, no additional order is placed to avoid excess inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory of 126k is sufficient to cover this month\u2019s 40k order, leaving 86k on hand for next month without a clear forecast. Thus, no additional order is placed to avoid excess inventory."
+    },
+    "latency_ms": 70938.5,
+    "prompt_tokens": 250,
+    "completion_tokens": 1668,
+    "total_tokens": 1918,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:13:37",
+    "model": "o1",
+    "prompt_hash": "6bab1ed73e60",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No demand for multiple months, sufficient existing inventory, and no backlog or forecasted orders.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "No demand for multiple months, sufficient existing inventory, and no backlog or forecasted orders."
+    },
+    "latency_ms": 7047.3,
+    "prompt_tokens": 241,
+    "completion_tokens": 426,
+    "total_tokens": 667,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:14:07",
+    "model": "o1",
+    "prompt_hash": "5af5d878fcd0",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 37000, \"reasoning\": \"Ordering 37,000 covers next month's forecast (36,478) plus a small safety buffer, minimizing risk of stockouts while avoiding excessive inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 37000,
+      "reasoning": "Ordering 37000 covers next month's forecast (36478) plus a small safety buffer, minimizing risk of stockouts while avoiding excessive inventory."
+    },
+    "latency_ms": 24644.2,
+    "prompt_tokens": 289,
+    "completion_tokens": 2425,
+    "total_tokens": 2714,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:14:29",
+    "model": "o1",
+    "prompt_hash": "81dd4d957522",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory (86,000) covers the 37,000-unit demand, leaving 49,000 units for month 7. With a 1-month lead time and no further known demand, placing no order avoids excess inventory carrying costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory (86000) covers the 37000-unit demand, leaving 49000 units for month 7. With a 1-month lead time and no further known demand, placing no order avoids excess inventory carrying costs."
+    },
+    "latency_ms": 16947.2,
+    "prompt_tokens": 261,
+    "completion_tokens": 1353,
+    "total_tokens": 1614,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:14:44",
+    "model": "o1",
+    "prompt_hash": "e2fc942a4f5a",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No current demand, sufficient existing inventory, and no backlog\u2014producing more would increase holding costs unnecessarily.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "No current demand, sufficient existing inventory, and no backlog\u2014producing more would increase holding costs unnecessarily."
+    },
+    "latency_ms": 10318.1,
+    "prompt_tokens": 252,
+    "completion_tokens": 813,
+    "total_tokens": 1065,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:15:12",
+    "model": "o1",
+    "prompt_hash": "2f7a6b4b41c4",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 37000, \"reasoning\": \"Sufficient to cover the upcoming forecast of 38,193 (using leftover stock plus this new order) while maintaining a modest buffer without excessive inventory\"}",
+    "response_parsed": {
+      "order_quantity": 37000,
+      "reasoning": "Sufficient to cover the upcoming forecast of 38193 (using leftover stock plus this new order) while maintaining a modest buffer without excessive inventory"
+    },
+    "latency_ms": 22808.0,
+    "prompt_tokens": 302,
+    "completion_tokens": 2358,
+    "total_tokens": 2660,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:15:40",
+    "model": "o1",
+    "prompt_hash": "071d2a4bd172",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 30000, \"reasoning\": \"After fulfilling this month's demand of 37000 from current stock (49000), we will have 12000 units left. Ordering 30000 ensures we maintain a modest buffer if next month\u2019s demand remains around 37000, balancing stockout risk and holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 30000,
+      "reasoning": "After fulfilling this month's demand of 37000 from current stock (49000), we will have 12000 units left. Ordering 30000 ensures we maintain a modest buffer if next month\u2019s demand remains around 37000, balancing stockout risk and holding costs."
+    },
+    "latency_ms": 23240.0,
+    "prompt_tokens": 272,
+    "completion_tokens": 2383,
+    "total_tokens": 2655,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:15:54",
+    "model": "o1",
+    "prompt_hash": "f843109101cc",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current on-hand inventory of 180,000 units is sufficient to cover the 30,000-unit order, leaving ample stock without new production.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current on-hand inventory of 180000 units is sufficient to cover the 30000-unit order, leaving ample stock without new production."
+    },
+    "latency_ms": 8391.0,
+    "prompt_tokens": 265,
+    "completion_tokens": 631,
+    "total_tokens": 896,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:16:15",
+    "model": "o1",
+    "prompt_hash": "7aed32447f55",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 40000, \"reasoning\": \"We will have about 2,300 units left after month 8\u2019s production. With a forecast of around 40,756 units for month 9, ordering 40,000 provides enough coverage plus a small safety buffer without carrying excessive inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 40000,
+      "reasoning": "We will have about 2300 units left after month 8\u2019s production. With a forecast of around 40756 units for month 9, ordering 40000 provides enough coverage plus a small safety buffer without carrying excessive inventory."
+    },
+    "latency_ms": 15910.8,
+    "prompt_tokens": 304,
+    "completion_tokens": 1611,
+    "total_tokens": 1915,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:16:34",
+    "model": "o1",
+    "prompt_hash": "63348116e6ea",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 40000, \"reasoning\": \"We have 42,000 units to fulfill the current 40,000 demand, leaving 2,000 units on hand. Ordering 40,000 now covers a similar demand next month while minimizing excess inventory costs.\"}",
+    "response_parsed": {
+      "order_quantity": 40000,
+      "reasoning": "We have 42000 units to fulfill the current 40000 demand, leaving 2000 units on hand. Ordering 40000 now covers a similar demand next month while minimizing excess inventory costs."
+    },
+    "latency_ms": 14230.9,
+    "prompt_tokens": 276,
+    "completion_tokens": 1349,
+    "total_tokens": 1625,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:16:46",
+    "model": "o1",
+    "prompt_hash": "e319fb0ab790",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory of 150,000 is sufficient to cover the 40,000 demand with enough buffer, so no additional order is needed this month.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory of 150000 is sufficient to cover the 40000 demand with enough buffer, so no additional order is needed this month."
+    },
+    "latency_ms": 7180.0,
+    "prompt_tokens": 265,
+    "completion_tokens": 502,
+    "total_tokens": 767,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:17:13",
+    "model": "o1",
+    "prompt_hash": "721840a24c76",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 58000, \"reasoning\": \"Ordering enough to cover the forecast of 56,892 units for next month plus a small safety buffer, given leftover inventory from this month.\"}",
+    "response_parsed": {
+      "order_quantity": 58000,
+      "reasoning": "Ordering enough to cover the forecast of 56892 units for next month plus a small safety buffer, given leftover inventory from this month."
+    },
+    "latency_ms": 21615.1,
+    "prompt_tokens": 306,
+    "completion_tokens": 2165,
+    "total_tokens": 2471,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:17:43",
+    "model": "o1",
+    "prompt_hash": "7d9d85876ee5",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 75000, \"reasoning\": \"Expecting a backlog of 16k from this month and similar or slightly higher demand next month, ordering 75k balances avoiding future shortfalls with not overstocking too heavily.\"}",
+    "response_parsed": {
+      "order_quantity": 75000,
+      "reasoning": "Expecting a backlog of 16k from this month and similar or slightly higher demand next month, ordering 75k balances avoiding future shortfalls with not overstocking too heavily."
+    },
+    "latency_ms": 25641.5,
+    "prompt_tokens": 278,
+    "completion_tokens": 2750,
+    "total_tokens": 3028,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:18:06",
+    "model": "o1",
+    "prompt_hash": "c92d92f870ac",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 50000, \"reasoning\": \"After fulfilling 75k from current stock, 35k remain. Ordering 50k provides sufficient coverage if demand repeats next month without excessive inventory buildup.\"}",
+    "response_parsed": {
+      "order_quantity": 50000,
+      "reasoning": "After fulfilling 75k from current stock, 35k remain. Ordering 50k provides sufficient coverage if demand repeats next month without excessive inventory buildup."
+    },
+    "latency_ms": 18151.0,
+    "prompt_tokens": 265,
+    "completion_tokens": 1466,
+    "total_tokens": 1731,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:18:24",
+    "model": "o1",
+    "prompt_hash": "7bf02dc9d7fc",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 57000, \"reasoning\": \"After using 56,892 units in Month 10, we expect about 2,675 units left. We need nearly 59,608 units in Month 11, so ordering 57,000 covers the shortfall and provides a small buffer.\"}",
+    "response_parsed": {
+      "order_quantity": 57000,
+      "reasoning": "After using 56892 units in Month 10, we expect about 2675 units left. We need nearly 59608 units in Month 11, so ordering 57000 covers the shortfall and provides a small buffer."
+    },
+    "latency_ms": 12775.5,
+    "prompt_tokens": 306,
+    "completion_tokens": 1100,
+    "total_tokens": 1406,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:18:46",
+    "model": "o1",
+    "prompt_hash": "c82377164030",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 70000, \"reasoning\": \"We expect next month's demand could be near 60\u201375k units. Ordering 70k plus the 2k leftover from this month helps avoid stockouts while keeping inventory costs manageable.\"}",
+    "response_parsed": {
+      "order_quantity": 70000,
+      "reasoning": "We expect next month's demand could be near 60\u201375k units. Ordering 70k plus the 2k leftover from this month helps avoid stockouts while keeping inventory costs manageable."
+    },
+    "latency_ms": 16916.6,
+    "prompt_tokens": 280,
+    "completion_tokens": 1733,
+    "total_tokens": 2013,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:19:02",
+    "model": "o1",
+    "prompt_hash": "33d91b2432cd",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 70000, \"reasoning\": \"Current on-hand plus in-transit inventory covers this month's 70k demand, leaving 15k remaining. Ordering 70k balances avoiding potential stockouts if next month's order remains at or above 70k while minimizing excessive inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 70000,
+      "reasoning": "Current on-hand plus in-transit inventory covers this month's 70k demand, leaving 15k remaining. Ordering 70k balances avoiding potential stockouts if next month's order remains at or above 70k while minimizing excessive inventory."
+    },
+    "latency_ms": 11350.6,
+    "prompt_tokens": 269,
+    "completion_tokens": 1042,
+    "total_tokens": 1311,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:19:25",
+    "model": "o1",
+    "prompt_hash": "be1387192957",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 56000, \"reasoning\": \"Month 12 forecast is 55,347 and we will have about 67 units left from month 11, so ordering 56,000 provides a small safety buffer while minimizing excess inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 56000,
+      "reasoning": "Month 12 forecast is 55347 and we will have about 67 units left from month 11, so ordering 56000 provides a small safety buffer while minimizing excess inventory."
+    },
+    "latency_ms": 18044.3,
+    "prompt_tokens": 296,
+    "completion_tokens": 1665,
+    "total_tokens": 1961,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:19:45",
+    "model": "o1",
+    "prompt_hash": "22849a81c560",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 60000, \"reasoning\": \"After fulfilling this month\u2019s demand (56K) with on-hand + incoming stock (72K total), we\u2019ll carry ~16K into next month. Ordering 60K ensures coverage for potentially higher demand (up to 75K) and avoids excessive overstock.\"}",
+    "response_parsed": {
+      "order_quantity": 60000,
+      "reasoning": "After fulfilling this month\u2019s demand (56K) with on-hand + incoming stock (72K total), we\u2019ll carry ~16K into next month. Ordering 60K ensures coverage for potentially higher demand (up to 75K) and avoids excessive overstock."
+    },
+    "latency_ms": 14184.3,
+    "prompt_tokens": 282,
+    "completion_tokens": 1364,
+    "total_tokens": 1646,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:20:03",
+    "model": "o1",
+    "prompt_hash": "8ee3157d207f",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 50000, \"reasoning\": \"We will have about 25k leftover after month 11. Anticipating next month's demand could be around 60-70k, ordering 50k should prevent stockouts while keeping inventory costs reasonable.\"}",
+    "response_parsed": {
+      "order_quantity": 50000,
+      "reasoning": "We will have about 25k leftover after month 11. Anticipating next month's demand could be around 60-70k, ordering 50k should prevent stockouts while keeping inventory costs reasonable."
+    },
+    "latency_ms": 13050.9,
+    "prompt_tokens": 271,
+    "completion_tokens": 1284,
+    "total_tokens": 1555,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:20:25",
+    "model": "o1",
+    "prompt_hash": "9686807ce917",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 49000, \"reasoning\": \"We expect 720 leftover after this month's usage. Adding 49,000 provides a small buffer above next month's forecast of 48,491 while avoiding excessive inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 49000,
+      "reasoning": "We expect 720 leftover after this month's usage. Adding 49000 provides a small buffer above next month's forecast of 48491 while avoiding excessive inventory."
+    },
+    "latency_ms": 17479.1,
+    "prompt_tokens": 284,
+    "completion_tokens": 1658,
+    "total_tokens": 1942,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:20:46",
+    "model": "o1",
+    "prompt_hash": "2c748be0bb13",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 40000, \"reasoning\": \"With 76k available in Month 12 and 49k demand, we expect 27k left. Ordering 40k for Month 13 covers a likely 60k demand range and maintains a reasonable buffer without overstocking.\"}",
+    "response_parsed": {
+      "order_quantity": 40000,
+      "reasoning": "With 76k available in Month 12 and 49k demand, we expect 27k left. Ordering 40k for Month 13 covers a likely 60k demand range and maintains a reasonable buffer without overstocking."
+    },
+    "latency_ms": 15635.4,
+    "prompt_tokens": 284,
+    "completion_tokens": 1483,
+    "total_tokens": 1767,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:21:04",
+    "model": "o1",
+    "prompt_hash": "36306f1a685a",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 35000, \"reasoning\": \"After fulfilling 40k this month, we will have 35k left in stock. Producing 35k more helps ensure sufficient coverage for potential demand next month without carrying excessive inventory.\"}",
+    "response_parsed": {
+      "order_quantity": 35000,
+      "reasoning": "After fulfilling 40k this month, we will have 35k left in stock. Producing 35k more helps ensure sufficient coverage for potential demand next month without carrying excessive inventory."
+    },
+    "latency_ms": 13633.4,
+    "prompt_tokens": 273,
+    "completion_tokens": 1215,
+    "total_tokens": 1488,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:21:20",
+    "model": "o1",
+    "prompt_hash": "9a7a5cd73fae",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 50000, \"reasoning\": \"With 49,720 units available this month against a requirement of 48,491, we expect a similar demand next month. Ordering 50,000 units maintains safety stock and prevents stockouts.\"}",
+    "response_parsed": {
+      "order_quantity": 50000,
+      "reasoning": "With 49720 units available this month against a requirement of 48491, we expect a similar demand next month. Ordering 50000 units maintains safety stock and prevents stockouts."
+    },
+    "latency_ms": 10466.3,
+    "prompt_tokens": 278,
+    "completion_tokens": 961,
+    "total_tokens": 1239,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:21:47",
+    "model": "o1",
+    "prompt_hash": "0e3e449aad0d",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 50000, \"reasoning\": \"We\u2019ll fulfill the current 50k demand using on-hand plus arriving stock and still have about 17k left. Ordering an additional 50k ensures we can likely meet the next month\u2019s typical demand without excess inventory buildup.\"}",
+    "response_parsed": {
+      "order_quantity": 50000,
+      "reasoning": "We\u2019ll fulfill the current 50k demand using on-hand plus arriving stock and still have about 17k left. Ordering an additional 50k ensures we can likely meet the next month\u2019s typical demand without excess inventory buildup."
+    },
+    "latency_ms": 22200.8,
+    "prompt_tokens": 286,
+    "completion_tokens": 2311,
+    "total_tokens": 2597,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T14:22:04",
+    "model": "o1",
+    "prompt_hash": "d7d69741f4b4",
+    "temperature": 1.0,
+    "response_raw": "{\"order_quantity\": 50000, \"reasoning\": \"We will have 70k available this month (35k on hand + 35k incoming) to meet the 50k order, leaving 20k in inventory. Ordering 50k more ensures we have adequate stock (around 70k again next month) to cover similar demand without overstocking.\"}",
+    "response_parsed": {
+      "order_quantity": 50000,
+      "reasoning": "We will have 70k available this month (35k on hand + 35k incoming) to meet the 50k order, leaving 20k in inventory. Ordering 50k more ensures we have adequate stock (around 70k again next month) to cover similar demand without overstocking."
+    },
+    "latency_ms": 11825.4,
+    "prompt_tokens": 275,
+    "completion_tokens": 1112,
+    "total_tokens": 1387,
+    "success": true,
+    "error": null
+  }
+]

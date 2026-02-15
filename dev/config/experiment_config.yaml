@@ -1,0 +1,39 @@
+# =============================================================================
+# Bullwhip Experiment Config v2 — Tatva Motors Monthly Dispatches
+# =============================================================================
+# Models: gpt-4.1-mini (lightweight), o1 (reasoning)
+# Data: Tatva Motors synthetic monthly dispatches → drives component orders
+# Supply chain: OEM (Tatva) -> Lighting Manufacturer -> LED/Component Supplier
+
+
+azure:
+  endpoint: "${AZURE_OPENAI_ENDPOINT}"   # Loaded from .env file
+  api_key: "${AZURE_OPENAI_KEY}"         # Loaded from .env file
+  api_version: "${AZURE_OPENAI_API_VERSION}"
+
+models:
+  lightweight:
+    deployment: "gpt-4.1-mini"
+    temperature: 0.2
+    max_tokens: 600
+    inter_call_delay: 1.0  # Seconds to wait between API calls (rate limiting)
+  reasoning:
+    deployment: "o1"
+    endpoint: "${AZURE_OPENAI_ENDPOINT}"  # Loaded from .env file
+    api_key: "${AZURE_OPENAI_KEY}"        # Loaded from .env file
+    temperature: 1.0       # o1 ignores temperature, but kept for schema consistency
+    max_tokens: 16000     # Increased for growing context in multi-period experiments
+    inter_call_delay: 5.0  # Seconds to wait between API calls (rate limiting for o1)
+
+experiment:
+  runs_per_config: 10
+  time_unit: "month"              # Monthly ordering cycles (Indian auto industry standard)
+  ordering_periods: 13            # 13 months of real data (Dec-24 to Dec-25)
+  lead_time_periods: 1            # 1 month lead time (typical OEM-to-ancillary ordering cycle)
+  initial_inventory: 180000       # ~4 months of ~45K/month average dispatches
+  random_seed: 42
+
+paths:
+  demand_data: "data/tatva_monthly_dispatches.csv"
+  results_dir: "results"
+  figures_dir: "results/figures"
