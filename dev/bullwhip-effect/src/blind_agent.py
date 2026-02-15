@@ -1,8 +1,8 @@
 """
 Blind Agent
 ===========
-Sees only numbers + cost structure. No geography, no product, no dates, no role.
-Must decide ordering purely from demand signals, inventory state, and cost trade-off.
+Sees only numbers. No geography, no product, no dates, no role, no costs.
+Must decide ordering purely from demand signals and inventory state.
 """
 
 from typing import Optional
@@ -29,10 +29,6 @@ This {tu}'s demand: {demand:,} units
 
 Recent order history:
 {self._format_order_history()}
-
-Cost structure:
-- Holding cost: {self.holding_cost:,} per unit per {tu} (applied to ending inventory)
-- Backlog cost: {self.backlog_cost:,} per unit per {tu} (applied to unmet demand)
 
 Respond with ONLY a JSON object:
 {{"order_quantity": <number>, "reasoning": "<brief explanation>"}}"""

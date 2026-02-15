@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Bullwhip Experiment Runner v3 — Tatva Motors Monthly Dispatches
-================================================================
+Bullwhip Experiment Runner v4 — Tatva Motors Vecta LED Headlight Assembly
+==========================================================================
 
 Usage:
     # Validate with 1 run on cheapest model
@@ -103,7 +103,7 @@ def execute_run(config, category, model_tier, run_number, demand_data):
     """Execute one simulation run. Returns result dict."""
     exp = config.get("experiment", {})
     costs = config.get("costs", {})
-    initial_inv = exp.get("initial_inventory", 180000)
+    initial_inv = exp.get("initial_inventory", 23000)
     time_unit = exp.get("time_unit", "month")
 
     lead_time = exp.get("lead_time_periods",
@@ -154,18 +154,14 @@ def compute_ovar(orders, demands):
     return float(vo / vd) if vd > 0 else 0.0
 
 
-def compute_tier_metrics(tier_data, holding_cost=100, backlog_cost=1000):
+def compute_tier_metrics(tier_data):
     orders = tier_data["orders_placed"]
     demands = tier_data["incoming_demands"]
     inventory = tier_data["inventory_levels"]
     stockouts = tier_data.get("stockout_periods", tier_data.get("stockout_weeks", []))
-
-    # Financial impact from period records
     records = tier_data.get("period_records", [])
-    total_holding = sum(r.get("inventory_after", 0) * holding_cost for r in records)
-    total_backlog = sum(r.get("backlog", 0) * backlog_cost for r in records)
 
-    # Clamp event tracking
+    # Clamp event tracking (v4: should always be 0 since no clamps)
     clamp_count = sum(1 for r in records if r.get("was_clamped", False))
 
     return {
@@ -182,18 +178,13 @@ def compute_tier_metrics(tier_data, holding_cost=100, backlog_cost=1000):
         "max_demand": int(max(demands)) if demands else 0,
         "total_ordered": int(sum(orders)),
         "total_demand": int(sum(demands)),
-        "holding_cost_inr": total_holding,
-        "backlog_cost_inr": total_backlog,
-        "total_cost_inr": total_holding + total_backlog,
     }
 
 
-def compute_run_metrics(result, holding_cost=100, backlog_cost=1000):
+def compute_run_metrics(result):
     metrics = {}
     for tier in ["oem", "ancillary", "ancillary_supplier"]:
-        metrics[tier] = compute_tier_metrics(
-            result["tiers"][tier], holding_cost, backlog_cost
-        )
+        metrics[tier] = compute_tier_metrics(result["tiers"][tier])
 
     metrics["cascade"] = {
         "ovar_oem": metrics["oem"]["ovar"],
@@ -201,9 +192,6 @@ def compute_run_metrics(result, holding_cost=100, backlog_cost=1000):
         "ovar_ancillary_supplier": metrics["ancillary_supplier"]["ovar"],
         "total_stockouts": sum(metrics[t]["stockout_count"] for t in ["oem", "ancillary", "ancillary_supplier"]),
         "total_excess_inventory": sum(metrics[t]["excess_inventory"] for t in ["oem", "ancillary", "ancillary_supplier"]),
-        "total_cost_inr": sum(metrics[t]["total_cost_inr"] for t in ["oem", "ancillary", "ancillary_supplier"]),
-        "total_holding_inr": sum(metrics[t]["holding_cost_inr"] for t in ["oem", "ancillary", "ancillary_supplier"]),
-        "total_backlog_inr": sum(metrics[t]["backlog_cost_inr"] for t in ["oem", "ancillary", "ancillary_supplier"]),
     }
     return metrics
 
@@ -216,8 +204,7 @@ def aggregate_metrics(metrics_list):
     for tier in ["oem", "ancillary", "ancillary_supplier"]:
         agg[tier] = {}
         for key in ["ovar", "peak_overshoot", "excess_inventory", "stockout_count",
-                     "clamp_count", "mean_order", "std_order", "max_order", "total_ordered",
-                     "holding_cost_inr", "backlog_cost_inr", "total_cost_inr"]:
+                     "clamp_count", "mean_order", "std_order", "max_order", "total_ordered"]:
             vals = [m[tier][key] for m in metrics_list if tier in m and key in m[tier]]
             if vals:
                 agg[tier][key] = {
@@ -339,47 +326,6 @@ def plot_ovar_bars(blind_agg, context_agg, model, path):
     ax.legend()
     ax.grid(True, axis="y", alpha=0.3)
     ax.set_ylim(bottom=0)
-    plt.tight_layout()
-    plt.savefig(path, dpi=150, bbox_inches="tight")
-    plt.close()
-
-
-def plot_cost_bars(all_agg, path):
-    """Total cost bar chart across all configs."""
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-
-    configs = sorted(all_agg.keys())
-    if not configs:
-        return
-
-    tiers = ["oem", "ancillary", "ancillary_supplier"]
-    holding_vals = []
-    backlog_vals = []
-    labels = []
-
-    for ck in configs:
-        agg = all_agg[ck]
-        h = sum(agg[t].get("holding_cost_inr", {}).get("mean", 0) for t in tiers)
-        b = sum(agg[t].get("backlog_cost_inr", {}).get("mean", 0) for t in tiers)
-        holding_vals.append(h / 1e6)  # Convert to millions
-        backlog_vals.append(b / 1e6)
-        labels.append(ck.replace("_", "\n"))
-
-    x = np.arange(len(configs))
-    w = 0.5
-
-    fig, ax = plt.subplots(figsize=(12, 6))
-    ax.bar(x, holding_vals, w, label="Holding Cost", color="#3b82f6", alpha=0.8)
-    ax.bar(x, backlog_vals, w, bottom=holding_vals, label="Backlog Cost",
-           color="#ef4444", alpha=0.8)
-    ax.set_title("Total Simulation Cost by Configuration", fontsize=13, fontweight="bold")
-    ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=9)
-    ax.set_ylabel("Cost (₹ millions)")
-    ax.legend()
-    ax.grid(True, axis="y", alpha=0.3)
     plt.tight_layout()
     plt.savefig(path, dpi=150, bbox_inches="tight")
     plt.close()
@@ -550,14 +496,7 @@ def analyze_all():
             continue
 
         all_results[ck] = runs
-        metrics_list = [
-            compute_run_metrics(
-                r,
-                r.get("costs_config", {}).get("holding_per_unit", 100),
-                r.get("costs_config", {}).get("backlog_per_unit", 1000),
-            )
-            for r in runs
-        ]
+        metrics_list = [compute_run_metrics(r) for r in runs]
         agg = aggregate_metrics(metrics_list)
         all_agg[ck] = agg
 
@@ -567,10 +506,10 @@ def analyze_all():
         print(f"{ck}: {len(runs)} runs")
         for tier in ["oem", "ancillary", "ancillary_supplier"]:
             ovar = agg[tier].get("ovar", {})
-            cost = agg[tier].get("total_cost_inr", {})
+            stockouts = agg[tier].get("stockout_count", {})
             print(f"  {TIER_LABELS.get(tier, tier):>25}: "
                   f"OVAR = {ovar.get('mean', 0):.3f} +/- {ovar.get('std', 0):.3f}  "
-                  f"Cost = ₹{cost.get('mean', 0):,.0f}")
+                  f"Stockouts = {stockouts.get('mean', 0):.0f}")
 
         # Cascade chart (first run)
         plot_cascade(
@@ -631,26 +570,6 @@ def analyze_all():
             )
 
     # =========================================================================
-    # Financial impact summary
-    # =========================================================================
-    print(f"\n{'='*55}")
-    print("FINANCIAL IMPACT (INR)")
-    print(f"{'='*55}")
-
-    tiers = ["oem", "ancillary", "ancillary_supplier"]
-    for ck in sorted(all_agg.keys()):
-        agg = all_agg[ck]
-        total_h = sum(agg[t].get("holding_cost_inr", {}).get("mean", 0) for t in tiers)
-        total_b = sum(agg[t].get("backlog_cost_inr", {}).get("mean", 0) for t in tiers)
-        total = total_h + total_b
-        print(f"  {ck:>25}: Holding=₹{total_h:>12,.0f}  "
-              f"Backlog=₹{total_b:>12,.0f}  Total=₹{total:>12,.0f}")
-
-    # Cost bar chart
-    if len(all_agg) > 1:
-        plot_cost_bars(all_agg, str(FIGURES_DIR / "cost_comparison.png"))
-
-    # =========================================================================
     # Stability check (cross-run variance)
     # =========================================================================
     if any(len(runs) > 1 for runs in all_results.values()):
@@ -689,7 +608,7 @@ def analyze_all():
 # Main
 # =============================================================================
 def main():
-    parser = argparse.ArgumentParser(description="Bullwhip Experiment Runner v3")
+    parser = argparse.ArgumentParser(description="Bullwhip Experiment Runner v4")
     parser.add_argument("--config", type=str, help="Config YAML path")
     parser.add_argument("--category", choices=["blind", "context"])
     parser.add_argument("--model", choices=["lightweight", "reasoning"])
@@ -721,10 +640,6 @@ def main():
         data_path = str(BASE_DIR / data_path)
     demand_data = SupplyChain.load_demand_data(data_path)
     print(f"Loaded {len(demand_data)} {time_unit}s of demand data from {data_path}")
-
-    costs = config.get("costs", {})
-    run_holding = costs.get("holding_per_unit", 100)
-    run_backlog = costs.get("backlog_per_unit", 1000)
 
     if args.all:
         categories = ["blind", "context"]
@@ -758,11 +673,11 @@ def main():
                             json.dump(result, f, indent=2)
                         print(f"    Saved: {path}")
 
-                        m = compute_run_metrics(result, run_holding, run_backlog)
+                        m = compute_run_metrics(result)
                         print(f"    OVAR: OEM={m['oem']['ovar']:.2f} "
                               f"Anc={m['ancillary']['ovar']:.2f} "
                               f"Sup={m['ancillary_supplier']['ovar']:.2f}  "
-                              f"Cost=₹{m['cascade']['total_cost_inr']:,.0f}")
+                              f"Stockouts={m['cascade']['total_stockouts']}")
 
                         all_logs.extend([vars(l) if hasattr(l, '__dict__') else l
                                         for l in client.call_log])
@@ -792,11 +707,11 @@ def main():
                     json.dump(result, f, indent=2)
                 print(f"  Saved: {path}")
 
-                m = compute_run_metrics(result, run_holding, run_backlog)
+                m = compute_run_metrics(result)
                 print(f"  OVAR: OEM={m['oem']['ovar']:.2f} "
                       f"Anc={m['ancillary']['ovar']:.2f} "
                       f"Sup={m['ancillary_supplier']['ovar']:.2f}  "
-                      f"Cost=₹{m['cascade']['total_cost_inr']:,.0f}")
+                      f"Stockouts={m['cascade']['total_stockouts']}")
 
                 client.export_logs(str(RESULTS_DIR / f"api_logs_{ck}_run{r:02d}.json"))
 

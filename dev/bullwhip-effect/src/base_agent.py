@@ -50,13 +50,13 @@ class BaseAgent(ABC):
         "No additional text before or after the JSON object."
     )
 
-    def __init__(self, role: str, initial_inventory: int = 180000,
+    def __init__(self, role: str, initial_inventory: int = 23000,
                  lead_time_periods: int = 1, time_unit: str = "month",
                  holding_cost: int = 100, backlog_cost: int = 1000):
         """
         Args:
             role: 'oem', 'ancillary', or 'ancillary_supplier'
-            initial_inventory: Starting stock (~4 months of dispatches)
+            initial_inventory: Starting stock (~2 weeks of dispatches)
             lead_time_periods: Delivery lead time in periods
             time_unit: 'month' or 'week'
             holding_cost: ₹ per unit per month (ending inventory)
@@ -84,14 +84,7 @@ class BaseAgent(ABC):
                      max_order_multiplier: float = 5.0) -> OrderDecision:
         """
         Call LLM to make ordering decision.
-
-        Args:
-            demand: This period's incoming demand
-            forecast: Upcoming demand forecast (OEM only)
-            period_metadata: Date/month/year info
-            client: FoundryClient instance
-            model_tier: Which model to use
-            max_order_multiplier: Clamp ceiling as multiple of demand
+        v4: No floor or ceiling clamps. Agent can order any non-negative quantity.
         """
         self.state.incoming_demand_this_period = demand
         self.state.current_period = (
@@ -106,32 +99,14 @@ class BaseAgent(ABC):
         reasoning = response.get("reasoning", "No reasoning provided")
         pattern_analysis = response.get("pattern_analysis", None)
 
-        # Clamp to bounds: floor = 0.2x demand, ceiling = 5x demand.
-        # Floor prevents zero-order "inventory illusion" behaviour.
-        # When demand is 0, both floor and ceiling are 0.
+        # v4: no floor or ceiling — only clamp negatives to 0.
         was_clamped = False
-        min_order = int(demand * 0.2) if demand > 0 else 0
-        max_order = int(demand * max_order_multiplier) if demand > 0 else 0
         if order_qty < 0:
             logger.warning(
                 f"[{self.state.role}] P{self.state.current_period}: "
-                f"negative ({order_qty}) -> {min_order}"
+                f"negative ({order_qty}) -> 0"
             )
-            order_qty = min_order
-            was_clamped = True
-        elif demand > 0 and order_qty < min_order:
-            logger.warning(
-                f"[{self.state.role}] P{self.state.current_period}: "
-                f"below floor ({order_qty}) -> {min_order}"
-            )
-            order_qty = min_order
-            was_clamped = True
-        elif order_qty > max_order:
-            logger.warning(
-                f"[{self.state.role}] P{self.state.current_period}: "
-                f"excessive ({order_qty}) -> {max_order}"
-            )
-            order_qty = max_order
+            order_qty = 0
             was_clamped = True
 
         decision = OrderDecision(

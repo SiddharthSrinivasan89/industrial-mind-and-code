@@ -80,33 +80,6 @@
       "per_run": [
         482541.0
       ]
-    },
-    "holding_cost_inr": {
-      "mean": 34371500.0,
-      "std": 0.0,
-      "min": 34371500.0,
-      "max": 34371500.0,
-      "per_run": [
-        34371500.0
-      ]
-    },
-    "backlog_cost_inr": {
-      "mean": 0.0,
-      "std": 0.0,
-      "min": 0.0,
-      "max": 0.0,
-      "per_run": [
-        0.0
-      ]
-    },
-    "total_cost_inr": {
-      "mean": 34371500.0,
-      "std": 0.0,
-      "min": 34371500.0,
-      "max": 34371500.0,
-      "per_run": [
-        34371500.0
-      ]
     }
   },
   "ancillary": {
@@ -190,33 +163,6 @@
       "per_run": [
         362631.0
       ]
-    },
-    "holding_cost_inr": {
-      "mean": 93511300.0,
-      "std": 0.0,
-      "min": 93511300.0,
-      "max": 93511300.0,
-      "per_run": [
-        93511300.0
-      ]
-    },
-    "backlog_cost_inr": {
-      "mean": 0.0,
-      "std": 0.0,
-      "min": 0.0,
-      "max": 0.0,
-      "per_run": [
-        0.0
-      ]
-    },
-    "total_cost_inr": {
-      "mean": 93511300.0,
-      "std": 0.0,
-      "min": 93511300.0,
-      "max": 93511300.0,
-      "per_run": [
-        93511300.0
-      ]
     }
   },
   "ancillary_supplier": {
@@ -299,33 +245,6 @@
       "max": 243124.0,
       "per_run": [
         243124.0
-      ]
-    },
-    "holding_cost_inr": {
-      "mean": 147624900.0,
-      "std": 0.0,
-      "min": 147624900.0,
-      "max": 147624900.0,
-      "per_run": [
-        147624900.0
-      ]
-    },
-    "backlog_cost_inr": {
-      "mean": 0.0,
-      "std": 0.0,
-      "min": 0.0,
-      "max": 0.0,
-      "per_run": [
-        0.0
-      ]
-    },
-    "total_cost_inr": {
-      "mean": 147624900.0,
-      "std": 0.0,
-      "min": 147624900.0,
-      "max": 147624900.0,
-      "per_run": [
-        147624900.0
       ]
     }
   }

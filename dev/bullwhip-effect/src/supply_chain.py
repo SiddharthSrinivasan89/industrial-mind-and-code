@@ -19,17 +19,17 @@ logger = logging.getLogger(__name__)
 class SupplyChain:
     """Orchestrates a 3-tier supply chain simulation."""
 
-    def __init__(self, agent_category: str, initial_inventory: int = 180000,
+    def __init__(self, agent_category: str, initial_inventory: int = 23000,
                  lead_time_periods: int = 1, time_unit: str = "month",
-                 holding_cost: int = 100, backlog_cost: int = 1000):
+                 holding_cost: int = 0, backlog_cost: int = 0):
         """
         Args:
             agent_category: 'blind' or 'context'
-            initial_inventory: Starting stock per tier (~4 months of dispatches)
+            initial_inventory: Starting stock per tier (~2 weeks of dispatches)
             lead_time_periods: Delivery lead time in periods
             time_unit: 'month' or 'week'
-            holding_cost: ₹ per unit per period (ending inventory)
-            backlog_cost: ₹ per unit per period (unmet demand)
+            holding_cost: ₹ per unit per period (v4: 0, no cost model)
+            backlog_cost: ₹ per unit per period (v4: 0, no cost model)
         """
         self.agent_category = agent_category
         self.initial_inventory = initial_inventory

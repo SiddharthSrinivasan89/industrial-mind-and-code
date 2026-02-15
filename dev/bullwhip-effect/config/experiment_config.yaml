@@ -1,9 +1,10 @@
 # =============================================================================
-# Bullwhip Experiment Config v3 — Tatva Motors Monthly Dispatches
+# Bullwhip Experiment Config v4 — Tatva Motors Vecta LED Headlight Assembly
 # =============================================================================
 # Models: gpt-4.1-mini (lightweight), o1 (reasoning)
-# Data: Tatva Motors synthetic monthly dispatches → drives component orders
-# Supply chain: OEM (Tatva) -> Lighting Manufacturer -> LED/Component Supplier
+# Data: Tatva Motors Vecta monthly dispatches → drives headlight assembly orders
+# Supply chain: OEM (Tatva) -> Lighting Manufacturer -> LED Module Supplier
+# v4 changes: no order clamps, initial_inventory 23K (~2 weeks), single product (Vecta)
 
 
 azure:
@@ -33,12 +34,12 @@ experiment:
   time_unit: "month"
   ordering_periods: 13            # 13 months of real data (Dec-24 to Dec-25)
   lead_time_periods: 1            # 1 month lead time
-  initial_inventory: 180000       # ~4 months of ~45K/month average dispatches
+  initial_inventory: 23000        # ~2 weeks of ~46K/month average — agents must order actively from period 1
   random_seed: 42
 
 costs:
-  holding_per_unit: 100           # ₹ per unit per month (ending inventory)
-  backlog_per_unit: 1000          # ₹ per unit per month (unmet demand)
+  holding_per_unit: 0             # v4: removed — observe raw agent behavior without cost nudges
+  backlog_per_unit: 0             # v4: removed — no cost model, just OVAR + ordering patterns
 
 paths:
   demand_data: "data/tatva_monthly_dispatches.csv"
