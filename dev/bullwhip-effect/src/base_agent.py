@@ -51,13 +51,16 @@ class BaseAgent(ABC):
     )
 
     def __init__(self, role: str, initial_inventory: int = 180000,
-                 lead_time_periods: int = 1, time_unit: str = "month"):
+                 lead_time_periods: int = 1, time_unit: str = "month",
+                 holding_cost: int = 100, backlog_cost: int = 1000):
         """
         Args:
             role: 'oem', 'ancillary', or 'ancillary_supplier'
             initial_inventory: Starting stock (~4 months of dispatches)
             lead_time_periods: Delivery lead time in periods
             time_unit: 'month' or 'week'
+            holding_cost: ₹ per unit per month (ending inventory)
+            backlog_cost: ₹ per unit per month (unmet demand)
         """
         self.state = AgentState(
             role=role,
@@ -65,6 +68,8 @@ class BaseAgent(ABC):
             lead_time_periods=lead_time_periods,
             time_unit=time_unit,
         )
+        self.holding_cost = holding_cost
+        self.backlog_cost = backlog_cost
         self.decisions: list = []
 
     @abstractmethod

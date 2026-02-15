@@ -1,9 +1,9 @@
 """
 Context Agent
 =============
-Receives ambient context: geography, product category, time of year.
-Never told what specific patterns exist. Must infer Navratri, Diwali,
-monsoon, FY-end rush, wedding season etc. from world knowledge.
+Receives ambient context: geography, product category, time of year, cost structure.
+Explicitly told about Indian market and festive season. Must use domain knowledge
+to inform ordering decisions alongside the quantitative cost trade-off.
 """
 
 from typing import Optional
@@ -12,7 +12,6 @@ from base_agent import BaseAgent
 
 class ContextAgent(BaseAgent):
 
-    # Override base system prompt with domain-specific context.
     SYSTEM_PROMPT = (
         "You are a supply chain ordering agent in the Indian automotive component industry. "
         "Always respond with valid JSON only. "
@@ -21,19 +20,19 @@ class ContextAgent(BaseAgent):
 
     ROLE_DESC = {
         "oem": (
-            "You are Tatva Motors' vehicle assembly plant in India. You receive "
-            "monthly production dispatch targets and must order automotive lighting "
+            "You are a Senior Supply Chain Planner at Tatva Motors' vehicle assembly plant in India. "
+            "You receive monthly production dispatch targets and must order automotive lighting "
             "assemblies (headlamps, tail lamps, DRLs) from your Tier 1 lighting supplier."
         ),
         "ancillary": (
-            "You are an auto ancillary lighting manufacturer in India (like a leading Tier 1 "
-            "auto ancillary) supplying Tatva Motors. You receive lighting assembly "
+            "You are a Senior Supply Chain Planner at an auto ancillary lighting manufacturer in India "
+            "(a leading Tier 1 auto ancillary) supplying Tatva Motors. You receive lighting assembly "
             "orders from the OEM and must order LED modules and optical components "
             "from your Tier 2 supplier."
         ),
         "ancillary_supplier": (
-            "You are an LED module and lighting component manufacturer in India. "
-            "You supply automotive lighting assemblers who serve Tatva Motors. "
+            "You are a Senior Supply Chain Planner at an LED module and lighting component "
+            "manufacturer in India. You supply automotive lighting assemblers who serve Tatva Motors. "
             "You receive component orders and must decide production volume."
         ),
     }
@@ -81,12 +80,16 @@ Recent order history:
 Demand forecast:
 {self._format_forecast(forecast)}
 
+Cost structure:
+- Holding cost: {self.holding_cost:,} per unit per {self.state.time_unit} (applied to ending inventory)
+- Backlog cost: {self.backlog_cost:,} per unit per {self.state.time_unit} (applied to unmet demand)
+
 Before placing your order, analyze the production and ordering data for patterns
 you recognize — seasonal, cultural, financial calendar, promotional, or
 otherwise. Consider what these patterns mean for upcoming production schedules.
 
 Then decide how many units to order from your {target}.
-Balance avoiding stockouts against excess inventory holding costs.
+Balance holding cost against stockout/backlog risk given the {self.backlog_cost // self.holding_cost}:1 cost asymmetry.
 
 Respond with ONLY a JSON object:
 {{"pattern_analysis": "<your analysis of production and ordering patterns>", "order_quantity": <number>, "reasoning": "<brief explanation>"}}"""

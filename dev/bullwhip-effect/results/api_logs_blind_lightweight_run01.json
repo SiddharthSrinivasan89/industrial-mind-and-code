@@ -1,664 +1,664 @@
 [
   {
-    "timestamp": "2026-02-15T14:00:07",
+    "timestamp": "2026-02-15T19:59:10",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "a03e9ba7839f",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 46000, \"reasoning\": \"To meet next month's forecasted demand of 46,318 units and maintain a small safety stock, order slightly above forecast. Current inventory is sufficient for this month, so no immediate order needed for current production.\"}",
-    "response_parsed": {
-      "order_quantity": 46000,
-      "reasoning": "To meet next month's forecasted demand of 46318 units and maintain a small safety stock, order slightly above forecast. Current inventory is sufficient for this month, so no immediate order needed for current production."
-    },
-    "latency_ms": 2629.7,
-    "prompt_tokens": 226,
-    "completion_tokens": 57,
-    "total_tokens": 283,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:09",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "256b3f6d5fc9",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory (180,000) exceeds this month's order (46,000), no need to order now to avoid excess inventory.\"}",
+    "prompt_hash": "b8c130ed696d",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory (180,000 units) far exceeds this month's demand (43,812 units), so no order is needed to avoid holding costs.\"}",
     "response_parsed": {
       "order_quantity": 0,
-      "reasoning": "Current inventory (180000) exceeds this month's order (46000), no need to order now to avoid excess inventory."
+      "reasoning": "Current inventory (180000 units) far exceeds this month's demand (43812 units), so no order is needed to avoid holding costs."
     },
-    "latency_ms": 942.5,
-    "prompt_tokens": 206,
-    "completion_tokens": 40,
-    "total_tokens": 246,
+    "latency_ms": 2261.4,
+    "prompt_tokens": 179,
+    "completion_tokens": 43,
+    "total_tokens": 222,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:11",
+    "timestamp": "2026-02-15T19:59:12",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "7a0c65616612",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No new orders received this month and sufficient inventory on hand; no need to produce additional units to avoid excess inventory.\"}",
+    "prompt_hash": "3cf555254cad",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory (180,000 units) far exceeds this month's demand (8,762 units), so no additional order is needed to avoid high holding costs.\"}",
     "response_parsed": {
       "order_quantity": 0,
-      "reasoning": "No new orders received this month and sufficient inventory on hand; no need to produce additional units to avoid excess inventory."
+      "reasoning": "Current inventory (180000 units) far exceeds this month's demand (8762 units), so no additional order is needed to avoid high holding costs."
     },
-    "latency_ms": 869.7,
-    "prompt_tokens": 197,
-    "completion_tokens": 37,
-    "total_tokens": 234,
+    "latency_ms": 960.8,
+    "prompt_tokens": 179,
+    "completion_tokens": 45,
+    "total_tokens": 224,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:13",
+    "timestamp": "2026-02-15T19:59:14",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "959362eeb93f",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 47,095,\n  \"reasoning\": \"To meet next month's forecasted demand of 47,095 units and maintain sufficient inventory, order quantity equals forecast for month 3 considering 1 month lead time.\"\n}\n```",
+    "prompt_hash": "ed7937a402d8",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory of 180,000 units far exceeds this month's demand of 1,752 units, so no replenishment order is needed.\"}",
     "response_parsed": {
-      "order_quantity": 47095,
-      "reasoning": "To meet next month's forecasted demand of 47095 units and maintain sufficient inventory, order quantity equals forecast for month 3 considering 1 month lead time."
+      "order_quantity": 0,
+      "reasoning": "Current inventory of 180000 units far exceeds this month's demand of 1752 units, so no replenishment order is needed."
     },
-    "latency_ms": 889.7,
-    "prompt_tokens": 242,
-    "completion_tokens": 56,
-    "total_tokens": 298,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:15",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "07079c7f88a0",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 47095, \"reasoning\": \"Current inventory (134,000) is sufficient to cover this month's order (47,095) with no backlog and no incoming orders this month. To maintain inventory levels and prepare for next month's demand, order quantity equals this month's OEM order to replenish stock considering 1-month lead time.\"}",
-    "response_parsed": {
-      "order_quantity": 47095,
-      "reasoning": "Current inventory (134000) is sufficient to cover this month's order (47095) with no backlog and no incoming orders this month. To maintain inventory levels and prepare for next month's demand, order quantity equals this month's OEM order to replenish stock considering 1-month lead time."
-    },
-    "latency_ms": 941.8,
-    "prompt_tokens": 218,
-    "completion_tokens": 72,
-    "total_tokens": 290,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:17",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "e363f53d2d3d",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 47095, \"reasoning\": \"Order quantity matches the current month's order from the lighting manufacturer to fulfill demand while utilizing existing inventory to avoid stockouts and minimize excess inventory.\"}",
-    "response_parsed": {
-      "order_quantity": 47095,
-      "reasoning": "Order quantity matches the current month's order from the lighting manufacturer to fulfill demand while utilizing existing inventory to avoid stockouts and minimize excess inventory."
-    },
-    "latency_ms": 876.6,
-    "prompt_tokens": 211,
+    "latency_ms": 883.3,
+    "prompt_tokens": 179,
     "completion_tokens": 42,
-    "total_tokens": 253,
+    "total_tokens": 221,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:20",
+    "timestamp": "2026-02-15T19:59:16",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "c0eafdd172a3",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 49187,\n  \"reasoning\": \"To meet next month's forecast of 49,287 units and maintain a safety stock of about 1,000 units to avoid stockouts, order quantity is set to 49,287 + 1,000 - (135,870 + 47,095 - 47,095) = 49,187 units.\"\n}\n```",
+    "prompt_hash": "a2571152aea2",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 46,318, \"reasoning\": \"Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory is sufficient to cover demand.\"}",
     "response_parsed": {
-      "order_quantity": 49187,
-      "reasoning": "To meet next month's forecast of 49287 units and maintain a safety stock of about 1000 units to avoid stockouts, order quantity is set to 49287 + 1000 - (135870 + 47095 - 47095) = 49187 units."
+      "order_quantity": 46318,
+      "reasoning": "Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory is sufficient to cover demand."
     },
-    "latency_ms": 1842.8,
-    "prompt_tokens": 255,
-    "completion_tokens": 87,
-    "total_tokens": 342,
+    "latency_ms": 977.0,
+    "prompt_tokens": 195,
+    "completion_tokens": 45,
+    "total_tokens": 240,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:22",
+    "timestamp": "2026-02-15T19:59:18",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "d6fe368b2ade",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory plus incoming orders (86,905 + 47,095 = 134,000) exceed this month's demand (49,187), so no new order is needed to avoid excess inventory.\"}",
-    "response_parsed": {
-      "order_quantity": 0,
-      "reasoning": "Current inventory plus incoming orders (86905 + 47095 = 134000) exceed this month's demand (49187), so no new order is needed to avoid excess inventory."
-    },
-    "latency_ms": 888.8,
-    "prompt_tokens": 233,
-    "completion_tokens": 54,
-    "total_tokens": 287,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:23",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "6ab27c4a31fa",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No new orders received this month and sufficient inventory plus incoming units to cover demand; avoid excess inventory.\"}",
+    "prompt_hash": "4ceab81ca4e0",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Inventory on hand (171,238) is sufficient to cover this month's demand (46,318) with no backlog. Orders in transit (1,752) arriving next month add to inventory. No need to order now to avoid holding costs.\"}",
     "response_parsed": {
       "order_quantity": 0,
-      "reasoning": "No new orders received this month and sufficient inventory plus incoming units to cover demand; avoid excess inventory."
+      "reasoning": "Inventory on hand (171238) is sufficient to cover this month's demand (46318) with no backlog. Orders in transit (1752) arriving next month add to inventory. No need to order now to avoid holding costs."
     },
-    "latency_ms": 794.5,
-    "prompt_tokens": 224,
-    "completion_tokens": 34,
+    "latency_ms": 976.3,
+    "prompt_tokens": 195,
+    "completion_tokens": 63,
     "total_tokens": 258,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:25",
+    "timestamp": "2026-02-15T19:59:20",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "12f1ef8d561a",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 44453, \"reasoning\": \"Inventory plus in-transit units cover current month demand with a buffer; order quantity matches next month's forecast to maintain steady supply and avoid excess inventory.\"}",
+    "prompt_hash": "e65077ec3f49",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 9263, \"reasoning\": \"Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory is sufficient.\"}",
     "response_parsed": {
-      "order_quantity": 44453,
-      "reasoning": "Inventory plus in-transit units cover current month demand with a buffer; order quantity matches next month's forecast to maintain steady supply and avoid excess inventory."
+      "order_quantity": 9263,
+      "reasoning": "Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory is sufficient."
     },
-    "latency_ms": 999.4,
-    "prompt_tokens": 268,
-    "completion_tokens": 44,
-    "total_tokens": 312,
+    "latency_ms": 814.1,
+    "prompt_tokens": 191,
+    "completion_tokens": 41,
+    "total_tokens": 232,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:27",
+    "timestamp": "2026-02-15T19:59:22",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "743b1cf5fe0f",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory (84,813) exceeds this month's order (44,453) with no backlog, so no new order needed to avoid excess inventory.\"}",
+    "prompt_hash": "e89a90e468c2",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Inventory on hand (98,632) exceeds this month's demand (47,095) with no backlog, so no new order is needed to avoid holding costs.\"}",
     "response_parsed": {
       "order_quantity": 0,
-      "reasoning": "Current inventory (84813) exceeds this month's order (44453) with no backlog, so no new order needed to avoid excess inventory."
+      "reasoning": "Inventory on hand (98632) exceeds this month's demand (47095) with no backlog, so no new order is needed to avoid holding costs."
     },
-    "latency_ms": 800.5,
-    "prompt_tokens": 242,
-    "completion_tokens": 44,
-    "total_tokens": 286,
+    "latency_ms": 927.1,
+    "prompt_tokens": 208,
+    "completion_tokens": 46,
+    "total_tokens": 254,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:29",
+    "timestamp": "2026-02-15T19:59:24",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "08d9e45b42ca",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"No new orders received this month and sufficient inventory on hand; no need to produce additional units to avoid excess inventory.\"}",
+    "prompt_hash": "7a7ad660d29b",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 9419, \"reasoning\": \"Order quantity equals this month's demand to replenish inventory considering 1-month lead time, maintaining stock levels without backlog.\"}",
     "response_parsed": {
-      "order_quantity": 0,
-      "reasoning": "No new orders received this month and sufficient inventory on hand; no need to produce additional units to avoid excess inventory."
+      "order_quantity": 9419,
+      "reasoning": "Order quantity equals this month's demand to replenish inventory considering 1-month lead time, maintaining stock levels without backlog."
     },
-    "latency_ms": 701.2,
-    "prompt_tokens": 233,
+    "latency_ms": 820.2,
+    "prompt_tokens": 208,
     "completion_tokens": 37,
-    "total_tokens": 270,
+    "total_tokens": 245,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:31",
+    "timestamp": "2026-02-15T19:59:26",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "f6ef83cbbb37",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 39841,\n  \"reasoning\": \"Order quantity matches month 6 forecast (39,841 units) to meet next month's production target while utilizing current inventory and incoming orders to avoid stockouts and minimize excess inventory.\"\n}\n```",
+    "prompt_hash": "d59c6c177c26",
+    "temperature": 0.4,
+    "response_raw": "{\n  \"order_quantity\": 9419,\n  \"reasoning\": \"Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1-month lead time.\"\n}",
+    "response_parsed": {
+      "order_quantity": 9419,
+      "reasoning": "Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1-month lead time."
+    },
+    "latency_ms": 933.5,
+    "prompt_tokens": 206,
+    "completion_tokens": 39,
+    "total_tokens": 245,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:27",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "f3fce9ab49d4",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 49,287, \"reasoning\": \"Order quantity matches this month's demand to replenish inventory after fulfilling demand, considering 1-month lead time and zero backlog.\"}",
+    "response_parsed": {
+      "order_quantity": 49287,
+      "reasoning": "Order quantity matches this month's demand to replenish inventory after fulfilling demand, considering 1-month lead time and zero backlog."
+    },
+    "latency_ms": 791.7,
+    "prompt_tokens": 221,
+    "completion_tokens": 39,
+    "total_tokens": 260,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:29",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "c431853c504c",
+    "temperature": 0.4,
+    "response_raw": "{\n  \"order_quantity\": 49287,\n  \"reasoning\": \"To meet next month's expected demand of 49,287 units and maintain inventory levels, order quantity equals forecasted demand given sufficient current inventory and 1-month lead time.\"\n}",
+    "response_parsed": {
+      "order_quantity": 49287,
+      "reasoning": "To meet next month's expected demand of 49287 units and maintain inventory levels, order quantity equals forecasted demand given sufficient current inventory and 1-month lead time."
+    },
+    "latency_ms": 869.3,
+    "prompt_tokens": 221,
+    "completion_tokens": 52,
+    "total_tokens": 273,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:31",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "c8203ed2c835",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Inventory on hand (169,179) exceeds this month's demand (49,287), no backlog, and orders in transit will arrive later. No need to order now to avoid high holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Inventory on hand (169179) exceeds this month's demand (49287), no backlog, and orders in transit will arrive later. No need to order now to avoid high holding costs."
+    },
+    "latency_ms": 884.8,
+    "prompt_tokens": 219,
+    "completion_tokens": 53,
+    "total_tokens": 272,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:33",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "51d77bddceee",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 44,653, \"reasoning\": \"Order quantity matches this month's demand to replenish inventory after fulfilling current demand, considering 1 month lead time and no backlog.\"}",
+    "response_parsed": {
+      "order_quantity": 44653,
+      "reasoning": "Order quantity matches this month's demand to replenish inventory after fulfilling current demand, considering 1 month lead time and no backlog."
+    },
+    "latency_ms": 847.5,
+    "prompt_tokens": 234,
+    "completion_tokens": 40,
+    "total_tokens": 274,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:35",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "1301a43545c7",
+    "temperature": 0.4,
+    "response_raw": "{\n  \"order_quantity\": 0,\n  \"reasoning\": \"Current inventory plus incoming orders (86,648 + 49,287 = 135,935) exceeds this month's demand (44,653), so no new order is needed to avoid holding costs.\"\n}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus incoming orders (86648 + 49287 = 135935) exceeds this month's demand (44653), so no new order is needed to avoid holding costs."
+    },
+    "latency_ms": 907.9,
+    "prompt_tokens": 234,
+    "completion_tokens": 57,
+    "total_tokens": 291,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:37",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "adebc5246cbe",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 8930, \"reasoning\": \"Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory is sufficient.\"}",
+    "response_parsed": {
+      "order_quantity": 8930,
+      "reasoning": "Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory is sufficient."
+    },
+    "latency_ms": 986.8,
+    "prompt_tokens": 232,
+    "completion_tokens": 41,
+    "total_tokens": 273,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:39",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "fb27c570a226",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 39841, \"reasoning\": \"Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory plus in-transit units.\"}",
     "response_parsed": {
       "order_quantity": 39841,
-      "reasoning": "Order quantity matches month 6 forecast (39841 units) to meet next month's production target while utilizing current inventory and incoming orders to avoid stockouts and minimize excess inventory."
+      "reasoning": "Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering 1 month lead time and current inventory plus in-transit units."
     },
-    "latency_ms": 1101.1,
-    "prompt_tokens": 281,
-    "completion_tokens": 57,
-    "total_tokens": 338,
+    "latency_ms": 1084.8,
+    "prompt_tokens": 247,
+    "completion_tokens": 44,
+    "total_tokens": 291,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:33",
+    "timestamp": "2026-02-15T19:59:41",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "23ef98e04141",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 3990, \"reasoning\": \"Current inventory (40,360) minus this month's order (39,841) leaves 519 units. To cover next month's demand and maintain buffer stock, order 3,990 units to replenish inventory considering 1-month lead time.\"}",
+    "prompt_hash": "cea5856a0220",
+    "temperature": 0.4,
+    "response_raw": "```json\n{\n  \"order_quantity\": 0,\n  \"reasoning\": \"Current inventory plus incoming orders (91,282 + 8,930 = 100,212) far exceed this month's demand (39,841). No backlog exists. To minimize holding costs, no additional units are ordered.\"\n}\n```",
     "response_parsed": {
-      "order_quantity": 3990,
-      "reasoning": "Current inventory (40360) minus this month's order (39841) leaves 519 units. To cover next month's demand and maintain buffer stock, order 3990 units to replenish inventory considering 1-month lead time."
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus incoming orders (91282 + 8930 = 100212) far exceed this month's demand (39841). No backlog exists. To minimize holding costs, no additional units are ordered."
     },
-    "latency_ms": 1321.2,
-    "prompt_tokens": 253,
-    "completion_tokens": 62,
-    "total_tokens": 315,
+    "latency_ms": 1126.4,
+    "prompt_tokens": 247,
+    "completion_tokens": 66,
+    "total_tokens": 313,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:35",
+    "timestamp": "2026-02-15T19:59:43",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "54f5d16a64e9",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 4000, \"reasoning\": \"Order quantity matches current month's order (3,990 units) plus a small buffer to maintain inventory and avoid stockouts, considering 180,000 units inventory on hand and 1 month lead time.\"}",
+    "prompt_hash": "c929893a707d",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\":0,\"reasoning\":\"Current inventory plus incoming orders (130,238 + 8,930) far exceed expected demand (7,968), so no order is needed to minimize holding costs.\"}",
     "response_parsed": {
-      "order_quantity": 4000,
-      "reasoning": "Order quantity matches current month's order (3990 units) plus a small buffer to maintain inventory and avoid stockouts, considering 180000 units inventory on hand and 1 month lead time."
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus incoming orders (130238 + 8930) far exceed expected demand (7968), so no order is needed to minimize holding costs."
     },
-    "latency_ms": 882.3,
-    "prompt_tokens": 246,
-    "completion_tokens": 55,
+    "latency_ms": 1065.7,
+    "prompt_tokens": 245,
+    "completion_tokens": 45,
+    "total_tokens": 290,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:45",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "5e4443f67280",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory plus incoming orders (67,433 + 39,841 = 107,274) exceed this month's demand (36,478) by a large margin, so no new order is needed to avoid high holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus incoming orders (67433 + 39841 = 107274) exceed this month's demand (36478) by a large margin, so no new order is needed to avoid high holding costs."
+    },
+    "latency_ms": 1032.8,
+    "prompt_tokens": 260,
+    "completion_tokens": 60,
+    "total_tokens": 320,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:47",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "24d2bc62c9ec",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory plus incoming orders exceed this month's demand, so no additional units need to be ordered to avoid holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus incoming orders exceed this month's demand, so no additional units need to be ordered to avoid holding costs."
+    },
+    "latency_ms": 963.4,
+    "prompt_tokens": 260,
+    "completion_tokens": 37,
+    "total_tokens": 297,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:49",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "27935dca0c98",
+    "temperature": 0.4,
+    "response_raw": "{\n  \"order_quantity\": 0,\n  \"reasoning\": \"Current inventory (131,200) far exceeds this month's demand (1,459) and incoming orders (1,593). To minimize holding costs, no new orders are placed.\"\n}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory (131200) far exceeds this month's demand (1459) and incoming orders (1593). To minimize holding costs, no new orders are placed."
+    },
+    "latency_ms": 865.4,
+    "prompt_tokens": 258,
+    "completion_tokens": 53,
+    "total_tokens": 311,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:51",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "3c091173a6a2",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 38000, \"reasoning\": \"Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering a 1-month lead time and current inventory is sufficient to cover demand.\"}",
+    "response_parsed": {
+      "order_quantity": 38000,
+      "reasoning": "Order quantity matches this month's demand to maintain inventory levels and avoid backlog, considering a 1-month lead time and current inventory is sufficient to cover demand."
+    },
+    "latency_ms": 851.3,
+    "prompt_tokens": 260,
+    "completion_tokens": 45,
+    "total_tokens": 305,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:53",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "0e52505217ad",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Inventory on hand (61,044) plus incoming orders (1,459) exceed this month's demand (38,000), so no new order is needed to avoid high holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Inventory on hand (61044) plus incoming orders (1459) exceed this month's demand (38000), so no new order is needed to avoid high holding costs."
+    },
+    "latency_ms": 892.2,
+    "prompt_tokens": 260,
+    "completion_tokens": 51,
+    "total_tokens": 311,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:55",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "27758bbb8d1e",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Inventory on hand (131,334) far exceeds this month's demand (7,600) and incoming orders. No need to order additional units to avoid high holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Inventory on hand (131334) far exceeds this month's demand (7600) and incoming orders. No need to order additional units to avoid high holding costs."
+    },
+    "latency_ms": 1070.3,
+    "prompt_tokens": 256,
+    "completion_tokens": 48,
+    "total_tokens": 304,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:57",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "d4e1e5c2d801",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 40,756, \"reasoning\": \"Order quantity matches this month's demand to replenish inventory after fulfilling demand, considering 1-month lead time and current inventory plus in-transit orders.\"}",
+    "response_parsed": {
+      "order_quantity": 40756,
+      "reasoning": "Order quantity matches this month's demand to replenish inventory after fulfilling demand, considering 1-month lead time and current inventory plus in-transit orders."
+    },
+    "latency_ms": 1062.6,
+    "prompt_tokens": 260,
+    "completion_tokens": 44,
+    "total_tokens": 304,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T19:59:59",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "3a8e7e939e69",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 32,153, \"reasoning\": \"To meet next month's demand of 40,756 units, considering current inventory of 24,503 and 7,600 units arriving next month, order quantity is demand minus available stock (24,503 + 7,600) = 32,153 units to avoid backlog and minimize holding cost.\"}",
+    "response_parsed": {
+      "order_quantity": 32153,
+      "reasoning": "To meet next month's demand of 40756 units, considering current inventory of 24503 and 7600 units arriving next month, order quantity is demand minus available stock (24503 + 7600) = 32153 units to avoid backlog and minimize holding cost."
+    },
+    "latency_ms": 1381.9,
+    "prompt_tokens": 260,
+    "completion_tokens": 77,
+    "total_tokens": 337,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:01",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "b56cfbdbd86e",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory plus incoming orders far exceed this month's demand, so no new order is needed to avoid high holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus incoming orders far exceed this month's demand, so no new order is needed to avoid high holding costs."
+    },
+    "latency_ms": 1056.3,
+    "prompt_tokens": 258,
+    "completion_tokens": 37,
+    "total_tokens": 295,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:04",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "1e75340a3b2d",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 19538, \"reasoning\": \"To meet next month's demand of 56,892 units, we have 37,142 units on hand and 40,756 units arriving next month. Since lead time is 1 month, we need to order enough to cover demand after accounting for current inventory and incoming orders. Expected inventory after demand and incoming orders is 21,006 units (37,142 + 40,756 - 56,892). To maintain inventory and avoid backlog, order quantity is set to cover the expected demand minus current inventory, resulting in 19,538 units.\"}",
+    "response_parsed": {
+      "order_quantity": 19538,
+      "reasoning": "To meet next month's demand of 56892 units, we have 37142 units on hand and 40756 units arriving next month. Since lead time is 1 month, we need to order enough to cover demand after accounting for current inventory and incoming orders. Expected inventory after demand and incoming orders is 21006 units (37142 + 40756 - 56892). To maintain inventory and avoid backlog, order quantity is set to cover the expected demand minus current inventory, resulting in 19538 units."
+    },
+    "latency_ms": 1829.8,
+    "prompt_tokens": 260,
+    "completion_tokens": 127,
+    "total_tokens": 387,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:06",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "ab2b6a7ae4cf",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 27691, \"reasoning\": \"To cover this month's demand (19,538) plus backlog (8,653) totaling 28,191 units, minus 32,153 units arriving next month. Since lead time is 1 month, order quantity should cover demand plus backlog minus incoming inventory. However, since incoming inventory exceeds demand plus backlog, order quantity is adjusted to 27,691 to maintain some buffer and minimize backlog cost.\"}",
+    "response_parsed": {
+      "order_quantity": 27691,
+      "reasoning": "To cover this month's demand (19538) plus backlog (8653) totaling 28191 units, minus 32153 units arriving next month. Since lead time is 1 month, order quantity should cover demand plus backlog minus incoming inventory. However, since incoming inventory exceeds demand plus backlog, order quantity is adjusted to 27691 to maintain some buffer and minimize backlog cost."
+    },
+    "latency_ms": 1330.9,
+    "prompt_tokens": 260,
+    "completion_tokens": 96,
+    "total_tokens": 356,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:09",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "d946e0166644",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory plus in-transit orders (93,392 + 6,430 = 99,822) far exceed this month's demand (27,691), so no additional order is needed to avoid high holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus in-transit orders (93392 + 6430 = 99822) far exceed this month's demand (27691), so no additional order is needed to avoid high holding costs."
+    },
+    "latency_ms": 1180.5,
+    "prompt_tokens": 258,
+    "completion_tokens": 58,
+    "total_tokens": 316,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:11",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "56a55db62fa3",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 20064, \"reasoning\": \"To meet next month's demand of 59,608 units, considering current inventory (21,006) plus incoming orders (19,538), total available will be 40,544 units, which is 19,064 units short. Ordering 20,064 units accounts for demand plus a small buffer to avoid backlog and minimize holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 20064,
+      "reasoning": "To meet next month's demand of 59608 units, considering current inventory (21006) plus incoming orders (19538), total available will be 40544 units, which is 19064 units short. Ordering 20064 units accounts for demand plus a small buffer to avoid backlog and minimize holding costs."
+    },
+    "latency_ms": 1355.7,
+    "prompt_tokens": 260,
+    "completion_tokens": 83,
+    "total_tokens": 343,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:13",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "b5bbc7418d60",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 20064, \"reasoning\": \"Order quantity equals this month's demand to replenish inventory after fulfilling demand, considering 1 month lead time and current inventory plus incoming orders.\"}",
+    "response_parsed": {
+      "order_quantity": 20064,
+      "reasoning": "Order quantity equals this month's demand to replenish inventory after fulfilling demand, considering 1 month lead time and current inventory plus incoming orders."
+    },
+    "latency_ms": 921.5,
+    "prompt_tokens": 260,
+    "completion_tokens": 41,
     "total_tokens": 301,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:38",
+    "timestamp": "2026-02-15T20:00:15",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "064274c80047",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 36478,\n  \"reasoning\": \"Current inventory plus incoming orders cover this month's production target. To meet next month's forecasted demand (36,478 units) with 1 month lead time, order exactly the forecasted amount to avoid stockouts and minimize excess inventory.\"\n}\n```",
+    "prompt_hash": "77f94cc7a830",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 20064, \"reasoning\": \"Order quantity matches this month's demand to maintain inventory levels, as inventory on hand plus incoming orders exceed demand, avoiding backlog and minimizing holding costs.\"}",
     "response_parsed": {
-      "order_quantity": 36478,
-      "reasoning": "Current inventory plus incoming orders cover this month's production target. To meet next month's forecasted demand (36478 units) with 1 month lead time, order exactly the forecasted amount to avoid stockouts and minimize excess inventory."
+      "order_quantity": 20064,
+      "reasoning": "Order quantity matches this month's demand to maintain inventory levels, as inventory on hand plus incoming orders exceed demand, avoiding backlog and minimizing holding costs."
     },
-    "latency_ms": 1237.5,
-    "prompt_tokens": 294,
-    "completion_tokens": 68,
-    "total_tokens": 362,
+    "latency_ms": 1073.1,
+    "prompt_tokens": 258,
+    "completion_tokens": 43,
+    "total_tokens": 301,
     "success": true,
     "error": null
   },
   {
-    "timestamp": "2026-02-15T14:00:40",
+    "timestamp": "2026-02-15T20:00:17",
     "model": "gpt-4.1-mini",
-    "prompt_hash": "6239a768780f",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 32000, \"reasoning\": \"Current inventory plus incoming orders (519 + 3990) is insufficient to meet this month's demand of 36,478 units. Ordering 32,000 units accounts for demand and maintains a buffer to avoid stockouts, considering a 1-month lead time and recent order patterns.\"}",
+    "prompt_hash": "364127598f54",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 55000, \"reasoning\": \"Order quantity matches this month's demand to cover backlog and maintain supply, considering 1-month lead time and 0 inventory on hand.\"}",
     "response_parsed": {
-      "order_quantity": 32000,
-      "reasoning": "Current inventory plus incoming orders (519 + 3990) is insufficient to meet this month's demand of 36478 units. Ordering 32000 units accounts for demand and maintains a buffer to avoid stockouts, considering a 1-month lead time and recent order patterns."
+      "order_quantity": 55000,
+      "reasoning": "Order quantity matches this month's demand to cover backlog and maintain supply, considering 1-month lead time and 0 inventory on hand."
     },
-    "latency_ms": 1650.3,
-    "prompt_tokens": 266,
-    "completion_tokens": 71,
-    "total_tokens": 337,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:42",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "cb5540670cfd",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\":32000,\"reasoning\":\"Current inventory plus incoming units (176,010 + 4,000) is sufficient to cover the current order of 32,000 units. To maintain steady supply and avoid stockouts, order exactly the current demand of 32,000 units for next month production.\"}",
-    "response_parsed": {
-      "order_quantity": 32000,
-      "reasoning": "Current inventory plus incoming units (176010 + 4000) is sufficient to cover the current order of 32000 units. To maintain steady supply and avoid stockouts, order exactly the current demand of 32000 units for next month production."
-    },
-    "latency_ms": 1231.6,
-    "prompt_tokens": 261,
-    "completion_tokens": 66,
-    "total_tokens": 327,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:44",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "5613b4a7c1f0",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 38193, \"reasoning\": \"Order quantity matches month 8 forecast to maintain inventory balance, considering current inventory, incoming orders, and lead time to avoid stockouts and minimize excess inventory.\"}",
-    "response_parsed": {
-      "order_quantity": 38193,
-      "reasoning": "Order quantity matches month 8 forecast to maintain inventory balance, considering current inventory, incoming orders, and lead time to avoid stockouts and minimize excess inventory."
-    },
-    "latency_ms": 1059.3,
-    "prompt_tokens": 307,
-    "completion_tokens": 46,
-    "total_tokens": 353,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:47",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "6c236205e311",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 37962, \"reasoning\": \"To fulfill this month's OEM order of 38,193 units plus clear the backlog of 31,969 units, total demand is 70,162 units. With 32,000 units arriving this month, inventory after arrival will be 32,000 units. To meet total demand next month (assuming similar demand), order quantity should cover the difference: 70,162 - 32,000 = 38,162 units. Considering slight buffer and rounding, order 37,962 units to balance avoiding stockouts and excess inventory.\"}",
-    "response_parsed": {
-      "order_quantity": 37962,
-      "reasoning": "To fulfill this month's OEM order of 38193 units plus clear the backlog of 31969 units, total demand is 70162 units. With 32000 units arriving this month, inventory after arrival will be 32000 units. To meet total demand next month (assuming similar demand), order quantity should cover the difference: 70162 - 32000 = 38162 units. Considering slight buffer and rounding, order 37962 units to balance avoiding stockouts and excess inventory."
-    },
-    "latency_ms": 1678.8,
-    "prompt_tokens": 281,
-    "completion_tokens": 123,
-    "total_tokens": 404,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:50",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "52b5b32796e0",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\":37962, \"reasoning\":\"Order quantity matches current month's order from lighting manufacturer to avoid stockouts while utilizing existing inventory and incoming transit units effectively.\"}",
-    "response_parsed": {
-      "order_quantity": 37962,
-      "reasoning": "Order quantity matches current month's order from lighting manufacturer to avoid stockouts while utilizing existing inventory and incoming transit units effectively."
-    },
-    "latency_ms": 1582.4,
-    "prompt_tokens": 274,
-    "completion_tokens": 36,
-    "total_tokens": 310,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:52",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "0c9c6ecd9d39",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 40756,\n  \"reasoning\": \"Order quantity matches next month's forecast (40,756 units) to maintain balanced inventory levels, considering current inventory, incoming orders, and lead time, avoiding stockouts and excess holding.\"\n}\n```",
-    "response_parsed": {
-      "order_quantity": 40756,
-      "reasoning": "Order quantity matches next month's forecast (40756 units) to maintain balanced inventory levels, considering current inventory, incoming orders, and lead time, avoiding stockouts and excess holding."
-    },
-    "latency_ms": 982.3,
-    "prompt_tokens": 307,
-    "completion_tokens": 58,
-    "total_tokens": 365,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:55",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "de6e36c2741b",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 41,956, \"reasoning\": \"To fulfill the current backlog of 38,162 units and the new order of 40,756 units totaling 78,918 units, with 37,962 units arriving this month, we need to order 78,918 - 37,962 = 40,956 units. Adding a small buffer of 1,000 units to avoid stockouts due to demand variability or delays, the order quantity is set to 41,956 units.\"}",
-    "response_parsed": {
-      "order_quantity": 41956,
-      "reasoning": "To fulfill the current backlog of 38162 units and the new order of 40756 units totaling 78918 units, with 37962 units arriving this month, we need to order 78918 - 37962 = 40956 units. Adding a small buffer of 1000 units to avoid stockouts due to demand variability or delays, the order quantity is set to 41956 units."
-    },
-    "latency_ms": 1952.9,
-    "prompt_tokens": 283,
-    "completion_tokens": 107,
-    "total_tokens": 390,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:56",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "f03b242552ab",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 41956, \"reasoning\": \"Order quantity matches this month's order from the lighting manufacturer to avoid stockouts while utilizing existing inventory and incoming shipments to maintain balance.\"}",
-    "response_parsed": {
-      "order_quantity": 41956,
-      "reasoning": "Order quantity matches this month's order from the lighting manufacturer to avoid stockouts while utilizing existing inventory and incoming shipments to maintain balance."
-    },
-    "latency_ms": 755.1,
-    "prompt_tokens": 276,
-    "completion_tokens": 40,
-    "total_tokens": 316,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:00:58",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "3696558e961b",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 56,892, \"reasoning\": \"Order quantity matches month 10 forecast to meet production target and maintain inventory levels, considering 1-month lead time and current inventory plus in-transit units.\"}",
-    "response_parsed": {
-      "order_quantity": 56892,
-      "reasoning": "Order quantity matches month 10 forecast to meet production target and maintain inventory levels, considering 1-month lead time and current inventory plus in-transit units."
-    },
-    "latency_ms": 1032.1,
-    "prompt_tokens": 307,
-    "completion_tokens": 47,
-    "total_tokens": 354,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:01",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "bb9d404ff7bd",
-    "temperature": 0.2,
-    "response_raw": "{\n  \"order_quantity\": 5592,\n  \"reasoning\": \"Current backlog plus this month's order totals 97,848 units. With 41,956 units arriving this month, ordering 5,592 units now (arriving next month) will help reduce backlog while avoiding excessive inventory buildup.\"\n}",
-    "response_parsed": {
-      "order_quantity": 5592,
-      "reasoning": "Current backlog plus this month's order totals 97848 units. With 41956 units arriving this month, ordering 5592 units now (arriving next month) will help reduce backlog while avoiding excessive inventory buildup."
-    },
-    "latency_ms": 1443.5,
-    "prompt_tokens": 283,
-    "completion_tokens": 64,
-    "total_tokens": 347,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:03",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "06ae4a2acf59",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 5592, \"reasoning\": \"Order matches current month's order from lighting manufacturer to maintain inventory balance and avoid stockouts, considering existing inventory and incoming transit orders.\"}",
-    "response_parsed": {
-      "order_quantity": 5592,
-      "reasoning": "Order matches current month's order from lighting manufacturer to maintain inventory balance and avoid stockouts, considering existing inventory and incoming transit orders."
-    },
-    "latency_ms": 1070.9,
-    "prompt_tokens": 276,
-    "completion_tokens": 40,
-    "total_tokens": 316,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:06",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "5f298d0804c8",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 59508,\n  \"reasoning\": \"To meet next month's forecast demand of 59,608 units, considering current inventory (135,570) plus in-transit orders (56,892) minus this month's production (56,892), we need to order enough to cover the net demand while avoiding excess inventory. Calculated order = 59,608 - (135,570 + 56,892 - 56,892) = 59,608 - 135,570 = negative, so no urgent need to order full forecast. However, to maintain a balanced inventory and considering lead time of 1 month, ordering approximately 59,508 units ensures coverage for month 11 demand with some buffer.\"\n}\n```",
-    "response_parsed": {
-      "order_quantity": 59508,
-      "reasoning": "To meet next month's forecast demand of 59608 units, considering current inventory (135570) plus in-transit orders (56892) minus this month's production (56892), we need to order enough to cover the net demand while avoiding excess inventory. Calculated order = 59608 - (135570 + 56892 - 56892) = 59608 - 135570 = negative, so no urgent need to order full forecast. However, to maintain a balanced inventory and considering lead time of 1 month, ordering approximately 59508 units ensures coverage for month 11 demand with some buffer."
-    },
-    "latency_ms": 2183.3,
-    "prompt_tokens": 307,
-    "completion_tokens": 157,
-    "total_tokens": 464,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:09",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "ea258b8a7666",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 109808,\n  \"reasoning\": \"To fulfill the current backlog of 55,892 units plus this month's order of 59,508 units (total 115,400 units) minus 5,592 units arriving this month, order 109,808 units to cover all demand with 1 month lead time and avoid stockouts.\"\n}\n```",
-    "response_parsed": {
-      "order_quantity": 109808,
-      "reasoning": "To fulfill the current backlog of 55892 units plus this month's order of 59508 units (total 115400 units) minus 5592 units arriving this month, order 109808 units to cover all demand with 1 month lead time and avoid stockouts."
-    },
-    "latency_ms": 1373.4,
-    "prompt_tokens": 285,
-    "completion_tokens": 82,
-    "total_tokens": 367,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:10",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "4e55c1d2085e",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\":109808,\"reasoning\":\"Order quantity matches current month's order from lighting manufacturer to fulfill demand and maintain service level, considering existing inventory and incoming units.\"}",
-    "response_parsed": {
-      "order_quantity": 109808,
-      "reasoning": "Order quantity matches current month's order from lighting manufacturer to fulfill demand and maintain service level, considering existing inventory and incoming units."
-    },
-    "latency_ms": 843.4,
-    "prompt_tokens": 278,
-    "completion_tokens": 36,
-    "total_tokens": 314,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:12",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "42a9932cba98",
-    "temperature": 0.2,
-    "response_raw": "```json\n{\n  \"order_quantity\": 55347,\n  \"reasoning\": \"Current inventory plus in-transit units (135,570 + 59,508 = 195,078) minus this month's production (59,608) leaves 135,470 units. To meet next month's forecast (55,347) and maintain balanced inventory without excess, order exactly the forecasted demand for month 12.\"\n}\n```",
-    "response_parsed": {
-      "order_quantity": 55347,
-      "reasoning": "Current inventory plus in-transit units (135570 + 59508 = 195078) minus this month's production (59608) leaves 135470 units. To meet next month's forecast (55347) and maintain balanced inventory without excess, order exactly the forecasted demand for month 12."
-    },
-    "latency_ms": 1068.3,
-    "prompt_tokens": 297,
-    "completion_tokens": 88,
-    "total_tokens": 385,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:15",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "1941141276cf",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 55347, \"reasoning\": \"Current backlog will be fulfilled by incoming 109,808 units this month. New OEM order is 55,347 units, so order exactly that amount to meet next month's demand without building excess inventory.\"}",
-    "response_parsed": {
-      "order_quantity": 55347,
-      "reasoning": "Current backlog will be fulfilled by incoming 109808 units this month. New OEM order is 55347 units, so order exactly that amount to meet next month's demand without building excess inventory."
-    },
-    "latency_ms": 1097.0,
-    "prompt_tokens": 287,
-    "completion_tokens": 55,
-    "total_tokens": 342,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:16",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "24e096f8b2d9",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 55347, \"reasoning\": \"Order quantity matches the current month's order from the lighting manufacturer to avoid stockouts while balancing inventory levels. Existing inventory and incoming orders are sufficient to cover demand, so no additional production is needed beyond the current order.\"}",
-    "response_parsed": {
-      "order_quantity": 55347,
-      "reasoning": "Order quantity matches the current month's order from the lighting manufacturer to avoid stockouts while balancing inventory levels. Existing inventory and incoming orders are sufficient to cover demand, so no additional production is needed beyond the current order."
-    },
-    "latency_ms": 902.9,
-    "prompt_tokens": 280,
-    "completion_tokens": 57,
-    "total_tokens": 337,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:19",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "46095bc377fa",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 48,491, \"reasoning\": \"Order matches next month's forecast demand to maintain balanced inventory after accounting for current inventory, incoming orders, and production target, avoiding stockouts and excess inventory.\"}",
-    "response_parsed": {
-      "order_quantity": 48491,
-      "reasoning": "Order matches next month's forecast demand to maintain balanced inventory after accounting for current inventory, incoming orders, and production target, avoiding stockouts and excess inventory."
-    },
-    "latency_ms": 1821.7,
-    "prompt_tokens": 287,
-    "completion_tokens": 46,
-    "total_tokens": 333,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:21",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "62a89ad659af",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 48,491, \"reasoning\": \"Current backlog of 55,347 units will be fulfilled this month with incoming orders. This month's OEM order is 48,491 units, so order exactly that amount to meet demand and avoid excess inventory.\"}",
-    "response_parsed": {
-      "order_quantity": 48491,
-      "reasoning": "Current backlog of 55347 units will be fulfilled this month with incoming orders. This month's OEM order is 48491 units, so order exactly that amount to meet demand and avoid excess inventory."
-    },
-    "latency_ms": 1042.8,
-    "prompt_tokens": 287,
-    "completion_tokens": 57,
-    "total_tokens": 344,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:23",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "9a2fa5aa20bb",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 48491, \"reasoning\": \"Order quantity matches the current month's order from the lighting manufacturer to avoid stockouts, considering sufficient inventory and incoming transit orders.\"}",
-    "response_parsed": {
-      "order_quantity": 48491,
-      "reasoning": "Order quantity matches the current month's order from the lighting manufacturer to avoid stockouts, considering sufficient inventory and incoming transit orders."
-    },
-    "latency_ms": 894.4,
-    "prompt_tokens": 280,
-    "completion_tokens": 39,
-    "total_tokens": 319,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:26",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "decb1adbc0d8",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 48000, \"reasoning\": \"Current inventory plus incoming orders cover this month's production target with a comfortable buffer. Ordering approximately the same as this month's production target (48,000 units) maintains steady supply without excessive inventory buildup.\"}",
-    "response_parsed": {
-      "order_quantity": 48000,
-      "reasoning": "Current inventory plus incoming orders cover this month's production target with a comfortable buffer. Ordering approximately the same as this month's production target (48000 units) maintains steady supply without excessive inventory buildup."
-    },
-    "latency_ms": 1713.7,
-    "prompt_tokens": 281,
-    "completion_tokens": 53,
-    "total_tokens": 334,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:28",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "8215bbca2379",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 48000, \"reasoning\": \"To fulfill this month's OEM order of 48,000 units and maintain supply continuity, order quantity matches current demand since inventory is zero and incoming shipment arrives this month.\"}",
-    "response_parsed": {
-      "order_quantity": 48000,
-      "reasoning": "To fulfill this month's OEM order of 48000 units and maintain supply continuity, order quantity matches current demand since inventory is zero and incoming shipment arrives this month."
-    },
-    "latency_ms": 979.5,
-    "prompt_tokens": 287,
-    "completion_tokens": 48,
-    "total_tokens": 335,
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2026-02-15T14:01:30",
-    "model": "gpt-4.1-mini",
-    "prompt_hash": "7c3e8722456f",
-    "temperature": 0.2,
-    "response_raw": "{\"order_quantity\": 48000, \"reasoning\": \"Order matches current month's order from lighting manufacturer to maintain steady supply and avoid stockouts, considering existing high inventory and incoming transit units.\"}",
-    "response_parsed": {
-      "order_quantity": 48000,
-      "reasoning": "Order matches current month's order from lighting manufacturer to maintain steady supply and avoid stockouts, considering existing high inventory and incoming transit units."
-    },
-    "latency_ms": 1006.7,
-    "prompt_tokens": 280,
+    "latency_ms": 952.4,
+    "prompt_tokens": 260,
     "completion_tokens": 41,
-    "total_tokens": 321,
+    "total_tokens": 301,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:20",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "8579d81b90b0",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 43,347, \"reasoning\": \"To meet next month's demand of 55,000 units, considering current inventory (11,589) and incoming orders (20,064), total available will be 31,653 units, so order 55,000 - 31,653 = 23,347 units. However, to avoid backlog and maintain a safety stock, ordering an additional 20,000 units is prudent, totaling 43,347 units.\"}",
+    "response_parsed": {
+      "order_quantity": 43347,
+      "reasoning": "To meet next month's demand of 55000 units, considering current inventory (11589) and incoming orders (20064), total available will be 31653 units, so order 55000 - 31653 = 23347 units. However, to avoid backlog and maintain a safety stock, ordering an additional 20000 units is prudent, totaling 43347 units."
+    },
+    "latency_ms": 1555.3,
+    "prompt_tokens": 260,
+    "completion_tokens": 101,
+    "total_tokens": 361,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:22",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "20664c64acfd",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 0, \"reasoning\": \"Current inventory plus incoming orders (57,605 + 20,064 = 77,669) exceeds this month's demand (43,347), so no new order is needed to avoid high holding costs.\"}",
+    "response_parsed": {
+      "order_quantity": 0,
+      "reasoning": "Current inventory plus incoming orders (57605 + 20064 = 77669) exceeds this month's demand (43347), so no new order is needed to avoid high holding costs."
+    },
+    "latency_ms": 1118.8,
+    "prompt_tokens": 258,
+    "completion_tokens": 55,
+    "total_tokens": 313,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:23",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "70490e1c30dd",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 48,491, \"reasoning\": \"To fulfill this month's demand and reduce backlog, order quantity equals this month's demand since lead time is 1 month and no inventory is on hand.\"}",
+    "response_parsed": {
+      "order_quantity": 48491,
+      "reasoning": "To fulfill this month's demand and reduce backlog, order quantity equals this month's demand since lead time is 1 month and no inventory is on hand."
+    },
+    "latency_ms": 815.0,
+    "prompt_tokens": 260,
+    "completion_tokens": 45,
+    "total_tokens": 305,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:26",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "9e8e8498648e",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 71241, \"reasoning\": \"To fulfill this month's demand (48,491) plus backlog (23,347), total needed is 71,838 units. With zero inventory and no incoming orders arriving this month (43,347 arrives next month), order 71,241 units to cover demand and backlog next month, minimizing backlog cost.\"}",
+    "response_parsed": {
+      "order_quantity": 71241,
+      "reasoning": "To fulfill this month's demand (48491) plus backlog (23347), total needed is 71838 units. With zero inventory and no incoming orders arriving this month (43347 arrives next month), order 71241 units to cover demand and backlog next month, minimizing backlog cost."
+    },
+    "latency_ms": 1561.5,
+    "prompt_tokens": 260,
+    "completion_tokens": 77,
+    "total_tokens": 337,
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2026-02-15T20:00:29",
+    "model": "gpt-4.1-mini",
+    "prompt_hash": "aec600cb2562",
+    "temperature": 0.4,
+    "response_raw": "{\"order_quantity\": 36719, \"reasoning\": \"To meet next month's demand of 71,241 units, subtract current inventory of 34,322 units and 8,669 units arriving next month, resulting in a shortfall of 28,250 units. Considering lead time of 1 month and to avoid backlog costs, order quantity is set to cover the shortfall plus a safety margin, totaling 36,719 units.\"}",
+    "response_parsed": {
+      "order_quantity": 36719,
+      "reasoning": "To meet next month's demand of 71241 units, subtract current inventory of 34322 units and 8669 units arriving next month, resulting in a shortfall of 28250 units. Considering lead time of 1 month and to avoid backlog costs, order quantity is set to cover the shortfall plus a safety margin, totaling 36719 units."
+    },
+    "latency_ms": 1513.0,
+    "prompt_tokens": 258,
+    "completion_tokens": 92,
+    "total_tokens": 350,
     "success": true,
     "error": null
   }

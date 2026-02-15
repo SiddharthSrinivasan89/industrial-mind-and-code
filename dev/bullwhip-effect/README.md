@@ -4,7 +4,7 @@ Can LLM-powered supply chain agents make smarter ordering decisions when given r
 
 This experiment simulates a 3-tier Indian automotive supply chain where each tier's ordering decisions are made by an LLM agent. We measure how order variance amplifies (or dampens) as it moves upstream, and whether giving agents contextual knowledge about seasons, festivals, and market patterns reduces the distortion.
 
-> **Disclaimer**: This is a personal research project run on a personal Azure subscription. All demand data is synthetic, modelled after real-world patterns in the Indian automotive industry (monthly vehicle dispatches, seasonal trends, festive-period surges). The company "Tatva Motors" is fictional. No proprietary or confidential data was used. Results are from single-run experiments (n=1 per configuration) and should be treated as directional, not statistically conclusive.
+> **Disclaimer**: This is a personal research project run on a personal Azure subscription. All demand data is synthetic, modelled after real-world patterns in the Indian automotive industry (monthly vehicle dispatches, seasonal trends, festive-period surges). The company "Tatva Motors" is fictional. No proprietary or confidential data was used. Current results in `results/` are from pre-fix run01 (n=1). The v3 experiment design calls for 3 runs per configuration with methodology fixes applied.
 
 ---
 
@@ -60,7 +60,7 @@ A 2x2 experimental matrix testing two independent variables:
 | Initial inventory (all tiers) | 180,000 units (~4 months buffer) |
 | Lead time | 1 month |
 | Ordering periods | 13 months |
-| Runs per configuration | 1 (validation run) |
+| Runs per configuration | 3 |
 
 ### Key Metric: OVAR
 
@@ -72,7 +72,9 @@ A 2x2 experimental matrix testing two independent variables:
 
 ---
 
-## Key Findings
+## Key Findings (run01 — pre-fix, n=1)
+
+> **Note**: The findings below are from run01 (single run, pre-methodology-fix). The blind agent system prompt leaked context and the 0.2x order floor was not enforced during these runs (see [Methodology Fixes](#methodology-fixes-post-run01)). Treat these as preliminary observations. Updated results from v3 (3 runs per config, costs, fixed prompts) will replace this section.
 
 ### 1. Domain context matters more than model capability
 
@@ -129,12 +131,11 @@ Spending 7x more on tokens and using a stronger reasoning model does not guarant
 
 ## Assumptions and Limitations
 
-- **Single run per configuration (n=1)**: No error bars or statistical significance. The full experiment design calls for 10 runs per config for confidence intervals.
 - **Single demand series**: Results reflect one specific demand pattern (moderate seasonality, ~16% coefficient of variation). Different demand volatility or trend shapes may produce different relative rankings.
 - **Fixed initial inventory**: The 180K starting buffer (~4 months) disproportionately triggers the inventory illusion. Lower initial inventory would force earlier ordering and may change the dynamics.
 - **Simplified chain**: Real supply chains have multiple products, variable lead times, capacity constraints, and information sharing. This model isolates the ordering decision in a clean 3-tier chain.
-- **LLM non-determinism**: Even at low temperature (0.2), gpt-4.1-mini outputs vary between runs. The o1 model's temperature is fixed at 1.0, adding further variance. Multi-run aggregation is essential for robust conclusions.
-- **No backorder cost modelling**: Agents are told to "balance stockouts against holding costs" but there is no explicit cost function — the trade-off is left to the LLM's judgement.
+- **LLM non-determinism**: Even at temperature 0.4, gpt-4.1-mini outputs vary between runs. The o1 model's temperature is fixed at 1.0, adding further variance. Multi-run aggregation (n=3 per config) provides directional signal but not full statistical significance.
+- **Cost model is prompt-only**: Agents are told the ₹100/₹1,000 holding/backlog costs and the 10:1 asymmetry, but there is no reward function — the trade-off is left to the LLM's judgement. Financial impact is computed post-hoc from inventory and backlog records.
 
 ### Methodology Fixes (post-run01)
 
@@ -172,10 +173,10 @@ cd src
 # Single config, 1 validation run
 python run_experiment.py --category blind --model lightweight --runs 1
 
-# Single config, 10 runs for statistical power
-python run_experiment.py --category context --model lightweight --runs 10
+# Single config, 3 runs
+python run_experiment.py --category context --model lightweight --runs 3
 
-# All 4 configurations (2 x 2 x 10 = 40 runs)
+# All 4 configurations (2 x 2 x 3 = 12 runs)
 python run_experiment.py --all
 
 # Analyse existing results only (no API calls)

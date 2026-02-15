@@ -20,13 +20,16 @@ class SupplyChain:
     """Orchestrates a 3-tier supply chain simulation."""
 
     def __init__(self, agent_category: str, initial_inventory: int = 180000,
-                 lead_time_periods: int = 1, time_unit: str = "month"):
+                 lead_time_periods: int = 1, time_unit: str = "month",
+                 holding_cost: int = 100, backlog_cost: int = 1000):
         """
         Args:
             agent_category: 'blind' or 'context'
             initial_inventory: Starting stock per tier (~4 months of dispatches)
             lead_time_periods: Delivery lead time in periods
             time_unit: 'month' or 'week'
+            holding_cost: ₹ per unit per period (ending inventory)
+            backlog_cost: ₹ per unit per period (unmet demand)
         """
         self.agent_category = agent_category
         self.initial_inventory = initial_inventory
@@ -35,9 +38,9 @@ class SupplyChain:
 
         AgentClass = BlindAgent if agent_category == "blind" else ContextAgent
 
-        self.oem = AgentClass("oem", initial_inventory, lead_time_periods, time_unit)
-        self.ancillary = AgentClass("ancillary", initial_inventory, lead_time_periods, time_unit)
-        self.ancillary_supplier = AgentClass("ancillary_supplier", initial_inventory, lead_time_periods, time_unit)
+        self.oem = AgentClass("oem", initial_inventory, lead_time_periods, time_unit, holding_cost, backlog_cost)
+        self.ancillary = AgentClass("ancillary", initial_inventory, lead_time_periods, time_unit, holding_cost, backlog_cost)
+        self.ancillary_supplier = AgentClass("ancillary_supplier", initial_inventory, lead_time_periods, time_unit, holding_cost, backlog_cost)
 
         self.inv_oem = InventoryManager("oem", initial_inventory, lead_time_periods)
         self.inv_ancillary = InventoryManager("ancillary", initial_inventory, lead_time_periods)
