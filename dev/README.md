@@ -1,21 +1,18 @@
-# Industrial Mind & Code - Development
+# Industrial Mind & Code — Development
 
-Private research repository for AI experiments in industrial IoT.
+Private research repository for AI experiments in industrial supply chains and IoT.
 
-## Current Focus
-- **Agentic Bullwhip Effect** in supply chains
-- LLM-based inventory management agents
-- Contextual reasoning in manufacturing demand cycles
+## Experiments
+
+| Experiment | Description | Status |
+|---|---|---|
+| [bullwhip-effect](bullwhip-effect/) | Can LLM agents with domain context reduce the Bullwhip Effect in a 3-tier Indian auto supply chain? | 4 configs complete (run01) |
 
 ## Environment
-- Azure OpenAI: gpt-4.1-mini
-- Python 3.12 with venv
-- JupyterLab for interactive experiments
 
-## Structure
-- `/experiments` - Research notebooks and tests
-- `/data` - Sample datasets (synthetic only)
-- `/results` - Experiment outputs and analysis
+- Azure OpenAI (gpt-4.1-mini, o1)
+- Python 3.12
 
----
-**Security:** `.env` and `venv/` are gitignored. Never commit secrets.
+## Security
+
+`.env` and `venv/` are gitignored. Never commit secrets.
