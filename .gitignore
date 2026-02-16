@@ -12,6 +12,9 @@
 **/*.pyc
 **/.ipynb_checkpoints/
 
+# Logs
+**/experiment.log
+
 # OS
 .DS_Store
 Thumbs.db

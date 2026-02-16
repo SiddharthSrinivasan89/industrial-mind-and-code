@@ -6,7 +6,7 @@ Private research repository for AI experiments in industrial supply chains and I
 
 | Experiment | Description | Status |
 |---|---|---|
-| [bullwhip-effect](bullwhip-effect/) | Can LLM agents with domain context reduce the Bullwhip Effect in a 3-tier Indian auto supply chain? | 4 configs complete (run01) |
+| [bullwhip-effect](bullwhip-effect/) | Can LLM agents with domain context reduce the Bullwhip Effect in a 3-tier Indian auto supply chain? | v4 complete (4 configs x 3 runs) |
 
 ## Environment
 
