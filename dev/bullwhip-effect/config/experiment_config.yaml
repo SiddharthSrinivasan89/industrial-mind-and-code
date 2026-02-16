@@ -1,10 +1,9 @@
 # =============================================================================
-# Bullwhip Experiment Config v4 — Tatva Motors Vecta LED Headlight Assembly
+# Bullwhip Experiment Config — Tatva Motors Vecta LED Headlight Assembly
 # =============================================================================
 # Models: gpt-4.1-mini (lightweight), o1 (reasoning)
 # Data: Tatva Motors Vecta monthly dispatches → drives headlight assembly orders
 # Supply chain: OEM (Tatva) -> Lighting Manufacturer -> LED Module Supplier
-# v4 changes: no order clamps, initial_inventory 23K (~2 weeks), single product (Vecta)
 
 
 azure:
@@ -13,12 +12,9 @@ azure:
   api_version: "${AZURE_OPENAI_API_VERSION}"
 
 models:
-  # NOTE: Protocol spec proposed gpt-4o-mini @ 0.7, but gpt-4.1-mini is
-  # what's deployed on this Azure subscription. Temperature lowered to 0.4
-  # (from proposed 0.7) so 3 runs give directional signal without excess noise.
   lightweight:
-    deployment: "gpt-4.1-mini"    # Azure deployment (protocol spec: gpt-4o-mini)
-    temperature: 0.4              # Protocol spec: 0.7 — reduced for 3-run signal
+    deployment: "gpt-4.1-mini"
+    temperature: 0.4
     max_tokens: 600
     inter_call_delay: 1.0
   reasoning:
@@ -30,16 +26,16 @@ models:
     inter_call_delay: 5.0
 
 experiment:
-  runs_per_config: 3              # 3 runs for directional signal + variance estimate
+  runs_per_config: 3
   time_unit: "month"
-  ordering_periods: 13            # 13 months of real data (Dec-24 to Dec-25)
-  lead_time_periods: 1            # 1 month lead time
-  initial_inventory: 23000        # ~2 weeks of ~46K/month average — agents must order actively from period 1
+  ordering_periods: 13
+  lead_time_periods: 1
+  initial_inventory: 23000
   random_seed: 42
 
 costs:
-  holding_per_unit: 0             # v4: removed — observe raw agent behavior without cost nudges
-  backlog_per_unit: 0             # v4: removed — no cost model, just OVAR + ordering patterns
+  holding_per_unit: 0
+  backlog_per_unit: 0
 
 paths:
   demand_data: "data/tatva_monthly_dispatches.csv"

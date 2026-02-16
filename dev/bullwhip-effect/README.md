@@ -55,6 +55,81 @@ A 2x2 experimental matrix testing two independent variables:
 - **Blind agents** see only: current inventory, backlog, orders in transit, the current period's demand number, and their own order history. No dates, no product names, no geography, no costs.
 - **Context agents** additionally see: month and year, product details (LED headlight assembly for the Tatva Motors Vecta), market context (India), and are prompted to identify seasonal and market patterns before ordering.
 
+### Agent Architecture
+
+#### System Layers
+
+The system is organised into four layers, each with a clear responsibility boundary.
+
+![System Architecture](results/figures/architecture_system_layers.png)
+
+| Layer | Files | Responsibility |
+|---|---|---|
+| **Orchestration** | `run_experiment.py`, `supply_chain.py` | Experiment loop, period sequencing, metrics computation (OVAR), visualization |
+| **Agent** | `base_agent.py`, `blind_agent.py`, `context_agent.py` | Prompt construction, LLM decision parsing, order history tracking |
+| **State** | `inventory_manager.py`, `AgentState` dataclass | Inventory tracking, backlog, deliveries, fulfillment, stockout detection |
+| **Inference** | `foundry_client.py` | Azure OpenAI API calls, retry with exponential backoff, rate limiting, JSON parsing, call logging |
+
+#### Supply Chain Cascade
+
+Each period, decisions flow sequentially through a 3-tier cascade. Each tier's order quantity becomes the demand signal for the next tier downstream. No tier has visibility into any other tier's reasoning, inventory, or the original consumer demand (except the OEM).
+
+![Supply Chain Flow](results/figures/architecture_supply_chain_flow.png)
+
+Each tier gets its own agent instance and its own inventory manager — they share no state:
+
+| Tier | Role | Agent sees as demand | Forecast |
+|---|---|---|---|
+| Tier 1: OEM (Tatva Motors) | Orders headlight assemblies | Consumer production targets | 3-month lookahead |
+| Tier 2: Lighting Manufacturer | Orders LED modules | OEM's order quantity | None |
+| Tier 3: LED Module Supplier | Decides production volume | Lighting Mfr's order quantity | None |
+
+#### Agent Decision Cycle
+
+Every ordering decision follows a six-step cycle. This cycle repeats for each tier within each period, and for each period across the 13-month simulation.
+
+![Decision Cycle](results/figures/architecture_decision_cycle.png)
+
+1. **Sync state** — the orchestrator copies ground-truth inventory, backlog, and in-transit orders from the `InventoryManager` into the agent's `AgentState`. The inventory manager is the authoritative source; the agent state is a read-only view.
+2. **Build prompt** — the agent constructs a prompt from its current state. Blind agents produce a numbers-only prompt. Context agents add role identity, product details, calendar, market, forecast, and a pattern-analysis instruction.
+3. **LLM call** — a single-turn, stateless call to Azure OpenAI (gpt-4.1-mini or o1). The agent has no conversation history — each period is an independent API call with a system prompt and a user prompt.
+4. **Parse and validate** — the response is parsed as JSON (handling markdown fences, comma-formatted numbers, and freetext preamble). Negative order quantities are clamped to zero. The reasoning trace is stored.
+5. **Process inventory** — the `InventoryManager` receives deliveries from prior orders, fulfills demand plus backlog from available stock (recording a stockout if insufficient), and places the new order in transit (arriving next period).
+6. **Cascade** — the agent's order quantity becomes the demand input for the next tier's decision cycle.
+
+#### Blind vs Context Agent Prompts
+
+The only architectural difference between the two agent types is the prompt. Both share the same base class, the same decision pipeline, and the same inventory mechanics. What changes is the information environment the LLM operates in.
+
+![Prompt Comparison](results/figures/architecture_prompt_comparison.png)
+
+**Blind agents** see: inventory on hand, backlog, in-transit orders, lead time, this period's demand as a raw number, and the last 6 order quantities. They receive a generic system prompt ("You are a supply chain ordering agent") with no domain grounding.
+
+**Context agents** additionally see: a role description grounded in the Indian automotive domain ("Supply Chain Planner at Tatva Motors"), the product ("LED headlight assembly for the Tatva Motors Vecta"), market ("India"), calendar (month name and year), a 3-period demand forecast (OEM only), and an explicit instruction to analyse seasonal, cultural, and financial-calendar patterns before ordering. They also produce a `pattern_analysis` field in their JSON response.
+
+#### What the Architecture Has
+
+- **Per-tier isolation**: Each tier operates independently with its own agent instance and inventory manager. No shared state, no side-channels.
+- **Ground-truth state synchronization**: Before each decision, the agent's view is overwritten with the inventory manager's authoritative state — agents cannot drift from reality.
+- **Full reasoning traces**: Every decision records the order quantity, the LLM's reasoning text, pattern analysis (context agents), and whether any clamping occurred. All traces are persisted to JSON.
+- **Robust JSON parsing**: The inference layer handles markdown fences, comma-formatted numbers (e.g. `28,155`), freetext preamble before JSON, and retries with exponential backoff on parse failure.
+- **Rate limiting and call logging**: Per-model inter-call delays (1s for gpt-4.1-mini, 5s for o1) and per-call logging of timestamp, latency, token usage, and success/failure.
+- **Model-aware dispatch**: The inference layer handles the protocol differences between gpt-4.1-mini (temperature, max_tokens) and o1 (max_completion_tokens, temperature ignored) transparently.
+- **Deterministic inventory mechanics**: Receive → fulfill → order, with exact integer arithmetic. No stochastic elements in the simulation itself — all randomness comes from the LLM.
+- **Unconstrained ordering**: Agents can order any non-negative quantity. No floor, no ceiling, no capacity limits. This exposes raw LLM behavior without guardrails.
+
+#### What the Architecture Does Not Have
+
+- **No inter-agent communication**: Tiers cannot share forecasts, inventory levels, reasoning, or any other information. Each tier sees only the order quantity from its immediate customer — the classic information asymmetry that causes the bullwhip effect.
+- **No memory across periods**: Each ordering decision is an independent, stateless LLM call. There is no conversation history, no chain-of-thought carried forward, no episodic memory. The agent's only window into its own past is the last 6 order quantities (raw numbers, no demand context or outcome feedback).
+- **No learning or adaptation**: Agents cannot update beliefs, adjust strategies, or learn from the consequences of prior decisions within a run. A real planner who over-ordered in March and sat on excess stock for two months would adjust their behavior. These agents see the numerical consequence (the inventory level) but not the causal story.
+- **No cost model**: There is no penalty for over-ordering or under-ordering beyond the natural consequences (stockouts, excess inventory). A cost-aware agent might behave very differently — particularly the context lightweight agent, which accumulated 1 million excess units without negative feedback.
+- **No order constraints or capacity limits**: Agents can order zero or 268,154 units in a single period. A real procurement system would reject such extremes. The only validation is clamping negative orders to zero.
+- **No multi-product complexity**: The entire chain handles a single SKU (LED headlight assembly). Real supply chains juggle hundreds of SKUs with shared capacity and substitution effects.
+- **No variable lead times**: Lead time is fixed at 1 month. Real supply chains face variable, demand-dependent lead times that compound the bullwhip effect.
+- **No demand shaping or upstream feedback**: Tiers cannot negotiate, delay, or partially fulfill orders. Every order is accepted in full and delivered after exactly one lead time.
+- **No multi-turn reasoning**: The stateless design means agents cannot reason about *why* their inventory is at a certain level — whether it's recovering from a deficit or building ahead of a festive surge. This is a deliberate design choice to isolate the question the experiment asks (*does contextual knowledge improve a single ordering decision?*), but it likely amplifies the oscillation patterns observed — particularly the blind reasoning agent's whiplash between 150,000 and zero.
+
 ### Parameters
 
 | Parameter | Value |
@@ -68,10 +143,8 @@ A 2x2 experimental matrix testing two independent variables:
 
 ### Design Rationale
 
-Previous versions (v2/v3) used 180,000 initial inventory (~4 months of buffer), a 0.2x order floor, and a cost model. This version strips all of these away:
-
 - **No order floor**: Agents can order zero. We observe what they naturally do without guardrails.
-- **No cost model**: Cost signals biased agent reasoning in earlier versions. Without them, ordering behavior reflects the agent's intrinsic supply chain intuition.
+- **No cost model**: Without cost signals, ordering behavior reflects the agent's intrinsic supply chain intuition rather than penalty avoidance.
 - **Low initial inventory (23,000)**: With average monthly demand of ~46,700, this represents roughly two weeks of stock. It forces agents to order actively from period 1 and eliminates the "inventory illusion" where agents coast on a large buffer and defer ordering decisions.
 
 ### Key Metric: OVAR
@@ -229,6 +302,7 @@ The result challenges a common assumption in AI deployment: that more capable mo
 - **LLM non-determinism**: Even at temperature 0.4, gpt-4.1-mini outputs vary between runs. The o1 model's temperature is fixed at 1.0 by the API, adding further variance. Multi-run aggregation (n=3 per config) provides directional signal but not statistical significance. Standard deviations on key metrics remain high, particularly for the reasoning model.
 - **No cost model**: Agents receive no cost information. There is no penalty for over-ordering or under-ordering beyond the natural consequences (stockouts, excess inventory). A cost-aware agent might behave very differently.
 - **No order clamps**: Agents can order zero or any large quantity. A real procurement system would reject orders like 268,154 LED modules or 34 units against 80,000 demand.
+- **Stateless agents**: Each ordering decision is a single-turn LLM call with no conversation memory across periods. Agents cannot learn from experience within a run — they see the current state snapshot but not the causal history of how they got there. A multi-turn conversational agent that accumulates context might produce less oscillation, particularly for the reasoning model.
 - **Prompt sensitivity**: Agent behavior is shaped by prompt design. The specific framing of the context prompt (Indian market, Vecta product, seasonal awareness instruction) may produce different results with different prompt structures. The findings reflect this particular prompt design, not a universal property of LLM-based supply chain agents.
 
 ---
@@ -291,11 +365,11 @@ bullwhip-effect/
 │   ├── real/                         # Reference real-world data
 │   └── synthetic/                    # Generated demand datasets
 ├── docs/
-│   └── experiment_v2_params.txt      # Historical parameter documentation
+│   └── experiment_report.md          # Full methodology, parameters, and assumptions
 ├── results/
 │   ├── raw/                          # Per-run JSON results
 │   ├── aggregated/                   # Cross-run metrics
-│   └── figures/                      # Visualisations
+│   └── figures/                      # Visualisations and architecture diagrams
 ├── src/
 │   ├── run_experiment.py             # Main orchestrator, metrics, and plotting
 │   ├── supply_chain.py               # 3-tier simulation runner

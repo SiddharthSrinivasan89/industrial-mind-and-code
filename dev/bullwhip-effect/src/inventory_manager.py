@@ -28,7 +28,7 @@ class PeriodRecord:
 class InventoryManager:
     """Manages inventory for one tier."""
 
-    def __init__(self, role: str, initial_inventory: int = 180000,
+    def __init__(self, role: str, initial_inventory: int = 23000,
                  lead_time_periods: int = 1):
         self.role = role
         self.inventory = initial_inventory

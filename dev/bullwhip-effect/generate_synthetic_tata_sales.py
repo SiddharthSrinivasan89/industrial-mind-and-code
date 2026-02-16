@@ -385,7 +385,7 @@ def generate():
 # Output
 # =============================================================================
 def save_csv(demand, metadata, out_dir):
-    path = os.path.join(out_dir, "tata_sales_synthetic_24m.csv")
+    path = os.path.join(out_dir, "synthetic_tata_sales_weekly_24m.csv")
     with open(path, "w") as f:
         f.write("week_number,date,year,month,week_of_year,sales_units\n")
         for w in range(len(demand)):
@@ -396,7 +396,7 @@ def save_csv(demand, metadata, out_dir):
 
 
 def save_ground_truth(ground_truth, out_dir):
-    path = os.path.join(out_dir, "ground_truth.json")
+    path = os.path.join(out_dir, "synthetic_tata_sales_truth_labels.json")
     doc = {
         "description": (
             "Ground truth patterns embedded in synthetic Tata car sales data. "
@@ -419,7 +419,7 @@ def save_ground_truth(ground_truth, out_dir):
 
 
 def save_visualization(demand, metadata, ground_truth, out_dir):
-    path = os.path.join(out_dir, "tata_sales_visualization.png")
+    path = os.path.join(out_dir, "synthetic_tata_sales_plot.png")
     dates = [datetime.strptime(m["date"], "%Y-%m-%d") for m in metadata]
 
     fig, ax = plt.subplots(figsize=(16, 7))

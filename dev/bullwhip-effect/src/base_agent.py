@@ -52,15 +52,15 @@ class BaseAgent(ABC):
 
     def __init__(self, role: str, initial_inventory: int = 23000,
                  lead_time_periods: int = 1, time_unit: str = "month",
-                 holding_cost: int = 100, backlog_cost: int = 1000):
+                 holding_cost: int = 0, backlog_cost: int = 0):
         """
         Args:
             role: 'oem', 'ancillary', or 'ancillary_supplier'
             initial_inventory: Starting stock (~2 weeks of dispatches)
             lead_time_periods: Delivery lead time in periods
             time_unit: 'month' or 'week'
-            holding_cost: ₹ per unit per month (ending inventory)
-            backlog_cost: ₹ per unit per month (unmet demand)
+            holding_cost: ₹ per unit per month (unused, reserved)
+            backlog_cost: ₹ per unit per month (unused, reserved)
         """
         self.state = AgentState(
             role=role,
@@ -80,11 +80,10 @@ class BaseAgent(ABC):
 
     def decide_order(self, demand: int, forecast: list,
                      period_metadata: Optional[dict], client,
-                     model_tier: str,
-                     max_order_multiplier: float = 5.0) -> OrderDecision:
+                     model_tier: str) -> OrderDecision:
         """
         Call LLM to make ordering decision.
-        v4: No floor or ceiling clamps. Agent can order any non-negative quantity.
+        No floor or ceiling clamps. Agent can order any non-negative quantity.
         """
         self.state.incoming_demand_this_period = demand
         self.state.current_period = (
@@ -99,7 +98,7 @@ class BaseAgent(ABC):
         reasoning = response.get("reasoning", "No reasoning provided")
         pattern_analysis = response.get("pattern_analysis", None)
 
-        # v4: no floor or ceiling — only clamp negatives to 0.
+        # Only clamp negatives to 0.
         was_clamped = False
         if order_qty < 0:
             logger.warning(

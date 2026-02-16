@@ -28,8 +28,8 @@ class SupplyChain:
             initial_inventory: Starting stock per tier (~2 weeks of dispatches)
             lead_time_periods: Delivery lead time in periods
             time_unit: 'month' or 'week'
-            holding_cost: ₹ per unit per period (v4: 0, no cost model)
-            backlog_cost: ₹ per unit per period (v4: 0, no cost model)
+            holding_cost: ₹ per unit per period (unused, reserved)
+            backlog_cost: ₹ per unit per period (unused, reserved)
         """
         self.agent_category = agent_category
         self.initial_inventory = initial_inventory

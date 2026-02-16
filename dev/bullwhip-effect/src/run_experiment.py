@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Bullwhip Experiment Runner v4 — Tatva Motors Vecta LED Headlight Assembly
-==========================================================================
+Bullwhip Experiment Runner — Tatva Motors Vecta LED Headlight Assembly
+======================================================================
 
 Usage:
     # Validate with 1 run on cheapest model
@@ -118,8 +118,8 @@ def execute_run(config, category, model_tier, run_number, demand_data):
         initial_inventory=initial_inv,
         lead_time_periods=lead_time,
         time_unit=time_unit,
-        holding_cost=costs.get("holding_per_unit", 100),
-        backlog_cost=costs.get("backlog_per_unit", 1000),
+        holding_cost=costs.get("holding_per_unit", 0),
+        backlog_cost=costs.get("backlog_per_unit", 0),
     )
 
     start = time.time()
@@ -161,7 +161,7 @@ def compute_tier_metrics(tier_data):
     stockouts = tier_data.get("stockout_periods", tier_data.get("stockout_weeks", []))
     records = tier_data.get("period_records", [])
 
-    # Clamp event tracking (v4: should always be 0 since no clamps)
+    # Clamp event tracking (should always be 0 since no clamps are applied)
     clamp_count = sum(1 for r in records if r.get("was_clamped", False))
 
     return {
@@ -608,7 +608,7 @@ def analyze_all():
 # Main
 # =============================================================================
 def main():
-    parser = argparse.ArgumentParser(description="Bullwhip Experiment Runner v4")
+    parser = argparse.ArgumentParser(description="Bullwhip Experiment Runner")
     parser.add_argument("--config", type=str, help="Config YAML path")
     parser.add_argument("--category", choices=["blind", "context"])
     parser.add_argument("--model", choices=["lightweight", "reasoning"])
