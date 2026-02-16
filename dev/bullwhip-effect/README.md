@@ -276,7 +276,7 @@ Results are written to `results/`:
 - `raw/` — Per-run JSON with full decision records and agent reasoning traces
 - `aggregated/` — Mean/std metrics across runs for each configuration
 - `figures/` — Cascade plots, OVAR bar charts, blind-vs-context comparisons
-- `api_logs_*.json` — Full API call logs with latency and token usage
+- `api_logs*.json` — API call logs with latency and token usage (gitignored, local only)
 
 ---
 
@@ -295,8 +295,7 @@ bullwhip-effect/
 ├── results/
 │   ├── raw/                          # Per-run JSON results
 │   ├── aggregated/                   # Cross-run metrics
-│   ├── figures/                      # Visualisations
-│   └── api_logs_*.json               # API call logs
+│   └── figures/                      # Visualisations
 ├── src/
 │   ├── run_experiment.py             # Main orchestrator, metrics, and plotting
 │   ├── supply_chain.py               # 3-tier simulation runner
