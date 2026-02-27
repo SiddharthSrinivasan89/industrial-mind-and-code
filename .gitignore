@@ -12,6 +12,10 @@
 **/*.pyc
 **/.ipynb_checkpoints/
 
+# Logs
+**/experiment.log
+**/api_logs*.json
+
 # OS
 .DS_Store
 Thumbs.db
