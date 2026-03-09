@@ -22,7 +22,7 @@ Experiments will be posted here as they are completed.
 - **No proprietary, confidential, internal, or employer-owned data** of any kind has been used or referenced in this project.
 - This research does not represent the views, products, strategies, or endorsements of any employer, client, or affiliated organization.
 - Any resemblance to real companies, products, or operational systems is coincidental and unintentional.
-- Data used to calibrate baselines and demand scenarios is either synthetically generated or derived from publicly available academic literature on supply chain dynamics.
+- Data used to calibrate baselines and demand scenarios is either synthetically generated or derived from publicly available academic literature and sources.
 - This project is conducted independently, in personal time, using personal compute resources and publicly available model APIs.
 
 ---
