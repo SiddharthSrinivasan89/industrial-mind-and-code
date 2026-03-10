@@ -14,6 +14,32 @@ Experiments will be posted here as they are completed.
 
 ---
 
+## Latest Experiment: Agentic Bullwhip Effect (Version 1) 📦📈
+
+Path: `agentic_bullwhip_effect_version_1/`
+
+### Snapshot 🧪
+- 2×2 design: `Blind vs Context` × `gpt-4.1-mini vs o1`
+- 20 runs total (5 per configuration)
+- 720 LLM ordering decisions
+- Primary metric: **OVAR** (Order Variance Amplification Ratio)
+
+### Key Findings ✅
+- Bullwhip effect appears in all tested setups (`OVAR > 1` across all tiers/configs).
+- Best chain-average OVAR: **context_lightweight = 2.9289** 🥇
+- Worst chain-average OVAR: **context_reasoning = 4.4124** ⚠️
+- Context improved the **component tier** for both models:
+  - `gpt-4.1-mini`: `4.2664 → 3.4119`
+  - `o1`: `3.6493 → 2.6976`
+- `o1` showed higher run-to-run variability in this run set (e.g., blind OEM CV `57.15%`).
+
+### Public Artifacts 📂
+- Experiment package: `agentic_bullwhip_effect_version_1/`
+- Aggregated findings: `agentic_bullwhip_effect_version_1/results/aggregated/`
+- Analysis summary: `agentic_bullwhip_effect_version_1/results/analysis_2026-02-27_08-05.md`
+
+---
+
 ## Disclosure
 
 > ⚠️ **This is a personal research project.**
