@@ -1,6 +1,6 @@
 """
 run_experiment.py
-Orchestrator for the Agentic Bullwhip experiment (Version 4).
+Orchestrator for the Agentic Bullwhip experiment.
 
 2×2 factorial design — 4 configs × 5 runs each = 20 total runs.
 Each run: 13 periods, 3 tiers, serial execution OEM → Ancillary → Component.
@@ -566,7 +566,7 @@ def _agg_path(config_key: str) -> Path:
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    logger.info("═══ Agentic Bullwhip Experiment — Version 4 ═══")
+    logger.info("═══ Agentic Bullwhip Experiment — Version 1 ═══")
     logger.info("Configs: %s", list(CONFIGS.keys()))
     logger.info("Runs per config: %d | Total LLM calls: %d",
                 RUNS_PER_CONFIG,

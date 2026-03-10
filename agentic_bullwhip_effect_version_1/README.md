@@ -89,7 +89,7 @@ Computed per tier over periods 1–12. Values > 1 indicate bullwhip amplificatio
 | Peak overshoot | Max order / mean demand |
 | Clamp count | Periods where LLM order was negative (clamped to 0) |
 
-### Pattern detection score (v2 — composite)
+### Pattern detection score (composite)
 
 Measures seasonal awareness at event periods 3, 10, 11, 12 (Union Budget, pre-Dasara, Dasara, Diwali).
 
@@ -99,8 +99,6 @@ Measures seasonal awareness at event periods 3, 10, 11, 12 (Union Budget, pre-Da
 ```
 pattern_score = mean(keyword_score, elevation_score)
 ```
-
-> **Note:** This definition (v2) changed from the original keyword-only formula after observing models reason arithmetically without verbalising festival names. Results under v1 are not comparable to v2.
 
 ### Cost (tracking metric only)
 

@@ -244,12 +244,6 @@ High CV (e.g. > 30%) signals the LLM is erratic run-to-run — finding is direct
 
 ### Pattern detection score
 
-> **Metric version note — definition changed in Version 4 (Feb 2026).**
-> Original design: `pattern_score = keywords matched / max possible keywords` (keyword-only).
-> Revised design: composite of `keyword_score` and `elevation_score` (see below).
-> **Reason for change:** the keyword-only score returned 0.0 across all configs in the initial run — models reason arithmetically and do not verbalise festival names, so the score had no discriminating power.
-> **Comparability:** results from any run using the original keyword-only definition are **not comparable** to results under this definition. All Version 4 runs use the composite definition.
-
 A composite of two sub-scores, each in [0, 1], evaluated only at event-relevant periods — 3 (Union Budget), 10 (pre-Dasara), 11 (Dasara), 12 (Diwali). Scoring non-event months would structurally penalise correct behaviour (zero mentions in June is right, not a failure).
 
 **keyword_score** — verbal seasonal awareness
