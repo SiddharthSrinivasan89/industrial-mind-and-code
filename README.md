@@ -14,6 +14,14 @@ Experiments will be posted here as they are completed.
 
 ---
 
+## Experiments Index 🗂️
+
+| Experiment | Status | Key Signal | Path |
+|---|---|---|---|
+| Agentic Bullwhip Effect (Version 1) | ✅ Published | Bullwhip appears across all configs; best chain-average OVAR from `context_lightweight` | `agentic_bullwhip_effect_version_1/` |
+
+---
+
 ## Latest Experiment: Agentic Bullwhip Effect (Version 1) 📦📈
 
 Path: `agentic_bullwhip_effect_version_1/`
