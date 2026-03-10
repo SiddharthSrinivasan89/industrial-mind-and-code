@@ -2,7 +2,7 @@
 ## Bullwhip Effect in LLM-Powered Supply Chains — Tatva Motors Vecta
 
 **Date:** 2026-02-19
-**Location:** `prod/agentic_bullwhip_effect_version_1/`
+**Location:** `agentic_bullwhip_effect_version_1/`
 
 ---
 

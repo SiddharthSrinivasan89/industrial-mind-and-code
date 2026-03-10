@@ -65,7 +65,7 @@ REASONING_OUTPUT_COST_PER_1M=60.00
 python src/run_experiment.py
 ```
 
-Results are written to `results/raw/` (per-run JSON) and `results/aggregated/` (per-config summary JSON).
+Committed findings are in `results/aggregated/` and `results/analysis_2026-02-27_08-05.md`. Per-run raw logs in `results/raw/` are generated locally and are gitignored.
 
 ---
 
@@ -108,14 +108,35 @@ USD cost per run and per config based on token usage × pricing rates from `.env
 
 ---
 
+## Latest Findings (Version 1)
+
+From the 5-run-per-config aggregated outputs in `results/aggregated/`:
+
+| Config | Chain-average OVAR (OEM, Ancillary, Component mean) |
+|---|---|
+| `context_lightweight` | **2.9289** |
+| `blind_lightweight` | 3.1573 |
+| `blind_reasoning` | 3.8350 |
+| `context_reasoning` | **4.4124** |
+
+- All tiers in all configurations show `OVAR > 1`, confirming bullwhip amplification.
+- `context_lightweight` is the best-performing configuration on chain-average OVAR.
+- `context_reasoning` is the worst on chain-average OVAR, with elevated OEM and ancillary variability.
+- Context improves the component tier for both models:
+  - gpt-4.1-mini: `4.2664 -> 3.4119`
+  - o1: `3.6493 -> 2.6976`
+- o1 run stability is weaker than lightweight in this run set (for example, `blind_reasoning` OEM CV `57.15%`).
+
+---
+
 ## Hypotheses
 
 All directional; no pre-specified effect size thresholds. This is an exploratory study.
 
-- **H1:** Context mean OVAR < Blind mean OVAR at all three tiers
-- **H2:** Blind-reasoning and blind-lightweight mean OVARs overlap within their CV ranges (context is the determining factor, not model capability)
-- **H3:** Context-reasoning achieves the lowest chain-level OVAR
-- **H4:** Pattern score: context agents score higher than blind agents at event periods
+- **H1:** Context mean OVAR < Blind mean OVAR at all three tiers *(V1 status: mixed; true at component, not universal across tiers/configs)*
+- **H2:** Blind-reasoning and blind-lightweight mean OVARs overlap within their CV ranges *(V1 status: partially supported; means are close but o1 variance is materially higher)*
+- **H3:** Context-reasoning achieves the lowest chain-level OVAR *(V1 status: not supported; context-lightweight is lowest)*
+- **H4:** Pattern score: context agents score higher than blind agents at event periods *(V1 status: mixed by model; true for lightweight, not for reasoning)*
 
 ---
 
