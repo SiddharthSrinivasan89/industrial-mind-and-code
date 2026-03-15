@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- FILL IN: post title -->
+  <title>POST TITLE — Industrial Mind &amp; Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    /* ─── Post header ─── */
+    .post-header {
+      padding: 7rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+    .post-summary {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .post-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .post-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .post-meta-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .post-meta-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Post body ─── */
+    .post-body {
+      padding: 4rem 0;
+    }
+    .post-section {
+      margin-bottom: 3.5rem;
+    }
+    .post-section:last-child { margin-bottom: 0; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+
+    /* ─── Abstract ─── */
+    .abstract-block {
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 4px 4px 0;
+    }
+    .abstract-block p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+    .abstract-block p:last-child { margin-bottom: 0; }
+
+    /* ─── Setup table ─── */
+    .setup-table {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+    .setup-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(even) { background: var(--surface); }
+    .setup-table tr:nth-child(odd) { background: #fff; }
+    .setup-table td {
+      padding: 0.75rem 1.25rem;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .setup-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 160px;
+    }
+    .setup-table td:last-child {
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* ─── Key findings ─── */
+    .findings-list {
+      list-style: none;
+      counter-reset: finding;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .findings-list li {
+      counter-increment: finding;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .findings-list li::before {
+      content: counter(finding, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      margin-top: 4px;
+      min-width: 24px;
+    }
+    .finding-text {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.65;
+    }
+    .finding-text span {
+      font-weight: 500;
+    }
+
+    /* ─── Results table ─── */
+    .results-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .results-table thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .results-table thead th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .results-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td {
+      padding: 0.65rem 1.25rem;
+      color: var(--text-primary);
+      font-weight: 300;
+      vertical-align: middle;
+    }
+    .results-table tbody td:first-child {
+      font-weight: 400;
+    }
+    .results-table .tag-cell {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .results-table .value-cell {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Discussion prose ─── */
+    .prose p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      max-width: 640px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Methodology callout ─── */
+    .method-callout {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .method-callout-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .method-callout p {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      margin-top: 3rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="../#about">About</a></li>
+        <li><a href="../#experiments">Experiments</a></li>
+        <li><a href="./" class="active">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Post header -->
+  <header class="post-header">
+    <div class="container">
+      <!-- FILL IN: domain tag, e.g. "SUPPLY CHAIN · EXPERIMENT WRITEUP" -->
+      <p class="post-eyebrow">DOMAIN TAG · EXPERIMENT WRITEUP</p>
+      <!-- FILL IN: post title -->
+      <h1 class="post-title">Post Title Goes Here</h1>
+      <!-- FILL IN: one-line summary -->
+      <p class="post-summary">
+        One-line summary of the key finding or argument — clear enough to stand alone.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <!-- FILL IN: month year -->
+          <span class="post-meta-value">Month Year</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Experiment</span>
+          <!-- FILL IN: experiment name or ID -->
+          <span class="post-meta-value">Experiment Name</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Preregistration</span>
+          <!-- FILL IN: OSF link or "Pending" -->
+          <span class="post-meta-value">OSF.io</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post body -->
+  <main class="post-body">
+    <div class="container">
+
+      <!-- ─── Abstract ─── -->
+      <div class="post-section">
+        <p class="section-label">Abstract</p>
+        <div class="abstract-block">
+          <!-- FILL IN: 2-3 sentence plain-language summary -->
+          <p>
+            First sentence: what was the experiment and what question did it answer?
+          </p>
+          <p>
+            Second sentence: what were the key conditions or variables being compared?
+          </p>
+          <p>
+            Third sentence: what was the headline finding?
+          </p>
+        </div>
+      </div>
+
+      <!-- ─── Experiment setup ─── -->
+      <div class="post-section">
+        <p class="section-label">Experiment setup</p>
+        <h2 class="section-title">Design &amp; configuration</h2>
+        <table class="setup-table">
+          <tbody>
+            <tr>
+              <td>Model(s)</td>
+              <!-- FILL IN: e.g. "GPT-4.1-mini, o1" -->
+              <td>Model A, Model B</td>
+            </tr>
+            <tr>
+              <td>Design</td>
+              <!-- FILL IN: e.g. "2×2 factorial (model tier × context richness)" -->
+              <td>Design description</td>
+            </tr>
+            <tr>
+              <td>Replications</td>
+              <!-- FILL IN: e.g. "50 per cell, 200 total" -->
+              <td>N per cell, N total</td>
+            </tr>
+            <tr>
+              <td>Primary metric</td>
+              <!-- FILL IN: e.g. "Order Variance Amplification Ratio (OVAR)" -->
+              <td>Metric name and definition</td>
+            </tr>
+            <tr>
+              <td>Baseline</td>
+              <!-- FILL IN: e.g. "Analytical EOQ / newsvendor optimum" -->
+              <td>Baseline description</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ─── Key findings ─── -->
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What we found</h2>
+        <ol class="findings-list">
+          <!-- FILL IN: numbered findings — lead each with the key claim in bold -->
+          <li>
+            <span class="finding-text"><span>Finding one.</span> Supporting detail that explains or qualifies the finding.</span>
+          </li>
+          <li>
+            <span class="finding-text"><span>Finding two.</span> Supporting detail that explains or qualifies the finding.</span>
+          </li>
+          <li>
+            <span class="finding-text"><span>Finding three.</span> Supporting detail that explains or qualifies the finding.</span>
+          </li>
+          <li>
+            <span class="finding-text"><span>Finding four.</span> Supporting detail that explains or qualifies the finding.</span>
+          </li>
+        </ol>
+      </div>
+
+      <!-- ─── Results table ─── -->
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <!-- FILL IN: column headers — adjust as needed for your experiment -->
+                <th>Configuration</th>
+                <th>Tier</th>
+                <th>OVAR (mean)</th>
+                <th>vs Baseline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- FILL IN: one row per experimental cell -->
+              <tr>
+                <td>Configuration A — No context</td>
+                <td class="tag-cell">LIGHTWEIGHT</td>
+                <td class="value-cell">X.XX</td>
+                <td>+XX%</td>
+              </tr>
+              <tr>
+                <td>Configuration B — With context</td>
+                <td class="tag-cell">LIGHTWEIGHT</td>
+                <td class="value-cell">X.XX</td>
+                <td>+XX%</td>
+              </tr>
+              <tr>
+                <td>Configuration C — No context</td>
+                <td class="tag-cell">REASONING</td>
+                <td class="value-cell">X.XX</td>
+                <td>+XX%</td>
+              </tr>
+              <tr>
+                <td>Configuration D — With context</td>
+                <td class="tag-cell">REASONING</td>
+                <td class="value-cell">X.XX</td>
+                <td>+XX%</td>
+              </tr>
+              <tr>
+                <td>Analytical baseline</td>
+                <td class="tag-cell">CONTROL</td>
+                <td class="value-cell">1.00</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── Discussion ─── -->
+      <div class="post-section">
+        <p class="section-label">Discussion</p>
+        <h2 class="section-title">What this means</h2>
+        <div class="prose">
+          <!-- FILL IN: freeform discussion prose -->
+          <p>
+            First paragraph: frame the main finding in context. What does it mean for the broader question of LLM agent reliability in industrial settings?
+          </p>
+          <p>
+            Second paragraph: alternative explanations, caveats, or conditions under which the finding might not hold.
+          </p>
+          <p>
+            Third paragraph: what this experiment doesn't answer and what would need to be true to extend the finding.
+          </p>
+        </div>
+      </div>
+
+      <!-- ─── Methodology note ─── -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Methodology note</p>
+          <p>
+            All scenarios in this experiment are entirely fictional. No proprietary data, internal systems, or real company information was used. Hypotheses and experimental design were preregistered on OSF before data collection began — the timestamp, not the outcome, is the point.
+          </p>
+        </div>
+      </div>
+
+      <!-- Back link -->
+      <a class="back-link" href="/blog/">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to blog
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">industrial-mind-and-code · personal research · not affiliated with any employer</span>
+      <ul class="footer-links">
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharth-srinivasan" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
