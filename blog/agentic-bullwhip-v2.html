@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic Bullwhip Effect — Version 2 — Industrial Mind &amp; Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --verdict-rejected-bg: #fdf0f0;
+      --verdict-rejected: #8a2a2a;
+      --verdict-partial-bg: #fdf6e0;
+      --verdict-partial: #7a5500;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    /* ─── Post header ─── */
+    .post-header {
+      padding: 7rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+    .post-summary {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .post-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .post-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .post-meta-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .post-meta-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Post body ─── */
+    .post-body {
+      padding: 4rem 0;
+    }
+    .post-section {
+      margin-bottom: 3.5rem;
+    }
+    .post-section:last-child { margin-bottom: 0; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+
+    /* ─── Abstract ─── */
+    .abstract-block {
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 4px 4px 0;
+    }
+    .abstract-block p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Setup table ─── */
+    .setup-table {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td {
+      padding: 0.75rem 1.25rem;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .setup-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 180px;
+    }
+    .setup-table td:last-child {
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* ─── Key findings ─── */
+    .findings-list {
+      list-style: none;
+      counter-reset: finding;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .findings-list li {
+      counter-increment: finding;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .findings-list li::before {
+      content: counter(finding, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      margin-top: 4px;
+      min-width: 24px;
+    }
+    .finding-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .finding-text strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Results tables ─── */
+    .results-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
+    .results-table-wrap:last-child { margin-bottom: 0; }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .results-table thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .results-table thead th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .results-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td {
+      padding: 0.65rem 1.25rem;
+      color: var(--text-primary);
+      font-weight: 300;
+      vertical-align: middle;
+    }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500 !important;
+    }
+    .tag-cell {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .best { color: var(--verdict-supported) !important; }
+    .worst { color: var(--verdict-rejected) !important; }
+    .unstable { color: var(--verdict-partial) !important; }
+
+    /* ─── Hypothesis table ─── */
+    .verdict {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+    .verdict-rejected { background: var(--verdict-rejected-bg); color: var(--verdict-rejected); }
+    .verdict-partial { background: var(--verdict-partial-bg); color: var(--verdict-partial); }
+    .verdict-supported { background: var(--verdict-supported-bg); color: var(--verdict-supported); }
+
+    /* ─── Discussion prose ─── */
+    .prose h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      margin-top: 2rem;
+      line-height: 1.3;
+    }
+    .prose h3:first-child { margin-top: 0; }
+    .prose p {
+      font-size: 15.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.1rem;
+      max-width: 640px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Footnote ─── */
+    .table-note {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* ─── Methodology callout ─── */
+    .method-callout {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .method-callout-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .method-callout p {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      margin-top: 3rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="../#about">About</a></li>
+        <li><a href="../#experiments">Experiments</a></li>
+        <li><a href="./" class="active">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Post header -->
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Supply Chain · Experiment Writeup</p>
+      <h1 class="post-title">Agentic Bullwhip Effect — Version 2</h1>
+      <p class="post-summary">
+        Every heuristic outperformed every LLM configuration. Exponential smoothing beat state-of-the-art reasoning models 8× on order variance and 8× on stockouts — simultaneously.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <span class="post-meta-value">March 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Experiment</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 2</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Design</span>
+          <span class="post-meta-value">2×2 Factorial · 20 runs · 11,520 LLM calls</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post body -->
+  <main class="post-body">
+    <div class="container">
+
+      <!-- Abstract -->
+      <div class="post-section">
+        <p class="section-label">Abstract</p>
+        <div class="abstract-block">
+          <p>The bullwhip effect is a foundational supply chain problem: small fluctuations in consumer demand cause progressively larger swings in orders further up the chain, leading to excess inventory, stockouts, and wasted capacity. Version 2 asks a harder question than Version 1 — not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all.</p>
+          <p>Four LLM configurations — lightweight and reasoning models, frontier and local — were tested against three deterministic heuristic baselines across 20 independent runs per condition, totalling 11,520 LLM calls over a 25-month synthetic demand series calibrated to Indian automotive seasonal patterns.</p>
+          <p>Every heuristic outperformed every LLM configuration on both order variance and service level simultaneously. This is not a tradeoff result — the LLMs were strictly worse on both dimensions at once.</p>
+        </div>
+      </div>
+
+      <!-- Experiment setup -->
+      <div class="post-section">
+        <p class="section-label">Experiment setup</p>
+        <h2 class="section-title">Design &amp; configuration</h2>
+        <table class="setup-table">
+          <tbody>
+            <tr><td>Models</td><td>gpt-4.1-mini (frontier lightweight) · o4-mini (frontier reasoning) · phi4:14b (local lightweight) · gpt-oss:120b (local reasoning)</td></tr>
+            <tr><td>Design</td><td>2×2 factorial — model tier × context treatment — plus local inference replication</td></tr>
+            <tr><td>Replications</td><td>20 per LLM configuration · 1 per heuristic (deterministic)</td></tr>
+            <tr><td>Primary metrics</td><td>OVAR (Order Variance Ratio) + Stockout count — always reported jointly. MPRD: |ΔOVAR| ≥ 0.5 required for a practically meaningful claim.</td></tr>
+            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) → Lighting Manufacturer (Ancillary) → LED Component Manufacturer</td></tr>
+            <tr><td>Demand series</td><td>25 months (Jan 2025 – Jan 2027) · single SKU · two full Indian festive cycles</td></tr>
+            <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
+            <tr><td>Initial inventory</td><td>43,609 units — derived as mean + 1.65σ of demand series (~95% service level)</td></tr>
+            <tr><td>LLM calls</td><td>11,520 total (4 conditions × 20 runs × 24 ordering periods × 3 tiers)</td></tr>
+            <tr><td>Heuristic baselines</td><td>Exponential smoothing (α=0.30) · Naive passthrough · Order-up-to with fixed safety stock</td></tr>
+            <tr><td>Agent design</td><td>Stateless — no memory between periods. Deliberate: most real agentic deployments are stateless.</td></tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:13px;font-weight:300;color:var(--text-muted);margin-top:0.75rem;line-height:1.6;">
+          OVAR interpretation: &lt; 1.0 = dampening (orders smoother than demand) · = 1.0 = pass-through · &gt; 1.0 = bullwhip amplification
+        </p>
+      </div>
+
+      <!-- Key findings -->
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every heuristic outperformed every LLM on both OVAR and stockouts simultaneously.</strong> This is not a tradeoff. The LLMs were strictly dominated across both primary metrics in every configuration tested.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The gap is not marginal.</strong> Exponential smoothing achieved chain-average OVAR 0.54 with 5 stockout periods. The best LLM (local phi4:14b, blind) achieved OVAR 4.33 with 41 stockouts — 8× worse on both dimensions at once.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The Ancillary tier (middle) is consistently the most amplified</strong> — every model, every configuration. It absorbs already-distorted orders from the OEM tier and amplifies them further, the textbook bullwhip accumulation point.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context had opposite effects depending on model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 → 4.47, Δ=0.23 — below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 ± 8.14 — some runs were catastrophic outliers.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Reasoning models showed no ordering advantage over lightweight models.</strong> The 116B gpt-oss:120b produced results statistically indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens — none of it translated to better ordering outcomes.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The failure is structural, not a prompting problem.</strong> Each agent sees only the current period's state with no memory of prior decisions. LLMs also optimise for plausible text, not numerically precise outcomes. The heuristic doesn't reason — it applies the formula it was built for. That is its advantage.</span>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Results -->
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Heuristic baselines</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Heuristic</th>
+                <th>Chain OVAR</th>
+                <th>Stockouts (of 75 possible)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exponential smoothing</td>
+                <td class="value-cell best">0.54</td>
+                <td class="value-cell best">5</td>
+              </tr>
+              <tr>
+                <td>Naive passthrough</td>
+                <td class="value-cell">1.00</td>
+                <td class="value-cell">3</td>
+              </tr>
+              <tr>
+                <td>Order-up-to</td>
+                <td class="value-cell">1.71</td>
+                <td class="value-cell">14</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Chain-average OVAR by LLM configuration</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Condition</th>
+                <th>Backend</th>
+                <th>Chain OVAR (mean ± std)</th>
+                <th>Stockouts (mean ± std)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>exp_smoothing</strong></td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell best">0.54</td>
+                <td class="value-cell best">5</td>
+              </tr>
+              <tr>
+                <td>naive_passthrough</td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell">1.00</td>
+                <td class="value-cell">3</td>
+              </tr>
+              <tr>
+                <td>order_up_to</td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell">1.71</td>
+                <td class="value-cell">14</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.70 ± 0.14</td>
+                <td class="value-cell">40.5 ± 0.83</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.47 ± 0.07</td>
+                <td class="value-cell">39.0 ± 0.83</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell best">4.33 ± 0.00</td>
+                <td class="value-cell">41.0 ± 0.00</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell worst">6.35 ± 2.53</td>
+                <td class="value-cell">37.2 ± 3.11</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.72 ± 1.12</td>
+                <td class="value-cell">42.9 ± 3.85</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.52 ± 0.08</td>
+                <td class="value-cell">40.1 ± 0.85</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.52 ± 0.00</td>
+                <td class="value-cell">40.0 ± 0.00</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.52 ± 0.05</td>
+                <td class="value-cell">39.6 ± 0.76</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">L = Lightweight (gpt-4.1-mini / phi4:14b) · R = Reasoning (o4-mini / gpt-oss:120b)</p>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">OVAR by tier — chain average</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Condition</th>
+                <th>Backend</th>
+                <th>OEM</th>
+                <th>Ancillary</th>
+                <th>Component</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>exp_smoothing</td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell best">0.41</td>
+                <td class="value-cell best">0.65</td>
+                <td class="value-cell best">0.58</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.21</td>
+                <td class="value-cell worst">6.64</td>
+                <td class="value-cell">3.25</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.12</td>
+                <td class="value-cell">6.01</td>
+                <td class="value-cell">3.30</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">3.71</td>
+                <td class="value-cell">5.89</td>
+                <td class="value-cell">3.40</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.62</td>
+                <td class="value-cell worst">10.82</td>
+                <td class="value-cell">3.61</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">5.94</td>
+                <td class="value-cell">5.18</td>
+                <td class="value-cell">3.05</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.13</td>
+                <td class="value-cell">5.99</td>
+                <td class="value-cell">3.45</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.13</td>
+                <td class="value-cell">5.99</td>
+                <td class="value-cell">3.45</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.13</td>
+                <td class="value-cell">6.01</td>
+                <td class="value-cell">3.43</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Hypothesis Verdicts -->
+      <div class="post-section">
+        <p class="section-label">Hypothesis verdicts</p>
+        <h2 class="section-title">Seven hypotheses, seven rejections</h2>
+
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Hypothesis</th>
+                <th>Prediction</th>
+                <th>Result</th>
+                <th>Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>H1</strong> — Primary</td>
+                <td>At least one LLM beats exp smoothing (OVAR 0.54) with ≤5 stockouts</td>
+                <td>Best LLM: OVAR 4.33, stockouts 41</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td><strong>H2</strong> — Context, lightweight</td>
+                <td>context_lightweight OVAR &lt; blind_lightweight by ≥0.5</td>
+                <td>Δ=0.23 — below MPRD</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td><strong>H3</strong> — Context, reasoning</td>
+                <td>context_reasoning OVAR &lt; blind_reasoning by ≥0.5</td>
+                <td>Δ=0.20 — below MPRD</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td><strong>H4</strong> — Reasoning, no context</td>
+                <td>blind_reasoning OVAR &lt; blind_lightweight</td>
+                <td>Δ=−0.02 — opposite direction</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td><strong>H5</strong> — Reasoning, with context</td>
+                <td>context_reasoning OVAR &lt; context_lightweight</td>
+                <td>Δ=−0.05 — opposite direction</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td><strong>H6</strong> — Interaction</td>
+                <td>Context benefit larger for reasoning than lightweight</td>
+                <td>C5=−0.03 — opposite direction</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td><strong>H7</strong> — Local/frontier replication</td>
+                <td>Local context_lightweight within ±0.5 OVAR of frontier</td>
+                <td>Δ=1.88 — outside equivalence bounds</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="table-note">H1 was rejected by the widest margin — 8× worse on OVAR and 8× worse on stockouts simultaneously. H2 and H3 were directionally consistent but failed to reach the MPRD threshold. H4 and H5 show reasoning models performed no better than lightweight — the contrast was negative in both conditions. H7 confirms the local/frontier divergence under context was substantial, not noise.</p>
+      </div>
+
+      <!-- Discussion -->
+      <div class="post-section">
+        <p class="section-label">Discussion</p>
+        <h2 class="section-title">Why the formula won</h2>
+
+        <div class="prose">
+          <h3>Why LLMs fail to smooth</h3>
+          <p>The bullwhip failure is structural. Each agent sees only the current period — no memory of what it ordered previously, no causal chain connecting its past decisions to the current supply chain state. Without this, there is no mechanism for self-correction. A stateless agent that ordered too much last period arrives at the next period without knowing it did. The supply chain inherits the consequences; the agent does not.</p>
+          <p>The second reason is that quantity estimation is not what LLMs optimise for. LLMs reason about supply chains the way a textbook does — they can describe the bullwhip effect, but that doesn't mean they can avoid causing it. Every period, an LLM makes a fresh judgement call on a number. That discretion generates variance. A deterministic formula has zero within-run variance by construction. The OVAR comparison is, in a sense, a comparison between the variance introduced by formula (≈0) versus the variance introduced by LLM discretion (substantial).</p>
+
+          <h3>Context as a noise amplifier</h3>
+          <p>The local lightweight model result deserves specific attention. Adding business context to phi4:14b did not help — it destabilised an otherwise rigid model. The Ancillary tier standard deviation of 8.14 OVAR across 20 runs means some runs were near-normal while others were extreme outliers. Context likely triggered an aggressive ordering interpretation in certain runs that then propagated as an amplified shock upstream. The rigid blind model, repeating the same order every run, at least produced <em>predictable</em> underperformance.</p>
+          <p>For frontier models, context showed a small directional improvement — Δ=0.23 for gpt-4.1-mini — but well below the MPRD threshold. The signal is there; the magnitude is not sufficient to justify the additional prompt engineering cost in this task class.</p>
+
+          <h3>What this means for deployment</h3>
+          <p>A hybrid approach is needed. LLMs alone are not ready for stateless, zero-shot ordering decisions — making quantity calls each period with no memory, no fine-tuning, and no outcome feedback. But the data points toward where they do belong. Frontier models showed marginal improvement with business context — suggesting some sensitivity to conditions. The heuristics won on execution every time — the math is reliable where LLM quantity judgement is not.</p>
+        </div>
+
+        <div class="abstract-block" style="margin-top:2rem;">
+          <p><strong>The natural split: LLM reads conditions and adjusts inputs, formula executes the order.</strong></p>
+          <p>Use LLMs to interpret seasonal signals, flag anomalies, and modify heuristic parameters — then let the formula handle execution. This is where the experiment's data points.</p>
+        </div>
+      </div>
+
+      <!-- Methodology note -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Methodology note</p>
+          <p>All scenarios, companies, products, and supply chain structures in this experiment are entirely fictional and constructed for experimental purposes. No proprietary, confidential, or employer-owned data was used. This experiment is intentionally narrow: single product, fixed 1-month lead times, no supplier disruptions, no unstructured context, no multi-objective tradeoffs. Results reflect this specific configuration. The correct scope of any conclusion is: <em>"LLM agents do not outperform simple blind heuristics in a stylised single-product replenishment task with fixed lead times and no unstructured context."</em> Local compute runs on an Asus Ascent GX10 with NVIDIA GB10 Blackwell SoC — personally owned. Azure and other AI subscriptions are personal in nature.</p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to blog
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">industrial-mind-and-code · personal research · not affiliated with any employer</span>
+      <ul class="footer-links">
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
