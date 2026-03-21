@@ -52,62 +52,20 @@ links:
 
 ### Agentic Bullwhip Effect — Version 2
 
-status: In Progress
-domain: SUPPLY CHAIN · 4 EXPERIMENTS · GPT-4.1-MINI · O4-MINI · PHI-4-REASONING-PLUS
+status: Published
+domain: SUPPLY CHAIN · LIGHTWEIGHT · REASONING · FRONTIER · LOCAL
 
-V1 compared AI configurations against each other. V2 asks a harder question: do AI agents beat simple heuristics at all — and if so, which configuration gets closest and why?
+Every heuristic outperformed every LLM configuration. Exponential smoothing achieved OVAR 0.54; the best LLM reached 4.33 — 8× worse, with 8× the stockouts. All seven hypotheses rejected.
 
-- Ordering fully unconstrained — V1 guardrails removed to observe natural agent behaviour
-- Three heuristic baselines set the bar: exponential smoothing (OVAR 0.54), Order-Up-To (OVAR 1.71), naive passthrough (OVAR 1.0)
-- Four sub-experiments: lightweight, reasoning, synthesis, and open-source vs proprietary reasoning (Phi-4-reasoning-plus vs o4-mini)
-- 25-month demand series spanning two festive cycles · 20 runs per condition
-
-#### What Changed from V1
-
-|Parameter        |V1                                    |V2                                                                                      |
-|-----------------|--------------------------------------|----------------------------------------------------------------------------------------|
-|Models           |gpt-4.1-mini vs o1                    |gpt-4.1-mini (lightweight) · o4-mini (reasoning) · Phi-4-reasoning-plus (E4 — OSS vs proprietary)|
-|Structure        |Single 2×2 run                        |4 sub-experiments: E1 (lightweight), E2 (reasoning), E3 (synthesis), E4 (OSS vs proprietary)|
-|Initial inventory|180,000 units                         |43,600 units — derived at runtime from demand series at ~95% service level               |
-|Order constraints|Floor 0.2× and ceiling 5× demand      |None — fully unconstrained                                                              |
-|Product          |Headlamps, tail lamps, DRLs (multiple)|LED headlight assembly for the Vecta (single)                                           |
-|Demand series    |13 months                             |25 months (Jan 2025 – Jan 2027) · two full festive cycles                               |
-
-#### Research Question — Two Layers
-
-**Layer 1 (primary):** Do LLM agents beat simple heuristics on the OVAR–stockout tradeoff? If no, the case for deployment is weak regardless of configuration.
-
-**Layer 2 (conditional on Layer 1):** Among LLM configurations, which gets closest to the optimal balance — and is it driven by context, reasoning capability, or the combination?
-
-|Factor |Levels                                                               |
-|-------|---------------------------------------------------------------------|
-|Context|Blind (numbers only) vs Context (company, product, supply chain role)|
-|Model  |Lightweight (gpt-4.1-mini) vs Reasoning (o4-mini)                    |
-
-#### Scope — Read Before Interpreting Results
-
-Intentionally narrow: single product, fixed 1-month lead times, no supplier disruptions, no unstructured context, no multi-objective tradeoffs. In this class of stable, repetitive replenishment decision, blind heuristics may be strong competitors — that is itself a question this experiment answers. Any finding should be read within this scope and not generalised to supply chain management broadly.
-
-#### Supply Chain & Benchmarks
-
-- Tatva Motors (OEM) → Lighting Manufacturer (Ancillary) → LED Component Manufacturer (Supplier)
-- 25-month demand series calibrated to Indian PV market data · 20 runs per LLM condition · 8,640 total LLM calls
-- Primary benchmark: exponential smoothing — OVAR 0.54, stockouts 5 (LLMs must beat this on both metrics)
-- Secondary diagnostic: Order-Up-To with fixed safety stock — OVAR 1.71, stockouts 14
-- Floor reference: naive passthrough — OVAR 1.0, stockouts 3
-
-#### Files
-
-```
-Agentic_Bullwhip_Effect_Version_2/
-├── Experiment_Parameters/
-│   └── experiment_design_v3.md
-└── statutory_docs/
-```
+- Heuristics vs LLMs is not a tradeoff — LLMs were strictly dominated on both OVAR and stockouts simultaneously in every configuration tested
+- Context had opposite effects: marginal improvement for frontier gpt-4.1-mini (Δ=0.23, below threshold), severe degradation for local phi4:14b (4.33 → 6.35, Ancillary tier hitting 10.82)
+- Reasoning models showed no ordering advantage over lightweight — more inference spend produced no measurable OVAR improvement
+- 11,520 LLM calls · 20 runs per condition · 25-month demand series · two full Indian festive cycles
 
 links:
 
-- Request early access: https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/issues
+- GitHub: https://github.com/SiddharthSrinivasan89/industrial-mind-and-code-dev
+- Read Post: /blog/agentic-bullwhip-v2.html
 
 -----
 
