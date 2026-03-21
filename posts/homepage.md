@@ -64,7 +64,7 @@ Every heuristic outperformed every LLM configuration. Exponential smoothing achi
 
 links:
 
-- GitHub: https://github.com/SiddharthSrinivasan89/industrial-mind-and-code-dev
+- GitHub: https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2
 - Read Post: /blog/agentic-bullwhip-v2.html
 
 -----

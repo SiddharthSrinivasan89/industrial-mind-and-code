@@ -144,7 +144,7 @@ A hybrid approach is needed. LLMs alone are not ready for stateless, zero-shot o
 
 ## Experiment Source
 
-Full technical report, code, and data for this experiment are available on GitHub: [LINK]
+Full technical report, code, and data for this experiment are available on GitHub: https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2
 
 ---
 

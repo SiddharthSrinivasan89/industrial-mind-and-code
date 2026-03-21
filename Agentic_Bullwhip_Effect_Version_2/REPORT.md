@@ -3,7 +3,9 @@
 # Agentic Bullwhip: Evaluating LLMs as Supply Chain Planners Against Deterministic Heuristics
 
 **Date:** March 2026
-**Author:** Siddharth Srinivasan - Blog: industrial mind and code 
+**Author:** Siddharth Srinivasan
+**Blog post:** https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2.html
+**GitHub:** https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2
 **Subject:** Technical Report
 
 ---
