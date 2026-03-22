@@ -123,10 +123,10 @@ These policies require no LLM calls. They are run once against the fixed demand 
 
 | | Blind | Context |
 |---|---|---|
-| **Lightweight** (gpt-4.1-mini) | `blind_lightweight` Temp: 0.0 \| Max tokens: 1,024 | `context_lightweight` Temp: 0.0 \| Max tokens: 1,024 |
+| **Lightweight** (gpt-4.1-mini) | `blind_lightweight` Temp: 0.4 \| Max tokens: 1,024 | `context_lightweight` Temp: 0.4 \| Max tokens: 1,024 |
 | **Reasoning** (o4-mini) | `blind_reasoning` Temp: 1.0 (API-fixed) \| Max completion tokens: 32,768 | `context_reasoning` Temp: 1.0 (API-fixed) \| Max completion tokens: 32,768 |
 
-**Temperature rationale:** Lightweight tier uses temp=0.0 for deterministic, reproducible ordering decisions. Reasoning tier (o4-mini) is API-fixed at 1.0 by Azure and cannot be changed. Local reasoning (gpt-oss:120b) uses temp=0.0.
+**Temperature rationale:** Azure lightweight tier uses temp=0.4 — low enough for near-deterministic ordering (observed std=0.14 on blind condition) while allowing minor output variation. Local lightweight (phi4:14b) uses temp=0.0 (blind) and temp=0.3 (context). Reasoning tier (o4-mini) is API-fixed at 1.0 by Azure and cannot be changed. Local reasoning (gpt-oss:120b) uses temp=0.0 (blind) and temp=0.3 (context).
 
 **Max token rationale:** 1,024 gives lightweight models room to write a full rationale without truncation. 32,768 gives reasoning models space for their internal chain-of-thought; smoke test confirmed o4-mini uses ~430 tokens/call on average (~375 reasoning tokens), well within this limit.
 
@@ -139,16 +139,16 @@ E4 reruns the E1 conditions (blind and context, lightweight tier) against a loca
 | Condition | Model | Deployment | Temperature |
 |---|---|---|---|
 | `blind_lightweight` | phi4:14b (Microsoft Phi-4) | Local — Ollama | 0.0 |
-| `context_lightweight` | phi4:14b (Microsoft Phi-4) | Local — Ollama | 0.0 |
-| `blind_lightweight` | gpt-4.1-mini (OpenAI) | Azure GlobalStandard | 0.0 |
-| `context_lightweight` | gpt-4.1-mini (OpenAI) | Azure GlobalStandard | 0.0 |
+| `context_lightweight` | phi4:14b (Microsoft Phi-4) | Local — Ollama | 0.3 |
+| `blind_lightweight` | gpt-4.1-mini (OpenAI) | Azure GlobalStandard | 0.4 |
+| `context_lightweight` | gpt-4.1-mini (OpenAI) | Azure GlobalStandard | 0.4 |
 
 **Why This Comparison**
 
 - **Practitioner relevance:** Many organisations considering agentic supply chain automation face a genuine build-vs-buy infrastructure decision. E4 provides empirical data on outcome quality, latency, and throughput under both configurations.
 - **Infrastructure transparency:** Every run captures per-call latency, token throughput, and retry rate. Local runs additionally capture hardware context (CPU, RAM, GPU if present). Azure runs capture deployment SKU and observed throttling. These are reported in the manuscript so readers can assess replicability on their own hardware.
 - **Framing:** E4 is a deployment-configuration comparison. Differences in OVAR and stockout counts between local and Azure reflect the combined effect of model, quantisation, serving stack, and hardware — the manuscript reports what differs, not why.
-- **Inference parameters (local):** temperature=0.0, Ollama default context window.
+- **Inference parameters (local):** temperature=0.0 (blind) / 0.3 (context), Ollama default context window.
 
 ---
 

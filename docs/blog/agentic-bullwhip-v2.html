@@ -538,7 +538,7 @@
             <span class="finding-text"><strong>Context had opposite effects depending on model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 → 4.47, Δ=0.23 — below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 ± 8.14 — some runs were catastrophic outliers.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Reasoning models showed no ordering advantage over lightweight models.</strong> The 116B gpt-oss:120b produced results statistically indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens — none of it translated to better ordering outcomes.</span>
+            <span class="finding-text"><strong>Reasoning models showed no ordering advantage over lightweight models.</strong> The 116B gpt-oss:120b produced nearly identical results to gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens — none of it translated to better ordering outcomes.</span>
           </li>
           <li>
             <span class="finding-text"><strong>The failure is structural, not a prompting problem.</strong> Each agent sees only the current period's state with no memory of prior decisions. LLMs also optimise for plausible text, not numerically precise outcomes. The heuristic doesn't reason — it applies the formula it was built for. That is its advantage.</span>
@@ -817,15 +817,15 @@
 
         <div class="prose">
           <h3>Why LLMs fail to smooth</h3>
-          <p>The bullwhip failure is structural. Each agent sees only the current period — no memory of what it ordered previously, no causal chain connecting its past decisions to the current supply chain state. Without this, there is no mechanism for self-correction. A stateless agent that ordered too much last period arrives at the next period without knowing it did. The supply chain inherits the consequences; the agent does not.</p>
-          <p>The second reason is that quantity estimation is not what LLMs optimise for. LLMs reason about supply chains the way a textbook does — they can describe the bullwhip effect, but that doesn't mean they can avoid causing it. Every period, an LLM makes a fresh judgement call on a number. That discretion generates variance. A deterministic formula has zero within-run variance by construction. The OVAR comparison is, in a sense, a comparison between the variance introduced by formula (≈0) versus the variance introduced by LLM discretion (substantial).</p>
+          <p>The failure is structural, not a tuning problem. Each agent sees only the current period — it has no memory of what it ordered last month or what that caused. If it over-ordered and created a surplus, it doesn't know. There is no mechanism for self-correction.</p>
+          <p>LLMs are also not built for precise numerical outputs. They can describe the bullwhip effect in a textbook answer, but that doesn't help them avoid causing it. Every period, the model makes a fresh judgement call on a number. That discretion creates variance. A formula produces zero discretionary variance — that is its advantage.</p>
 
           <h3>Context as a noise amplifier</h3>
-          <p>The local lightweight model result deserves specific attention. Adding business context to phi4:14b did not help — it destabilised an otherwise rigid model. The Ancillary tier standard deviation of 8.14 OVAR across 20 runs means some runs were near-normal while others were extreme outliers. Context likely triggered an aggressive ordering interpretation in certain runs that then propagated as an amplified shock upstream. The rigid blind model, repeating the same order every run, at least produced <em>predictable</em> underperformance.</p>
-          <p>For frontier models, context showed a small directional improvement — Δ=0.23 for gpt-4.1-mini — but well below the MPRD threshold. The signal is there; the magnitude is not sufficient to justify the additional prompt engineering cost in this task class.</p>
+          <p>Adding business context to phi4:14b (local) didn't help — it destabilised an otherwise rigid model. Some runs were near-normal; others were extreme outliers (Ancillary tier OVAR std of 8.14 across 20 runs). The context appears to have triggered aggressive ordering interpretations in certain runs, which then amplified upstream. The blind model, repeating the same order every run, at least failed <em>predictably</em>.</p>
+          <p>For gpt-4.1-mini (frontier), context helped slightly — but well below the threshold for a practically meaningful difference.</p>
 
           <h3>What this means for deployment</h3>
-          <p>A hybrid approach is needed. LLMs alone are not ready for stateless, zero-shot ordering decisions — making quantity calls each period with no memory, no fine-tuning, and no outcome feedback. But the data points toward where they do belong. Frontier models showed marginal improvement with business context — suggesting some sensitivity to conditions. The heuristics won on execution every time — the math is reliable where LLM quantity judgement is not.</p>
+          <p>LLMs are not ready for making quantity decisions each period with no memory and no feedback. But the data shows where they can add value: frontier models were slightly better with business context, suggesting some ability to read conditions. The formulas won on execution every time.</p>
         </div>
 
         <div class="abstract-block" style="margin-top:2rem;">
@@ -839,7 +839,7 @@
         <div class="method-callout">
           <p class="method-callout-label">Experiment source</p>
           <p>
-            Full technical report, code, and data for this experiment are available on GitHub.
+            Full research paper, code, and data for this experiment are available on GitHub.
             &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub →</a>
           </p>
         </div>

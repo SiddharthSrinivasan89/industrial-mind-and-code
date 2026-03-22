@@ -1,14 +1,14 @@
-# Agentic Bullwhip Effect — V2
+# Agentic Bullwhip Effect — Version 2
 
-A controlled simulation testing whether LLM agents can outperform a simple statistical rule at supply chain ordering. Four model configurations — lightweight and reasoning, cloud and local — were run against a 3-tier Indian automotive supply chain over 24 ordering periods. **None came close to a basic exponential smoothing heuristic.**
+A controlled simulation testing whether LLM agents can outperform a simple statistical rule at supply chain ordering. Four model configurations — lightweight and reasoning, frontier and local — were run against a 3-tier Indian automotive supply chain over 24 ordering periods. **None came close to a basic exponential smoothing heuristic.**
 
 ---
 
 ## What We Found
 
-- **The gap is structural, not marginal.** The best LLM result (OVAR 4.33) is 8× worse than exponential smoothing (OVAR 0.54). Every model tested — from a 14B local model to o4-mini on Azure — amplified demand swings by 4–6×. The heuristic dampened them.
+- **The gap is structural, not marginal.** The best LLM result (OVAR 4.33) is 8× worse than exponential smoothing (OVAR 0.54). OVAR (Order Variance Ratio) measures how much an agent amplifies or dampens demand swings — below 1.0 is dampening, above 1.0 is amplification. Every model tested amplified demand swings by 4–6×. The heuristic dampened them.
 - **Stockouts were catastrophic under LLMs.** Exponential smoothing produced 5 stockout periods out of 75 possible (7%). Every LLM condition produced 37–43 (50–57%). LLMs ordered too much in the wrong periods and too little in others.
-- **Adding context helped one model, badly destabilised another.** Giving gpt-4.1-mini the company name and calendar month reduced its OVAR slightly (4.70 → 4.47). The same context caused phi4:14b to deteriorate significantly (4.33 → 6.35), with the middle supply chain tier reaching OVAR 10.8 in some runs.
+- **Adding context helped one model, badly destabilised another.** Giving gpt-4.1-mini the company name and calendar month reduced its OVAR slightly (4.70 → 4.47). The same context caused phi4:14b to deteriorate significantly (4.33 → 6.35), with the Ancillary tier reaching OVAR 10.8 in some runs.
 - **A 120B reasoning model matched a 14B lightweight model.** gpt-oss:120b and phi4:14b produced nearly identical OVAR in blind conditions. More inference compute bought nothing.
 - **The failure is not a prompting problem.** LLMs are stateless — they have no memory of the orders they placed, so they cannot self-correct drift. They are also not optimised for numerical precision. The heuristic wins because its formula produces zero discretionary variance. That is not a gap prompting can close.
 
@@ -20,7 +20,7 @@ Full methodology, results, and discussion: [REPORT.md](REPORT.md)
 
 | Document | What it is |
 |---|---|
-| [REPORT.md](REPORT.md) | Full white paper — methodology, results tables, discussion, recommendations |
+| [REPORT.md](REPORT.md) | Full research paper — methodology, results tables, discussion, recommendations |
 | [DESIGN.md](DESIGN.md) | Experiment design specification — 2×2 factorial, parameter choices, metric definitions |
 | [data/](data/) | 25-month synthetic demand series + calibration notes on real Indian automotive market data |
 
@@ -86,7 +86,7 @@ The experiment uses exponential backoff (10 retries, capped at 60s) and writes a
 
 ```
 ├── README.md                   This file
-├── REPORT.md                   Full white paper
+├── REPORT.md                   Full research paper
 ├── DESIGN.md                   Experiment design specification
 ├── requirements.txt            Python dependencies
 │
@@ -121,10 +121,10 @@ The experiment uses exponential backoff (10 retries, capped at 60s) and writes a
 
 ---
 
-## V1 → V2
+## Version 1 → Version 2
 
-V1 imposed an order floor (0.2× demand) and ceiling (5× demand) on all agents. Those guardrails masked natural agent behaviour — they prevented the most extreme orders but also made it impossible to see how agents actually respond without constraints. V2 removes them entirely: agents can order any non-negative quantity. Initial inventory was also recalibrated from an arbitrary 180,000 units to a service-level-derived opening stock (mean + 1.65σ ≈ 43,600 units). The product was narrowed from multiple lamp types to a single assembly to give context agents a cleaner identity to reason with.
+Version 1 imposed an order floor (0.2× demand) and ceiling (5× demand) on all agents. Those guardrails masked natural agent behaviour — they prevented the most extreme orders but also made it impossible to see how agents actually respond without constraints. Version 2 removes them entirely: agents can order any non-negative quantity. Initial inventory was also recalibrated from an arbitrary 180,000 units to a service-level-derived opening stock (mean + 1.65σ ≈ 43,600 units). The product was narrowed from multiple lamp types to a single assembly to give context agents a cleaner identity to reason with.
 
 ---
 
-**Disclaimer:** Personal experiments. Data is synthetic. No employer, vendor, or technology partner data was used. Local compute runs on an Asus Ascent GX10 with NVIDIA GB10 Blackwell SoC — personally owned. Azure subscription is personal.
+**Disclaimer:** Personal experiments. Data is synthetic. No employer, vendor, or technology partner data was used. Local compute runs on an Asus Ascent GX10 with NVIDIA GB10 Blackwell SoC — personally owned. Azure and other AI subscriptions are personal in nature.
