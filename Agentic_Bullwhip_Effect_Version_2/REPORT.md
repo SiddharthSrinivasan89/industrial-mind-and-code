@@ -14,23 +14,35 @@
 
 This paper presents the results of a controlled simulation experiment investigating the efficacy of Large Language Models (LLMs) as autonomous supply chain planners. The study tests whether LLM agents can outperform traditional statistical heuristics in a multi-echelon (OEM → Ancillary → Component) environment characterised by 25 periods of synthetic demand, deterministic lead times, and seasonal demand patterns reflecting Indian automotive market dynamics (FY-end peaks, monsoon dips, Diwali surges).
 
-We compared four LLM configurations across two model families and two context conditions, running 20 independent trials per condition. All results were measured against three heuristic baselines run under identical conditions.
+We compared four LLM models across two context conditions, running 20 independent trials per condition. All results were measured against three heuristic baselines run under identical conditions.
 
 **Principal Findings:**
 
-- **Variance dampening.** Exponential smoothing actively dampened order variance to a chain-average OVAR of **0.54**; all LLM configurations produced OVAR between **4.33 and 6.35** — 8–12× higher than the best heuristic, and 4–6× higher than the naive passthrough baseline.
+- **Variance dampening.** Exponential smoothing actively dampened order variance to a chain-average OVAR of **0.54**; all LLM configurations produced OVAR between **4.33 and 6.35**, 8–12× higher than the best heuristic, and 4–6× higher than the naive passthrough baseline.
 
-- **Service level failure.** Exponential smoothing generated 5 stockout periods; every LLM condition generated between 37 and 43, a 7–8× increase. No LLM configuration approached heuristic service levels.
+- **Stockout incidence.** Exponential smoothing generated 5 stockout periods; every LLM condition generated between 37 and 43 stockouts, a 7–8× increase. No LLM configuration approached heuristic service levels.
 
 - **Context provided no reliable improvement.** For the frontier lightweight model (gpt-4.1-mini), adding supply chain tier persona and the current calendar month reduced OVAR marginally (4.70 → 4.47). For the local lightweight model (phi4:14b), the same context made performance substantially worse (4.33 → 6.35, +47%), with Ancillary tier OVAR reaching 10.8 and a standard deviation of 8.1 between runs — indicating erratic, unpredictable ordering.
 
-- **Reasoning model performance was not distinguishable from lightweight models in this task.** Chain-average OVAR ranges overlapped substantially (o4-mini: 4.52–4.72; gpt-4.1-mini: 4.47–4.70). No formal significance test was run; the comparison conflates model family and quantisation level (and temperature on Azure, though not on local where both tiers ran at identical temperatures) — so the result is directional, not causal.
+- **Reasoning models produced OVAR comparable to lightweight models.** On Azure: gpt-4.1-mini (lightweight) achieved chain OVAR 4.47–4.70; o4-mini (reasoning) achieved 4.52–4.72. On local: phi4:14b (lightweight) achieved 4.33–6.35 depending on condition; gpt-oss:120b (reasoning) achieved 4.52 across both conditions. In neither backend did reasoning models outperform their lightweight counterparts on chain-average OVAR.
 
-- **Local and frontier outcomes varied by condition.** For blind conditions, local and frontier OVAR means were within 0.37. For the lightweight context condition, local diverged sharply (Δ=1.87). The local/frontier comparison simultaneously changes the model (phi4:14b vs gpt-4.1-mini; gpt-oss:120b vs o4-mini), quantisation, serving stack (Ollama vs Azure OpenAI), and hardware. Any observed difference could be due to any combination of these factors — this should not be read as a local-vs-cloud infrastructure test.
+- **Local and frontier outcomes varied by condition.**
 
-- **Seasonal event recognition was weak and consistent across conditions.** Aggregate pattern scores across all conditions were low (0.20–0.23), indicating limited alignment between seasonal language cues and correctly directed order adjustments.
+  | Condition | Azure OVAR (mean) | Local OVAR (mean) | Δ |
+  | :--- | :---: | :---: | :---: |
+  | Lightweight — Blind | 4.70 | 4.33 | 0.37 |
+  | Lightweight — Context | 4.47 | **6.35** | **1.87** |
+  | Reasoning — Blind | 4.72 | 4.52 | 0.20 |
+  | Reasoning — Context | 4.52 | 4.52 | 0.00 |
 
-**Conclusion:** In this single-product replenishment task with fixed lead times and no unstructured context, LLM agents did not outperform deterministic heuristics. Exponential smoothing outperformed every LLM configuration by a wide margin on both OVAR and service level and stockout count simultaneously. These results should be interpreted within this narrow scope — the study was not designed to, and does not, address broader supply chain settings involving exceptions, multi-supplier negotiation, or unstructured information, nor does it emulate a real-world supply chain with disruptions and stochastic lead times.
+  In blind conditions and both reasoning conditions, local and frontier OVAR were within 0.37. In the lightweight context condition, local (phi4:14b) diverged sharply — OVAR 6.35 vs 4.47 for the frontier equivalent.
+
+- **Seasonal event recognition was weak and consistent across conditions.** Pattern score (0.0–1.0) measures how well agents recognised and acted on seasonal demand events — averaging the fraction of event months where the agent's rationale mentioned relevant seasonal keywords and the fraction where order quantities moved in the correct direction. Aggregate pattern scores across all conditions were low and indistinguishable (0.20–0.23), indicating limited alignment between seasonal language cues and correctly directed order adjustments.
+
+**Conclusion:** LLM agents did not outperform deterministic heuristics in this task. Exponential smoothing achieved OVAR=0.54 and 5 stockouts; every LLM configuration produced chain-average OVAR between 4.33 and 6.35 and between 37 and 43 stockouts — 8× worse on both metrics simultaneously. No combination of model size, context treatment, or inference backend closed this gap.
+
+These results are specific to the task tested: a single-product replenishment task with fixed lead times, stateless agents, and no unstructured context — conditions under which deterministic heuristics are known to perform strongly. They do not address supply chain settings involving exceptions, multi-supplier negotiation, disruptions, or unstructured information, nor do they emulate a real-world supply chain with stochastic lead times. Whether LLM agents add value in those settings remains an open empirical question.
+
 ---
 
 ## 1. Introduction
@@ -236,7 +248,7 @@ No LLM condition satisfies the success criterion. The minimum OVAR achieved by a
 | L-Context | Local | 4.62 | **10.82** | 3.61 |
 | R-Blind | Azure | 5.94 | 5.18 | 3.05 |
 | R-Context | Azure | 4.13 | 5.99 | 3.45 |
-| R-Blind | Local | 4.13 | 5.99 | 3.45 |
+| R-Blind | Local | 4.13 | 5.98 | 3.45 |
 | R-Context | Local | 4.13 | 6.01 | 3.43 |
 
 ![Figure 2](figures/fig2_tier_ovar_heatmap.png)
@@ -415,7 +427,7 @@ API calls per condition = 20 runs × 3 tiers × 24 ordering periods = 1,440.
 
 **Determinism observation:** phi4:14b at T=0.0 (blind condition) and gpt-oss:120b at T=0.0 (blind condition) produced zero inter-run variance across 20 runs. Standard deviation was at machine epsilon (~9×10⁻¹⁶). This is the expected result of greedy decoding (T=0.0) given identical prompts.
 
-**Data integrity:** SHA-256 checksum `c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e` recorded in E1/E2 provenance files confirms identical demand series across all runs.
+**Data integrity:** SHA-256 checksum `c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e` recorded in E1 and E2-Local provenance files confirms identical demand series across those runs. The E2-Azure provenance was recovered from checkpoint after an interruption and does not retain the checksum field; the same demand series was used across all experiments.
 
 **Result artifacts:** Raw run outputs (`records.parquet`, `summary.json`, `provenance.json`) are written by the runner to `results/<experiment>/<timestamp>/` and are required for full auditability and reproducibility. Summary statistics and provenance details in this paper are derived from those files. Anyone seeking to verify or reproduce individual run-level results should locate or regenerate those artifacts; the summary statistics reported here cannot substitute for them.
 
