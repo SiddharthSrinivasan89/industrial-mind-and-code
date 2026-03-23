@@ -104,10 +104,11 @@ Code: Claude Code · Codex
 
 ## Where I write
 
-Experiment writeups and methodology notes are published on the blog. Code and data for each experiment are on GitHub.
+Experiment writeups and methodology notes are published on the blog. Two writeups are live, the most recent being Agentic Bullwhip Effect: Version 2. Code and data for each experiment are on GitHub.
 
 links:
 - Blog: /blog/
+- Latest post: /blog/agentic-bullwhip-v2.html
 - GitHub: https://github.com/SiddharthSrinivasan89/industrial-mind-and-code
 
 -----
