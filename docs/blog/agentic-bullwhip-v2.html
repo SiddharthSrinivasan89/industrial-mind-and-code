@@ -460,9 +460,9 @@
   <header class="post-header">
     <div class="container">
       <p class="post-eyebrow">Supply Chain · Experiment Writeup</p>
-      <h1 class="post-title">Agentic Bullwhip Effect — Version 2</h1>
+      <h1 class="post-title">Agentic Bullwhip Effect: Version 2</h1>
       <p class="post-summary">
-        Every heuristic outperformed every LLM configuration. Exponential smoothing beat state-of-the-art reasoning models 8× on order variance and 8× on stockouts — simultaneously.
+        Every heuristic outperformed every LLM configuration. Exponential smoothing beat state-of-the-art reasoning models 8x on order variance and 8x on stockouts, simultaneously.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -489,9 +489,8 @@
       <div class="post-section">
         <p class="section-label">Abstract</p>
         <div class="abstract-block">
-          <p>The bullwhip effect is a foundational supply chain problem: small fluctuations in consumer demand cause progressively larger swings in orders further up the chain, leading to excess inventory, stockouts, and wasted capacity. Version 2 asks a harder question than Version 1 — not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all.</p>
-          <p>Four LLM configurations — lightweight and reasoning models, frontier and local — were tested against three deterministic heuristic baselines across 20 independent runs per condition, totalling 11,520 LLM calls over a 25-month synthetic demand series calibrated to Indian automotive seasonal patterns.</p>
-          <p>Every heuristic outperformed every LLM configuration on both order variance and service level simultaneously. This is not a tradeoff result — the LLMs were strictly worse on both dimensions at once.</p>
+          <p>Version 2 asks a harder question than Version 1: not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all. Four models across lightweight and reasoning tiers, frontier and local, were tested against three deterministic heuristic baselines across 20 independent runs per condition, totalling 11,520 LLM calls over a 25-month synthetic demand series.</p>
+          <p>Every heuristic outperformed every LLM configuration on both order variance and stockouts simultaneously. This is not a tradeoff result. The LLMs were strictly worse on both dimensions at once.</p>
         </div>
       </div>
 
@@ -502,16 +501,16 @@
         <table class="setup-table">
           <tbody>
             <tr><td>Models</td><td>gpt-4.1-mini (frontier lightweight) · o4-mini (frontier reasoning) · phi4:14b (local lightweight) · gpt-oss:120b (local reasoning)</td></tr>
-            <tr><td>Design</td><td>2×2 factorial — model tier × context treatment — plus local inference replication</td></tr>
+            <tr><td>Design</td><td>2x2 factorial (model tier x context treatment) plus local inference replication</td></tr>
             <tr><td>Replications</td><td>20 per LLM configuration · 1 per heuristic (deterministic)</td></tr>
-            <tr><td>Primary metrics</td><td>OVAR (Order Variance Ratio) + Stockout count — always reported jointly. MPRD: |ΔOVAR| ≥ 0.5 required for a practically meaningful claim.</td></tr>
-            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) → Lighting Manufacturer (Ancillary) → LED Component Manufacturer</td></tr>
-            <tr><td>Demand series</td><td>25 months (Jan 2025 – Jan 2027) · single SKU · two full Indian festive cycles</td></tr>
+            <tr><td>Primary metrics</td><td>OVAR (Order Variance Ratio) + Stockout count, always reported jointly. MPRD: |DOVAR| &ge; 0.5 required for a practically meaningful claim.</td></tr>
+            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) &rarr; Lighting Manufacturer (Ancillary) &rarr; LED Component Manufacturer</td></tr>
+            <tr><td>Demand series</td><td>25 months (Jan 2025 to Jan 2027) · single SKU · two full Indian festive cycles</td></tr>
             <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
-            <tr><td>Initial inventory</td><td>43,609 units — derived as mean + 1.65σ of demand series (~95% service level)</td></tr>
-            <tr><td>LLM calls</td><td>11,520 total (4 conditions × 20 runs × 24 ordering periods × 3 tiers)</td></tr>
-            <tr><td>Heuristic baselines</td><td>Exponential smoothing (α=0.30) · Naive passthrough · Order-up-to with fixed safety stock</td></tr>
-            <tr><td>Agent design</td><td>Stateless — no memory between periods. Deliberate: most real agentic deployments are stateless.</td></tr>
+            <tr><td>Initial inventory</td><td>43,609 units, derived as mean + 1.65&sigma; of demand series (~95% service level)</td></tr>
+            <tr><td>LLM calls</td><td>11,520 total (4 conditions x 20 runs x 24 ordering periods x 3 tiers)</td></tr>
+            <tr><td>Heuristic baselines</td><td>Exponential smoothing (&alpha;=0.30) · Naive passthrough · Order-up-to with fixed safety stock</td></tr>
+            <tr><td>Agent design</td><td>Stateless, no memory between periods. Deliberate: most real agentic deployments are stateless.</td></tr>
           </tbody>
         </table>
 
@@ -526,22 +525,16 @@
         <h2 class="section-title">What I found</h2>
         <ol class="findings-list">
           <li>
-            <span class="finding-text"><strong>Every heuristic outperformed every LLM on both OVAR and stockouts simultaneously.</strong> This is not a tradeoff. The LLMs were strictly dominated across both primary metrics in every configuration tested.</span>
+            <span class="finding-text"><strong>Every heuristic outperformed every LLM on both OVAR and stockouts simultaneously.</strong> Not a tradeoff. LLMs were strictly dominated on both primary metrics in every configuration tested.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>The gap is not marginal.</strong> Exponential smoothing achieved chain-average OVAR 0.54 with 5 stockout periods. The best LLM (local phi4:14b, blind) achieved OVAR 4.33 with 41 stockouts — 8× worse on both dimensions at once.</span>
+            <span class="finding-text"><strong>The gap is not marginal.</strong> Exponential smoothing: chain OVAR 0.54, 5 stockouts. Best LLM (local phi4:14b, blind): OVAR 4.33, 41 stockouts. 8x worse on both dimensions at once.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>The Ancillary tier (middle) is consistently the most amplified</strong> — every model, every configuration. It absorbs already-distorted orders from the OEM tier and amplifies them further, the textbook bullwhip accumulation point.</span>
+            <span class="finding-text"><strong>Context had opposite effects by model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 to 4.47, delta 0.23, below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 &plusmn; 8.14 across 20 runs.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Context had opposite effects depending on model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 → 4.47, Δ=0.23 — below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 ± 8.14 — some runs were catastrophic outliers.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Reasoning models showed no ordering advantage over lightweight models.</strong> The 116B gpt-oss:120b produced nearly identical results to gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens — none of it translated to better ordering outcomes.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The failure is structural, not a prompting problem.</strong> Each agent sees only the current period's state with no memory of prior decisions. LLMs also optimise for plausible text, not numerically precise outcomes. The heuristic doesn't reason — it applies the formula it was built for. That is its advantage.</span>
+            <span class="finding-text"><strong>Reasoning models showed no ordering advantage.</strong> The 116B gpt-oss:120b produced results indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens and produced no measurable improvement on either metric. All 7 pre-registered hypotheses were rejected.</span>
           </li>
         </ol>
       </div>
@@ -730,7 +723,7 @@
                 <td>R-Blind</td>
                 <td class="tag-cell">LOCAL</td>
                 <td class="value-cell">4.13</td>
-                <td class="value-cell">5.99</td>
+                <td class="value-cell">5.98</td>
                 <td class="value-cell">3.45</td>
               </tr>
               <tr>
@@ -745,92 +738,19 @@
         </div>
       </div>
 
-      <!-- Hypothesis Verdicts -->
-      <div class="post-section">
-        <p class="section-label">Hypothesis verdicts</p>
-        <h2 class="section-title">Seven hypotheses, seven rejections</h2>
-
-        <div class="results-table-wrap">
-          <table class="results-table">
-            <thead>
-              <tr>
-                <th>Hypothesis</th>
-                <th>Prediction</th>
-                <th>Result</th>
-                <th>Verdict</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>H1</strong> — Primary</td>
-                <td>At least one LLM beats exp smoothing (OVAR 0.54) with ≤5 stockouts</td>
-                <td>Best LLM: OVAR 4.33, stockouts 41</td>
-                <td><span class="verdict verdict-rejected">REJECTED</span></td>
-              </tr>
-              <tr>
-                <td><strong>H2</strong> — Context, lightweight</td>
-                <td>context_lightweight OVAR &lt; blind_lightweight by ≥0.5</td>
-                <td>Δ=0.23 — below MPRD</td>
-                <td><span class="verdict verdict-rejected">REJECTED</span></td>
-              </tr>
-              <tr>
-                <td><strong>H3</strong> — Context, reasoning</td>
-                <td>context_reasoning OVAR &lt; blind_reasoning by ≥0.5</td>
-                <td>Δ=0.20 — below MPRD</td>
-                <td><span class="verdict verdict-rejected">REJECTED</span></td>
-              </tr>
-              <tr>
-                <td><strong>H4</strong> — Reasoning, no context</td>
-                <td>blind_reasoning OVAR &lt; blind_lightweight</td>
-                <td>Δ=−0.02 — opposite direction</td>
-                <td><span class="verdict verdict-rejected">REJECTED</span></td>
-              </tr>
-              <tr>
-                <td><strong>H5</strong> — Reasoning, with context</td>
-                <td>context_reasoning OVAR &lt; context_lightweight</td>
-                <td>Δ=−0.05 — opposite direction</td>
-                <td><span class="verdict verdict-rejected">REJECTED</span></td>
-              </tr>
-              <tr>
-                <td><strong>H6</strong> — Interaction</td>
-                <td>Context benefit larger for reasoning than lightweight</td>
-                <td>C5=−0.03 — opposite direction</td>
-                <td><span class="verdict verdict-rejected">REJECTED</span></td>
-              </tr>
-              <tr>
-                <td><strong>H7</strong> — Local/frontier replication</td>
-                <td>Local context_lightweight within ±0.5 OVAR of frontier</td>
-                <td>Δ=1.88 — outside equivalence bounds</td>
-                <td><span class="verdict verdict-rejected">REJECTED</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p class="table-note">H1 was rejected by the widest margin — 8× worse on OVAR and 8× worse on stockouts simultaneously. H2 and H3 were directionally consistent but failed to reach the MPRD threshold. H4 and H5 show reasoning models performed no better than lightweight — the contrast was negative in both conditions. H7 confirms the local/frontier divergence under context was substantial, not noise.</p>
-      </div>
-
       <!-- Discussion -->
       <div class="post-section">
         <p class="section-label">Discussion</p>
         <h2 class="section-title">Why the formula won</h2>
 
         <div class="prose">
-          <h3>Why LLMs fail to smooth</h3>
-          <p>The failure is structural, not a tuning problem. Each agent sees only the current period — it has no memory of what it ordered last month or what that caused. If it over-ordered and created a surplus, it doesn't know. There is no mechanism for self-correction.</p>
-          <p>LLMs are also not built for precise numerical outputs. They can describe the bullwhip effect in a textbook answer, but that doesn't help them avoid causing it. Every period, the model makes a fresh judgement call on a number. That discretion creates variance. A formula produces zero discretionary variance — that is its advantage.</p>
-
-          <h3>Context as a noise amplifier</h3>
-          <p>Adding business context to phi4:14b (local) didn't help — it destabilised an otherwise rigid model. Some runs were near-normal; others were extreme outliers (Ancillary tier OVAR std of 8.14 across 20 runs). The context appears to have triggered aggressive ordering interpretations in certain runs, which then amplified upstream. The blind model, repeating the same order every run, at least failed <em>predictably</em>.</p>
-          <p>For gpt-4.1-mini (frontier), context helped slightly — but well below the threshold for a practically meaningful difference.</p>
-
-          <h3>What this means for deployment</h3>
-          <p>LLMs are not ready for making quantity decisions each period with no memory and no feedback. But the data shows where they can add value: frontier models were slightly better with business context, suggesting some ability to read conditions. The formulas won on execution every time.</p>
+          <p>The failure is structural. Each agent sees only the current period, with no memory of what it ordered last month or what that caused. Without that causal chain, there is no self-correction mechanism. A stateless agent that over-ordered last period arrives at the next period without knowing it did. Combined with the fact that LLMs optimise for plausible text rather than numerically precise outcomes, the result is an agent that picks a number that sounds reasonable rather than one that dampens variance.</p>
+          <p>Adding business context to phi4:14b (local) made things worse, not better. The Ancillary tier standard deviation of 8.14 OVAR across 20 runs means some runs were near-normal while others were extreme outliers. Context appears to have triggered aggressive ordering in certain runs, which then amplified upstream. The blind model, repeating the same order every run, at least failed predictably. For gpt-4.1-mini (frontier), context helped marginally but well below the MPRD threshold.</p>
         </div>
 
         <div class="abstract-block" style="margin-top:2rem;">
-          <p><strong>The natural split: LLM reads conditions and adjusts inputs, formula executes the order.</strong></p>
-          <p>Use LLMs to interpret seasonal signals, flag anomalies, and modify heuristic parameters — then let the formula handle execution. This is where the experiment's data points.</p>
+          <p><strong>The natural split: LLM reads conditions and adjusts parameters, formula executes the order.</strong></p>
+          <p>Use LLMs to interpret seasonal signals, flag anomalies, and modify heuristic parameters. Let the formula handle execution. That is where this experiment's data points.</p>
         </div>
       </div>
 
@@ -849,7 +769,7 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Methodology note</p>
-          <p>All scenarios, companies, products, and supply chain structures in this experiment are entirely fictional and constructed for experimental purposes. No proprietary, confidential, or employer-owned data was used. This experiment is intentionally narrow: single product, fixed 1-month lead times, no supplier disruptions, no unstructured context, no multi-objective tradeoffs. Results reflect this specific configuration. The correct scope of any conclusion is: <em>"LLM agents do not outperform simple blind heuristics in a stylised single-product replenishment task with fixed lead times and no unstructured context."</em> Local compute runs on an Asus Ascent GX10 with NVIDIA GB10 Blackwell SoC — personally owned. Azure and other AI subscriptions are personal in nature.</p>
+          <p>All scenarios, companies, products, and supply chain structures are entirely fictional. No proprietary or employer-owned data was used. The experiment is intentionally narrow: single product, fixed lead times, stateless agents, no unstructured context. The correct scope of any conclusion: <em>"LLM agents do not outperform simple blind heuristics in a stylised single-product replenishment task with fixed lead times and no unstructured context."</em></p>
         </div>
       </div>
 
