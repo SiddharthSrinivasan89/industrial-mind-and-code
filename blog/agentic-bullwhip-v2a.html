@@ -181,7 +181,7 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
-          <span class="post-meta-value">2×2 Factorial · 20 runs · ~5,760 LLM calls</span>
+          <span class="post-meta-value">2×2 Factorial · 10 runs · ~2,880 LLM calls</span>
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Status</span>
@@ -217,7 +217,7 @@
             <tr><td>Demand series</td><td>25 months (Jan 2025 to Jan 2027) · single SKU · two full Indian festive cycles</td></tr>
             <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
             <tr><td>Initial inventory</td><td>43,609 units, derived as mean + 1.65&sigma; of demand series (~95% service level)</td></tr>
-            <tr><td>LLM calls</td><td>~5,760 total (4 conditions × 20 runs × 24 ordering periods × 3 tiers)</td></tr>
+            <tr><td>LLM calls</td><td>~2,880 total (4 conditions × 10 runs × 24 ordering periods × 3 tiers)</td></tr>
             <tr><td>Heuristic baselines</td><td>Exponential smoothing (&alpha;=0.30) · Naive passthrough · Order-up-to (reused from V2)</td></tr>
             <tr><td>Agent design</td><td>Stateless, no memory between periods</td></tr>
             <tr><td>Temperature</td><td>1.0 all conditions (per model documentation specification)</td></tr>
