@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Industrial Mind & Code</title>
+  <meta name="description" content="Industrial Mind &amp; Code — Placing a probabilistic system inside a deterministic environment. Independent AI research in industrial engineering." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -510,12 +511,12 @@
   <!-- Hero -->
   <section id="hero">
     <div class="container">
-      <p class="hero-eyebrow">Personal AI Research Initiative</p>
+      <p class="hero-eyebrow">Independent Research</p>
       <h1 class="hero-title">
         Industrial Mind<br />&amp; <em>Code</em>
       </h1>
       <p class="hero-sub">
-        Can AI agents operationalise the fundamentals of industrial engineering? I'm finding out, one micro-experiment at a time.
+        What happens when you place a probabilistic system inside a deterministic environment? I run controlled experiments that put LLM agents into industrial engineering problems — supply chains, maintenance systems, production planning — and measure their performance against analytical baselines and share the findings.
       </p>
       <div class="hero-meta">
         <div class="hero-meta-item">
@@ -524,7 +525,7 @@
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Domain</span>
-          <span class="hero-meta-value">Industrial Engineering × AI and beyond</span>
+          <span class="hero-meta-value">Industrial Engineering × AI</span>
         </div>
       </div>
     </div>
@@ -537,16 +538,19 @@
       <h2 class="section-title">Why this work exists</h2>
       <div class="about-body">
         <p>
-          AI and LLMs have fundamentally transformed our approach to solving problems. With years of hands-on shop floor experience in Indian manufacturing, combined with a current focus on managing hyperscaler relationships from a techno-strategic point of view, I wanted to explore how these two worlds operate and how AI can add value to the core foundational aspects of Industrial Engineering. This program is how I explore that gap.
+          I love machines and I love technology. I was always fascinated by these two worlds.
         </p>
         <p>
-          The core thesis: how can agentic AI operationalise IE theory? Explored through micro-experiments.
+          Armed with a Bachelor's in Industrial Engineering and deep technical expertise by working for a digital engineering software company, I sit in the middle of how AI infrastructure gets built, sold, and deployed at enterprise scale.
         </p>
         <p>
-          Each experiment takes a foundational IE concept, a supply chain dynamic, a maintenance framework, an inventory model, and turns it into a controlled simulation environment where LLM agents make decisions. This goes beyond model comparisons or benchmarks. It places LLMs into full-blown Industrial Engineering environments. Results are broken down, analysed, and shared with fellow AI researchers and domain peers.
+          There is no shortage of people writing about AI. Most of it in a general point of view. Very little of it is specific to the domains where I have actual experience: manufacturing, supply chain, maintenance, production planning and core industrial engineering concepts.
         </p>
         <p>
-          All experiments are personal, use personal compute locally or in the cloud, and involve entirely fictional scenarios.
+          I started this research program because I wanted to understand AI in the domain I know well, through my own analysis, rather than relying on what others claim. Not to prove that AI works. Not to prove that it doesn't. To find out where it holds up when you test it properly and identify domains in Industrial Engineering and beyond where it can add true value.
+        </p>
+        <p>
+          Each experiment takes a foundational IE problem, builds a simulation, places LLM agents in the decision-making role, and compares the result against what a formula or a heuristic would have done. Two experiments are published. A third is in progress. The results are below.
         </p>
       </div>
     </div>
@@ -567,15 +571,15 @@
             <span class="experiment-name">Agentic Bullwhip Effect: Version 2</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <p class="experiment-domain">SUPPLY CHAIN · LIGHTWEIGHT · REASONING · FRONTIER · LOCAL</p>
+          <p class="experiment-domain">SUPPLY CHAIN · HEURISTICS VS LLMs · 11,520 LLM CALLS</p>
           <p class="experiment-finding">
-            Every heuristic outperformed every LLM configuration. Exponential smoothing achieved OVAR 0.54; the best LLM reached 4.33, 8x worse, with 8x the stockouts. The gap is not marginal.
+            Version 2 asked the question that Version 1 left open: do any of these LLM configurations actually outperform a simple heuristic? I tested four models — frontier and local, lightweight and reasoning — against three deterministic baselines across 20 runs per condition. 11,520 LLM calls total.
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
-              <li>Heuristics vs LLMs is not a tradeoff: LLMs were strictly dominated on both OVAR and stockouts simultaneously in every configuration tested</li>
-              <li>Context had opposite effects: marginal improvement for frontier gpt-4.1-mini (delta 0.23, below threshold), severe degradation for local phi4:14b (4.33 to 6.35, Ancillary tier hitting 10.82)</li>
-              <li>Reasoning models showed no ordering advantage over lightweight: more inference spend produced no measurable OVAR improvement</li>
+              <li>Every heuristic outperformed every LLM on both order variance (OVAR) and stockout count simultaneously. Exponential smoothing — a formula from the 1950s — achieved OVAR 0.54. The best LLM achieved 4.33. Not a close result.</li>
+              <li>Adding business context to the local model (phi4:14b) made its behaviour unstable rather than better, with run-to-run variance so high that some runs looked reasonable and others were extreme.</li>
+              <li>The reasoning-tier models, despite generating over a million reasoning tokens, showed no measurable improvement in ordering performance over the lightweight tier.</li>
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
@@ -598,13 +602,13 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN · 2x2 FACTORIAL · GPT-4.1-MINI vs O1</p>
           <p class="experiment-finding">
-            All four configurations amplified demand variability. Context reduced amplification for the lightweight model and increased it for the reasoning model. The most capable configuration produced a pattern that classical bullwhip theory would not predict.
+            Version 1 was the starting point — a 2×2 factorial design crossing model tier against context treatment, five runs per condition, to establish a baseline for how LLM agents handle ordering decisions in a three-tier supply chain.
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
-              <li>OVAR exceeded 1.0 at every tier in every configuration: no configuration dampened variability</li>
-              <li>The context effect reversed sign depending on the model: improvement for lightweight, degradation for reasoning</li>
-              <li>context_reasoning produced a fully inverted cascade: OEM was the noisiest node, component the quietest, the opposite of what the classical model predicts</li>
+              <li>All four configurations amplified demand variability. What I did not expect was the degree of variation across configurations, and one result in particular.</li>
+              <li>The context × reasoning condition (o1 with full business context) produced an inverted tier pattern — the OEM tier was the noisiest, the component tier was the quietest. I have not found this pattern described in the bullwhip literature I have reviewed.</li>
+              <li>I had set up the analytical baseline specifically to have something to check against. The baseline did its job — it made the anomaly visible. Version 2 was designed in part to see whether this pattern replicated at a higher sample size.</li>
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
@@ -632,7 +636,7 @@
           </div>
           <p class="experiment-domain">TPM / PREDICTIVE MAINTENANCE · FRAGMENTED RECORDS · VERNACULAR NORMALIZATION</p>
           <p class="experiment-finding">
-            Tests whether AI agents can support TPM workflows when reasoning over fragmented, realistic maintenance records, including a condition that simulates a vernacular input normalisation layer upstream.
+            This experiment tests whether LLM agents can reason over maintenance records that reflect how data actually exists in many Indian manufacturing environments — fragmented entries, mixed languages, inconsistent terminology. One of the experimental conditions introduces a vernacular normalisation layer upstream to evaluate how that preprocessing step affects the agent's ability to support TPM decisions.
           </p>
           <div class="experiment-links">
             <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/issues" target="_blank" rel="noopener">
@@ -655,18 +659,18 @@
       <div class="method-grid">
         <div class="method-card">
           <p class="method-card-number">01</p>
-          <p class="method-card-title">Analytical control baselines</p>
-          <p class="method-card-body">Every experiment pairs LLM agent performance against a non-LLM analytical benchmark, not just model-vs-model. Deviation from theory is the signal.</p>
+          <p class="method-card-title">Analytical baselines, not model comparisons</p>
+          <p class="method-card-body">Each experiment measures LLM performance against a deterministic analytical method that already exists for the problem — exponential smoothing, order-up-to policies, SPC rules. The question is not which model is better than which. It is whether any model outperforms the established approach.</p>
         </div>
         <div class="method-card">
           <p class="method-card-number">02</p>
           <p class="method-card-title">Controlled simulation environments</p>
-          <p class="method-card-body">Synthetic but calibrated parameters derived from public literature. All scenarios are entirely fictional with no proprietary data involved.</p>
+          <p class="method-card-body">Parameters are synthetic but grounded in published literature. All scenarios are fictional. No proprietary data is used.</p>
         </div>
         <div class="method-card">
           <p class="method-card-number">03</p>
-          <p class="method-card-title">Multi-model comparison</p>
-          <p class="method-card-body">Experiments compare across model tiers and reasoning architectures, with 50–100 replications per cell to support statistical inference.</p>
+          <p class="method-card-title">Statistical design</p>
+          <p class="method-card-body">Factorial designs with 20–100 replications per cell. Hypotheses are pre-registered. Effect size thresholds are set before the experiment runs. If an effect does not clear the threshold, it is not treated as meaningful, regardless of statistical significance.</p>
         </div>
       </div>
 
@@ -705,7 +709,7 @@
       <p class="section-label">Writing</p>
       <h2 class="section-title">Where I write</h2>
       <p class="writing-note">
-        Experiment writeups and methodology notes are published on the <a href="blog/" style="color:var(--accent);text-decoration:none;font-weight:400;">blog</a>. Two writeups are live, the most recent being <a href="blog/agentic-bullwhip-v2.html" style="color:var(--accent);text-decoration:none;font-weight:400;">Agentic Bullwhip Effect: Version 2</a>. Code and data for each experiment are on <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">GitHub</a>.
+        Experiment writeups are on the <a href="blog/" style="color:var(--accent);text-decoration:none;font-weight:400;">blog</a>. They are detailed — the numbers and the reasoning behind them take space to lay out properly. Code and data for each experiment are on <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">GitHub</a>.
       </p>
     </div>
   </section>
@@ -713,7 +717,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">industrial-mind-and-code · personal research · not affiliated with any employer</span>
+      <span class="footer-brand">Industrial Mind &amp; Code · Placing a probabilistic system inside a deterministic environment<br>personal research · not affiliated with any employer</span>
       <ul class="footer-links">
         <li>
           <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>

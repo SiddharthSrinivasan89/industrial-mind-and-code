@@ -462,7 +462,7 @@
       <p class="post-eyebrow">Supply Chain · Experiment Writeup</p>
       <h1 class="post-title">Agentic Bullwhip Effect: Version 2</h1>
       <p class="post-summary">
-        Every heuristic outperformed every LLM configuration. Exponential smoothing beat state-of-the-art reasoning models 8x on order variance and 8x on stockouts, simultaneously.
+        Version 1 showed that all LLM configurations amplified demand variability. Version 2 asks the follow-up question: how do they compare against a heuristic? I tested four models against three deterministic baselines across 20 runs each. Every heuristic won, on both metrics, in every condition.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -489,8 +489,9 @@
       <div class="post-section">
         <p class="section-label">Abstract</p>
         <div class="abstract-block">
-          <p>Version 2 asks a harder question than Version 1: not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all. Four models across lightweight and reasoning tiers, frontier and local, were tested against three deterministic heuristic baselines across 20 independent runs per condition, totalling 11,520 LLM calls over a 25-month synthetic demand series.</p>
-          <p>Every heuristic outperformed every LLM configuration on both order variance and stockouts simultaneously. This is not a tradeoff result. The LLMs were strictly worse on both dimensions at once.</p>
+          <p>After Version 1 established that every LLM configuration amplified the bullwhip effect, the natural next question was whether any configuration could at least match a simple heuristic.</p>
+          <p>I tested four models across two axes — frontier vs. local inference, lightweight vs. reasoning — against three deterministic baselines: exponential smoothing, naive passthrough, and order-up-to with fixed safety stock. Twenty independent runs per LLM condition, 11,520 total LLM calls, over a 25-month synthetic demand series with Indian automotive seasonality.</p>
+          <p>The heuristics were better on both order variance and stockout count in every comparison. Not a tradeoff between metrics — the LLM configurations were outperformed on both at once.</p>
         </div>
       </div>
 
@@ -525,16 +526,13 @@
         <h2 class="section-title">What I found</h2>
         <ol class="findings-list">
           <li>
-            <span class="finding-text"><strong>Every heuristic outperformed every LLM on both OVAR and stockouts simultaneously.</strong> Not a tradeoff. LLMs were strictly dominated on both primary metrics in every configuration tested.</span>
+            <span class="finding-text"><strong>The heuristics won on both metrics simultaneously.</strong> Exponential smoothing: chain OVAR 0.54, 5 stockouts. Best LLM (phi4:14b blind): OVAR 4.33, 41 stockouts. Every LLM configuration fell in the 4.33–6.35 range on OVAR and 37–43 on stockouts. The heuristics and the LLMs occupied different regions of the performance space entirely.<br><br>I expected the direction. A probabilistic model generating orders in a deterministic environment — fixed lead times, single product, no stochastic disruptions — does not have an advantage over a formula that was designed for exactly this class of problem. What the experiment quantified is how large the gap actually is, and that no reasonable configuration change would close it within this experimental setup.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>The gap is not marginal.</strong> Exponential smoothing: chain OVAR 0.54, 5 stockouts. Best LLM (local phi4:14b, blind): OVAR 4.33, 41 stockouts. 8x worse on both dimensions at once.</span>
+            <span class="finding-text"><strong>Business context helped one model marginally and destabilised another.</strong> For gpt-4.1-mini (frontier), context reduced OVAR from 4.70 to 4.47. That delta of 0.23 falls below the MPRD threshold I set at 0.5 before running the experiment. A real effect, but not one I would act on.<br><br>For phi4:14b (local), context pushed chain OVAR from 4.33 to 6.35. More concerning was the Ancillary-tier result: OVAR of 10.82 with a standard deviation of 8.14 across 20 runs. That variance is the finding. It means the model did not get consistently worse with context — it became unpredictable. Some runs looked almost normal. Others were extreme. In a production system, that inconsistency is harder to manage than steady underperformance, because you cannot plan around behaviour you cannot forecast.<br><br>The blind version of phi4:14b, by contrast, produced a standard deviation of 0.00 on chain OVAR. Every run was identical. It failed, but it failed the same way every time.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Context had opposite effects by model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 to 4.47, delta 0.23, below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 &plusmn; 8.14 across 20 runs.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Reasoning models showed no ordering advantage.</strong> The 116B gpt-oss:120b produced results indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens and produced no measurable improvement on either metric. All 7 pre-registered hypotheses were rejected.</span>
+            <span class="finding-text"><strong>Reasoning tokens did not translate into better orders.</strong> o4-mini generated over 1,000,000 reasoning tokens across 20 runs. Its blind OVAR was 4.72. gpt-4.1-mini's was 4.70. The 116-billion-parameter gpt-oss:120b running locally came in at 4.52. All statistically indistinguishable. More parameters and more computation produced the same ordering quality.<br><br>All seven hypotheses I pre-registered were rejected.</span>
           </li>
         </ol>
       </div>
@@ -744,13 +742,14 @@
         <h2 class="section-title">Why the formula won</h2>
 
         <div class="prose">
-          <p>The failure is structural. Each agent sees only the current period, with no memory of what it ordered last month or what that caused. Without that causal chain, there is no self-correction mechanism. A stateless agent that over-ordered last period arrives at the next period without knowing it did. Combined with the fact that LLMs optimise for plausible text rather than numerically precise outcomes, the result is an agent that picks a number that sounds reasonable rather than one that dampens variance.</p>
-          <p>Adding business context to phi4:14b (local) made things worse, not better. The Ancillary tier standard deviation of 8.14 OVAR across 20 runs means some runs were near-normal while others were extreme outliers. Context appears to have triggered aggressive ordering in certain runs, which then amplified upstream. The blind model, repeating the same order every run, at least failed predictably. For gpt-4.1-mini (frontier), context helped marginally but well below the MPRD threshold.</p>
+          <p>The explanation is structural. Each LLM agent is stateless — it sees the current period's demand and places an order. It has no memory of what it ordered last period, no visibility into whether that order caused excess inventory or a stockout. It cannot self-correct because it does not know it made an error.</p>
+          <p>Exponential smoothing carries one number forward — the smoothed demand estimate. That single state variable gives it something the LLM agent does not have: continuity. An over-forecast in period 6 is partially corrected in period 7. The formula learns, in a limited but real sense, from its own history. The LLM agent, by design, does not.</p>
+          <p>This is not a limitation of the models' intelligence. It is a consequence of the agent architecture. A stateless agent in a sequential decision environment is at a fundamental disadvantage against any method that maintains state, however simple that state may be.</p>
+          <p>The phi4:14b context result warrants specific discussion. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape behaviour in one direction — it introduced a source of variance. In certain runs, the context may have triggered aggressive anticipatory ordering; in others, conservative behaviour. The blind model, by contrast, produced essentially identical orders across all 20 runs (standard deviation of 0.00 on chain OVAR), which means it failed predictably and consistently. From a deployment standpoint, consistent underperformance is easier to diagnose and mitigate than intermittent instability.</p>
         </div>
 
         <div class="abstract-block" style="margin-top:2rem;">
-          <p><strong>The natural split: LLM reads conditions and adjusts parameters, formula executes the order.</strong></p>
-          <p>Use LLMs to interpret seasonal signals, flag anomalies, and modify heuristic parameters. Let the formula handle execution. That is where this experiment's data points.</p>
+          <p><strong>Where LLMs might add value in this kind of problem</strong> is not in placing orders but in reading conditions — detecting a demand regime change, flagging an anomaly in the incoming signal, recommending an adjustment to the smoothing parameter. The LLM interprets; the formula executes. That architecture would play to the strengths of each. I have not tested it. It is a hypothesis that comes out of these results, and a possible direction for a future experiment.</p>
         </div>
       </div>
 
@@ -760,7 +759,7 @@
           <p class="method-callout-label">Experiment source</p>
           <p>
             Full research paper, code, and data for this experiment are available on GitHub.
-            &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub →</a>
+            &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub &rarr;</a>
           </p>
         </div>
       </div>
@@ -768,8 +767,8 @@
       <!-- Methodology note -->
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Methodology note</p>
-          <p>All scenarios, companies, products, and supply chain structures are entirely fictional. No proprietary or employer-owned data was used. The experiment is intentionally narrow: single product, fixed lead times, stateless agents, no unstructured context. The correct scope of any conclusion: <em>"LLM agents do not outperform simple blind heuristics in a stylised single-product replenishment task with fixed lead times and no unstructured context."</em></p>
+          <p class="method-callout-label">Scope and limitations</p>
+          <p>These results apply to a specific setup: stateless agents, single product, deterministic lead times, no inter-tier communication, no memory between periods. The demand series has seasonality but no structural breaks or supply disruptions. The conclusion I draw: LLM agents do not outperform deterministic heuristics in stylised single-product replenishment with fixed lead times and stateless execution. Whether adding memory, multi-product complexity, stochastic lead times, or unstructured context changes this result is an open question and a natural direction for future work. All scenarios, companies, and supply chain structures are fictional. No proprietary data was used.</p>
         </div>
       </div>
 
@@ -784,7 +783,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">industrial-mind-and-code · personal research · not affiliated with any employer</span>
+      <span class="footer-brand">Industrial Mind &amp; Code · Placing a probabilistic system inside a deterministic environment<br>personal research · not affiliated with any employer</span>
       <ul class="footer-links">
         <li>
           <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
