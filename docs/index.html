@@ -550,7 +550,7 @@
           I started this research program because I wanted to understand AI in the domain I know well, through my own analysis, rather than relying on what others claim. Not to prove that AI works. Not to prove that it doesn't. To find out where it holds up when you test it properly and identify domains in Industrial Engineering and beyond where it can add true value.
         </p>
         <p>
-          Each experiment takes a foundational IE problem, builds a simulation, places LLM agents in the decision-making role, and compares the result against what a formula or a heuristic would have done. Two experiments are published. A third is in progress. The results are below.
+          Each experiment takes a foundational IE problem, builds a simulation, places LLM agents in the decision-making role, and compares the result against what a formula or a heuristic would have done. Three experiments are published. A fourth is in progress. The results are below.
         </p>
       </div>
     </div>
@@ -573,7 +573,7 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN · HEURISTICS VS LLMs · 11,520 LLM CALLS</p>
           <p class="experiment-finding">
-            Version 2 asked the question that Version 1 left open: do any of these LLM configurations actually outperform a simple heuristic? I tested four models — frontier and local, lightweight and reasoning — against three deterministic baselines across 20 runs per condition. 11,520 LLM calls total.
+            Version 2 asked the question Version 1 left open: do any of these configurations actually outperform a heuristic? I tested four models against three deterministic baselines. In the end, the formula won.
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -594,6 +594,35 @@
           </div>
         </div>
 
+        <!-- Exp 2a: Bullwhip sarvam-30b -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">Agentic Bullwhip Effect: sarvam-30b</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN · SOVEREIGN MODEL · 1,440 LLM CALLS</p>
+          <p class="experiment-finding">
+            India's sovereign model performed as well as GPT OSS on a synthetic Indian automotive dataset. I expected it would have more India-specific capabilities.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>sarvam-30b and GPT OSS 120B produced statistically identical results on every metric: OVAR 4.50 vs 4.52, identical pattern scores, identical stockout counts. Neither model detected Indian festive season demand patterns.</li>
+              <li>Enabling the model's native reasoning flag (think=True) eliminated all run-level failures. Disabling it to reduce latency wasted 60% of run attempts. Same model, same output, different reliability.</li>
+              <li>The architectural ceiling held for this model exactly as it did for every other model tested. Stateless agents without memory cannot self-correct drift, regardless of training data or model size.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2a" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v2a.html">
+              Read Post
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
         <!-- Exp 1: Bullwhip V1 -->
         <div class="experiment-card">
           <div class="experiment-header">
@@ -607,7 +636,7 @@
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
               <li>All four configurations amplified demand variability. What I did not expect was the degree of variation across configurations, and one result in particular.</li>
-              <li>The context × reasoning condition (o1 with full business context) produced an inverted tier pattern — the OEM tier was the noisiest, the component tier was the quietest. I have not found this pattern described in the bullwhip literature I have reviewed.</li>
+              <li>The context + reasoning condition produced an inverted tier cascade: OEM was noisiest, component was quietest. I found that result unexpected. It sparked the design for Version 2.</li>
               <li>I had set up the analytical baseline specifically to have something to check against. The baseline did its job — it made the anomaly visible. Version 2 was designed in part to see whether this pattern replicated at a higher sample size.</li>
             </ul>
           </div>
