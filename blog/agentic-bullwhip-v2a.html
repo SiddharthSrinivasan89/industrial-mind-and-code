@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agentic Bullwhip Effect — Version 2a — Industrial Mind &amp; Code</title>
+  <title>Agentic Bullwhip Effect: sarvam-30b — Industrial Mind &amp; Code</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -43,106 +43,422 @@
       font-weight: 300;
     }
 
-    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+    /* ─── Layout ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
+    /* ─── Nav ─── */
     nav {
-      position: sticky; top: 0;
+      position: sticky;
+      top: 0;
       background: rgba(250, 250, 248, 0.92);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       z-index: 100;
     }
     .nav-inner {
-      max-width: 760px; margin: 0 auto; padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between; height: 56px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
     }
-    .nav-brand { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
     .nav-links a:hover { color: var(--text-primary); }
     .nav-links a.active { color: var(--text-primary); font-weight: 500; }
 
-    .post-header { padding: 7rem 0 4rem; border-bottom: 1px solid var(--border); }
-    .post-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.25rem; }
-    .post-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1.25rem; }
-    .post-summary { font-size: 17px; font-weight: 300; color: var(--text-secondary); max-width: 580px; line-height: 1.75; margin-bottom: 2rem; }
-    .post-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
-    .post-meta-item { display: flex; flex-direction: column; gap: 2px; }
-    .post-meta-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; }
-    .post-meta-value { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+    /* ─── Post header ─── */
+    .post-header {
+      padding: 7rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+    .post-summary {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .post-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .post-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .post-meta-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .post-meta-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
 
-    .post-body { padding: 4rem 0; }
-    .post-section { margin-bottom: 3.5rem; }
+    /* ─── Post body ─── */
+    .post-body {
+      padding: 4rem 0;
+    }
+    .post-section {
+      margin-bottom: 3.5rem;
+    }
     .post-section:last-child { margin-bottom: 0; }
-    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; }
-    .section-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.25; }
 
-    .abstract-block { padding: 1.5rem 1.75rem; border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 4px 4px 0; }
-    .abstract-block p { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.75rem; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+
+    /* ─── Abstract ─── */
+    .abstract-block {
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 4px 4px 0;
+    }
+    .abstract-block p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
     .abstract-block p:last-child { margin-bottom: 0; }
-    .abstract-block strong { font-weight: 500; color: var(--text-primary); }
+    .abstract-block strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
 
-    .setup-table { width: 100%; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; border-collapse: collapse; }
+    /* ─── Setup table ─── */
+    .setup-table {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
     .setup-table tr { border-bottom: 1px solid var(--border); }
     .setup-table tr:last-child { border-bottom: none; }
     .setup-table tr:nth-child(odd) { background: var(--surface); }
     .setup-table tr:nth-child(even) { background: #fff; }
-    .setup-table td { padding: 0.75rem 1.25rem; font-size: 14px; vertical-align: top; }
-    .setup-table td:first-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; width: 180px; }
-    .setup-table td:last-child { font-weight: 400; color: var(--text-primary); }
+    .setup-table td {
+      padding: 0.75rem 1.25rem;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .setup-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 160px;
+    }
+    .setup-table td:nth-child(2) {
+      font-weight: 400;
+      color: var(--text-primary);
+      width: 260px;
+    }
+    .setup-table td:last-child {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+    }
 
-    .findings-list { list-style: none; counter-reset: finding; display: flex; flex-direction: column; gap: 1.1rem; }
-    .findings-list li { counter-increment: finding; display: flex; gap: 1.25rem; align-items: flex-start; }
-    .findings-list li::before { content: counter(finding, decimal-leading-zero); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; flex-shrink: 0; margin-top: 4px; min-width: 24px; }
-    .finding-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
-    .finding-text strong { font-weight: 500; color: var(--text-primary); }
+    /* ─── Key findings ─── */
+    .findings-list {
+      list-style: none;
+      counter-reset: finding;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .findings-list li {
+      counter-increment: finding;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .findings-list li::before {
+      content: counter(finding, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      margin-top: 4px;
+      min-width: 24px;
+    }
+    .finding-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .finding-text strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
 
-    .results-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1.5rem; }
+    /* ─── Results tables ─── */
+    .results-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
     .results-table-wrap:last-child { margin-bottom: 0; }
-    .results-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .results-table thead tr { background: var(--surface); border-bottom: 1px solid var(--border); }
-    .results-table thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; padding: 0.65rem 1.25rem; text-align: left; white-space: nowrap; }
-    .results-table tbody tr { border-bottom: 1px solid var(--border); background: #fff; }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .results-table thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .results-table thead th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .results-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
     .results-table tbody tr:last-child { border-bottom: none; }
     .results-table tbody tr:nth-child(even) { background: var(--surface); }
-    .results-table tbody td { padding: 0.65rem 1.25rem; color: var(--text-primary); font-weight: 300; vertical-align: middle; }
+    .results-table tbody td {
+      padding: 0.65rem 1.25rem;
+      color: var(--text-primary);
+      font-weight: 300;
+      vertical-align: middle;
+    }
     .results-table tbody td:first-child { font-weight: 400; }
-    .value-cell { font-family: var(--font-mono); font-size: 13px; font-weight: 500 !important; }
-    .tag-cell { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    .value-cell {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500 !important;
+    }
+    .tag-cell {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
     .best { color: var(--verdict-supported) !important; }
     .worst { color: var(--verdict-rejected) !important; }
-    .unstable { color: var(--verdict-partial) !important; }
-    .pending { color: var(--text-muted) !important; font-style: italic; }
+    .neutral { color: var(--text-muted) !important; }
 
-    .verdict { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 3px; font-weight: 500; }
-    .verdict-rejected { background: var(--verdict-rejected-bg); color: var(--verdict-rejected); }
-    .verdict-partial { background: var(--verdict-partial-bg); color: var(--verdict-partial); }
-    .verdict-supported { background: var(--verdict-supported-bg); color: var(--verdict-supported); }
-    .verdict-pending { background: var(--surface); color: var(--text-muted); }
+    /* ─── Issues table ─── */
+    .issues-table {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+    .issues-table thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .issues-table thead th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+    }
+    .issues-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .issues-table tbody tr:last-child { border-bottom: none; }
+    .issues-table tbody tr:nth-child(even) { background: var(--surface); }
+    .issues-table tbody td {
+      padding: 0.75rem 1.25rem;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    .issues-table tbody td:first-child {
+      font-weight: 500;
+      color: var(--text-primary);
+      width: 200px;
+    }
 
-    .prose h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.75rem; margin-top: 2rem; line-height: 1.3; }
-    .prose h3:first-child { margin-top: 0; }
-    .prose p { font-size: 15.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; max-width: 640px; }
+    /* ─── Discussion prose ─── */
+    .prose p {
+      font-size: 15.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.1rem;
+      max-width: 640px;
+    }
     .prose p:last-child { margin-bottom: 0; }
-    .prose strong { font-weight: 500; color: var(--text-primary); }
+    .prose strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
 
-    .table-note { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5; }
+    /* ─── Footnote ─── */
+    .table-note {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
 
-    .method-callout { padding: 1.25rem 1.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
-    .method-callout-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
-    .method-callout p { font-size: 13.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    /* ─── Methodology callout ─── */
+    .method-callout {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .method-callout-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .method-callout p {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .method-callout p + p { margin-top: 0.75rem; }
 
-    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; margin-top: 3rem; transition: color 0.15s; }
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      margin-top: 3rem;
+      transition: color 0.15s;
+    }
     .back-link:hover { color: var(--text-primary); }
     .back-link svg { width: 10px; height: 10px; }
 
-    footer { padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
-    .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    /* ─── Footer ─── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
     .footer-links a:hover { color: var(--text-primary); }
 
+    /* ─── Responsive ─── */
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .post-header { padding: 4rem 0 3rem; }
@@ -152,6 +468,7 @@
 </head>
 <body>
 
+  <!-- Nav -->
   <nav>
     <div class="nav-inner">
       <a href="../" class="nav-brand">industrial-mind-and-code</a>
@@ -163,12 +480,13 @@
     </div>
   </nav>
 
+  <!-- Post header -->
   <header class="post-header">
     <div class="container">
-      <p class="post-eyebrow">Supply Chain · Experiment Writeup</p>
-      <h1 class="post-title">Agentic Bullwhip Effect: Version 2a</h1>
+      <p class="post-eyebrow">Supply Chain · Sovereign Model · Experiment Writeup</p>
+      <h1 class="post-title">Agentic Bullwhip Effect: sarvam-30b</h1>
       <p class="post-summary">
-        Does an LLM trained on Indian data show better seasonal awareness in an Indian supply chain context? V2a replaces the generic OSS stack with sarvam-30b and holds everything else constant.
+        India's sovereign model performed as well as GPT OSS on a synthetic Indian automotive dataset. I expected it would have more India-specific capabilities.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -181,16 +499,13 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
-          <span class="post-meta-value">2×2 Factorial · 10 runs · ~2,880 LLM calls</span>
-        </div>
-        <div class="post-meta-item">
-          <span class="post-meta-label">Status</span>
-          <span class="post-meta-value" style="color:var(--verdict-partial);">Results pending</span>
+          <span class="post-meta-value">2 conditions &middot; 10 runs &middot; 1,440 LLM calls</span>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Post body -->
   <main class="post-body">
     <div class="container">
 
@@ -198,8 +513,10 @@
       <div class="post-section">
         <p class="section-label">Abstract</p>
         <div class="abstract-block">
-          <p>Version 2 found that no LLM configuration — including a 120B reasoning model — outperformed exponential smoothing on order variance or stockout count. The demand series is calibrated to Indian seasonal patterns: FY-end peaks, monsoon dips, Diwali and Navratri surges. But the models tested were trained predominantly on Western data.</p>
-          <p><strong>Version 2a asks whether that matters.</strong> sarvam-30b (Sarvam AI) is trained for Indian language and context proficiency across 22 Indian languages, with the Indian market as an explicit training focus. Everything else — supply chain, demand series, conditions, success criterion — is identical to Version 2. Only the model changes.</p>
+          <p>Version 2 showed that no LLM configuration could beat a 1970s smoothing formula on supply chain order variance or stockouts. This experiment asked a follow-up question: would a model trained on Indian data show stronger seasonal awareness on an Indian automotive demand series?</p>
+          <p>I tested sarvam-30b — India's sovereign model, 30B total parameters, 2.4B active — against GPT OSS 120B as a reference. The demand series was calibrated to real Indian PV market seasonality: festive peaks, monsoon troughs, fiscal year-end patterns. The agents received only calendar month names. Any seasonal reasoning would have to come from the model's world knowledge.</p>
+          <p>The answer: no meaningful difference. sarvam-30b chain OVAR 4.504 vs GPT OSS 120B 4.52. Statistically identical on every metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing (OVAR 0.54) won by roughly 8x.</p>
+          <p>One finding emerged from the integration work: enabling sarvam-30b's native reasoning flag (think=True) eliminated all run-level failures without affecting supply chain outcomes.</p>
         </div>
       </div>
 
@@ -209,22 +526,75 @@
         <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
-            <tr><td>Model</td><td>sarvam-30b Q4_K_M — Sarvam AI · MoE architecture · 2.4B active params of 30B total · 22 Indian languages</td></tr>
-            <tr><td>Design</td><td>2×2 factorial: model tier (lightweight / reasoning) × context treatment (blind / context). Both tiers use the same model.</td></tr>
-            <tr><td>Replications</td><td>20 per LLM condition · 1 per heuristic (deterministic, reused from V2)</td></tr>
-            <tr><td>Primary metrics</td><td>OVAR (Order Variance Ratio) + Stockout count, always reported jointly. MPRD: |ΔOVAR| &ge; 0.5 required for a practically meaningful claim.</td></tr>
-            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) &rarr; Lighting Manufacturer (Ancillary) &rarr; LED Component Manufacturer</td></tr>
-            <tr><td>Demand series</td><td>25 months (Jan 2025 to Jan 2027) · single SKU · two full Indian festive cycles</td></tr>
-            <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
-            <tr><td>Initial inventory</td><td>43,609 units, derived as mean + 1.65&sigma; of demand series (~95% service level)</td></tr>
-            <tr><td>LLM calls</td><td>~2,880 total (4 conditions × 10 runs × 24 ordering periods × 3 tiers)</td></tr>
-            <tr><td>Heuristic baselines</td><td>Exponential smoothing (&alpha;=0.30) · Naive passthrough · Order-up-to (reused from V2)</td></tr>
-            <tr><td>Agent design</td><td>Stateless, no memory between periods</td></tr>
-            <tr><td>Temperature</td><td>1.0 all conditions (per model documentation specification)</td></tr>
-            <tr><td>Inference</td><td>llama-server (llama.cpp b8468), local, GB10 GPU, llama-gguf-split merged GGUF</td></tr>
+            <tr>
+              <td>Model</td>
+              <td>sarvam-30b Q4_K_M</td>
+              <td>Sarvam AI &middot; MoE &middot; 2.4B active of 30B total &middot; India's sovereign model</td>
+            </tr>
+            <tr>
+              <td>Reference</td>
+              <td>gpt-oss:120B</td>
+              <td>Version 2 results used for comparison; not re-run in V2a</td>
+            </tr>
+            <tr>
+              <td>Conditions</td>
+              <td>E1: context, think=False &middot; E2: context, think=True</td>
+              <td>Blind condition not run — see note below table</td>
+            </tr>
+            <tr>
+              <td>Replications</td>
+              <td>10 runs per condition</td>
+              <td>V2d canonical dataset (top_p=1.0 per GGUF model card)</td>
+            </tr>
+            <tr>
+              <td>Primary metrics</td>
+              <td>Chain OVAR &middot; Stockout count &middot; Pattern score</td>
+              <td>Chain OVAR = arithmetic mean of per-tier Var(orders)/Var(demand). MPRD threshold: |&Delta;OVAR| &ge; 0.5</td>
+            </tr>
+            <tr>
+              <td>Supply chain</td>
+              <td>3-tier serial: OEM &rarr; Ancillary &rarr; Component</td>
+              <td>Tatva Motors Vecta product family (fictional)</td>
+            </tr>
+            <tr>
+              <td>Demand series</td>
+              <td>25 months (Jan 2025 to Jan 2027)</td>
+              <td>Calibrated to real Indian PV market data &middot; two full festive cycles</td>
+            </tr>
+            <tr>
+              <td>Lead time</td>
+              <td>1 month deterministic at all tiers</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Initial inventory</td>
+              <td>~43,600 units</td>
+              <td>Mean + 1.65&sigma; of demand series (~95% service level)</td>
+            </tr>
+            <tr>
+              <td>Agent design</td>
+              <td>Stateless, no memory between periods</td>
+              <td>Agents receive: tier persona + calendar month name only. No year. No event labels.</td>
+            </tr>
+            <tr>
+              <td>Temperature</td>
+              <td>1.0 all conditions</td>
+              <td>Mandated by GGUF model card; lower values cause 40-60% call failures on local inference</td>
+            </tr>
+            <tr>
+              <td>Inference</td>
+              <td>llama-server (llama.cpp), local</td>
+              <td>NVIDIA GB10 Blackwell</td>
+            </tr>
           </tbody>
         </table>
-        <p class="table-note">OVAR interpretation: &lt; 1.0 = dampening · = 1.0 = pass-through · &gt; 1.0 = bullwhip amplification</p>
+
+        <p style="font-size:13px;font-weight:300;color:var(--text-muted);margin-top:0.75rem;line-height:1.6;">
+          <strong style="font-weight:500;color:var(--text-secondary);">Blind condition:</strong> Not run in main experiment. Pre-experiment calibration showed ~20% per-call error rates with minimal prompts, making 10-run completion infeasible. Individual smoke runs at temp=1.0 did complete (1/3 E1, 1/1 E2). A subsequent calibration pass produced 0/3 before being stopped. Context conditions only were used for all main runs.
+        </p>
+        <p style="font-size:13px;font-weight:300;color:var(--text-muted);margin-top:0.5rem;line-height:1.6;">
+          OVAR interpretation: &lt; 1.0 = dampening &nbsp;&middot;&nbsp; = 1.0 = pass-through &nbsp;&middot;&nbsp; &gt; 1.0 = bullwhip amplification
+        </p>
       </div>
 
       <!-- Key findings -->
@@ -233,16 +603,16 @@
         <h2 class="section-title">What I found</h2>
         <ol class="findings-list">
           <li>
-            <span class="finding-text"><strong>Results pending — full run in progress.</strong> This post will be updated when the 20-run experiment completes. Preliminary smoke test data suggests the model runs without structural failures.</span>
+            <span class="finding-text"><strong>Task performance was identical across models.</strong> sarvam-30b chain OVAR 4.504 &plusmn; 0.044 (E1) and 4.501 &plusmn; 0.093 (E2). GPT OSS 120B achieved 4.52 &plusmn; 0.05. The difference is 0.02, well within noise and below the MPRD threshold of 0.5. India's sovereign model did not produce different ordering behaviour on this task, despite being trained on Indian data and the demand series being calibrated to Indian market seasonality.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>V2 baseline for comparison.</strong> Exponential smoothing: chain OVAR 0.54, 5 stockouts. Best V2 LLM result: gpt-oss:120b at OVAR 4.52 (blind and context). Pattern score 0.20–0.23 across all conditions — no seasonal awareness detected in any V2 configuration.</span>
+            <span class="finding-text"><strong>Neither model detected Indian seasonal demand patterns.</strong> Pattern scores: sarvam-30b 0.219&ndash;0.232, GPT OSS 120B 0.21. All identical within noise. The demand series contains two Indian festive cycles with documented peak months, a monsoon trough, and wedding season elevation. Agents received only calendar month names in the user message — no event labels, no year. Neither model showed seasonal awareness. Cultural training data did not produce measurably different ordering behaviour on this task.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Hypothesis: Indian training data may produce a genuine context effect.</strong> gpt-oss:120b showed essentially zero context effect (OVAR 4.52 in both blind and context). If sarvam-30b responds positively to the seasonal tier personas, it would be the first evidence of culturally-informed ordering behaviour in this experiment series.</span>
+            <span class="finding-text"><strong>Enabling think=True eliminated run-level failures without changing supply chain outcomes.</strong> E1 (think=False): 15 of 25 run attempts needed replacement. E2 (think=True): 0 of 10 run attempts needed replacement. Chain OVAR difference between E1 and E2: 0.003. The reasoning flag substantially changed integration reliability; it had no effect on what the model ordered. This is a reproducible, model-specific finding for local GGUF deployment of sarvam-30b via llama-server.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>MPRD threshold: |ΔOVAR| &ge; 0.5.</strong> A difference smaller than 0.5 OVAR points is not practically meaningful. sarvam-30b would need to achieve chain OVAR &le; 4.02 to represent a real improvement over the best V2 local result.</span>
+            <span class="finding-text"><strong>The structural constraint holds.</strong> LLMs are stateless in this architecture: each agent sees the current period's demand and places an order with no memory of prior decisions. Exponential smoothing carries one number forward and partially self-corrects. The LLM agent cannot. No amount of cultural training or model size changes this on a period-by-period ordering task. The bullwhip failure is architectural, not a training data gap.</span>
           </li>
         </ol>
       </div>
@@ -252,7 +622,7 @@
         <p class="section-label">Results</p>
         <h2 class="section-title">Numeric results</h2>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Heuristic baselines (reused from V2)</p>
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Heuristic baselines</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
@@ -282,152 +652,151 @@
           </table>
         </div>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">V2 LLM results — comparison baseline</p>
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">sarvam-30b V2d canonical (top_p=1.0, context conditions only)</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
               <tr>
                 <th>Condition</th>
-                <th>Model</th>
-                <th>Chain OVAR (mean ± std)</th>
-                <th>Stockouts (mean ± std)</th>
-                <th>Pattern score</th>
+                <th>Chain OVAR (mean &plusmn; std)</th>
+                <th>Stockouts</th>
+                <th>Pattern</th>
+                <th>Run replacements</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>E1 Blind</td>
-                <td class="tag-cell">phi4:14b</td>
-                <td class="value-cell">4.33 ± 0.00</td>
-                <td class="value-cell">41.0 ± 0.00</td>
-                <td class="value-cell">0.22</td>
+                <td>E1 Context (think=False)</td>
+                <td class="value-cell">4.504 &plusmn; 0.044</td>
+                <td class="value-cell">39.9</td>
+                <td class="value-cell">0.219</td>
+                <td class="value-cell worst">15 / 25 attempts</td>
               </tr>
               <tr>
-                <td>E1 Context</td>
-                <td class="tag-cell">phi4:14b</td>
-                <td class="value-cell worst">6.35 ± 2.53</td>
-                <td class="value-cell">37.2 ± 3.11</td>
-                <td class="value-cell">0.23</td>
+                <td>E2 Context (think=True)</td>
+                <td class="value-cell">4.501 &plusmn; 0.093</td>
+                <td class="value-cell">40.5</td>
+                <td class="value-cell">0.232</td>
+                <td class="value-cell best">0 / 10 attempts</td>
               </tr>
               <tr>
-                <td>E2 Blind</td>
-                <td class="tag-cell">gpt-oss:120b</td>
-                <td class="value-cell">4.52 ± 0.00</td>
-                <td class="value-cell">40.0 ± 0.00</td>
-                <td class="value-cell">0.20</td>
-              </tr>
-              <tr>
-                <td>E2 Context</td>
-                <td class="tag-cell">gpt-oss:120b</td>
-                <td class="value-cell">4.52 ± 0.05</td>
-                <td class="value-cell">39.6 ± 0.76</td>
-                <td class="value-cell">0.21</td>
+                <td>gpt-oss:120B (V2 reference)</td>
+                <td class="value-cell neutral">4.52 &plusmn; 0.05</td>
+                <td class="value-cell neutral">39.6</td>
+                <td class="value-cell neutral">0.21</td>
+                <td class="value-cell neutral">0 / 20 attempts</td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <p class="table-note">Stockouts: shortfall &gt; 0 across all 25 periods &times; 3 tiers = 75 tier-periods per run. Pattern score: mean of keyword and elevation scores at event months; elevation threshold = ratio &gt; 1.10 above per-tier median.</p>
+        <p class="table-note" style="margin-top:0.35rem;">V2d note: correcting top_p from llama.cpp default (0.95) to documented value (1.0) produced no meaningful change. Documented settings reproduce results faithfully.</p>
+      </div>
+
+      <!-- Integration observations -->
+      <div class="post-section">
+        <p class="section-label">Integration observations</p>
+        <h2 class="section-title">Model-specific issues</h2>
+
+        <div class="prose" style="margin-bottom:1.5rem;">
+          <p>Two model-specific issues required resolution before stable runs were possible. Both are reproducible and specific to local GGUF deployment of sarvam-30b via llama-server. GPT OSS 120B triggered neither across 20 runs.</p>
         </div>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">V2a results — sarvam-30b</p>
-        <div class="results-table-wrap">
-          <table class="results-table">
-            <thead>
-              <tr>
-                <th>Condition</th>
-                <th>Model</th>
-                <th>Chain OVAR (mean ± std)</th>
-                <th>Stockouts (mean ± std)</th>
-                <th>Pattern score</th>
-                <th>vs V2 best</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>E1 Blind</td>
-                <td class="tag-cell">sarvam-30b</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td><span class="verdict verdict-pending">PENDING</span></td>
-              </tr>
-              <tr>
-                <td>E1 Context</td>
-                <td class="tag-cell">sarvam-30b</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td><span class="verdict verdict-pending">PENDING</span></td>
-              </tr>
-              <tr>
-                <td>E2 Blind</td>
-                <td class="tag-cell">sarvam-30b</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td><span class="verdict verdict-pending">PENDING</span></td>
-              </tr>
-              <tr>
-                <td>E2 Context</td>
-                <td class="tag-cell">sarvam-30b</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td class="value-cell pending">pending</td>
-                <td><span class="verdict verdict-pending">PENDING</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <table class="issues-table">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>What happened</th>
+              <th>Fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>API flag + prompt conflict</td>
+              <td>The think=False API flag conflicts with a "Think silently" instruction in the system prompt. The model receives contradictory instructions about whether to use internal reasoning. Results in elevated error rates in E1.</td>
+              <td>Remove "Think silently" from system prompt when using the think=False flag.</td>
+            </tr>
+            <tr>
+              <td>Blind condition structural failure</td>
+              <td>Minimal prompts (no context, no tier persona) produced ~20% per-call error rates. Individual smoke runs at temp=1.0 did complete. A calibration pass produced 0/3 before being stopped. 10-run completion not feasible.</td>
+              <td>Not resolved. Context conditions used for all main runs. Blind condition not directly comparable to V2 blind results.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="prose" style="margin-top:1.5rem;">
+          <p>A broader observation from calibration: sarvam-30b is available as a cloud API and as a local GGUF. The two documentation sources give different temperature recommendations. Cloud: 0.2 (non-thinking). GGUF model card: 1.0 (reasoning). The GGUF card is correct for local inference. Cloud temperature recommendations cause 40-60% call failures on local GGUF deployment. This is documented in the calibration notes for reproducibility.</p>
         </div>
-        <p class="table-note">Full run in progress. Results will be updated once the 20-run experiment completes.</p>
       </div>
 
       <!-- Discussion -->
       <div class="post-section">
         <p class="section-label">Discussion</p>
-        <h2 class="section-title">Why this version</h2>
+        <h2 class="section-title">Seasonal awareness</h2>
+
         <div class="prose">
-          <p>The core question V2a addresses is whether model training data matters for this task. V2 used models trained predominantly on English-language internet text, with minimal representation of Indian market dynamics. sarvam-30b was explicitly trained for Indian language and context proficiency across 22 Indian languages, with the Indian market as a primary focus.</p>
-
-          <h3>Two mechanisms that could produce a different result</h3>
-          <p><strong>Seasonal term recognition.</strong> The context condition provides tier personas that reference festive cycles and Indian agricultural seasons. A model trained on Indian data may link "Diwali season" or "monsoon period" to demand patterns more reliably than a general-purpose model. This would show up as a higher pattern score — the fraction of seasonal event months where the agent's rationale mentions relevant keywords and order quantities move in the correct direction.</p>
-
-          <p><strong>Calibrated prior expectations.</strong> sarvam-30b may have a more accurate internal prior for Indian market demand trajectories, producing ordering decisions that are more regime-aware even in the blind condition. This would show up as lower OVAR under the blind condition, where no contextual cues are provided.</p>
-
-          <h3>The structural constraint still applies</h3>
-          <p>The argument from V2 remains: stateless agents without memory cannot self-correct. If over-ordering occurs in period <em>t</em>, the agent arrives at period <em>t+1</em> with no record of it. No amount of cultural training addresses this constraint. The hypothesis is therefore specific — it predicts higher pattern scores and a potentially positive context effect, not a wholesale reversal of the bullwhip failure.</p>
-
-          <p>If sarvam-30b closes the gap, even partially, it would be the first evidence that domain-specific training affects ordering behaviour in this setting. If it does not, it strongly suggests the failure is structural rather than a knowledge gap.</p>
+          <p>The seasonal awareness hypothesis was not confirmed. I expected that a model with Indian training data would show different ordering behaviour on a demand series calibrated to Indian market seasonality. It did not.</p>
+          <p>The agents received only calendar month names. No event labels, no seasonal context, no year. Any seasonal signal would have to come from the model's world knowledge about what October and November mean in India. Neither sarvam-30b nor GPT OSS showed it. Pattern scores of 0.22 and 0.21 indicate very low, approximately equal, seasonal sensitivity in both models.</p>
+          <p>One possible explanation: the task framing as a supply chain ordering problem may not activate seasonal world knowledge, even when the model possesses it. Whether the model draws on broader seasonal knowledge when asked to make an inventory decision — rather than a factual question about seasonality — is unclear from these results alone.</p>
+          <p>The structural argument also applies. Stateless agents without memory cannot self-correct drift regardless of what they know about seasonality. Even if a model correctly anticipated a festive peak in period 14, it cannot carry that anticipation forward without memory of what it planned.</p>
         </div>
       </div>
 
-      <!-- Source -->
-      <div class="post-section">
-        <p class="section-label">Experiment source</p>
-        <div class="prose">
-          <p>Full technical report, code, and data: <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code-dev/tree/main/experiments/Agentic_Bullwhip_Effect_Version_2a" style="color:var(--accent);">GitHub — Agentic_Bullwhip_Effect_Version_2a</a></p>
-        </div>
-      </div>
-
-      <!-- Methodology -->
+      <!-- IHF context -->
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Methodology note</p>
-          <p>All scenarios, companies, products, and supply chain structures are entirely fictional. The experiment is intentionally narrow: single product, fixed lead times, stateless agents, no unstructured context. Results should not be generalised to supply chain management broadly. The correct scope: does sarvam-30b, with Indian-focused training, show stronger seasonal alignment than general-purpose LLMs in a stylised single-product replenishment task with fixed lead times and no unstructured context?</p>
+          <p class="method-callout-label">Integration Hygiene Framework</p>
+          <p>This experiment contributes the first sarvam-30b data point to the Integration Hygiene Framework (IHF), a research framework for measuring how reliably a model can be integrated, independently of benchmark scores. The think=True vs think=False reliability finding and the blind condition structural failure are IHF findings, not supply chain findings.</p>
+          <p>IHF research: <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code-dev/tree/main/research/model-integration-hygiene" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">research/model-integration-hygiene &rarr;</a></p>
         </div>
       </div>
 
-      <a href="./" class="back-link">
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 5l3 3"/></svg>
-        All posts
+      <!-- Experiment source -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Experiment source</p>
+          <p>
+            Full report, code, and data are available on GitHub.
+            &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2a" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub &rarr;</a>
+          </p>
+          <p>
+            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/Agentic_Bullwhip_Effect_Version_2a/ANALYSIS.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">ANALYSIS.md</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/Agentic_Bullwhip_Effect_Version_2a/DESIGN.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">DESIGN.md</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/Agentic_Bullwhip_Effect_Version_2a/COMPARISON.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">COMPARISON.md</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Scope and limitations -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Scope and limitations</p>
+          <p>Context conditions only. Blind results not available for sarvam-30b. 10 runs per condition — Version 2 used 20, so confidence intervals are wider here. Single product, single supply chain structure, fixed deterministic lead times. Stateless agents only, no inter-tier communication. Integration findings are specific to local GGUF deployment via llama-server; cloud API deployment is a different integration surface. Results should not be generalised to supply chain management broadly.</p>
+          <p>All scenarios, companies, products, and supply chain structures are fictional. The demand series is calibrated to real Indian PV market data (autopunditz.com, CY2023&ndash;CY2025) but is synthetic. No proprietary data was used.</p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to blog
       </a>
 
     </div>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">industrial-mind-and-code · 2026</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal research &middot; not affiliated with any employer</span>
       <ul class="footer-links">
-        <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code-dev">GitHub</a></li>
-        <li><a href="../">Home</a></li>
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
       </ul>
     </div>
   </footer>
