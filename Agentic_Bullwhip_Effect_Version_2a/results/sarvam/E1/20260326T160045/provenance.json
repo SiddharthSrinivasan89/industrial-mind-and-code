@@ -1,0 +1,50 @@
+{
+  "experiment": "E1",
+  "timestamp_utc": "20260326T160045",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "backend": "local",
+  "model_lightweight": "sarvam-30b",
+  "model_reasoning": "sarvam-30b",
+  "model_oss_reasoning": "sarvam-30b",
+  "temperature_config": {
+    "blind_lightweight": 1.0,
+    "context_lightweight": 1.0,
+    "blind_reasoning": 1.0,
+    "context_reasoning": 1.0
+  },
+  "run_stats": {
+    "context_lightweight": {
+      "attempts": 20,
+      "replacements": 10
+    }
+  },
+  "latency_stats": {
+    "n_calls": 720,
+    "mean_ms": 26212.5,
+    "p50_ms": 22952.4,
+    "p95_ms": 53611.9,
+    "p99_ms": 62172.9,
+    "ttft_mean_ms": 25382.9,
+    "ttft_p95_ms": 52872.7,
+    "mean_generation_tps": 61.9,
+    "total_prompt_tokens": 131320,
+    "total_completion_tokens": 1170882,
+    "total_reasoning_tokens": 0,
+    "total_cached_tokens": 0,
+    "tokens_per_second": 69.0,
+    "retry_rate": 0.0778,
+    "total_wall_time_s": 18873.0
+  },
+  "infra_context": {
+    "type": "local",
+    "endpoint": "http://localhost:8080/v1",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "cpu": "aarch64",
+    "cpu_cores": 20,
+    "python": "3.12.3",
+    "gpu": "NVIDIA GB10, [N/A], [N/A]",
+    "model_quantization": null,
+    "model_parameter_size": null,
+    "model_format": null
+  }
+}
