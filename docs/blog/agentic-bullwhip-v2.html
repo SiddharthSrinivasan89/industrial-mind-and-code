@@ -592,7 +592,16 @@
           </ul>
 
           <h3>2.8 Hypotheses</h3>
-          <p>Seven hypotheses were formulated prior to execution, covering expected effects of context provision, model tier, and their interaction on OVAR and stockout count.</p>
+          <p>Seven hypotheses were formulated prior to execution, covering the main and interaction effects of context provision and model tier on OVAR and stockout count:</p>
+          <ul>
+            <li><strong>H1:</strong> Context provision reduces chain-average OVAR relative to blind condition.</li>
+            <li><strong>H2:</strong> Reasoning-tier models achieve lower chain-average OVAR than lightweight-tier models.</li>
+            <li><strong>H3:</strong> The context &times; reasoning combination achieves the lowest chain-average OVAR of all LLM configurations.</li>
+            <li><strong>H4:</strong> Context provision reduces stockout count relative to blind condition.</li>
+            <li><strong>H5:</strong> Reasoning-tier models achieve fewer stockouts than lightweight-tier models.</li>
+            <li><strong>H6:</strong> Local inference achieves chain-average OVAR within 10% of frontier inference for equivalent tier and context conditions.</li>
+            <li><strong>H7:</strong> Frontier reasoning (o4-mini) achieves chain-average OVAR closer to heuristic performance than any other LLM configuration.</li>
+          </ul>
         </div>
       </div>
 
@@ -807,8 +816,57 @@
           <p>o4-mini (frontier reasoning) generated over 1,000,000 reasoning tokens across 20 runs. Its blind-condition chain OVAR (4.72) was statistically indistinguishable from gpt-4.1-mini (4.70). The 116B-parameter gpt-oss:120b (local reasoning) achieved 4.52 in blind conditions. Neither reasoning model demonstrated a measurable ordering advantage over its lightweight-tier counterpart.</p>
 
           <h3>3.4 Hypothesis Verdicts</h3>
-          <p>All seven hypotheses were rejected.</p>
         </div>
+
+        <div class="results-table-wrap" style="margin-top:1rem;">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Hypothesis</th>
+                <th>Prediction</th>
+                <th>Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>H1</td>
+                <td>Context reduces chain-average OVAR</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H2</td>
+                <td>Reasoning tier achieves lower OVAR than lightweight tier</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H3</td>
+                <td>Context &times; Reasoning achieves lowest OVAR of all LLM configs</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H4</td>
+                <td>Context reduces stockout count</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H5</td>
+                <td>Reasoning tier achieves fewer stockouts than lightweight tier</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H6</td>
+                <td>Local OVAR within 10% of frontier for equivalent conditions</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H7</td>
+                <td>o4-mini achieves OVAR closest to heuristic performance</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
       <!-- Discussion -->
