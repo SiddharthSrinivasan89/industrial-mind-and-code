@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industrial Mind &amp; Code</title>
+  <meta name="description" content="Industrial Mind &amp; Code — Placing a probabilistic system inside a deterministic environment. Independent AI research in industrial engineering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --status-published: #1d7a4a;
+      --status-published-bg: #e6f4ed;
+      --status-active: #8a5a00;
+      --status-active-bg: #fdf3e0;
+      --status-planned: #5a5a5a;
+      --status-planned-bg: #efefef;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ─── Hero ─── */
+    #hero {
+      padding: 7rem 0 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.75rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .hero-meta-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .hero-meta-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Section headers ─── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    /* ─── About ─── */
+    .about-body p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      max-width: 640px;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-body strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Experiments ─── */
+    .experiment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .experiment-card {
+      background: #fff;
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .experiment-card:last-child { border-bottom: none; }
+    .experiment-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .experiment-name {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .status-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .status-published {
+      background: var(--status-published-bg);
+      color: var(--status-published);
+    }
+    .status-active {
+      background: var(--status-active-bg);
+      color: var(--status-active);
+    }
+    .status-planned {
+      background: var(--status-planned-bg);
+      color: var(--status-planned);
+    }
+    .experiment-domain {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .experiment-finding {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .experiment-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .exp-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+    .exp-link:hover { color: var(--accent-mid); }
+    .exp-link svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* ─── Experiment detail (V2-style expanded cards) ─── */
+    .exp-detail {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .exp-detail-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .exp-detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .exp-detail-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-detail-table tr:last-child { border-bottom: none; }
+    .exp-detail-table tr:nth-child(odd) { background: var(--surface); }
+    .exp-detail-table tr:nth-child(even) { background: #fff; }
+    .exp-detail-table td {
+      padding: 0.45rem 0.85rem;
+      vertical-align: top;
+    }
+    .exp-detail-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      width: 40%;
+    }
+    .exp-detail-table td:last-child {
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .exp-detail-table--compact td:first-child { width: 28%; }
+    .exp-scope {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .exp-bullets li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    /* ─── Methodology ─── */
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 560px) { .method-grid { grid-template-columns: 1fr; } }
+    .method-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+    }
+    .method-card-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+    .method-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .method-card-body {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .stack-row {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stack-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .stack-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .stack-group-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .stack-group-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      min-width: 48px;
+    }
+    .stack-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .stack-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 3px;
+    }
+
+    /* ─── Writing ─── */
+    .writing-note {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      #hero { padding: 4rem 0 3rem; }
+      section { padding: 3.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="blog/">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Independent Research</p>
+      <h1 class="hero-title">
+        Industrial Mind<br />&amp; <em>Code</em>
+      </h1>
+      <p class="hero-sub">
+        An experimental research program investigating the performance of LLM agents in industrial engineering decision environments. Each study places LLM agents in a controlled simulation &mdash; like supply chains, maintenance systems, production planning &mdash; and evaluates their performance against deterministic analytical baselines or suitable comparison mechanisms.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Researcher</span>
+          <span class="hero-meta-value">Siddharth Srinivasan</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Domain</span>
+          <span class="hero-meta-value">Industrial Engineering &times; AI</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Affiliation</span>
+          <span class="hero-meta-value">Independent &middot; Not affiliated with any employer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiments -->
+  <section id="experiments">
+    <div class="container">
+      <p class="section-label">Experiments</p>
+      <h2 class="section-title">Experiments</h2>
+
+      <p class="section-label" style="margin-bottom:0.75rem;">Published</p>
+      <div class="experiment-list">
+
+        <!-- V2: Heuristic Dominance -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment: An Experimental Study</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP &middot; 11,520 LLM CALLS</p>
+          <p class="experiment-finding">
+            Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines in a three-tier serial supply chain simulation. 2&times;2 factorial design, 20 replications per condition, 11,520 LLM calls.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>Every heuristic outperformed every LLM configuration on both OVAR and stockout count simultaneously. Exponential smoothing achieved chain OVAR 0.54 with 5 stockouts; the best LLM achieved 4.33 with 41 stockouts.</li>
+              <li>Context provision destabilised the local lightweight model (phi4:14b), producing Ancillary-tier OVAR of 10.82 &plusmn; 8.14 across 20 runs.</li>
+              <li>Reasoning-tier models generated over 1,000,000 reasoning tokens with no measurable improvement in ordering performance over lightweight-tier models. All seven hypotheses rejected.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v2.html">
+              Full Paper
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V2a: sarvam-30b -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">Sovereign Model Performance in Stateless Supply Chain Replenishment: sarvam-30b vs. GPT-OSS-120B</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; SOVEREIGN MODELS &middot; 1,440 LLM CALLS</p>
+          <p class="experiment-finding">
+            Follow-up to Version 2 testing whether a model trained on Indian data (sarvam-30b, 30B total / 2.4B active parameters) demonstrates stronger seasonal awareness on a synthetic Indian automotive demand series than a frontier foundation model. 2 conditions, 10 replications per condition.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>No meaningful difference: sarvam-30b chain OVAR 4.504 vs. GPT-OSS-120B 4.52. Statistically identical on every metric. Neither model detected Indian seasonal demand patterns.</li>
+              <li>Exponential smoothing achieved OVAR 0.54 &mdash; an 8&times; gap over both models.</li>
+              <li>Secondary finding: enabling the native reasoning flag (think=True) eliminated all run-level failures without affecting ordering performance.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2a" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v2a.html">
+              Full Paper
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V1: Inverted Cascade -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">Context &times; Model Interactions in LLM-Driven Supply Chain Ordering: An Inverted Bullwhip Cascade</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP &middot; 720 LLM CALLS</p>
+          <p class="experiment-finding">
+            Exploratory study examining the interaction between domain context provision and model capability on demand amplification. 2&times;2 factorial design (gpt-4.1-mini &times; o1, blind &times; context), 5 replications per condition, 720 LLM calls.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>All configurations produced bullwhip amplification. Context reduced chain OVAR for the lightweight model (&minus;7.2%) and increased it for the reasoning model (+15.0%).</li>
+              <li>The context &times; reasoning condition produced a fully inverted tier pattern (OEM OVAR 6.349, Component 2.698) &mdash; reversing the monotone upstream-amplification cascade standard in bullwhip literature since Forrester (1961).</li>
+              <li>Results are directional (n = 5) and motivated the expanded design in Version 2.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/agentic_bullwhip_effect_version_1" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v1.html">
+              Full Paper
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="section-label" style="margin-top:2.5rem;margin-bottom:0.75rem;">In progress</p>
+      <div class="experiment-list">
+
+        <!-- TPM -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">LLM Agent Performance on Fragmented Maintenance Records with Vernacular Normalisation</span>
+            <span class="status-badge status-active">In Progress</span>
+          </div>
+          <p class="experiment-domain">TPM &middot; PREDICTIVE MAINTENANCE &middot; VERNACULAR NORMALISATION</p>
+          <p class="experiment-finding">
+            Evaluates LLM agent performance on TPM decision support when reasoning over fragmented, multilingual maintenance records representative of Indian manufacturing environments. Includes an experimental condition with a vernacular normalisation preprocessing layer.
+          </p>
+          <div class="experiment-links">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/issues" target="_blank" rel="noopener">
+              Request early access
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section id="methodology">
+    <div class="container">
+      <p class="section-label">Methodology</p>
+      <h2 class="section-title">How experiments are designed</h2>
+
+      <div class="method-grid">
+        <div class="method-card">
+          <p class="method-card-number">01</p>
+          <p class="method-card-title">Controlled simulation environments</p>
+          <p class="method-card-body">Parameters are synthetic but calibrated against published literature. All scenarios are fictional. No proprietary data is used.</p>
+        </div>
+        <div class="method-card">
+          <p class="method-card-number">02</p>
+          <p class="method-card-title">Analytical baselines</p>
+          <p class="method-card-body">Performance is measured against deterministic methods that already exist for the problem &mdash; exponential smoothing, order-up-to policies, SPC rules. The evaluation question is whether LLM agents add value beyond established approaches.</p>
+        </div>
+        <div class="method-card">
+          <p class="method-card-number">03</p>
+          <p class="method-card-title">Model performance across deployment surfaces</p>
+          <p class="method-card-body">Each experiment tests models across frontier hyperscale (Azure OpenAI) and local inference (Ollama on dedicated hardware), spanning lightweight and reasoning tiers. Model tier, context treatment, and inference backend are treated as experimental factors, not assumptions. Relevant metadata including deployment complexity and integration surface area is recorded alongside performance metrics.</p>
+        </div>
+        <div class="method-card">
+          <p class="method-card-number">04</p>
+          <p class="method-card-title">Optimised architecture</p>
+          <p class="method-card-body">Experimental results are used to identify where hybrid deployments &mdash; combining LLM agents with deterministic methods &mdash; may outperform either approach alone. The design question is not whether AI replaces the established method, but whether and where it can improve on it.</p>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <p class="stack-label">Infrastructure</p>
+        <div class="stack-group">
+          <div class="stack-group-row">
+            <span class="stack-group-label">Frontier</span>
+            <div class="stack-tags">
+              <span class="stack-tag">Azure AI Foundry</span>
+              <span class="stack-tag">Azure OpenAI Service</span>
+            </div>
+          </div>
+          <div class="stack-group-row">
+            <span class="stack-group-label">Local</span>
+            <div class="stack-tags">
+              <span class="stack-tag">ASUS Ascent GX10</span>
+              <span class="stack-tag">Ollama</span>
+              <span class="stack-tag">llama.cpp</span>
+            </div>
+          </div>
+          <div class="stack-group-row">
+            <span class="stack-group-label">Code Gen</span>
+            <div class="stack-tags">
+              <span class="stack-tag">Claude Code</span>
+              <span class="stack-tag">Codex</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">About the researcher</h2>
+      <div class="about-body">
+        <p>
+          Siddharth Srinivasan holds a Bachelor&rsquo;s degree in Industrial Engineering and works in digital engineering software, where he sits at the intersection of how AI infrastructure is designed, sold, and deployed at enterprise scale. This research program emerged from a direct question: where does LLM agent performance hold up under rigorous testing in the domains he knows best &mdash; manufacturing, supply chain, maintenance, and production planning &mdash; and where does it fall short? Each experiment takes a foundational industrial engineering problem, builds a controlled simulation, places LLM agents in the decision-making role, and measures the result against what a deterministic method would have done.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Get in touch</h2>
+      <p class="writing-note">
+        <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">LinkedIn</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">GitHub</a>
+        &nbsp;&middot;&nbsp;
+        <a href="mailto:sid@industrialmindandcode.ai" style="color:var(--accent);text-decoration:none;font-weight:400;">sid@industrialmindandcode.ai</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal academic research &middot; not affiliated with any employer, platform or model provider. Content here does not reflect the views of my employer.</span>
+      <ul class="footer-links">
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment — Industrial Mind &amp; Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --verdict-rejected-bg: #fdf0f0;
+      --verdict-rejected: #8a2a2a;
+      --verdict-partial-bg: #fdf6e0;
+      --verdict-partial: #7a5500;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    /* ─── Post header ─── */
+    .post-header {
+      padding: 7rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+    .post-summary {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .post-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .post-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .post-meta-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .post-meta-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Post body ─── */
+    .post-body {
+      padding: 4rem 0;
+    }
+    .post-section {
+      margin-bottom: 3.5rem;
+    }
+    .post-section:last-child { margin-bottom: 0; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+
+    /* ─── Abstract ─── */
+    .abstract-block {
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 4px 4px 0;
+    }
+    .abstract-block p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Setup table ─── */
+    .setup-table {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td {
+      padding: 0.75rem 1.25rem;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .setup-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 180px;
+    }
+    .setup-table td:last-child {
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* ─── Results tables ─── */
+    .results-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
+    .results-table-wrap:last-child { margin-bottom: 0; }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .results-table thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .results-table thead th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .results-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td {
+      padding: 0.65rem 1.25rem;
+      color: var(--text-primary);
+      font-weight: 300;
+      vertical-align: middle;
+    }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500 !important;
+    }
+    .tag-cell {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .best { color: var(--verdict-supported) !important; }
+    .worst { color: var(--verdict-rejected) !important; }
+    .unstable { color: var(--verdict-partial) !important; }
+
+    /* ─── Verdict badges ─── */
+    .verdict {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+    .verdict-rejected { background: var(--verdict-rejected-bg); color: var(--verdict-rejected); }
+    .verdict-partial { background: var(--verdict-partial-bg); color: var(--verdict-partial); }
+    .verdict-supported { background: var(--verdict-supported-bg); color: var(--verdict-supported); }
+
+    /* ─── Discussion prose ─── */
+    .prose h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      margin-top: 2rem;
+      line-height: 1.3;
+    }
+    .prose h3:first-child { margin-top: 0; }
+    .prose p {
+      font-size: 15.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.1rem;
+      max-width: 640px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .prose em { font-style: italic; }
+    .prose ul {
+      margin: 0.75rem 0 1.1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .prose ul li {
+      font-size: 15.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .prose ul li strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Table note ─── */
+    .table-note {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* ─── Methodology callout ─── */
+    .method-callout {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .method-callout-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .method-callout p {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .method-callout a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .method-callout a:hover { color: var(--accent-mid); }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      margin-top: 3rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="./" class="active">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Post header -->
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Supply Chain &middot; Experiment Writeup</p>
+      <h1 class="post-title">Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment: An Experimental Study</h1>
+      <p class="post-summary">
+        This study investigates whether large language model (LLM) agents can outperform deterministic heuristic baselines in a stylised supply chain replenishment task.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <span class="post-meta-value">March 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Experiment</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 2</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Design</span>
+          <span class="post-meta-value">2&times;2 Factorial &middot; 20 runs &middot; 11,520 LLM calls</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Author</span>
+          <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post body -->
+  <main class="post-body">
+    <div class="container">
+
+      <!-- Abstract -->
+      <div class="post-section">
+        <p class="section-label">Abstract</p>
+        <div class="abstract-block">
+          <p>This study investigates whether large language model (LLM) agents can outperform deterministic heuristic baselines in a stylised supply chain replenishment task. Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines (exponential smoothing, naive passthrough, and order-up-to with fixed safety stock) in a three-tier serial supply chain simulation. A 2&times;2 factorial design crossed model tier (lightweight vs. reasoning) with context treatment (blind vs. business context), with 20 independent replications per LLM condition and 11,520 total LLM API calls over a 25-month synthetic demand series calibrated to Indian automotive seasonality.</p>
+          <p>Every heuristic outperformed every LLM configuration on both primary metrics &mdash; Order Variance Amplification Ratio (OVAR) and stockout count &mdash; simultaneously. Exponential smoothing achieved chain OVAR of 0.54 with 5 stockouts; the best LLM configuration achieved 4.33 with 41 stockouts. The LLM configurations were Pareto-inferior to all heuristic baselines. Context provision destabilised the local lightweight model (phi4:14b), producing Ancillary-tier OVAR of 10.82 &plusmn; 8.14 across 20 runs. Reasoning-tier models generated over 1,000,000 reasoning tokens with no measurable improvement in ordering performance over lightweight-tier models. All seven hypotheses were rejected.</p>
+          <p>These results suggest that in deterministic, stateless replenishment environments with well-established analytical solutions, LLM agents do not offer a performance advantage over simple heuristics. The productive role for LLMs in such settings may lie upstream of the ordering decision itself &mdash; in signal interpretation, anomaly detection, and parameter adjustment &mdash; rather than in direct decision execution.</p>
+          <p><strong>Keywords:</strong> bullwhip effect, LLM agents, supply chain management, order variance amplification, heuristic baselines, exponential smoothing, agentic AI</p>
+        </div>
+      </div>
+
+      <!-- Introduction -->
+      <div class="post-section">
+        <p class="section-label">1</p>
+        <h2 class="section-title">Introduction</h2>
+        <div class="prose">
+          <p>The bullwhip effect &mdash; the amplification of demand variability as orders propagate upstream through a supply chain &mdash; remains one of the most well-documented phenomena in operations research. First identified by Forrester (1961) and formalised by Lee, Padmanabhan, and Whang (1997), the standard prediction is that order variance increases monotonically at each successive upstream tier due to demand signal processing, order batching, price fluctuations, and shortage gaming.</p>
+          <p>Recent advances in large language models (LLMs) have generated significant interest in their potential application to supply chain decision-making. Jannelli et al. (2024) demonstrated that LLM-based consensus-seeking frameworks can reduce the bullwhip effect when agents negotiate with neighbouring supply chain nodes. Quan and Liu (2024) introduced InvAgent, a framework using zero-shot learning for inventory management. These studies have generally positioned LLM agents as promising tools for supply chain coordination and planning.</p>
+          <p>However, a critical evaluation question remains underexplored: how does LLM agent performance in operational decision-making compare not to other LLM configurations, but to the deterministic analytical methods that already exist for these problems? Supply chain replenishment has well-established heuristic solutions &mdash; exponential smoothing, order-up-to policies, and moving average methods &mdash; that have been in use for decades. For LLM agents to represent a meaningful advance, they must demonstrate performance at least comparable to these baselines.</p>
+          <p>This study addresses that question directly. Building on Version 1 of this experimental series (Srinivasan, 2026a), which established that all tested LLM configurations amplified demand variability and identified a previously undocumented inverted tier pattern in the context &times; reasoning condition, Version 2 introduces heuristic baselines as the primary point of comparison.</p>
+          <p>The experimental design places LLM agents in a deliberately constrained environment &mdash; stateless, single-product, deterministic lead times &mdash; to isolate the fundamental question of whether a probabilistic model generating orders in a deterministic environment can match a formula designed for exactly this class of problem.</p>
+        </div>
+      </div>
+
+      <!-- Methodology -->
+      <div class="post-section">
+        <p class="section-label">2</p>
+        <h2 class="section-title">Methodology</h2>
+        <div class="prose">
+
+          <h3>2.1 Supply Chain Structure</h3>
+          <p>A three-tier serial supply chain was simulated, modelled on an Indian automotive industry structure:</p>
+          <ul>
+            <li><strong>Tier 1 (OEM):</strong> Tatva Motors &mdash; receives consumer demand, places orders to Tier 2</li>
+            <li><strong>Tier 2 (Ancillary):</strong> Lighting Manufacturer &mdash; receives orders from Tier 1, places orders to Tier 3</li>
+            <li><strong>Tier 3 (Component):</strong> LED Component Manufacturer &mdash; receives orders from Tier 2</li>
+          </ul>
+          <p>All entities, names, and scenarios are fictional.</p>
+
+          <h3>2.2 Demand Series</h3>
+          <p>A 25-month synthetic demand series (January 2025 to January 2027) was generated for a single SKU, incorporating two full Indian festive cycles (Navratri, Diwali, and year-end demand peaks). The series was calibrated against published literature on Indian automotive demand patterns.</p>
+
+          <h3>2.3 Experimental Design</h3>
+          <p>A 2&times;2 factorial design crossed two factors:</p>
+          <ul>
+            <li><strong>Model tier:</strong> Lightweight vs. Reasoning</li>
+            <li><strong>Context treatment:</strong> Blind (numeric demand only) vs. Context (company identity, product details, market position, calendar month)</li>
+          </ul>
+          <p>Four LLM configurations were tested. Frontier models were accessed via Azure OpenAI Service. Local models ran on an ASUS Ascent GX10 (GB10 Blackwell, 128GB unified memory) via Ollama.</p>
+
+        </div>
+
+        <div class="results-table-wrap" style="margin-top:1rem;">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Blind</th>
+                <th>Context</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lightweight</strong></td>
+                <td>gpt-4.1-mini (Frontier) / phi4:14b (Local)</td>
+                <td>gpt-4.1-mini (Frontier) / phi4:14b (Local)</td>
+              </tr>
+              <tr>
+                <td><strong>Reasoning</strong></td>
+                <td>o4-mini (Frontier) / gpt-oss:120b (Local)</td>
+                <td>o4-mini (Frontier) / gpt-oss:120b (Local)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose" style="margin-top:1.5rem;">
+
+          <h3>2.4 Heuristic Baselines</h3>
+          <p>Three deterministic heuristic baselines were implemented:</p>
+          <ul>
+            <li><strong>Exponential smoothing (&alpha; = 0.30):</strong> A forecasting method that estimates future demand as a weighted average of all past observations, with more recent periods receiving higher weight. The smoothing parameter &alpha; = 0.30 gives 30% weight to the most recent demand observation and 70% to accumulated history. In this experiment, each tier applies exponential smoothing to the demand signal it receives and places an order equal to the smoothed estimate. The result is that over-orders in one period are partially corrected in the next, giving the method a self-correcting property that stateless agents lack.</li>
+            <li><strong>Naive passthrough:</strong> Orders exactly the quantity demanded in the current period &mdash; no dampening, no anticipation. By construction, order variance equals demand variance (OVAR = 1.0), making this a mathematical lower bound on amplification. In this experiment, each tier passes through the demand signal it receives without modification. It is included to establish whether any tested method makes the bullwhip effect worse than simply forwarding the received signal.</li>
+            <li><strong>Order-up-to with fixed safety stock:</strong> Each period, the tier calculates the quantity needed to restore inventory to a fixed target level, accounting for outstanding orders and current on-hand stock. The target is set to the historical mean demand of the series plus 1.65&sigma; &mdash; the same figure used to set initial inventory (~95% service level). In this experiment, this baseline represents a planning-based replenishment rule: order enough to cover the gap between the target stock position and the current position.</li>
+          </ul>
+          <p>Heuristic baselines are deterministic and were run once per condition.</p>
+
+          <h3>2.5 Agent Design</h3>
+          <p>All LLM agents were stateless &mdash; each agent received only the current period&rsquo;s demand and placed an order with no access to its own order history, inventory consequences, or inter-tier information. This design choice was deliberate: it reflects the common deployment pattern where LLM agents operate without persistent memory.</p>
+
+          <h3>2.6 Parameters</h3>
+        </div>
+
+        <table class="setup-table" style="margin-top:0.75rem;">
+          <tbody>
+            <tr><td>Replications</td><td>20 per LLM configuration &middot; 1 per heuristic</td></tr>
+            <tr><td>Lead time</td><td>1 month, deterministic, all tiers</td></tr>
+            <tr><td>Initial inventory</td><td>43,609 units (mean + 1.65&sigma;, ~95% service level)</td></tr>
+            <tr><td>Total LLM calls</td><td>11,520 (4 conditions &times; 20 runs &times; 24 periods &times; 3 tiers)</td></tr>
+            <tr><td>LLM temperature</td><td>gpt-4.1-mini: 0.4 &middot; phi4:14b: 0.4 &middot; o4-mini: API-fixed &middot; gpt-oss:120b: 0.4</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose" style="margin-top:1.5rem;">
+          <h3>2.7 Metrics</h3>
+          <ul>
+            <li><strong>OVAR (Order Variance Amplification Ratio):</strong> Var(orders placed) / Var(demand received). OVAR &lt; 1.0 indicates dampening; OVAR &gt; 1.0 indicates amplification.</li>
+            <li><strong>Stockout count:</strong> Number of tier-periods where available inventory was insufficient to fill demand.</li>
+          </ul>
+
+          <h3>2.8 Hypotheses</h3>
+          <p>Seven hypotheses were formulated prior to execution, covering expected effects of context provision, model tier, and their interaction on OVAR and stockout count.</p>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="post-section">
+        <p class="section-label">3</p>
+        <h2 class="section-title">Results</h2>
+
+        <div class="prose">
+          <h3>3.1 Heuristic vs. LLM Performance</h3>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1rem;">Table 1: Heuristic Baselines</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Heuristic</th>
+                <th>Chain OVAR</th>
+                <th>Stockouts (of 75 possible)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exponential smoothing</td>
+                <td class="value-cell best">0.54</td>
+                <td class="value-cell best">5</td>
+              </tr>
+              <tr>
+                <td>Naive passthrough</td>
+                <td class="value-cell">1.00</td>
+                <td class="value-cell">3</td>
+              </tr>
+              <tr>
+                <td>Order-up-to</td>
+                <td class="value-cell">1.71</td>
+                <td class="value-cell">14</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Table 2: Chain-Average OVAR by LLM Configuration</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Condition</th>
+                <th>Backend</th>
+                <th>Chain OVAR (mean &plusmn; std)</th>
+                <th>Stockouts (mean &plusmn; std)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>exp_smoothing</strong></td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell best">0.54</td>
+                <td class="value-cell best">5</td>
+              </tr>
+              <tr>
+                <td>naive_passthrough</td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell">1.00</td>
+                <td class="value-cell">3</td>
+              </tr>
+              <tr>
+                <td>order_up_to</td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell">1.71</td>
+                <td class="value-cell">14</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.70 &plusmn; 0.14</td>
+                <td class="value-cell">40.5 &plusmn; 0.83</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.47 &plusmn; 0.07</td>
+                <td class="value-cell">39.0 &plusmn; 0.83</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell best">4.33 &plusmn; 0.00</td>
+                <td class="value-cell">41.0 &plusmn; 0.00</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell worst">6.35 &plusmn; 2.53</td>
+                <td class="value-cell">37.2 &plusmn; 3.11</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.72 &plusmn; 1.12</td>
+                <td class="value-cell">42.9 &plusmn; 3.85</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.52 &plusmn; 0.08</td>
+                <td class="value-cell">40.1 &plusmn; 0.85</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.52 &plusmn; 0.00</td>
+                <td class="value-cell">40.0 &plusmn; 0.00</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.52 &plusmn; 0.05</td>
+                <td class="value-cell">39.6 &plusmn; 0.76</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">L = Lightweight (gpt-4.1-mini / phi4:14b) &middot; R = Reasoning (o4-mini / gpt-oss:120b)</p>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Table 3: OVAR by Tier</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Condition</th>
+                <th>Backend</th>
+                <th>OEM</th>
+                <th>Ancillary</th>
+                <th>Component</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>exp_smoothing</td>
+                <td class="tag-cell">HEURISTIC</td>
+                <td class="value-cell best">0.41</td>
+                <td class="value-cell best">0.65</td>
+                <td class="value-cell best">0.58</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.21</td>
+                <td class="value-cell worst">6.64</td>
+                <td class="value-cell">3.25</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.12</td>
+                <td class="value-cell">6.01</td>
+                <td class="value-cell">3.30</td>
+              </tr>
+              <tr>
+                <td>L-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">3.71</td>
+                <td class="value-cell">5.89</td>
+                <td class="value-cell">3.40</td>
+              </tr>
+              <tr>
+                <td>L-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.62</td>
+                <td class="value-cell worst">10.82</td>
+                <td class="value-cell">3.61</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">5.94</td>
+                <td class="value-cell">5.18</td>
+                <td class="value-cell">3.05</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">FRONTIER</td>
+                <td class="value-cell">4.13</td>
+                <td class="value-cell">5.99</td>
+                <td class="value-cell">3.45</td>
+              </tr>
+              <tr>
+                <td>R-Blind</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.13</td>
+                <td class="value-cell">5.98</td>
+                <td class="value-cell">3.45</td>
+              </tr>
+              <tr>
+                <td>R-Context</td>
+                <td class="tag-cell">LOCAL</td>
+                <td class="value-cell">4.13</td>
+                <td class="value-cell">6.01</td>
+                <td class="value-cell">3.43</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose" style="margin-top:1.5rem;">
+          <h3>3.2 Context Effects</h3>
+          <p>For frontier gpt-4.1-mini, context provision reduced chain OVAR from 4.70 to 4.47 (&Delta; = 0.23). This reduction is modest and not treated as practically meaningful given the scale of the overall LLM&ndash;heuristic gap.</p>
+          <p>For local phi4:14b, context provision increased chain OVAR from 4.33 to 6.35. At the Ancillary tier, context produced OVAR of 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates that context introduced substantial run-to-run instability rather than consistent directional change. The blind condition for the same model produced standard deviation of 0.00 &mdash; identical orders across all 20 runs.</p>
+
+          <h3>3.3 Reasoning Model Performance</h3>
+          <p>o4-mini (frontier reasoning) generated over 1,000,000 reasoning tokens across 20 runs. Its blind-condition chain OVAR (4.72) was statistically indistinguishable from gpt-4.1-mini (4.70). The 116B-parameter gpt-oss:120b (local reasoning) achieved 4.52 in blind conditions. Neither reasoning model demonstrated a measurable ordering advantage over its lightweight-tier counterpart.</p>
+
+          <h3>3.4 Hypothesis Verdicts</h3>
+          <p>All seven hypotheses were rejected.</p>
+        </div>
+      </div>
+
+      <!-- Discussion -->
+      <div class="post-section">
+        <p class="section-label">4</p>
+        <h2 class="section-title">Discussion</h2>
+        <div class="prose">
+
+          <h3>4.1 Structural Explanation for Heuristic Dominance</h3>
+          <p>The performance gap between heuristics and LLM agents has a structural explanation rooted in the stateless agent architecture. Each LLM agent arrives at every ordering period with no memory of its previous orders or their consequences. It cannot observe that an over-order in period <em>t</em> caused excess inventory in period <em>t</em>+1, and therefore cannot self-correct.</p>
+          <p>Exponential smoothing, by contrast, maintains a single state variable &mdash; the smoothed demand estimate &mdash; that encodes the full history of observed demand into a recursively updated value. This provides a self-correcting property: an over-forecast in period <em>t</em> is partially corrected in period <em>t</em>+1 through the smoothing mechanism. The LLM agent, by design, lacks this temporal coherence.</p>
+          <p>This is not a limitation of model intelligence. It is a consequence of placing a probabilistic text-generation system in a deterministic sequential decision environment where state persistence is required for effective performance. The models generate locally plausible order quantities in each period, but the sequence of decisions has no coherence because each decision is independent.</p>
+
+          <h3>4.2 Context as a Source of Instability</h3>
+          <p>The phi4:14b context result is notable for the nature of the failure rather than its magnitude. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape ordering behaviour &mdash; it introduced variance. In some runs, the context may have triggered aggressive anticipatory ordering; in others, conservative responses. The blind model failed consistently and identically across all runs.</p>
+          <p>From a deployment perspective, intermittent instability presents different challenges than consistent underperformance. Consistent failure can be diagnosed and compensated for. Intermittent instability &mdash; where the same model with the same prompt produces order-of-magnitude different outcomes across runs &mdash; is more difficult to anticipate and mitigate.</p>
+
+          <h3>4.3 Absence of Reasoning Advantage</h3>
+          <p>The finding that reasoning-tier models produced no measurable improvement in ordering performance over lightweight-tier models has practical implications for deployment cost. In production environments, reasoning models carry higher inference costs and latency. The absence of performance benefit in this task means the additional cost would be unjustified for this class of problem in the tested configuration.</p>
+          <p>This result may be specific to the stateless setting. In a stateful environment where reasoning about historical patterns, causal chains, or strategic interactions is required, the reasoning tier may offer advantages not observable in the present design.</p>
+
+          <h3>4.4 Comparison with Related Work</h3>
+          <p>These results present an informative contrast with Jannelli et al. (2024), who found that LLM-based consensus-seeking <em>reduced</em> the bullwhip effect. The critical distinction is architectural: Jannelli et al.&rsquo;s agents communicated with neighbouring nodes and used tool-calling to access demand data and analytical functions. The present study tested standalone, stateless agents with no inter-tier communication and no tool access.</p>
+          <p>This contrast suggests that LLM agent performance in supply chain settings may depend more on the surrounding architecture &mdash; communication protocols, tool access, state persistence &mdash; than on model capability alone. An LLM agent embedded in a consensus-seeking framework with analytical tools performs qualitatively differently from an LLM agent generating orders from a prompt.</p>
+
+          <h3>4.5 Implications for System Architecture</h3>
+          <p>These results suggest a possible architectural principle: in domains with well-established analytical solutions, the productive role for LLMs may be in signal interpretation and parameter adjustment rather than in direct decision execution. An architecture where the LLM interprets demand conditions, detects regime changes, and adjusts heuristic parameters &mdash; while the heuristic formula executes the ordering decision &mdash; would leverage the strengths of each component. The LLM provides adaptability and contextual awareness; the formula provides temporal coherence and numerical precision.</p>
+          <p>This hypothesis has not been tested in the present study and represents a direction for future work.</p>
+        </div>
+      </div>
+
+      <!-- Limitations -->
+      <div class="post-section">
+        <p class="section-label">5</p>
+        <h2 class="section-title">Limitations</h2>
+        <div class="prose">
+          <p>These results are specific to a deliberately constrained experimental design:</p>
+          <ul>
+            <li><strong>Stateless agents:</strong> No memory across ordering periods</li>
+            <li><strong>Single product:</strong> No multi-SKU portfolio effects</li>
+            <li><strong>Deterministic lead times:</strong> No stochastic supply-side variation</li>
+            <li><strong>No inter-tier communication:</strong> Agents operate independently</li>
+            <li><strong>No tool access:</strong> Agents cannot call analytical functions</li>
+            <li><strong>Seasonal but stable demand:</strong> No structural breaks, promotions, or supply disruptions</li>
+          </ul>
+          <p>The correct scope of inference: LLM agents do not outperform deterministic heuristics in stylised single-product replenishment with fixed lead times and stateless execution.</p>
+          <p>Whether memory, multi-product portfolios, stochastic lead times, inter-agent communication, or tool access changes these results are open questions and natural directions for subsequent experiments.</p>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="post-section">
+        <p class="section-label">6</p>
+        <h2 class="section-title">Conclusion</h2>
+        <div class="prose">
+          <p>This study provides experimental evidence that in a deterministic, stateless supply chain replenishment setting, LLM agents are strictly dominated by simple heuristic baselines on both order variance and stockout metrics. The performance gap is substantial &mdash; approximately 8&times; on both dimensions &mdash; and persists across all model tiers, inference backends, and context treatments tested.</p>
+          <p>The structural explanation centres on the absence of state persistence in the agent architecture. Deterministic heuristics maintain temporal coherence through state variables; stateless LLM agents lack this property, producing locally plausible but sequentially incoherent ordering decisions.</p>
+          <p>These findings do not generalise to all LLM applications in supply chain management. They are specific to the tested configuration and should be interpreted within that scope. The results are consistent with the broader observation that placing a probabilistic system inside a deterministic environment creates a fundamental mismatch when the environment rewards sequential coherence over single-period plausibility.</p>
+        </div>
+      </div>
+
+      <!-- References -->
+      <div class="post-section">
+        <p class="section-label">References</p>
+        <div class="prose">
+          <p>Chen, F., Drezner, Z., Ryan, J. K., &amp; Simchi-Levi, D. (2000). Quantifying the bullwhip effect in a simple supply chain: The impact of forecasting, lead times, and information. <em>Management Science</em>, 46(3), 436&ndash;443.</p>
+          <p>Forrester, J. W. (1961). <em>Industrial Dynamics</em>. MIT Press.</p>
+          <p>Jannelli, V., Schoepf, S., Jackson, I., Jesus Saenz, M., &amp; Brintrup, A. (2024). Agentic LLMs in the supply chain: Towards autonomous multi-agent consensus-seeking. <em>arXiv preprint</em> arXiv:2411.10184.</p>
+          <p>Lee, H. L., Padmanabhan, V., &amp; Whang, S. (1997). Information distortion in a supply chain: The bullwhip effect. <em>Management Science</em>, 43(4), 546&ndash;558.</p>
+          <p>Li, C., Wang, X., Xia, S., Wang, W., He, S., &amp; Liu, K. (2023). Large language model based multi-agents: A survey of progress and challenges. <em>arXiv preprint</em> arXiv:2402.01680.</p>
+          <p>Quan, J., &amp; Liu, H. (2024). InvAgent: A large language model based multi-agent system for inventory management in supply chains. <em>arXiv preprint</em>.</p>
+          <p>Srinivasan, S. (2026a). Context &times; model interactions in LLM-driven supply chain ordering: An inverted bullwhip cascade. <em>Industrial Mind &amp; Code</em>. Available at: https://industrialmindandcode.ai/blog/agentic-bullwhip-v1.html</p>
+          <p>Sterman, J. D. (1989). Modeling managerial behavior: Misperceptions of feedback in a dynamic decision making experiment. <em>Management Science</em>, 35(3), 321&ndash;339.</p>
+          <p>Wang, X., &amp; Disney, S. M. (2016). The bullwhip effect: Progress, trends and directions. <em>European Journal of Operational Research</em>, 250(3), 691&ndash;701.</p>
+        </div>
+      </div>
+
+      <!-- Experiment source -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Experiment source</p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to Experiments
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal academic research &middot; not affiliated with any employer, platform or model provider</span>
+      <ul class="footer-links">
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
