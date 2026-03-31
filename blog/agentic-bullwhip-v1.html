@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agentic Bullwhip Effect — Version 1 — Industrial Mind &amp; Code</title>
+  <title>Context &times; Model Interactions in LLM-Driven Supply Chain Ordering: An Inverted Bullwhip Cascade &mdash; Industrial Mind &amp; Code</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -187,6 +187,10 @@
       margin-bottom: 0.75rem;
     }
     .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
 
     /* ─── Setup table ─── */
     .setup-table {
@@ -216,80 +220,6 @@
     }
     .setup-table td:last-child {
       font-weight: 400;
-      color: var(--text-primary);
-    }
-
-    /* ─── 2×2 design grid ─── */
-    .design-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      font-size: 13px;
-      margin-top: 1rem;
-    }
-    .design-grid-cell {
-      padding: 0.75rem 1rem;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .design-grid-cell:nth-child(3n) { border-right: none; }
-    .design-grid-cell:nth-last-child(-n+3) { border-bottom: none; }
-    .design-grid-cell.header {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      background: var(--surface);
-      font-weight: 500;
-    }
-    .design-grid-cell.row-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-secondary);
-      background: var(--surface);
-      font-weight: 400;
-    }
-    .design-grid-cell.config {
-      font-weight: 400;
-      color: var(--text-primary);
-      background: #fff;
-    }
-
-    /* ─── Key findings ─── */
-    .findings-list {
-      list-style: none;
-      counter-reset: finding;
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
-    .findings-list li {
-      counter-increment: finding;
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-    }
-    .findings-list li::before {
-      content: counter(finding, decimal-leading-zero);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      flex-shrink: 0;
-      margin-top: 4px;
-      min-width: 24px;
-    }
-    .finding-text {
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-    .finding-text strong {
-      font-weight: 500;
       color: var(--text-primary);
     }
 
@@ -348,7 +278,7 @@
     .worst { color: var(--verdict-rejected) !important; }
     .unstable { color: var(--verdict-partial) !important; }
 
-    /* ─── Hypothesis table ─── */
+    /* ─── Verdict badges ─── */
     .verdict {
       display: inline-block;
       font-family: var(--font-mono);
@@ -386,8 +316,25 @@
       font-weight: 500;
       color: var(--text-primary);
     }
+    .prose em { font-style: italic; }
+    .prose ul {
+      margin: 0.75rem 0 1.1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .prose ul li {
+      font-size: 15.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .prose ul li strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
 
-    /* ─── Footnote ─── */
+    /* ─── Table note ─── */
     .table-note {
       font-size: 12px;
       font-weight: 300;
@@ -417,6 +364,12 @@
       color: var(--text-secondary);
       line-height: 1.65;
     }
+    .method-callout a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .method-callout a:hover { color: var(--accent-mid); }
 
     /* ─── Back link ─── */
     .back-link {
@@ -474,7 +427,6 @@
       .nav-links { display: none; }
       .post-header { padding: 4rem 0 3rem; }
       .post-meta { flex-direction: column; gap: 1rem; }
-      .design-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -485,9 +437,7 @@
     <div class="nav-inner">
       <a href="../" class="nav-brand">industrial-mind-and-code</a>
       <ul class="nav-links">
-        <li><a href="../#about">About</a></li>
-        <li><a href="../#experiments">Experiments</a></li>
-        <li><a href="./" class="active">Blog</a></li>
+        <li><a href="./" class="active">Experiments</a></li>
       </ul>
     </div>
   </nav>
@@ -495,10 +445,10 @@
   <!-- Post header -->
   <header class="post-header">
     <div class="container">
-      <p class="post-eyebrow">Supply Chain · Experiment Writeup</p>
-      <h1 class="post-title">Agentic Bullwhip Effect — Version 1</h1>
+      <p class="post-eyebrow">Supply Chain &middot; Experiment Writeup</p>
+      <h1 class="post-title">Context &times; Model Interactions in LLM-Driven Supply Chain Ordering: An Inverted Bullwhip Cascade</h1>
       <p class="post-summary">
-        I placed LLM agents in charge of ordering decisions across a three-tier supply chain and varied two things: how much context the agent had, and how capable the model was. All four configurations amplified demand variability. One of them produced a pattern I was not expecting and have not found described in the literature.
+        An exploratory study examining the interaction between domain context provision and model capability on demand amplification when LLM agents manage ordering decisions in a three-tier serial supply chain.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -507,11 +457,15 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Experiment</span>
-          <span class="post-meta-value">Agentic Bullwhip Effect V1</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 1</span>
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
-          <span class="post-meta-value">2×2 Factorial · 20 runs · 720 LLM calls</span>
+          <span class="post-meta-value">2&times;2 Factorial &middot; 5 runs &middot; 720 LLM calls</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Author</span>
+          <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
       </div>
     </div>
@@ -525,73 +479,109 @@
       <div class="post-section">
         <p class="section-label">Abstract</p>
         <div class="abstract-block">
-          <p>The bullwhip effect is well-understood territory in supply chain research. Forrester identified it in 1961, Lee formalised the causes in 1997. The standard prediction: demand variability amplifies at each upstream tier.</p>
-          <p>This experiment placed LLM agents at each tier of a 3-tier serial supply chain — an Indian automotive OEM, its lighting ancillary, and a component manufacturer. A 2×2 factorial design crossed two context levels (blind vs. full business context) against two model tiers (gpt-4.1-mini vs. o1), with 5 runs per configuration and 720 total LLM calls.</p>
-          <p>I designed this as an exploratory study. The primary purpose was to establish baselines — to have a measured reference point against which I could identify what behaved as expected and what did not.</p>
+          <p>This exploratory study examines the interaction between domain context provision and model capability on demand amplification when LLM agents manage ordering decisions in a three-tier serial supply chain. A 2&times;2 factorial design crossed context treatment (blind vs. business context) against model tier (gpt-4.1-mini lightweight vs. o1 reasoning), with 5 replications per configuration and 720 total LLM calls across a 13-month synthetic demand series.</p>
+          <p>All four configurations produced bullwhip amplification (OVAR &gt; 1.0 at every tier). The context &times; model interaction was notable: context provision reduced chain-average OVAR for the lightweight model (3.157 &rarr; 2.929, &minus;7.2%) and increased it for the reasoning model (3.835 &rarr; 4.412, +15.0%). The most capable, most expensive configuration produced the worst overall performance.</p>
+          <p>The context &times; reasoning condition produced a fully inverted tier pattern &mdash; OEM OVAR 6.349, Ancillary 4.191, Component 2.698 &mdash; reversing the monotone upstream-amplification cascade that is standard in bullwhip literature since Forrester (1961). A plausible interpretation involving anticipatory ordering at the demand-facing tier is proposed. Results are directional (n = 5) and motivate the expanded design in Version 2 of this experimental series.</p>
+          <p><strong>Keywords:</strong> bullwhip effect, LLM agents, inverted cascade, context &times; model interaction, demand amplification, supply chain simulation</p>
         </div>
       </div>
 
-      <!-- Experiment setup -->
+      <!-- Introduction -->
       <div class="post-section">
-        <p class="section-label">Experiment setup</p>
-        <h2 class="section-title">Design &amp; configuration</h2>
-        <table class="setup-table">
+        <p class="section-label">1</p>
+        <h2 class="section-title">Introduction</h2>
+        <div class="prose">
+          <p>The bullwhip effect &mdash; the monotone amplification of demand variability as orders propagate upstream through a supply chain &mdash; is among the most well-established phenomena in operations research. Forrester (1961) identified the pattern; Lee, Padmanabhan, and Whang (1997) formalised its causes; Sterman (1989) demonstrated through the beer distribution game that human cognitive biases contribute to the amplification.</p>
+          <p>The standard prediction is a monotone cascade: order variance increases at each successive upstream tier. This prediction has been confirmed across simulation studies, controlled experiments, and empirical supply chain data (Wang &amp; Disney, 2016). It forms the basis of most supply chain coordination strategies, which aim to reduce information distortion between tiers.</p>
+          <p>The emergence of large language models (LLMs) as general-purpose reasoning systems raises a natural question: how do LLM agents behave when placed in the decision-making role within this well-understood system? Specifically, does providing domain context &mdash; information about company identity, product characteristics, and market conditions &mdash; reduce or increase demand amplification? And does this effect differ across model capability tiers?</p>
+          <p>This study was designed as an exploratory investigation to establish baselines &mdash; measured reference points against which expected and unexpected behaviours could be identified. It is the first in a series of experiments within the Industrial Mind &amp; Code research program that places LLM agents into industrial engineering decision environments and evaluates their performance against analytical baselines.</p>
+        </div>
+      </div>
+
+      <!-- Methodology -->
+      <div class="post-section">
+        <p class="section-label">2</p>
+        <h2 class="section-title">Methodology</h2>
+        <div class="prose">
+
+          <h3>2.1 Supply Chain Structure</h3>
+          <p>A three-tier serial supply chain was simulated:</p>
+          <ul>
+            <li><strong>Tier 1 (OEM):</strong> Tatva Motors &mdash; receives consumer demand</li>
+            <li><strong>Tier 2 (Ancillary):</strong> Lighting Manufacturer &mdash; receives orders from Tier 1</li>
+            <li><strong>Tier 3 (Component):</strong> LED Component Manufacturer &mdash; receives orders from Tier 2</li>
+          </ul>
+          <p>All entities and scenarios are fictional.</p>
+
+          <h3>2.2 Experimental Design</h3>
+        </div>
+
+        <div class="results-table-wrap" style="margin-top:1rem;">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Blind</th>
+                <th>Context</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lightweight (gpt-4.1-mini)</strong></td>
+                <td>blind_lightweight</td>
+                <td>context_lightweight</td>
+              </tr>
+              <tr>
+                <td><strong>Reasoning (o1)</strong></td>
+                <td>blind_reasoning</td>
+                <td>context_reasoning</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose" style="margin-top:1.5rem;">
+          <p><strong>Blind condition:</strong> Agent receives only numeric demand for the current period.</p>
+          <p><strong>Context condition:</strong> Agent receives company identity, product details, market position, and calendar month in addition to numeric demand.</p>
+
+          <h3>2.3 Parameters</h3>
+        </div>
+
+        <table class="setup-table" style="margin-top:0.75rem;">
           <tbody>
-            <tr><td>Models</td><td>gpt-4.1-mini (lightweight) · o1 (reasoning)</td></tr>
-            <tr><td>Design</td><td>2×2 factorial — model tier × context treatment</td></tr>
-            <tr><td>Replications</td><td>5 per configuration · 20 total runs</td></tr>
-            <tr><td>Primary metric</td><td>OVAR — Order Variance Amplification Ratio = Var(orders placed) / Var(demand received)</td></tr>
-            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) → Lighting Manufacturer (Ancillary) → LED Component Manufacturer</td></tr>
-            <tr><td>Demand series</td><td>13 months (Dec 2024 – Dec 2025) · single SKU · 606,771 total units</td></tr>
-            <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
+            <tr><td>Demand series</td><td>13 months (Dec 2024 &ndash; Dec 2025), single SKU, 606,771 total units</td></tr>
+            <tr><td>Replications</td><td>5 per configuration, 20 total runs</td></tr>
+            <tr><td>Lead time</td><td>1 month, deterministic, all tiers</td></tr>
             <tr><td>Initial inventory</td><td>43,000 units at all tiers</td></tr>
-            <tr><td>LLM calls</td><td>720 total (12 periods × 3 tiers × 5 runs × 4 configurations)</td></tr>
+            <tr><td>Total LLM calls</td><td>720 (12 periods &times; 3 tiers &times; 5 runs &times; 4 configurations)</td></tr>
+            <tr><td>gpt-4.1-mini</td><td>Temperature 0.4, 600 max tokens</td></tr>
+            <tr><td>o1</td><td>API-fixed temperature, 16,000 max tokens</td></tr>
           </tbody>
         </table>
 
-        <div class="design-grid" style="margin-top:1.25rem;">
-          <div class="design-grid-cell header"></div>
-          <div class="design-grid-cell header">Blind</div>
-          <div class="design-grid-cell header">Context</div>
-          <div class="design-grid-cell row-label">Lightweight (gpt-4.1-mini)</div>
-          <div class="design-grid-cell config">blind_lightweight</div>
-          <div class="design-grid-cell config">context_lightweight</div>
-          <div class="design-grid-cell row-label">Reasoning (o1)</div>
-          <div class="design-grid-cell config">blind_reasoning</div>
-          <div class="design-grid-cell config">context_reasoning</div>
+        <div class="prose" style="margin-top:1.5rem;">
+          <h3>2.4 Metrics</h3>
+          <ul>
+            <li><strong>OVAR:</strong> Var(orders placed) / Var(demand received)</li>
+            <li><strong>Stockout count:</strong> Chain-total tier-periods with insufficient inventory</li>
+            <li><strong>Excess inventory:</strong> Chain-total units above demand requirements</li>
+          </ul>
         </div>
-
-        <p style="font-size:13px;font-weight:300;color:var(--text-muted);margin-top:0.75rem;line-height:1.6;">
-          OVAR interpretation: &gt; 1.0 = bullwhip amplification · = 1.0 = perfect pass-through · &lt; 1.0 = dampening
-        </p>
-      </div>
-
-      <!-- Key findings -->
-      <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>Universal amplification.</strong> Every configuration, every tier, every run — OVAR above 1.0. No agent dampened demand variability. The best chain-average was 2.929 (context_lightweight). Expected, but useful to have confirmed numerically.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Context had opposite effects depending on the model.</strong> For gpt-4.1-mini, context reduced chain OVAR by 7.2%. For o1, context increased it by 15.0%. The same intervention, applied to two models, moved the metric in opposite directions. This was not something I had anticipated in the experimental design.<br><br>It has a practical implication that is worth being direct about: the common assumption that giving a more capable model more context will produce better results did not hold here. The most capable model with the most context produced the worst result of the four conditions.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The inverted cascade.</strong> This is the finding that prompted Version 2.<br><br>Three of the four configurations followed the classical bullwhip pattern — OVAR increasing at each upstream tier. OEM lowest, component highest. The monotone cascade that appears in every supply chain textbook.<br><br>The context_reasoning configuration reversed it. OEM OVAR: 6.349. Ancillary: 4.191. Component: 2.698.<br><br>I set up the baselines specifically to have a reference point — to be able to see when something deviated from what theory would predict. This deviated clearly. The tier closest to the consumer was the noisiest node in the chain. The tier furthest away was the quietest.<br><br>My read on why: the o1 model, given context about the OEM's market position and the seasonal calendar, appears to have built anticipatory ordering strategies at the demand-facing tier. It tried to get ahead of expected demand patterns. In doing so, it injected variance at the head of the chain that exceeded the amplification at the downstream tiers. The component tier, receiving an already highly variable signal, had less room to amplify further relative to its input.<br><br>If this interpretation is correct, it means a sufficiently capable model with sufficient context does not just fail to solve the bullwhip effect — it can create variance at a point in the chain where classical theory does not expect it. That is a different kind of failure than simply amplifying too much.<br><br>I should be clear about the limits of this finding: n = 5 per configuration, and the o1 runs showed high variability (CV of 22–57% across tiers). This is a pattern that needs replication, not a conclusion. Version 2 was designed with 20 runs per cell in part to test whether it holds up.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The most expensive model performed worst.</strong> o1 costs roughly 50× more per call than gpt-4.1-mini. It produced higher chain OVAR in both blind and context conditions. This is a straightforward finding but one that matters for anyone evaluating these models for operational use.</span>
-          </li>
-        </ol>
       </div>
 
       <!-- Results -->
       <div class="post-section">
-        <p class="section-label">Results</p>
-        <h2 class="section-title">Numeric results</h2>
+        <p class="section-label">3</p>
+        <h2 class="section-title">Results</h2>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Chain-average OVAR by configuration</p>
+        <div class="prose">
+          <h3>3.1 Universal Amplification</h3>
+          <p>OVAR exceeded 1.0 at every tier, in every configuration, across all 20 runs. No configuration dampened demand variability.</p>
+
+          <h3>3.2 Chain-Average OVAR</h3>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1rem;">Table 1: Chain-Average OVAR by Configuration</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
@@ -606,93 +596,110 @@
             <tbody>
               <tr>
                 <td>context_lightweight</td>
-                <td class="tag-cell">GPT-4.1-MINI</td>
+                <td class="tag-cell">gpt-4.1-mini</td>
                 <td>Context</td>
                 <td class="value-cell best">2.929</td>
-                <td class="best">−7.2%</td>
+                <td class="value-cell">&minus;7.2%</td>
               </tr>
               <tr>
                 <td>blind_lightweight</td>
-                <td class="tag-cell">GPT-4.1-MINI</td>
+                <td class="tag-cell">gpt-4.1-mini</td>
                 <td>Blind</td>
                 <td class="value-cell">3.157</td>
-                <td class="tag-cell">baseline</td>
+                <td class="value-cell">baseline</td>
               </tr>
               <tr>
                 <td>blind_reasoning</td>
-                <td class="tag-cell">O1</td>
+                <td class="tag-cell">o1</td>
                 <td>Blind</td>
                 <td class="value-cell">3.835</td>
-                <td>+21.5%</td>
+                <td class="value-cell">+21.5%</td>
               </tr>
               <tr>
                 <td>context_reasoning</td>
-                <td class="tag-cell">O1</td>
+                <td class="tag-cell">o1</td>
                 <td>Context</td>
                 <td class="value-cell worst">4.412</td>
-                <td class="worst">+39.7%</td>
+                <td class="value-cell">+39.7%</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">OVAR by tier — mean ± std (CV%)</p>
+        <div class="prose" style="margin-top:1.5rem;">
+          <h3>3.3 OVAR by Tier</h3>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1rem;">Table 2: Tier-Level OVAR (mean &plusmn; std, CV%)</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
               <tr>
                 <th>Configuration</th>
                 <th>OEM OVAR</th>
-                <th>OEM CV%</th>
+                <th>CV%</th>
                 <th>Ancillary OVAR</th>
-                <th>Anc CV%</th>
+                <th>CV%</th>
                 <th>Component OVAR</th>
-                <th>Comp CV%</th>
+                <th>CV%</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>blind_lightweight</td>
-                <td class="value-cell">2.267 ± 0.009</td>
+                <td class="value-cell">2.267 &plusmn; 0.009</td>
                 <td class="tag-cell">0.41</td>
-                <td class="value-cell">2.938 ± 0.044</td>
+                <td class="value-cell">2.938 &plusmn; 0.044</td>
                 <td class="tag-cell">1.50</td>
-                <td class="value-cell">4.266 ± 0.078</td>
+                <td class="value-cell">4.266 &plusmn; 0.078</td>
                 <td class="tag-cell">1.82</td>
               </tr>
               <tr>
                 <td>context_lightweight</td>
-                <td class="value-cell">2.237 ± 0.006</td>
+                <td class="value-cell">2.237 &plusmn; 0.006</td>
                 <td class="tag-cell">0.29</td>
-                <td class="value-cell">3.138 ± 0.080</td>
+                <td class="value-cell">3.138 &plusmn; 0.080</td>
                 <td class="tag-cell">2.55</td>
-                <td class="value-cell">3.412 ± 0.347 *</td>
+                <td class="value-cell">3.412 &plusmn; 0.347 *</td>
                 <td class="tag-cell">10.18</td>
               </tr>
               <tr>
                 <td>blind_reasoning</td>
-                <td class="value-cell unstable">4.200 ± 2.400</td>
-                <td class="tag-cell unstable">57.15 ⚠</td>
-                <td class="value-cell unstable">3.656 ± 1.350</td>
-                <td class="tag-cell unstable">36.94 ⚠</td>
-                <td class="value-cell">3.649 ± 0.608</td>
-                <td class="tag-cell unstable">16.66 ⚠</td>
+                <td class="value-cell unstable">4.200 &plusmn; 2.400</td>
+                <td class="tag-cell unstable">57.15 &#9888;</td>
+                <td class="value-cell unstable">3.656 &plusmn; 1.350</td>
+                <td class="tag-cell unstable">36.94 &#9888;</td>
+                <td class="value-cell unstable">3.649 &plusmn; 0.608</td>
+                <td class="tag-cell unstable">16.66 &#9888;</td>
               </tr>
               <tr>
                 <td>context_reasoning</td>
-                <td class="value-cell worst">6.349 ± 1.452</td>
-                <td class="tag-cell unstable">22.86 ⚠</td>
-                <td class="value-cell worst">4.191 ± 1.373</td>
-                <td class="tag-cell unstable">32.76 ⚠</td>
-                <td class="value-cell best">2.698 ± 0.677</td>
-                <td class="tag-cell unstable">25.10 ⚠</td>
+                <td class="value-cell worst">6.349 &plusmn; 1.452</td>
+                <td class="tag-cell unstable">22.86 &#9888;</td>
+                <td class="value-cell">4.191 &plusmn; 1.373</td>
+                <td class="tag-cell unstable">32.76 &#9888;</td>
+                <td class="value-cell best">2.698 &plusmn; 0.677</td>
+                <td class="tag-cell unstable">25.10 &#9888;</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="table-note">* Parse error in run 5 inflates component mean by ~+0.129. Clean estimate: 3.283 ± 0.220. &nbsp;⚠ CV &gt; 10% — high run-to-run instability; means are directional, not reliable point estimates.</p>
+        <p class="table-note">* Parse error in run 5 inflates component mean by ~+0.129. Clean estimate: 3.283 &plusmn; 0.220. &nbsp;&nbsp; &#9888; CV &gt; 10% &mdash; high run-to-run instability; means are directional, not reliable point estimates.</p>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Secondary metrics</p>
+        <div class="prose" style="margin-top:1.5rem;">
+          <h3>3.4 The Inverted Cascade</h3>
+          <p>Three configurations produced the expected monotone pattern (OEM &lt; Ancillary &lt; Component). The context_reasoning configuration reversed it:</p>
+          <ul>
+            <li><strong>OEM:</strong> 6.349 (highest)</li>
+            <li><strong>Ancillary:</strong> 4.191</li>
+            <li><strong>Component:</strong> 2.698 (lowest)</li>
+          </ul>
+          <p>The tier closest to the consumer exhibited the highest OVAR. The tier furthest from the consumer exhibited the lowest.</p>
+
+          <h3>3.5 Secondary Metrics</h3>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1rem;">Table 3: Stockouts and Excess Inventory</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
@@ -705,31 +712,34 @@
             <tbody>
               <tr>
                 <td>blind_lightweight</td>
-                <td>21.4</td>
+                <td class="value-cell">21.4</td>
                 <td class="value-cell">109,360</td>
               </tr>
               <tr>
                 <td>context_lightweight</td>
-                <td>19.6</td>
+                <td class="value-cell">19.6</td>
                 <td class="value-cell">151,246</td>
               </tr>
               <tr>
                 <td>blind_reasoning</td>
-                <td>20.0</td>
+                <td class="value-cell">20.0</td>
                 <td class="value-cell">330,649</td>
               </tr>
               <tr>
                 <td>context_reasoning</td>
-                <td class="best">12.8</td>
+                <td class="value-cell best">12.8</td>
                 <td class="value-cell worst">654,728</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="table-note">context_reasoning's lower stockout count coincides with its highest excess inventory — orders were large enough to buffer stockouts.</p>
+        <p class="table-note">The context_reasoning configuration&rsquo;s lower stockout count coincides with its highest excess inventory &mdash; orders were sufficiently large to buffer against stockouts.</p>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Hypothesis verdicts</p>
-        <div class="results-table-wrap">
+        <div class="prose" style="margin-top:1.5rem;">
+          <h3>3.6 Hypothesis Verdicts</h3>
+        </div>
+
+        <div class="results-table-wrap" style="margin-top:1rem;">
           <table class="results-table">
             <thead>
               <tr>
@@ -741,12 +751,12 @@
             <tbody>
               <tr>
                 <td>H1</td>
-                <td>Context OVAR &lt; Blind OVAR at all three tiers</td>
+                <td>Context OVAR &lt; Blind OVAR at all tiers</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H2</td>
-                <td>Blind_reasoning ≈ Blind_lightweight (model does not matter)</td>
+                <td>Blind_reasoning &asymp; Blind_lightweight</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
@@ -762,36 +772,65 @@
             </tbody>
           </table>
         </div>
-        <p class="table-note">H1, H2, H3 all rejected. H4 holds for lightweight; reversed for reasoning.</p>
+        <p class="table-note">H4 held for the lightweight model (seasonal elevation score of 83%) but reversed for the reasoning model.</p>
       </div>
 
       <!-- Discussion -->
       <div class="post-section">
-        <p class="section-label">Discussion</p>
-        <h2 class="section-title">What this means</h2>
+        <p class="section-label">4</p>
+        <h2 class="section-title">Discussion</h2>
         <div class="prose">
-          <p>
-            The interaction between context and model capability is the finding I keep returning to. It cuts against the default assumption in most applied AI work — that better models with better context will produce better outcomes.
-          </p>
-          <p>
-            In a supply chain, the agent's output in one period affects the system state in subsequent periods. An order placed in period 3 changes the inventory position that informs the order in period 5. When the demand-facing agent introduces anticipatory variance — ordering ahead of an expected spike — that variance propagates downstream through agents that have no visibility into why their incoming orders look the way they do.
-          </p>
-          <p>
-            The classical bullwhip model assumes variance is amplified at each stage. The inverted cascade suggests that when agents actively construct strategies — rather than reacting passively to incoming signals — the variance can originate at the demand-facing tier in quantities that exceed the natural amplification downstream.
-          </p>
-          <p>
-            Whether this is a robust phenomenon or an artefact of small sample size is what Version 2 was partly designed to investigate. As it turned out, the more fundamental result from Version 2 — that heuristics dominate outright — is the larger finding. But the cascade inversion remains an interesting question for future work with stateful agents.
-          </p>
+
+          <h3>4.1 The Context &times; Model Interaction</h3>
+          <p>The central finding is that the context treatment had opposite effects depending on model tier. For gpt-4.1-mini, context reduced chain-average OVAR by 0.228. For o1, context increased it by 0.577. At the OEM tier, context had negligible effect on gpt-4.1-mini (&Delta; = &minus;0.030) and a large positive effect on o1 (&Delta; = +2.149).</p>
+          <p>This interaction has implications for the common assumption in applied LLM deployments that providing more context to a more capable model yields monotonically better outcomes. In this feedback-coupled system, the combination of full context and higher model capability produced the worst performance of all four conditions.</p>
+
+          <h3>4.2 Interpreting the Inverted Cascade</h3>
+          <p>The inverted tier pattern in context_reasoning &mdash; OEM as noisiest, Component as quietest &mdash; departs from the monotone cascade predicted by classical bullwhip theory (Forrester, 1961; Lee et al., 1997).</p>
+          <p>A plausible interpretation: the o1 model, given context about the OEM&rsquo;s market position and seasonal calendar, may construct anticipatory ordering strategies at the demand-facing tier. If the OEM agent orders aggressively in anticipation of a festive season demand spike, it injects variance at the chain head that is larger than the upstream tiers&rsquo; natural amplification. The component tier, receiving an already highly variable signal, has less residual variance to amplify relative to its input.</p>
+          <p>This interpretation is consistent with the observation that context_reasoning generated the highest excess inventory (654,728 units) while producing the lowest stockout count (12.8) &mdash; a pattern consistent with large, precautionary ordering at the OEM tier.</p>
+          <p>However, this interpretation is not uniquely determined by the data. The o1 configurations showed coefficients of variation between 22% and 57%, meaning the tier-level means carry substantial uncertainty at n = 5. The pattern requires replication at higher sample sizes. Version 2 of this experimental series increases replications to 20 per condition and introduces heuristic baselines as the primary comparison.</p>
+
+          <h3>4.3 Model Capability as a Non-Monotone Factor</h3>
+          <p>The finding that the most expensive, most capable model produced the worst performance raises a question about the relationship between model capability and operational decision quality in feedback-coupled systems.</p>
+          <p>In systems where the agent&rsquo;s output affects subsequent inputs &mdash; as in supply chain ordering, where orders in period <em>t</em> affect inventory in period <em>t</em>+1 &mdash; a model capable enough to form strategies but operating without state persistence may perform worse than a less capable model that defaults to conservative behaviour. The reasoning model may use context to construct forward-looking strategies that inject variance, while the lightweight model, unable to reason about seasonal patterns, produces more conservative (and less variable) orders by default.</p>
+          <p>This suggests that in feedback-coupled systems, model capability interacts with agent architecture in ways that are not straightforward.</p>
         </div>
       </div>
 
-      <!-- Methodology note -->
+      <!-- Limitations -->
       <div class="post-section">
-        <div class="method-callout">
-          <p class="method-callout-label">Scope and limitations</p>
-          <p>
-            Exploratory study. Five runs per configuration. The o1 means carry wide uncertainty and should be treated as directional. Single product. Stateless agents. Deterministic lead times. The context treatment provided company identity and calendar month — not demand forecasts or historical data. All scenarios, companies, and supply chain structures are fictional. No proprietary data was used.
-          </p>
+        <p class="section-label">5</p>
+        <h2 class="section-title">Limitations</h2>
+        <div class="prose">
+          <p>This is an exploratory study with 5 replications per configuration. The o1 configurations showed high run-to-run variability (CV 22&ndash;57%), and tier-level means should be treated as directional rather than precise point estimates.</p>
+          <p>The experimental design is deliberately narrow: stateless agents, single product, deterministic lead times, no inter-tier communication, no demand forecasts provided, no historical order data available. The context treatment provided company identity and calendar month &mdash; not a demand model or forecasting system.</p>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="post-section">
+        <p class="section-label">6</p>
+        <h2 class="section-title">Conclusion</h2>
+        <div class="prose">
+          <p>This study provides initial experimental evidence of a context &times; model interaction in LLM-driven supply chain ordering, where domain context improves lightweight model performance and degrades reasoning model performance. The inverted tier pattern observed in the context &times; reasoning condition &mdash; where the demand-facing tier exhibited the highest order variance &mdash; departs from the monotone cascade standard in bullwhip theory and warrants investigation at larger sample sizes.</p>
+          <p>These results suggest that in feedback-coupled decision environments, the relationship between model capability, context provision, and decision quality may be non-monotone. Higher capability combined with richer context does not guarantee better operational outcomes when the agent architecture lacks state persistence.</p>
+          <p>Version 2 of this experimental series (Srinivasan, 2026b) expands the design to 20 replications per condition and introduces heuristic baselines, addressing the question of whether any LLM configuration outperforms established deterministic methods.</p>
+        </div>
+      </div>
+
+      <!-- References -->
+      <div class="post-section">
+        <p class="section-label">References</p>
+        <div class="prose">
+          <p>Chen, F., Drezner, Z., Ryan, J. K., &amp; Simchi-Levi, D. (2000). Quantifying the bullwhip effect in a simple supply chain: The impact of forecasting, lead times, and information. <em>Management Science</em>, 46(3), 436&ndash;443.</p>
+          <p>Forrester, J. W. (1961). <em>Industrial Dynamics</em>. MIT Press.</p>
+          <p>Jannelli, V., Schoepf, S., Jackson, I., Jesus Saenz, M., &amp; Brintrup, A. (2024). Agentic LLMs in the supply chain: Towards autonomous multi-agent consensus-seeking. <em>arXiv preprint</em> arXiv:2411.10184.</p>
+          <p>Lee, H. L., Padmanabhan, V., &amp; Whang, S. (1997). Information distortion in a supply chain: The bullwhip effect. <em>Management Science</em>, 43(4), 546&ndash;558.</p>
+          <p>Quan, J., &amp; Liu, H. (2024). InvAgent: A large language model based multi-agent system for inventory management in supply chains. <em>arXiv preprint</em>.</p>
+          <p>Srinivasan, S. (2026b). Heuristic dominance over LLM agents in stateless supply chain replenishment: An experimental study. <em>Industrial Mind &amp; Code</em>. Available at: https://industrialmindandcode.ai/blog/agentic-bullwhip-v2.html</p>
+          <p>Sterman, J. D. (1989). Modeling managerial behavior: Misperceptions of feedback in a dynamic decision making experiment. <em>Management Science</em>, 35(3), 321&ndash;339.</p>
+          <p>Wang, X., &amp; Disney, S. M. (2016). The bullwhip effect: Progress, trends and directions. <em>European Journal of Operational Research</em>, 250(3), 691&ndash;701.</p>
         </div>
       </div>
 
@@ -799,17 +838,13 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Experiment source</p>
-          <p>
-            Code, data, and raw results for this experiment are available on GitHub.
-            &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/agentic_bullwhip_effect_version_1" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub →</a>
-          </p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/agentic_bullwhip_effect_version_1" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>
 
-      <!-- Back link -->
       <a class="back-link" href="./">
         <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
-        Back to blog
+        Back to Experiments
       </a>
 
     </div>
@@ -818,10 +853,14 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code · Placing a probabilistic system inside a deterministic environment<br>personal research · not affiliated with any employer</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal academic research &middot; not affiliated with any employer, platform or model provider</span>
       <ul class="footer-links">
-        <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
       </ul>
     </div>
   </footer>
