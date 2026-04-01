@@ -500,7 +500,7 @@
           <p>The bullwhip effect &mdash; the amplification of demand variability as orders propagate upstream through a supply chain &mdash; remains one of the most well-documented phenomena in operations research. First identified by Forrester (1961) and formalised by Lee, Padmanabhan, and Whang (1997), the standard prediction is that order variance increases monotonically at each successive upstream tier due to demand signal processing, order batching, price fluctuations, and shortage gaming.</p>
           <p>Recent advances in large language models (LLMs) have generated significant interest in their potential application to supply chain decision-making. Jannelli et al. (2024) demonstrated that LLM-based consensus-seeking frameworks can reduce the bullwhip effect when agents negotiate with neighbouring supply chain nodes. Quan and Liu (2024) introduced InvAgent, a framework using zero-shot learning for inventory management. These studies have generally positioned LLM agents as promising tools for supply chain coordination and planning.</p>
           <p>However, a critical evaluation question remains underexplored: how does LLM agent performance in operational decision-making compare not to other LLM configurations, but to the deterministic analytical methods that already exist for these problems? Supply chain replenishment has well-established heuristic solutions &mdash; exponential smoothing, order-up-to policies, and moving average methods &mdash; that have been in use for decades. For LLM agents to represent a meaningful advance, they must demonstrate performance at least comparable to these baselines.</p>
-          <p>This study addresses that question directly. Building on Version 1 of this experimental series (Srinivasan, 2026a), which established that all tested LLM configurations amplified demand variability and identified a previously undocumented inverted tier pattern in the context &times; reasoning condition, Version 2 introduces heuristic baselines as the primary point of comparison.</p>
+          <p>This study addresses that question directly. Building on Version 1 of this experimental series (Srinivasan, 2026a), which established that all tested LLM configurations amplified demand variability and identified an inverted tier pattern in the context &times; reasoning condition, Version 2 introduces heuristic baselines as the primary point of comparison.</p>
           <p>The experimental design places LLM agents in a deliberately constrained environment &mdash; stateless, single-product, deterministic lead times &mdash; to isolate the fundamental question of whether a probabilistic model generating orders in a deterministic environment can match a formula designed for exactly this class of problem.</p>
         </div>
       </div>
@@ -563,13 +563,13 @@
           <p>Three deterministic heuristic baselines were implemented:</p>
           <ul>
             <li><strong>Exponential smoothing (&alpha; = 0.30):</strong> A forecasting method that estimates future demand as a weighted average of all past observations, with more recent periods receiving higher weight. The smoothing parameter &alpha; = 0.30 gives 30% weight to the most recent demand observation and 70% to accumulated history. In this experiment, each tier applies exponential smoothing to the demand signal it receives and places an order equal to the smoothed estimate. The result is that over-orders in one period are partially corrected in the next, giving the method a self-correcting property that stateless agents lack.</li>
-            <li><strong>Naive passthrough:</strong> Orders exactly the quantity demanded in the current period &mdash; no dampening, no anticipation. By construction, order variance equals demand variance (OVAR = 1.0), making this a mathematical lower bound on amplification. In this experiment, each tier passes through the demand signal it receives without modification. It is included to establish whether any tested method makes the bullwhip effect worse than simply forwarding the received signal.</li>
+            <li><strong>Naive passthrough:</strong> Orders exactly the quantity demanded in the current period &mdash; no dampening, no anticipation. By construction, order variance equals demand variance (OVAR = 1.0), making this the pass-through reference point &mdash; it establishes whether any tested method amplifies beyond simply forwarding the received signal as-is.</li>
             <li><strong>Order-up-to with fixed safety stock:</strong> Each period, the tier calculates the quantity needed to restore inventory to a fixed target level, accounting for outstanding orders and current on-hand stock. The target is set to the historical mean demand of the series plus 1.65&sigma; &mdash; the same figure used to set initial inventory (~95% service level). In this experiment, this baseline represents a planning-based replenishment rule: order enough to cover the gap between the target stock position and the current position.</li>
           </ul>
           <p>Heuristic baselines are deterministic and were run once per condition.</p>
 
           <h3>2.5 Agent Design</h3>
-          <p>All LLM agents were stateless &mdash; each agent received only the current period&rsquo;s demand and placed an order with no access to its own order history, inventory consequences, or inter-tier information. This design choice was deliberate: it reflects the common deployment pattern where LLM agents operate without persistent memory.</p>
+          <p>All LLM agents were stateless &mdash; each agent received the current period&rsquo;s demand, on-hand inventory, backlog, and inventory position, but no order history, no inter-tier information, and no memory of prior periods. This design choice was deliberate: it reflects the common deployment pattern where LLM agents operate without persistent memory.</p>
 
           <h3>2.6 Parameters</h3>
         </div>
@@ -579,8 +579,8 @@
             <tr><td>Replications</td><td>20 per LLM configuration &middot; 1 per heuristic</td></tr>
             <tr><td>Lead time</td><td>1 month, deterministic, all tiers</td></tr>
             <tr><td>Initial inventory</td><td>43,609 units (mean + 1.65&sigma;, ~95% service level)</td></tr>
-            <tr><td>Total LLM calls</td><td>11,520 (4 conditions &times; 20 runs &times; 24 periods &times; 3 tiers)</td></tr>
-            <tr><td>LLM temperature</td><td>gpt-4.1-mini: 0.4 &middot; phi4:14b: 0.4 &middot; o4-mini: API-fixed &middot; gpt-oss:120b: 0.4</td></tr>
+            <tr><td>Total LLM calls</td><td>11,520 (8 conditions &mdash; 4 Azure + 4 Local &mdash; &times; 20 runs &times; 24 periods &times; 3 tiers)</td></tr>
+            <tr><td>LLM temperature</td><td>gpt-4.1-mini: 0.4 &middot; phi4:14b: 0.0 (blind) / 0.3 (context) &middot; o4-mini: API-constrained (&asymp;1.0) &middot; gpt-oss:120b: 0.0 (blind) / 0.3 (context)</td></tr>
           </tbody>
         </table>
 
@@ -592,15 +592,15 @@
           </ul>
 
           <h3>2.8 Hypotheses</h3>
-          <p>Seven hypotheses were formulated prior to execution, covering the main and interaction effects of context provision and model tier on OVAR and stockout count:</p>
+          <p>Seven hypotheses were formulated prior to execution. All require a minimum practically relevant difference (MPRD) of |&Delta;OVAR| &ge; 0.5 at chain level to be supported:</p>
           <ul>
-            <li><strong>H1:</strong> Context provision reduces chain-average OVAR relative to blind condition.</li>
-            <li><strong>H2:</strong> Reasoning-tier models achieve lower chain-average OVAR than lightweight-tier models.</li>
-            <li><strong>H3:</strong> The context &times; reasoning combination achieves the lowest chain-average OVAR of all LLM configurations.</li>
-            <li><strong>H4:</strong> Context provision reduces stockout count relative to blind condition.</li>
-            <li><strong>H5:</strong> Reasoning-tier models achieve fewer stockouts than lightweight-tier models.</li>
-            <li><strong>H6:</strong> Local inference achieves chain-average OVAR within 10% of frontier inference for equivalent tier and context conditions.</li>
-            <li><strong>H7:</strong> Frontier reasoning (o4-mini) achieves chain-average OVAR closer to heuristic performance than any other LLM configuration.</li>
+            <li><strong>H1 (Primary):</strong> At least one LLM configuration achieves lower chain-average OVAR than exponential smoothing (0.54) with no more stockouts.</li>
+            <li><strong>H2 (C1):</strong> context_lightweight OVAR &lt; blind_lightweight by &ge;0.5, with no increase in stockouts.</li>
+            <li><strong>H3 (C2):</strong> context_reasoning OVAR &lt; blind_reasoning by &ge;0.5, with no increase in stockouts.</li>
+            <li><strong>H4 (C3):</strong> blind_reasoning OVAR &lt; blind_lightweight by &ge;0.5.</li>
+            <li><strong>H5 (C4):</strong> context_reasoning OVAR &lt; context_lightweight by &ge;0.5.</li>
+            <li><strong>H6 (C5):</strong> Context benefit is larger for the reasoning tier than the lightweight tier.</li>
+            <li><strong>H7 (E4):</strong> Local context_lightweight OVAR within &plusmn;0.5 of frontier context_lightweight OVAR.</li>
           </ul>
         </div>
       </div>
@@ -813,7 +813,7 @@
           <p>For local phi4:14b, context provision increased chain OVAR from 4.33 to 6.35. At the Ancillary tier, context produced OVAR of 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates that context introduced substantial run-to-run instability rather than consistent directional change. The blind condition for the same model produced standard deviation of 0.00 &mdash; identical orders across all 20 runs.</p>
 
           <h3>3.3 Reasoning Model Performance</h3>
-          <p>o4-mini (frontier reasoning) generated over 1,000,000 reasoning tokens across 20 runs. Its blind-condition chain OVAR (4.72) was statistically indistinguishable from gpt-4.1-mini (4.70). The 116B-parameter gpt-oss:120b (local reasoning) achieved 4.52 in blind conditions. Neither reasoning model demonstrated a measurable ordering advantage over its lightweight-tier counterpart.</p>
+          <p>o4-mini (frontier reasoning) generated over 1,000,000 reasoning tokens across 20 runs. Its blind-condition chain OVAR (4.72) showed no observed ordering advantage over gpt-4.1-mini (4.70). The 116B-parameter gpt-oss:120b (local reasoning) achieved 4.52 in blind conditions. Neither reasoning model demonstrated a measurable ordering advantage over its lightweight-tier counterpart.</p>
 
           <h3>3.4 Hypothesis Verdicts</h3>
         </div>
@@ -830,37 +830,37 @@
             <tbody>
               <tr>
                 <td>H1</td>
-                <td>Context reduces chain-average OVAR</td>
+                <td>At least one LLM achieves lower OVAR than exp smoothing (0.54) with &le;5 stockouts &mdash; best LLM: OVAR 4.33, 41 stockouts</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H2</td>
-                <td>Reasoning tier achieves lower OVAR than lightweight tier</td>
+                <td>context_lightweight OVAR &lt; blind_lightweight by &ge;0.5 &mdash; actual &Delta; = 0.23, below MPRD</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H3</td>
-                <td>Context &times; Reasoning achieves lowest OVAR of all LLM configs</td>
+                <td>context_reasoning OVAR &lt; blind_reasoning by &ge;0.5 &mdash; actual &Delta; = 0.20, below MPRD</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H4</td>
-                <td>Context reduces stockout count</td>
+                <td>blind_reasoning OVAR &lt; blind_lightweight by &ge;0.5 &mdash; actual &Delta; = &minus;0.02, opposite direction</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H5</td>
-                <td>Reasoning tier achieves fewer stockouts than lightweight tier</td>
+                <td>context_reasoning OVAR &lt; context_lightweight by &ge;0.5 &mdash; actual &Delta; = &minus;0.05, opposite direction</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H6</td>
-                <td>Local OVAR within 10% of frontier for equivalent conditions</td>
+                <td>Context benefit larger for reasoning tier than lightweight &mdash; actual: &minus;0.03, opposite direction</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H7</td>
-                <td>o4-mini achieves OVAR closest to heuristic performance</td>
+                <td>Local context_lightweight within &plusmn;0.5 of frontier context_lightweight &mdash; actual &Delta; = 1.88, well outside equivalence bounds</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
             </tbody>
@@ -878,7 +878,7 @@
           <h3>4.1 Structural Explanation for Heuristic Dominance</h3>
           <p>The performance gap between heuristics and LLM agents has a structural explanation rooted in the stateless agent architecture. Each LLM agent arrives at every ordering period with no memory of its previous orders or their consequences. It cannot observe that an over-order in period <em>t</em> caused excess inventory in period <em>t</em>+1, and therefore cannot self-correct.</p>
           <p>Exponential smoothing, by contrast, maintains a single state variable &mdash; the smoothed demand estimate &mdash; that encodes the full history of observed demand into a recursively updated value. This provides a self-correcting property: an over-forecast in period <em>t</em> is partially corrected in period <em>t</em>+1 through the smoothing mechanism. The LLM agent, by design, lacks this temporal coherence.</p>
-          <p>This is not a limitation of model intelligence. It is a consequence of placing a probabilistic text-generation system in a deterministic sequential decision environment where state persistence is required for effective performance. The models generate locally plausible order quantities in each period, but the sequence of decisions has no coherence because each decision is independent.</p>
+          <p>These results are consistent with a structural constraint: placing a stateless text-generation system in a sequential decision environment where temporal coherence is required. The models generate locally plausible order quantities in each period, but the sequence of decisions has no coherence because each decision is independent. Whether model intelligence could close this gap in a stateful architecture is outside the scope of this experiment.</p>
 
           <h3>4.2 Context as a Source of Instability</h3>
           <p>The phi4:14b context result is notable for the nature of the failure rather than its magnitude. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape ordering behaviour &mdash; it introduced variance. In some runs, the context may have triggered aggressive anticipatory ordering; in others, conservative responses. The blind model failed consistently and identically across all runs.</p>
