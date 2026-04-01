@@ -1,0 +1,40 @@
+{
+  "experiment": "E2",
+  "timestamp_utc": "20260319T135556",
+  "demand_checksum_sha256": "recovered_from_checkpoint",
+  "backend": "unknown",
+  "model_lightweight": "",
+  "model_reasoning": "",
+  "model_oss_reasoning": "",
+  "temperature_config": {
+    "blind_lightweight": 0.0,
+    "context_lightweight": 0.3,
+    "blind_reasoning": 0.0,
+    "context_reasoning": 0.3
+  },
+  "run_stats": {},
+  "latency_stats": {
+    "n_calls": 2880,
+    "mean_ms": 5807.9,
+    "p50_ms": 4953.1,
+    "p95_ms": 11127.8,
+    "p99_ms": 18362.3,
+    "ttft_mean_ms": 5688.4,
+    "ttft_p95_ms": 11035.7,
+    "mean_generation_tps": 76.5,
+    "total_prompt_tokens": 416146,
+    "total_completion_tokens": 1245689,
+    "total_reasoning_tokens": 1083968,
+    "total_cached_tokens": 0,
+    "tokens_per_second": 99.4,
+    "retry_rate": 0.0,
+    "total_wall_time_s": 16726.9
+  },
+  "infra_context": {
+    "type": "azure",
+    "endpoint": "",
+    "api_version": "",
+    "model_lightweight_deployment": "",
+    "model_reasoning_deployment": ""
+  }
+}

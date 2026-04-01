@@ -547,15 +547,15 @@
         </div>
 
         <div class="prose" style="margin-top:1.5rem;">
-          <p><strong>Blind condition:</strong> Agent receives only numeric demand for the current period.</p>
-          <p><strong>Context condition:</strong> Agent receives company identity, product details, market position, and calendar month in addition to numeric demand.</p>
+          <p><strong>Blind condition:</strong> Agent receives numeric state only: current-period demand, on-hand inventory, backlog, in-transit orders, and lead time. No company identity, product, geography, or calendar context is provided.</p>
+          <p><strong>Context condition:</strong> Agent receives the same numeric state plus company identity, product details, market position, and calendar month/year.</p>
 
           <h3>2.3 Parameters</h3>
         </div>
 
         <table class="setup-table" style="margin-top:0.75rem;">
           <tbody>
-            <tr><td>Demand series</td><td>13 months (Dec 2024 &ndash; Dec 2025), single SKU, 606,771 total units</td></tr>
+            <tr><td>Demand series</td><td>13 periods (Dec 2024 &ndash; Dec 2025) &middot; 12 active ordering periods + period-13 close-out &middot; single SKU &middot; 606,771 total units</td></tr>
             <tr><td>Replications</td><td>5 per configuration, 20 total runs</td></tr>
             <tr><td>Lead time</td><td>1 month, deterministic, all tiers</td></tr>
             <tr><td>Initial inventory</td><td>43,000 units at all tiers</td></tr>

@@ -1,0 +1,37 @@
+period,calendar_month,year,month,retail_demand,phase,event_label,event_note
+1,Jan 2025,2025,January,37200,baseline,Makar Sankranti,Minor festive uplift; modestly above 2025 baseline
+2,Feb 2025,2025,February,36200,baseline,Union Budget,"Budget announcement; sentiment uplift, demand broadly flat"
+3,Mar 2025,2025,March,43500,baseline,FY-end peak,Highest demand month; OEM and dealer push to close Indian FY
+4,Apr 2025,2025,April,36200,baseline,Wedding season onset,Post-FY dip; mild wedding-season elevation
+5,May 2025,2025,May,37200,baseline,Wedding season,Modest wedding-season lift
+6,Jun 2025,2025,June,34300,baseline,Monsoon dip,Three-month monsoon trough begins
+7,Jul 2025,2025,July,33700,baseline,Monsoon trough,Lowest demand month; monsoon at peak intensity
+8,Aug 2025,2025,August,35100,baseline,Monsoon exit,Partial recovery toward pre-festive build
+9,Sep 2025,2025,September,37200,baseline,Pre-festive build,Inventory build-up; demand returns to baseline
+10,Oct 2025,2025,October,40400,festive,Navratri / Dasara,First festive peak; auspicious buying window
+11,Nov 2025,2025,November,41600,festive,Diwali,Largest single-month demand spike (cycle 1)
+12,Dec 2025,2025,December,37700,baseline,Year-end / post-Diwali,Year-end dealer push; elevated vs non-festive months
+13,Jan 2026,2026,January,39060,baseline,Makar Sankranti,Same driver as Jan 2025; +5% YoY growth base
+14,Feb 2026,2026,February,38010,baseline,Union Budget,Budget period; +5% YoY
+15,Mar 2026,2026,March,45675,baseline,FY-end peak,Structural annual maximum; +5% YoY
+16,Apr 2026,2026,April,38010,baseline,Wedding season onset,Post-FY dip; mirrors April 2025 at 2026 base
+17,May 2026,2026,May,39060,baseline,Wedding season,Modest lift; +5% YoY
+18,Jun 2026,2026,June,36015,baseline,Monsoon dip,Monsoon trough; ~6% below 2026 annual mean
+19,Jul 2026,2026,July,35385,conflict,Monsoon trough — CONFLICT,Monsoon trough + geopolitical supply shock begins
+20,Aug 2026,2026,August,36855,conflict,Monsoon exit — CONFLICT,Partial demand recovery; supply chain disrupted by conflict
+21,Sep 2026,2026,September,39060,conflict,Pre-festive build — CONFLICT,Festive build hampered by sustained conflict disruption
+22,Oct 2026,2026,October,42420,festive,Navratri / Dasara,Festive cycle 2; +5% YoY on Oct 2025 peak
+23,Nov 2026,2026,November,43680,festive,Diwali,Peak demand month of entire series; Diwali cycle 2
+24,Dec 2026,2026,December,39585,baseline,Year-end / post-Diwali,Year-end push; +5% YoY
+25,Jan 2027,2027,January,41013,baseline,Makar Sankranti,+10% YoY from 2025; post-conflict recovery
+26,Feb 2027,2027,February,39910,baseline,Union Budget,+10% YoY from 2025
+27,Mar 2027,2027,March,47959,baseline,FY-end peak,+10% YoY; largest FY-end in series
+28,Apr 2027,2027,April,39910,port_disruption,Wedding season onset — PORT DISRUPTION,Post-FY dip; port/logistics disruption begins
+29,May 2027,2027,May,41013,port_disruption,Wedding season — PORT DISRUPTION,Port disruption peaks; lead times spike
+30,Jun 2027,2027,June,37816,port_disruption,Monsoon dip — PORT DISRUPTION,Monsoon + tail of port disruption
+31,Jul 2027,2027,July,37154,baseline,Monsoon trough,Monsoon trough 2027; disruption cleared
+32,Aug 2027,2027,August,38698,baseline,Monsoon exit,Partial recovery; normal operations resuming
+33,Sep 2027,2027,September,41013,baseline,Pre-festive build,Festive inventory build; logistics normalised
+34,Oct 2027,2027,October,44541,festive,Navratri / Dasara,Festive cycle 3; +10% YoY on Oct 2025
+35,Nov 2027,2027,November,45864,festive,Diwali,Diwali cycle 3; highest festive demand in series
+36,Dec 2027,2027,December,41564,baseline,Year-end,Year-end close; +10% YoY

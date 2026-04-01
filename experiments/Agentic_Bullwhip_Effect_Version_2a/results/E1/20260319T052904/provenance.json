@@ -1,0 +1,49 @@
+{
+  "experiment": "E1",
+  "timestamp_utc": "20260319T052904",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "backend": "azure",
+  "model_lightweight": "gpt-4.1-mini",
+  "model_reasoning": "o4-mini",
+  "model_oss_reasoning": "",
+  "temperature_config": {
+    "blind_lightweight": 0.4,
+    "context_lightweight": 0.4,
+    "blind_reasoning": 1.0,
+    "context_reasoning": 1.0
+  },
+  "run_stats": {
+    "blind_lightweight": {
+      "attempts": 20,
+      "replacements": 0
+    },
+    "context_lightweight": {
+      "attempts": 20,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {
+    "n_calls": 2880,
+    "mean_ms": 1710.2,
+    "p50_ms": 1615.7,
+    "p95_ms": 2259.7,
+    "p99_ms": 3212.0,
+    "ttft_mean_ms": 1675.3,
+    "ttft_p95_ms": 2200.7,
+    "mean_generation_tps": 21.2,
+    "total_prompt_tokens": 418844,
+    "total_completion_tokens": 101879,
+    "total_reasoning_tokens": 0,
+    "total_cached_tokens": 0,
+    "tokens_per_second": 105.7,
+    "retry_rate": 0.0,
+    "total_wall_time_s": 4925.4
+  },
+  "infra_context": {
+    "type": "azure",
+    "endpoint": "https://industrial-mind-and-cod-resource.openai.azure.com/",
+    "api_version": "2025-01-01-preview",
+    "model_lightweight_deployment": "gpt-4.1-mini",
+    "model_reasoning_deployment": "o4-mini"
+  }
+}

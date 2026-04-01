@@ -1,0 +1,42 @@
+{
+  "experiment": "baselines",
+  "timestamp_utc": "20260327T093825",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "backend": "local",
+  "model_lightweight": "sarvam-30b",
+  "model_reasoning": "sarvam-30b",
+  "model_oss_reasoning": "sarvam-30b",
+  "temperature_config": {
+    "blind_lightweight": 0.2,
+    "context_lightweight": 0.2,
+    "blind_reasoning": 0.5,
+    "context_reasoning": 0.5
+  },
+  "run_stats": {
+    "naive_passthrough": {
+      "attempts": 1,
+      "replacements": 0
+    },
+    "order_up_to": {
+      "attempts": 1,
+      "replacements": 0
+    },
+    "exp_smoothing": {
+      "attempts": 1,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "infra_context": {
+    "type": "local",
+    "endpoint": "http://localhost:8080/v1",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "cpu": "aarch64",
+    "cpu_cores": 20,
+    "python": "3.12.3",
+    "gpu": "NVIDIA GB10, [N/A], [N/A]",
+    "model_quantization": null,
+    "model_parameter_size": null,
+    "model_format": null
+  }
+}

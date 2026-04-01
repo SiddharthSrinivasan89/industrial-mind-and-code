@@ -1,0 +1,24 @@
+# API credentials — never commit
+.env
+
+# Generated results — regenerate by running the experiment
+results/raw/
+results/aggregated/
+results/figures/
+results/analysis_*.md
+
+# Logs
+*.log
+
+# Social media drafts — personal, not for repo
+social_media/
+
+# Claude Code session state
+.claude/todos/
+
+# Python artefacts
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
