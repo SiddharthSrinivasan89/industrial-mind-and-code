@@ -550,7 +550,7 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP &middot; 11,520 LLM CALLS</p>
           <p class="experiment-finding">
-            Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines in a three-tier serial supply chain simulation. 2&times;2 factorial design, 20 replications per condition, 11,520 LLM calls.
+            Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines in a three-tier serial supply chain simulation. The published comparison combines eight backend-specific model-condition cells across four two-condition bundles, 20 replications per cell, 11,520 LLM calls.
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -583,9 +583,9 @@
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
-              <li>No meaningful difference: sarvam-30b chain OVAR 4.504 vs. GPT-OSS-120B 4.52. Statistically identical on every metric. Neither model detected Indian seasonal demand patterns.</li>
+              <li>No measurable difference: sarvam-30b chain OVAR 4.504 vs. GPT-OSS-120B 4.52 (V2 context reference, not co-run). Difference within noise; neither model detected Indian seasonal demand patterns.</li>
               <li>Exponential smoothing achieved OVAR 0.54 &mdash; an 8&times; gap over both models.</li>
-              <li>Secondary finding: enabling the native reasoning flag (think=True) eliminated all run-level failures without affecting ordering performance.</li>
+              <li>Secondary finding: enabling the native reasoning flag (think=True) was associated with eliminating run-level failures without affecting ordering performance.</li>
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
