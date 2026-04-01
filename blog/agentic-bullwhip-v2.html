@@ -467,7 +467,7 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
-          <span class="post-meta-value">2&times;2 Factorial &middot; 20 runs &middot; 11,520 LLM calls</span>
+          <span class="post-meta-value">Four backend-specific two-condition bundles &middot; 8 model-condition cells &middot; 20 runs &middot; 11,520 LLM calls</span>
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
@@ -485,7 +485,7 @@
       <div class="post-section">
         <p class="section-label">Abstract</p>
         <div class="abstract-block">
-          <p>This study investigates whether large language model (LLM) agents can outperform deterministic heuristic baselines in a stylised supply chain replenishment task. Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines (exponential smoothing, naive passthrough, and order-up-to with fixed safety stock) in a three-tier serial supply chain simulation. A 2&times;2 factorial design crossed model tier (lightweight vs. reasoning) with context treatment (blind vs. business context), with 20 independent replications per LLM condition and 11,520 total LLM API calls over a 25-month synthetic demand series calibrated to Indian automotive seasonality.</p>
+          <p>This study investigates whether large language model (LLM) agents can outperform deterministic heuristic baselines in a stylised supply chain replenishment task. Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines (exponential smoothing, naive passthrough, and order-up-to with fixed safety stock) in a three-tier serial supply chain simulation. A 2&times;2 factorial design (model tier &times; context treatment) was run across two independent backends &mdash; frontier (Azure) and local (Ollama) &mdash; yielding eight backend-specific model-condition cells, with 20 independent replications per cell and 11,520 total LLM API calls over a 25-month synthetic demand series calibrated to Indian automotive seasonality.</p>
           <p>Every heuristic outperformed every LLM configuration on both primary metrics &mdash; Order Variance Amplification Ratio (OVAR) and stockout count &mdash; simultaneously. Exponential smoothing achieved chain OVAR of 0.54 with 5 stockouts; the best LLM configuration achieved 4.33 with 41 stockouts. The LLM configurations were Pareto-inferior to all heuristic baselines. Context provision destabilised the local lightweight model (phi4:14b), producing Ancillary-tier OVAR of 10.82 &plusmn; 8.14 across 20 runs. Reasoning-tier models generated over 1,000,000 reasoning tokens with no measurable improvement in ordering performance over lightweight-tier models. All seven hypotheses were rejected.</p>
           <p>These results suggest that in deterministic, stateless replenishment environments with well-established analytical solutions, LLM agents do not offer a performance advantage over simple heuristics. The productive role for LLMs in such settings may lie upstream of the ordering decision itself &mdash; in signal interpretation, anomaly detection, and parameter adjustment &mdash; rather than in direct decision execution.</p>
           <p><strong>Keywords:</strong> bullwhip effect, LLM agents, supply chain management, order variance amplification, heuristic baselines, exponential smoothing, agentic AI</p>
@@ -527,9 +527,9 @@
           <p>A 2&times;2 factorial design crossed two factors:</p>
           <ul>
             <li><strong>Model tier:</strong> Lightweight vs. Reasoning</li>
-            <li><strong>Context treatment:</strong> Blind (numeric demand only) vs. Context (company identity, product details, market position, calendar month)</li>
+            <li><strong>Context treatment:</strong> Blind (minimal identity: numeric state only, no persona or calendar month) vs. Context (tier persona + calendar month, with the same numeric state variables in both conditions)</li>
           </ul>
-          <p>Four LLM configurations were tested. Frontier models were accessed via Azure OpenAI Service. Local models ran on an ASUS Ascent GX10 (GB10 Blackwell, 128GB unified memory) via Ollama.</p>
+          <p>Four LLM configurations were tested across two independent backends &mdash; frontier (Azure OpenAI Service) and local (ASUS Ascent GX10, GB10 Blackwell, 128GB unified memory, via Ollama) &mdash; yielding eight backend-specific model-condition cells in total.</p>
 
         </div>
 
@@ -594,7 +594,7 @@
           <h3>2.8 Hypotheses</h3>
           <p>Seven hypotheses were formulated prior to execution. All require a minimum practically relevant difference (MPRD) of |&Delta;OVAR| &ge; 0.5 at chain level to be supported:</p>
           <ul>
-            <li><strong>H1 (Primary):</strong> At least one LLM configuration achieves lower chain-average OVAR than exponential smoothing (0.54) with no more stockouts.</li>
+            <li><strong>H1 (Primary):</strong> At least one LLM configuration achieves lower chain-average OVAR than exponential smoothing (0.54) with no more than 5 stockouts.</li>
             <li><strong>H2 (C1):</strong> context_lightweight OVAR &lt; blind_lightweight by &ge;0.5, with no increase in stockouts.</li>
             <li><strong>H3 (C2):</strong> context_reasoning OVAR &lt; blind_reasoning by &ge;0.5, with no increase in stockouts.</li>
             <li><strong>H4 (C3):</strong> blind_reasoning OVAR &lt; blind_lightweight by &ge;0.5.</li>
@@ -813,7 +813,7 @@
           <p>For local phi4:14b, context provision increased chain OVAR from 4.33 to 6.35. At the Ancillary tier, context produced OVAR of 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates that context introduced substantial run-to-run instability rather than consistent directional change. The blind condition for the same model produced standard deviation of 0.00 &mdash; identical orders across all 20 runs.</p>
 
           <h3>3.3 Reasoning Model Performance</h3>
-          <p>o4-mini (frontier reasoning) generated over 1,000,000 reasoning tokens across 20 runs. Its blind-condition chain OVAR (4.72) showed no observed ordering advantage over gpt-4.1-mini (4.70). The 116B-parameter gpt-oss:120b (local reasoning) achieved 4.52 in blind conditions. Neither reasoning model demonstrated a measurable ordering advantage over its lightweight-tier counterpart.</p>
+          <p>o4-mini (frontier reasoning) generated 1,083,968 reasoning tokens across the Azure E2 reasoning bundle (blind + context, 2,880 calls). Its blind-condition chain OVAR (4.72) showed no observed ordering advantage over gpt-4.1-mini (4.70). The 116B-parameter gpt-oss:120b (local reasoning) achieved 4.52 in blind conditions. Neither reasoning model demonstrated a measurable ordering advantage over its lightweight-tier counterpart.</p>
 
           <h3>3.4 Hypothesis Verdicts</h3>
         </div>
