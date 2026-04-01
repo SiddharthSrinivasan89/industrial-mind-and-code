@@ -1,4 +1,4 @@
-# Agentic Bullwhip Effect
+# Context × Model Interactions in LLM-Driven Supply Chain Ordering: An Inverted Bullwhip Cascade
 
 **Research question:** Can LLM agents with domain context reduce the Bullwhip Effect in a 3-tier Indian automotive supply chain?
 

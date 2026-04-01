@@ -1,4 +1,4 @@
-# Agentic Bullwhip Effect — Version 2a
+# Sovereign Model Performance in Stateless Supply Chain Replenishment: sarvam-30b vs. GPT-OSS-120B
 
 Version 2a extends V2 by testing **sarvam-30b** on the same supply chain task and demand series. It is **not** a strict ceteris paribus swap: V2a uses local `llama-server`, temperature `1.0`, 10 runs per condition, and context-only main runs because blind conditions were not stable enough to complete a 10-run experiment.
 

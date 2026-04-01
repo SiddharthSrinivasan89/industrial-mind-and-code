@@ -1,4 +1,4 @@
-# Agentic Bullwhip Effect — Version 2
+# Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment: An Experimental Study
 
 A controlled simulation testing whether LLM agents can outperform a simple statistical rule at supply chain ordering. Four model configurations — lightweight and reasoning, frontier and local — were run against a 3-tier Indian automotive supply chain over 24 ordering periods. **None came close to a basic exponential smoothing heuristic.**
 
