@@ -464,7 +464,7 @@
       <p class="post-eyebrow">Supply Chain &middot; Experiment Writeup</p>
       <h1 class="post-title">LLM Agents Against Heuristic Baselines in Supply Chain Replenishment</h1>
       <p class="post-summary">
-        Every heuristic outperformed every LLM configuration on both order variability and stockouts. Exponential smoothing beat the best LLM by 8x on both metrics simultaneously. All seven pre-registered hypotheses were rejected.
+        Every heuristic outperformed every LLM configuration on both order variability and stockouts. Exponential smoothing beat the best LLM by 8x on both metrics simultaneously. All seven hypotheses were rejected.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -495,7 +495,7 @@
       <div class="post-section">
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
-          <p>Every heuristic outperformed every LLM configuration on both order variability and stockouts. Exponential smoothing beat the best LLM by 8x on both metrics simultaneously. All seven pre-registered hypotheses were rejected.</p>
+          <p>Every heuristic outperformed every LLM configuration on both order variability and stockouts. Exponential smoothing beat the best LLM by 8x on both metrics simultaneously. All seven hypotheses were rejected.</p>
         </div>
       </div>
 
@@ -504,7 +504,7 @@
         <p class="section-label">Overview</p>
         <h2 class="section-title">What this experiment explored</h2>
         <div class="prose">
-          <p>Version 2 asks a harder question than Version 1: not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all. Four models across lightweight and reasoning tiers, frontier and local, were tested against three deterministic heuristic baselines across 20 independent runs per condition.</p>
+          <p>Agentic Bullwhip Effect Version 2 asks a harder question than the first experiment in this series, Agentic Bullwhip Effect Version 1: not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all. Four models across lightweight and reasoning tiers, frontier and local, were tested against three deterministic heuristic baselines across 20 independent runs per condition.</p>
           <p>Every heuristic outperformed every LLM on both order variance and stockouts simultaneously. This is not a tradeoff result.</p>
         </div>
       </div>
@@ -547,7 +547,7 @@
             <span class="finding-text"><strong>Context had opposite effects by model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 to 4.47, delta 0.23, below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates instability, not a consistent directional effect.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Reasoning models showed no ordering advantage.</strong> The 116B gpt-oss:120b produced results indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens and produced no measurable improvement on either metric. All 7 pre-registered hypotheses were rejected.</span>
+            <span class="finding-text"><strong>Reasoning models showed no ordering advantage.</strong> The 116B gpt-oss:120b produced results indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens and produced no measurable improvement on either metric. All 7 hypotheses were rejected.</span>
           </li>
         </ol>
       </div>
