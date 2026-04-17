@@ -808,7 +808,17 @@
         <div class="prose">
           <p>The bullwhip failure is structural. Each agent sees only the current period, with no memory of what it ordered previously. Without that causal chain, there is no self-correction mechanism. A stateless agent that over-ordered last period arrives at the next period without knowing it did. Combined with the fact that LLMs generate plausible text rather than numerically precise outcomes, the result is an agent that picks a number that sounds reasonable rather than one that dampens variance.</p>
           <p>The phi4:14b context result is worth noting separately. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape ordering behaviour &mdash; it introduced variance. In some runs it may have triggered aggressive anticipatory ordering, in others conservative responses. The blind model failed consistently and identically across all 20 runs. Consistent failure can be diagnosed and compensated for. Intermittent instability &mdash; where the same model with the same prompt produces order-of-magnitude different outcomes across runs &mdash; is harder to anticipate and mitigate in a real deployment.</p>
-          <p>A hybrid approach is the natural path forward. LLMs alone are not ready for stateless, zero-shot ordering decisions. But the marginal context improvement for frontier models suggests some sensitivity to conditions. The natural split: LLM reads conditions and adjusts parameters, formula executes the order.</p>
+        </div>
+      </div>
+
+      <!-- Industry Implications -->
+      <div class="post-section">
+        <p class="section-label">Industry Implications</p>
+        <h2 class="section-title">What this means for practitioners</h2>
+        <div class="prose">
+          <p>LLMs alone are not ready for stateless, zero-shot ordering decisions in domains where deterministic methods already exist. A formula that was designed for this class of problem will outperform a probabilistic model generating orders from a prompt, because the formula maintains temporal coherence and the LLM does not.</p>
+          <p>The productive role for LLMs in replenishment settings may be upstream of the ordering decision: reading demand signals, flagging anomalies, interpreting market context, adjusting heuristic parameters. The natural split is LLM reading conditions and adjusting parameters, formula executing the order. This was not tested here and remains an open question, but the marginal context improvement for frontier models suggests some sensitivity to conditions worth exploring in a hybrid architecture.</p>
+          <p>Context instability in the local lightweight model (phi4:14b) is the harder deployment risk. A model that fails consistently can be replaced. One that produces plausible results in most runs and extreme results in a minority &mdash; with no external indicator of which is which &mdash; requires different mitigations entirely.</p>
         </div>
       </div>
 

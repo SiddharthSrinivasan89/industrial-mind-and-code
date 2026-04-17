@@ -746,6 +746,17 @@
         </div>
       </div>
 
+      <!-- Industry Implications -->
+      <div class="post-section">
+        <p class="section-label">Industry Implications</p>
+        <h2 class="section-title">What this means for practitioners</h2>
+        <div class="prose">
+          <p>Domain-specific training does not automatically activate in operational task framing. A model trained on Indian data, given an Indian demand series and the current month name, does not automatically reason about Indian seasonality when asked to place a supply chain order. If seasonal awareness matters for a specific deployment, it needs to be engineered in explicitly — through prompt design, tool access, or architectural choices — not assumed from training data alone.</p>
+          <p>For local GGUF deployment of sarvam-30b via llama-server: use think=True. It eliminated run failures entirely with no effect on task performance. It costs nothing in outcome quality and substantially improves deployment reliability. The cloud temperature recommendations do not apply to local inference — use the GGUF model card settings (temperature 1.0).</p>
+          <p>Reliability is a separate dimension from capability. A model that completes runs predictably and fails on the metric is easier to work with than one that is inconsistent about whether it completes at all. The integration findings here are specific to local GGUF deployment, but the principle applies broadly: model reliability under your specific deployment conditions is something you need to measure, not infer from benchmark scores.</p>
+        </div>
+      </div>
+
       <!-- Experiment source -->
       <div class="post-section">
         <div class="method-callout">

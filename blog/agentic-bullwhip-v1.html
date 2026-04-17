@@ -741,8 +741,17 @@
         <h2 class="section-title">The context effect</h2>
         <div class="prose">
           <p>The context effect ran in opposite directions depending on the model. For gpt-4.1-mini, context reduced chain OVAR by 0.228. For o1, context increased it by 0.577. The sharpest divergence was at the OEM tier, which is the tier observing real consumer demand. Context had near-zero effect on gpt-4.1-mini there (delta &minus;0.030). For o1 at the same tier, context pushed OVAR up by 2.149. A model capable of reasoning about seasonality, given a month name and a market identity, appears to build forward-looking ordering strategies that inject variance at the chain head rather than reduce it.</p>
-          <p>The inverted cascade in context_reasoning is the clearest expression of this. The OEM agent ordered aggressively ahead of anticipated demand peaks &mdash; 654,728 units of excess inventory chain-wide, while stockouts fell to 12.8. Whether this pattern holds at more runs is what Version 2 is designed to test. With CV values of 22&ndash;57% for o1 configurations, these means are directional at n=5 &mdash; real enough to follow up, not settled enough to conclude on.</p>
-          <p>For practitioners evaluating AI agents in ordering roles: more context is not always better, and a more capable model does not automatically make better operational decisions in a system where each order affects the next period's inventory. The o1 result also illustrates a deployment risk distinct from underperformance &mdash; run-to-run unpredictability, which is harder to anticipate and compensate for than consistent, predictable behaviour.</p>
+          <p>The inverted cascade in context_reasoning is the clearest expression of this. The OEM agent ordered aggressively ahead of anticipated demand peaks &mdash; 654,728 units of excess inventory chain-wide, while stockouts fell to 12.8. Whether this pattern holds at more runs is what Agentic Bullwhip Effect Version 2 is designed to test. With CV values of 22&ndash;57% for o1 configurations, these means are directional at n=5 &mdash; real enough to follow up, not settled enough to conclude on.</p>
+        </div>
+      </div>
+
+      <!-- Industry Implications -->
+      <div class="post-section">
+        <p class="section-label">Industry Implications</p>
+        <h2 class="section-title">What this means for practitioners</h2>
+        <div class="prose">
+          <p>More context is not always better, and a more capable model does not automatically make better operational decisions in a system where each order affects the next period's inventory. The common assumption — that richer context fed to a more capable model produces monotonically better outcomes — does not hold in feedback-coupled environments like supply chain ordering.</p>
+          <p>The o1 result illustrates a deployment risk distinct from underperformance: run-to-run unpredictability. Consistent failure can be diagnosed and compensated for. A model that produces reasonable-looking results in some runs and extreme results in others — with the same prompt and the same inputs — is harder to manage in an operational setting. This is the more relevant risk to assess before deploying reasoning-tier models in sequential decision tasks.</p>
         </div>
       </div>
 
