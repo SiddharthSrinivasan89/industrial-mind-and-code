@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agentic Bullwhip Effect: sarvam-30b — Industrial Mind &amp; Code</title>
-  <meta name="description" content="sarvam-30b versus GPT-OSS-120B on a synthetic Indian automotive demand series — 1,440 LLM calls, 10 replications. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8×." />
+  <title>sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B &mdash; Industrial Mind &amp; Code</title>
+  <meta name="description" content="sarvam-30b versus GPT OSS 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2a.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Sovereign Model Performance in Stateless Supply Chain Replenishment: sarvam-30b vs. GPT-OSS-120B — Industrial Mind &amp; Code" />
-  <meta property="og:description" content="sarvam-30b versus GPT-OSS-120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8×." />
+  <meta property="og:title" content="sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B — Industrial Mind &amp; Code" />
+  <meta property="og:description" content="sarvam-30b versus GPT OSS 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2a.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -488,9 +488,9 @@
   <header class="post-header">
     <div class="container">
       <p class="post-eyebrow">Supply Chain · Sovereign Model · Experiment Writeup</p>
-      <h1 class="post-title">Agentic Bullwhip Effect: sarvam-30b</h1>
+      <h1 class="post-title">sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B</h1>
       <p class="post-summary">
-        India's sovereign model showed no practically meaningful difference from GPT OSS in the tested context conditions. I expected it would have more India-specific capabilities.
+        India's sovereign model produced no meaningful difference from GPT OSS 120B on supply chain ordering. Neither model detected Indian seasonal patterns. Exponential smoothing outperformed both by roughly 8x.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -515,7 +515,7 @@
 
       <!-- Abstract -->
       <div class="post-section">
-        <p class="section-label">Abstract</p>
+        <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>Version 2 showed that no LLM configuration could beat a simple exponential smoothing heuristic on supply chain order variance or stockouts. This experiment asked a follow-up question: would a model trained on Indian data show stronger seasonal awareness on an Indian automotive demand series?</p>
           <p>I tested sarvam-30b — India's sovereign model, 30B total parameters, 2.4B active — against GPT OSS 120B as a reference. The demand series was calibrated to real Indian PV market seasonality: festive peaks, monsoon troughs, fiscal year-end patterns. The agents received the current month name plus four numeric state variables. Any seasonal reasoning would have to come from the model's world knowledge.</p>

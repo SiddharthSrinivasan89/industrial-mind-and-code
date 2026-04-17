@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment — Industrial Mind &amp; Code</title>
-  <meta name="description" content="Four LLM configurations tested against heuristic baselines across 11,520 LLM calls. Every heuristic outperformed every LLM on both order variance and stockout count simultaneously. All seven hypotheses rejected." />
+  <title>LLM Agents Against Heuristic Baselines in Supply Chain Replenishment &mdash; Industrial Mind &amp; Code</title>
+  <meta name="description" content="Every heuristic outperformed every LLM configuration on both order variance and stockouts simultaneously. Exponential smoothing beat the best LLM by 8x on both metrics. All seven hypotheses rejected." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment — Industrial Mind &amp; Code" />
-  <meta property="og:description" content="Four LLM configurations tested against heuristic baselines across 11,520 LLM calls. Every heuristic outperformed every LLM on both order variance and stockout count simultaneously. All seven hypotheses rejected." />
+  <meta property="og:title" content="LLM Agents Against Heuristic Baselines in Supply Chain Replenishment — Industrial Mind &amp; Code" />
+  <meta property="og:description" content="Every heuristic outperformed every LLM configuration on both order variance and stockouts simultaneously. Exponential smoothing beat the best LLM by 8x on both metrics. All seven hypotheses rejected." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -178,7 +178,7 @@
       line-height: 1.25;
     }
 
-    /* ─── Abstract ─── */
+    /* ─── TL;DR block ─── */
     .abstract-block {
       padding: 1.5rem 1.75rem;
       border-left: 3px solid var(--accent);
@@ -226,6 +226,41 @@
     }
     .setup-table td:last-child {
       font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* ─── Key findings list ─── */
+    .findings-list {
+      list-style: none;
+      counter-reset: finding;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .findings-list li {
+      counter-increment: finding;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .findings-list li::before {
+      content: counter(finding, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      margin-top: 4px;
+      min-width: 24px;
+    }
+    .finding-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .finding-text strong {
+      font-weight: 500;
       color: var(--text-primary);
     }
 
@@ -299,16 +334,6 @@
     .verdict-supported { background: var(--verdict-supported-bg); color: var(--verdict-supported); }
 
     /* ─── Discussion prose ─── */
-    .prose h3 {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: var(--text-primary);
-      margin-bottom: 0.75rem;
-      margin-top: 2rem;
-      line-height: 1.3;
-    }
-    .prose h3:first-child { margin-top: 0; }
     .prose p {
       font-size: 15.5px;
       font-weight: 300;
@@ -323,22 +348,6 @@
       color: var(--text-primary);
     }
     .prose em { font-style: italic; }
-    .prose ul {
-      margin: 0.75rem 0 1.1rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .prose ul li {
-      font-size: 15.5px;
-      font-weight: 300;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-    .prose ul li strong {
-      font-weight: 500;
-      color: var(--text-primary);
-    }
 
     /* ─── Table note ─── */
     .table-note {
@@ -370,6 +379,7 @@
       color: var(--text-secondary);
       line-height: 1.65;
     }
+    .method-callout p + p { margin-top: 0.75rem; }
     .method-callout a {
       color: var(--accent);
       text-decoration: none;
@@ -452,9 +462,9 @@
   <header class="post-header">
     <div class="container">
       <p class="post-eyebrow">Supply Chain &middot; Experiment Writeup</p>
-      <h1 class="post-title">Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment: An Experimental Study</h1>
+      <h1 class="post-title">LLM Agents Against Heuristic Baselines in Supply Chain Replenishment</h1>
       <p class="post-summary">
-        This study investigates whether large language model (LLM) agents can outperform deterministic heuristic baselines in a stylised supply chain replenishment task.
+        Every heuristic outperformed every LLM configuration on both order variability and stockouts. Exponential smoothing beat the best LLM by 8x on both metrics simultaneously. All seven pre-registered hypotheses were rejected.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -467,7 +477,7 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
-          <span class="post-meta-value">Four backend-specific two-condition bundles &middot; 8 model-condition cells &middot; 20 runs &middot; 11,520 LLM calls</span>
+          <span class="post-meta-value">8 model-condition cells &middot; 20 runs &middot; 11,520 LLM calls</span>
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
@@ -481,140 +491,73 @@
   <main class="post-body">
     <div class="container">
 
-      <!-- Abstract -->
+      <!-- TL;DR -->
       <div class="post-section">
-        <p class="section-label">Abstract</p>
+        <p class="section-label">TL;DR</p>
         <div class="abstract-block">
-          <p>This study investigates whether large language model (LLM) agents can outperform deterministic heuristic baselines in a stylised supply chain replenishment task. Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines (exponential smoothing, naive passthrough, and order-up-to with fixed safety stock) in a three-tier serial supply chain simulation. A 2&times;2 factorial design (model tier &times; context treatment) was run across two independent backends &mdash; frontier (Azure) and local (Ollama) &mdash; yielding eight backend-specific model-condition cells, with 20 independent replications per cell and 11,520 total LLM API calls over a 25-month synthetic demand series calibrated to Indian automotive seasonality.</p>
-          <p>Every heuristic outperformed every LLM configuration on both primary metrics &mdash; Order Variance Amplification Ratio (OVAR) and stockout count &mdash; simultaneously. Exponential smoothing achieved chain OVAR of 0.54 with 5 stockouts; the best LLM configuration achieved 4.33 with 41 stockouts. The LLM configurations were Pareto-inferior to all heuristic baselines. Context provision destabilised the local lightweight model (phi4:14b), producing Ancillary-tier OVAR of 10.82 &plusmn; 8.14 across 20 runs. Reasoning-tier models generated over 1,000,000 reasoning tokens with no measurable improvement in ordering performance over lightweight-tier models. All seven hypotheses were rejected.</p>
-          <p>These results suggest that in deterministic, stateless replenishment environments with well-established analytical solutions, LLM agents do not offer a performance advantage over simple heuristics. The productive role for LLMs in such settings may lie upstream of the ordering decision itself &mdash; in signal interpretation, anomaly detection, and parameter adjustment &mdash; rather than in direct decision execution.</p>
-          <p><strong>Keywords:</strong> bullwhip effect, LLM agents, supply chain management, order variance amplification, heuristic baselines, exponential smoothing, agentic AI</p>
+          <p>Every heuristic outperformed every LLM configuration on both order variability and stockouts. Exponential smoothing beat the best LLM by 8x on both metrics simultaneously. All seven pre-registered hypotheses were rejected.</p>
         </div>
       </div>
 
-      <!-- Introduction -->
+      <!-- Overview -->
       <div class="post-section">
-        <p class="section-label">1</p>
-        <h2 class="section-title">Introduction</h2>
+        <p class="section-label">Overview</p>
+        <h2 class="section-title">What this experiment explored</h2>
         <div class="prose">
-          <p>The bullwhip effect &mdash; the amplification of demand variability as orders propagate upstream through a supply chain &mdash; remains one of the most well-documented phenomena in operations research. First identified by Forrester (1961) and formalised by Lee, Padmanabhan, and Whang (1997), the standard prediction is that order variance increases monotonically at each successive upstream tier due to demand signal processing, order batching, price fluctuations, and shortage gaming.</p>
-          <p>Recent advances in large language models (LLMs) have generated significant interest in their potential application to supply chain decision-making. Jannelli et al. (2024) demonstrated that LLM-based consensus-seeking frameworks can reduce the bullwhip effect when agents negotiate with neighbouring supply chain nodes. Quan and Liu (2024) introduced InvAgent, a framework using zero-shot learning for inventory management. These studies have generally positioned LLM agents as promising tools for supply chain coordination and planning.</p>
-          <p>However, a critical evaluation question remains underexplored: how does LLM agent performance in operational decision-making compare not to other LLM configurations, but to the deterministic analytical methods that already exist for these problems? Supply chain replenishment has well-established heuristic solutions &mdash; exponential smoothing, order-up-to policies, and moving average methods &mdash; that have been in use for decades. For LLM agents to represent a meaningful advance, they must demonstrate performance at least comparable to these baselines.</p>
-          <p>This study addresses that question directly. Building on Version 1 of this experimental series (Srinivasan, 2026a), which established that all tested LLM configurations amplified demand variability and identified an inverted tier pattern in the context &times; reasoning condition, Version 2 introduces heuristic baselines as the primary point of comparison.</p>
-          <p>The experimental design places LLM agents in a deliberately constrained environment &mdash; stateless, single-product, deterministic lead times &mdash; to isolate the fundamental question of whether a probabilistic model generating orders in a deterministic environment can match a formula designed for exactly this class of problem.</p>
+          <p>Version 2 asks a harder question than Version 1: not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all. Four models across lightweight and reasoning tiers, frontier and local, were tested against three deterministic heuristic baselines across 20 independent runs per condition.</p>
+          <p>Every heuristic outperformed every LLM on both order variance and stockouts simultaneously. This is not a tradeoff result.</p>
         </div>
       </div>
 
-      <!-- Methodology -->
+      <!-- Experiment Setup -->
       <div class="post-section">
-        <p class="section-label">2</p>
-        <h2 class="section-title">Methodology</h2>
-        <div class="prose">
-
-          <h3>2.1 Supply Chain Structure</h3>
-          <p>A three-tier serial supply chain was simulated, modelled on an Indian automotive industry structure:</p>
-          <ul>
-            <li><strong>Tier 1 (OEM):</strong> Tatva Motors &mdash; receives consumer demand, places orders to Tier 2</li>
-            <li><strong>Tier 2 (Ancillary):</strong> Lighting Manufacturer &mdash; receives orders from Tier 1, places orders to Tier 3</li>
-            <li><strong>Tier 3 (Component):</strong> LED Component Manufacturer &mdash; receives orders from Tier 2</li>
-          </ul>
-          <p>All entities, names, and scenarios are fictional.</p>
-
-          <h3>2.2 Demand Series</h3>
-          <p>A 25-month synthetic demand series (January 2025 to January 2027) was generated for a single SKU, incorporating two full Indian festive cycles (Navratri, Diwali, and year-end demand peaks). The series was calibrated against published literature on Indian automotive demand patterns.</p>
-
-          <h3>2.3 Experimental Design</h3>
-          <p>A 2&times;2 factorial design crossed two factors:</p>
-          <ul>
-            <li><strong>Model tier:</strong> Lightweight vs. Reasoning</li>
-            <li><strong>Context treatment:</strong> Blind (minimal identity: numeric state only, no persona or calendar month) vs. Context (tier persona + calendar month, with the same numeric state variables in both conditions)</li>
-          </ul>
-          <p>Four LLM configurations were tested across two independent backends &mdash; frontier (Azure OpenAI Service) and local (ASUS Ascent GX10, GB10 Blackwell, 128GB unified memory, via Ollama) &mdash; yielding eight backend-specific model-condition cells in total.</p>
-
-        </div>
-
-        <div class="results-table-wrap" style="margin-top:1rem;">
-          <table class="results-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Blind</th>
-                <th>Context</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Lightweight</strong></td>
-                <td>gpt-4.1-mini (Frontier) / phi4:14b (Local)</td>
-                <td>gpt-4.1-mini (Frontier) / phi4:14b (Local)</td>
-              </tr>
-              <tr>
-                <td><strong>Reasoning</strong></td>
-                <td>o4-mini (Frontier) / gpt-oss:120b (Local)</td>
-                <td>o4-mini (Frontier) / gpt-oss:120b (Local)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="prose" style="margin-top:1.5rem;">
-
-          <h3>2.4 Heuristic Baselines</h3>
-          <p>Three deterministic heuristic baselines were implemented:</p>
-          <ul>
-            <li><strong>Exponential smoothing (&alpha; = 0.30):</strong> A forecasting method that estimates future demand as a weighted average of all past observations, with more recent periods receiving higher weight. The smoothing parameter &alpha; = 0.30 gives 30% weight to the most recent demand observation and 70% to accumulated history. In this experiment, each tier applies exponential smoothing to the demand signal it receives and places an order equal to the smoothed estimate. The result is that over-orders in one period are partially corrected in the next, giving the method a self-correcting property that stateless agents lack.</li>
-            <li><strong>Naive passthrough:</strong> Orders exactly the quantity demanded in the current period &mdash; no dampening, no anticipation. By construction, order variance equals demand variance (OVAR = 1.0), making this the pass-through reference point &mdash; it establishes whether any tested method amplifies beyond simply forwarding the received signal as-is.</li>
-            <li><strong>Order-up-to with fixed safety stock:</strong> Each period, the tier calculates the quantity needed to restore inventory to a fixed target level, accounting for outstanding orders and current on-hand stock. The target is set to the historical mean demand of the series plus 1.65&sigma; &mdash; the same figure used to set initial inventory (~95% service level). In this experiment, this baseline represents a planning-based replenishment rule: order enough to cover the gap between the target stock position and the current position.</li>
-          </ul>
-          <p>Heuristic baselines are deterministic and were run once per condition.</p>
-
-          <h3>2.5 Agent Design</h3>
-          <p>All LLM agents were stateless &mdash; each agent received the current period&rsquo;s demand, on-hand inventory, backlog, and inventory position, but no order history, no inter-tier information, and no memory of prior periods. This design choice was deliberate: it reflects the common deployment pattern where LLM agents operate without persistent memory.</p>
-
-          <h3>2.6 Parameters</h3>
-        </div>
-
-        <table class="setup-table" style="margin-top:0.75rem;">
+        <p class="section-label">Experiment Setup</p>
+        <h2 class="section-title">Design &amp; configuration</h2>
+        <table class="setup-table">
           <tbody>
-            <tr><td>Replications</td><td>20 per LLM configuration &middot; 1 per heuristic</td></tr>
-            <tr><td>Lead time</td><td>1 month, deterministic, all tiers</td></tr>
+            <tr><td>Models</td><td>gpt-4.1-mini (frontier lightweight) &middot; o4-mini (frontier reasoning) &middot; phi4:14b (local lightweight) &middot; gpt-oss:120b (local reasoning)</td></tr>
+            <tr><td>Design</td><td>2&times;2 factorial (model tier &times; context treatment) across two backends: frontier (Azure) and local (Ollama) &mdash; 8 backend-specific model-condition cells in total</td></tr>
+            <tr><td>Replications</td><td>20 per LLM configuration &middot; 1 per heuristic (deterministic)</td></tr>
+            <tr><td>Primary metrics</td><td>OVAR (Order Variance Amplification Ratio) = Var(orders) / Var(demand). Stockout count. Both always reported together. MPRD threshold: |&Delta;OVAR| &ge; 0.5 required for a practically meaningful claim.</td></tr>
+            <tr><td>Heuristic baselines</td><td>Exponential smoothing (&alpha;=0.30) &middot; Naive passthrough &middot; Order-up-to with fixed safety stock</td></tr>
+            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) &rarr; Lighting Manufacturer (Ancillary) &rarr; LED Component Manufacturer</td></tr>
+            <tr><td>Demand series</td><td>25 months (Jan 2025 to Jan 2027) &middot; single SKU &middot; two full Indian festive cycles</td></tr>
+            <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
             <tr><td>Initial inventory</td><td>43,609 units (mean + 1.65&sigma;, ~95% service level)</td></tr>
-            <tr><td>Total LLM calls</td><td>11,520 (8 conditions &mdash; 4 Azure + 4 Local &mdash; &times; 20 runs &times; 24 periods &times; 3 tiers)</td></tr>
-            <tr><td>LLM temperature</td><td>gpt-4.1-mini: 0.4 &middot; phi4:14b: 0.0 (blind) / 0.3 (context) &middot; o4-mini: API-constrained (&asymp;1.0) &middot; gpt-oss:120b: 0.0 (blind) / 0.3 (context)</td></tr>
+            <tr><td>LLM calls</td><td>11,520 total (4 conditions &times; 20 runs &times; 24 periods &times; 3 tiers &times; 2 backends)</td></tr>
+            <tr><td>Agent design</td><td>Stateless, no memory between periods. Deliberate: most real agentic deployments are stateless.</td></tr>
+            <tr><td>Blind condition</td><td>Numbers only. No tier persona, no calendar month.</td></tr>
+            <tr><td>Context condition</td><td>Tier persona + calendar month, with the same numeric state variables in both conditions.</td></tr>
           </tbody>
         </table>
+      </div>
 
-        <div class="prose" style="margin-top:1.5rem;">
-          <h3>2.7 Metrics</h3>
-          <ul>
-            <li><strong>OVAR (Order Variance Amplification Ratio):</strong> Var(orders placed) / Var(demand received). OVAR &lt; 1.0 indicates dampening; OVAR &gt; 1.0 indicates amplification.</li>
-            <li><strong>Stockout count:</strong> Number of tier-periods where available inventory was insufficient to fill demand.</li>
-          </ul>
-
-          <h3>2.8 Hypotheses</h3>
-          <p>Seven hypotheses were formulated prior to execution. All require a minimum practically relevant difference (MPRD) of |&Delta;OVAR| &ge; 0.5 at chain level to be supported:</p>
-          <ul>
-            <li><strong>H1 (Primary):</strong> At least one LLM configuration achieves lower chain-average OVAR than exponential smoothing (0.54) with no more than 5 stockouts.</li>
-            <li><strong>H2 (C1):</strong> context_lightweight OVAR &lt; blind_lightweight by &ge;0.5, with no increase in stockouts.</li>
-            <li><strong>H3 (C2):</strong> context_reasoning OVAR &lt; blind_reasoning by &ge;0.5, with no increase in stockouts.</li>
-            <li><strong>H4 (C3):</strong> blind_reasoning OVAR &lt; blind_lightweight by &ge;0.5.</li>
-            <li><strong>H5 (C4):</strong> context_reasoning OVAR &lt; context_lightweight by &ge;0.5.</li>
-            <li><strong>H6 (C5):</strong> Context benefit is larger for the reasoning tier than the lightweight tier.</li>
-            <li><strong>H7 (E4):</strong> Local context_lightweight OVAR within &plusmn;0.5 of frontier context_lightweight OVAR.</li>
-          </ul>
-        </div>
+      <!-- Key Findings -->
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every heuristic outperformed every LLM on both OVAR and stockouts simultaneously.</strong> Not a tradeoff. LLMs were strictly dominated on both primary metrics in every configuration tested.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The gap is not marginal.</strong> Exponential smoothing: chain OVAR 0.54, 5 stockouts. Best LLM (local phi4:14b, blind): OVAR 4.33, 41 stockouts. 8x worse on both dimensions at once.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context had opposite effects by model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 to 4.47, delta 0.23, below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates instability, not a consistent directional effect.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Reasoning models showed no ordering advantage.</strong> The 116B gpt-oss:120b produced results indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens and produced no measurable improvement on either metric. All 7 pre-registered hypotheses were rejected.</span>
+          </li>
+        </ol>
       </div>
 
       <!-- Results -->
       <div class="post-section">
-        <p class="section-label">3</p>
-        <h2 class="section-title">Results</h2>
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
 
-        <div class="prose">
-          <h3>3.1 Heuristic vs. LLM Performance</h3>
-        </div>
-
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1rem;">Table 1: Heuristic Baselines</p>
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Heuristic baselines</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
@@ -644,7 +587,7 @@
           </table>
         </div>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Table 2: Chain-Average OVAR by LLM Configuration</p>
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Chain-average OVAR by LLM configuration</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
@@ -727,7 +670,7 @@
         </div>
         <p class="table-note">L = Lightweight (gpt-4.1-mini / phi4:14b) &middot; R = Reasoning (o4-mini / gpt-oss:120b)</p>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Table 3: OVAR by Tier</p>
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">OVAR by tier</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
@@ -807,18 +750,8 @@
           </table>
         </div>
 
-        <div class="prose" style="margin-top:1.5rem;">
-          <h3>3.2 Context Effects</h3>
-          <p>For frontier gpt-4.1-mini, context provision reduced chain OVAR from 4.70 to 4.47 (&Delta; = 0.23). This reduction is modest and not treated as practically meaningful given the scale of the overall LLM&ndash;heuristic gap.</p>
-          <p>For local phi4:14b, context provision increased chain OVAR from 4.33 to 6.35. At the Ancillary tier, context produced OVAR of 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates that context introduced substantial run-to-run instability rather than consistent directional change. The blind condition for the same model produced standard deviation of 0.00 &mdash; identical orders across all 20 runs.</p>
-
-          <h3>3.3 Reasoning Model Performance</h3>
-          <p>o4-mini (frontier reasoning) generated 1,083,968 reasoning tokens across the Azure E2 reasoning bundle (blind + context, 2,880 calls). Its blind-condition chain OVAR (4.72) showed no observed ordering advantage over gpt-4.1-mini (4.70). The 116B-parameter gpt-oss:120b (local reasoning) achieved 4.52 in blind conditions. Neither reasoning model demonstrated a measurable ordering advantage over its lightweight-tier counterpart.</p>
-
-          <h3>3.4 Hypothesis Verdicts</h3>
-        </div>
-
-        <div class="results-table-wrap" style="margin-top:1rem;">
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Hypothesis verdicts</p>
+        <div class="results-table-wrap">
           <table class="results-table">
             <thead>
               <tr>
@@ -866,65 +799,16 @@
             </tbody>
           </table>
         </div>
-
       </div>
 
       <!-- Discussion -->
       <div class="post-section">
-        <p class="section-label">4</p>
-        <h2 class="section-title">Discussion</h2>
+        <p class="section-label">Discussion</p>
+        <h2 class="section-title">Why the gap is structural</h2>
         <div class="prose">
-
-          <h3>4.1 Structural Explanation for Heuristic Dominance</h3>
-          <p>The performance gap between heuristics and LLM agents has a structural explanation rooted in the stateless agent architecture. Each LLM agent arrives at every ordering period with no memory of its previous orders or their consequences. It cannot observe that an over-order in period <em>t</em> caused excess inventory in period <em>t</em>+1, and therefore cannot self-correct.</p>
-          <p>Exponential smoothing, by contrast, maintains a single state variable &mdash; the smoothed demand estimate &mdash; that encodes the full history of observed demand into a recursively updated value. This provides a self-correcting property: an over-forecast in period <em>t</em> is partially corrected in period <em>t</em>+1 through the smoothing mechanism. The LLM agent, by design, lacks this temporal coherence.</p>
-          <p>These results are consistent with a structural constraint: placing a stateless text-generation system in a sequential decision environment where temporal coherence is required. The models generate locally plausible order quantities in each period, but the sequence of decisions has no coherence because each decision is independent. Whether model intelligence could close this gap in a stateful architecture is outside the scope of this experiment.</p>
-
-          <h3>4.2 Context as a Source of Instability</h3>
-          <p>The phi4:14b context result is notable for the nature of the failure rather than its magnitude. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape ordering behaviour &mdash; it introduced variance. In some runs, the context may have triggered aggressive anticipatory ordering; in others, conservative responses. The blind model failed consistently and identically across all runs.</p>
-          <p>From a deployment perspective, intermittent instability presents different challenges than consistent underperformance. Consistent failure can be diagnosed and compensated for. Intermittent instability &mdash; where the same model with the same prompt produces order-of-magnitude different outcomes across runs &mdash; is more difficult to anticipate and mitigate.</p>
-
-          <h3>4.3 Absence of Reasoning Advantage</h3>
-          <p>The finding that reasoning-tier models produced no measurable improvement in ordering performance over lightweight-tier models has practical implications for deployment cost. In production environments, reasoning models carry higher inference costs and latency. The absence of performance benefit in this task means the additional cost would be unjustified for this class of problem in the tested configuration.</p>
-          <p>This result may be specific to the stateless setting. In a stateful environment where reasoning about historical patterns, causal chains, or strategic interactions is required, the reasoning tier may offer advantages not observable in the present design.</p>
-
-          <h3>4.4 Comparison with Related Work</h3>
-          <p>These results present an informative contrast with Jannelli et al. (2024), who found that LLM-based consensus-seeking <em>reduced</em> the bullwhip effect. The critical distinction is architectural: Jannelli et al.&rsquo;s agents communicated with neighbouring nodes and used tool-calling to access demand data and analytical functions. The present study tested standalone, stateless agents with no inter-tier communication and no tool access.</p>
-          <p>This contrast suggests that LLM agent performance in supply chain settings may depend more on the surrounding architecture &mdash; communication protocols, tool access, state persistence &mdash; than on model capability alone. An LLM agent embedded in a consensus-seeking framework with analytical tools performs qualitatively differently from an LLM agent generating orders from a prompt.</p>
-
-          <h3>4.5 Implications for System Architecture</h3>
-          <p>These results suggest a possible architectural principle: in domains with well-established analytical solutions, the productive role for LLMs may be in signal interpretation and parameter adjustment rather than in direct decision execution. An architecture where the LLM interprets demand conditions, detects regime changes, and adjusts heuristic parameters &mdash; while the heuristic formula executes the ordering decision &mdash; would leverage the strengths of each component. The LLM provides adaptability and contextual awareness; the formula provides temporal coherence and numerical precision.</p>
-          <p>This hypothesis has not been tested in the present study and represents a direction for future work.</p>
-        </div>
-      </div>
-
-      <!-- Limitations -->
-      <div class="post-section">
-        <p class="section-label">5</p>
-        <h2 class="section-title">Limitations</h2>
-        <div class="prose">
-          <p>These results are specific to a deliberately constrained experimental design:</p>
-          <ul>
-            <li><strong>Stateless agents:</strong> No memory across ordering periods</li>
-            <li><strong>Single product:</strong> No multi-SKU portfolio effects</li>
-            <li><strong>Deterministic lead times:</strong> No stochastic supply-side variation</li>
-            <li><strong>No inter-tier communication:</strong> Agents operate independently</li>
-            <li><strong>No tool access:</strong> Agents cannot call analytical functions</li>
-            <li><strong>Seasonal but stable demand:</strong> No structural breaks, promotions, or supply disruptions</li>
-          </ul>
-          <p>The correct scope of inference: LLM agents do not outperform deterministic heuristics in stylised single-product replenishment with fixed lead times and stateless execution.</p>
-          <p>Whether memory, multi-product portfolios, stochastic lead times, inter-agent communication, or tool access changes these results are open questions and natural directions for subsequent experiments.</p>
-        </div>
-      </div>
-
-      <!-- Conclusion -->
-      <div class="post-section">
-        <p class="section-label">6</p>
-        <h2 class="section-title">Conclusion</h2>
-        <div class="prose">
-          <p>This study provides experimental evidence that in a deterministic, stateless supply chain replenishment setting, LLM agents are strictly dominated by simple heuristic baselines on both order variance and stockout metrics. The performance gap is substantial &mdash; approximately 8&times; on both dimensions &mdash; and persists across all model tiers, inference backends, and context treatments tested.</p>
-          <p>The structural explanation centres on the absence of state persistence in the agent architecture. Deterministic heuristics maintain temporal coherence through state variables; stateless LLM agents lack this property, producing locally plausible but sequentially incoherent ordering decisions.</p>
-          <p>These findings do not generalise to all LLM applications in supply chain management. They are specific to the tested configuration and should be interpreted within that scope. The results are consistent with the broader observation that placing a probabilistic system inside a deterministic environment creates a fundamental mismatch when the environment rewards sequential coherence over single-period plausibility.</p>
+          <p>The bullwhip failure is structural. Each agent sees only the current period, with no memory of what it ordered previously. Without that causal chain, there is no self-correction mechanism. A stateless agent that over-ordered last period arrives at the next period without knowing it did. Combined with the fact that LLMs generate plausible text rather than numerically precise outcomes, the result is an agent that picks a number that sounds reasonable rather than one that dampens variance.</p>
+          <p>The phi4:14b context result is worth noting separately. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape ordering behaviour &mdash; it introduced variance. In some runs it may have triggered aggressive anticipatory ordering, in others conservative responses. The blind model failed consistently and identically across all 20 runs. Consistent failure can be diagnosed and compensated for. Intermittent instability &mdash; where the same model with the same prompt produces order-of-magnitude different outcomes across runs &mdash; is harder to anticipate and mitigate in a real deployment.</p>
+          <p>A hybrid approach is the natural path forward. LLMs alone are not ready for stateless, zero-shot ordering decisions. But the marginal context improvement for frontier models suggests some sensitivity to conditions. The natural split: LLM reads conditions and adjusts parameters, formula executes the order.</p>
         </div>
       </div>
 
@@ -932,7 +816,15 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Full code and results on GitHub</p>
-          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+        </div>
+      </div>
+
+      <!-- Methodology note -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Methodology note</p>
+          <p>All scenarios, companies, products, and supply chain structures are entirely fictional. The experiment was intentionally narrow: single product, fixed lead times, stateless agents, no unstructured context. Results should not be generalised to supply chain management broadly. The correct scope: LLM agents do not outperform simple blind heuristics in a stylised single-product replenishment task with fixed lead times and no unstructured context.</p>
         </div>
       </div>
 
@@ -947,7 +839,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal academic research &middot; not affiliated with any employer, platform or model provider</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal research &middot; not affiliated with any employer</span>
       <ul class="footer-links">
         <li>
           <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
