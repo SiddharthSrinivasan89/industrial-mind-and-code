@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Context and Model Capability in AI-Driven Supply Chain Ordering &mdash; Industrial Mind &amp; Code</title>
+  <title>Context and Model Capability in AI-Driven Supply Chain Ordering | Industrial Mind &amp; Code</title>
   <meta name="description" content="Context helped the lightweight model and hurt the reasoning model. The most capable, most expensive configuration was worst of all four. Every configuration amplified order variability." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v1.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Context and Model Capability in AI-Driven Supply Chain Ordering — Industrial Mind &amp; Code" />
+  <meta property="og:title" content="Context and Model Capability in AI-Driven Supply Chain Ordering | Industrial Mind &amp; Code" />
   <meta property="og:description" content="Context helped the lightweight model and hurt the reasoning model. The most capable, most expensive configuration was worst of all four. Every configuration amplified order variability." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v1.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -504,7 +504,7 @@
         <p class="section-label">Overview</p>
         <h2 class="section-title">What this experiment explored</h2>
         <div class="prose">
-          <p>The bullwhip effect is a well-known supply chain problem: small shifts in consumer demand turn into larger and larger order swings as you move upstream through the chain. Version 1 put LLM agents in the ordering role across a three-tier supply chain and asked whether giving them business context &mdash; company identity, product details, calendar month &mdash; changed how much variability they added.</p>
+          <p>The bullwhip effect is a well-known supply chain problem: small shifts in consumer demand turn into larger and larger order swings as you move upstream through the chain. Version 1 put LLM agents in the ordering role across a three-tier supply chain and asked whether giving them business context (company identity, product details, calendar month) changed how much variability they added.</p>
           <p>This was an exploratory study, 5 runs per configuration, designed to establish a baseline and surface anything unexpected before scaling the experiment. One result was unexpected enough to motivate the larger Agentic Bullwhip Effect Version 2 design.</p>
         </div>
       </div>
@@ -516,7 +516,7 @@
         <table class="setup-table">
           <tbody>
             <tr><td>Models</td><td>gpt-4.1-mini (lightweight) &middot; o1 (reasoning)</td></tr>
-            <tr><td>Design</td><td>2&times;2 factorial &mdash; model tier &times; context treatment</td></tr>
+            <tr><td>Design</td><td>2&times;2 factorial: model tier &times; context treatment</td></tr>
             <tr><td>Replications</td><td>5 per configuration &middot; 20 total runs</td></tr>
             <tr><td>Primary metric</td><td>OVAR (Order Variance Amplification Ratio) = Var(orders) / Var(demand). Below 1.0 = dampening &middot; 1.0 = pass-through &middot; above 1.0 = amplification</td></tr>
             <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) &rarr; Lighting Manufacturer (Ancillary) &rarr; LED Component Manufacturer</td></tr>
@@ -542,10 +542,10 @@
             <span class="finding-text"><strong>Every configuration amplified demand variability.</strong> OVAR exceeded 1.0 at every tier, in every run, across all four configurations. No configuration reduced variability.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Context made the lightweight model more stable.</strong> context_lightweight chain OVAR 2.929 vs blind_lightweight 3.157 &mdash; a 7.2% reduction. context_lightweight also showed the highest seasonal responsiveness, raising orders at event months in 83% of cases.</span>
+            <span class="finding-text"><strong>Context made the lightweight model more stable.</strong> context_lightweight chain OVAR 2.929 vs blind_lightweight 3.157, a 7.2% reduction. context_lightweight also showed the highest seasonal responsiveness, raising orders at event months in 83% of cases.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Context made the reasoning model worse.</strong> context_reasoning chain OVAR 4.412 vs blind_reasoning 3.835. The most capable, fully-informed configuration produced the highest chain variability of all four &mdash; 39.7% above the blind lightweight baseline.</span>
+            <span class="finding-text"><strong>Context made the reasoning model worse.</strong> context_reasoning chain OVAR 4.412 vs blind_reasoning 3.835. The most capable, fully-informed configuration produced the highest chain variability of all four, 39.7% above the blind lightweight baseline.</span>
           </li>
           <li>
             <span class="finding-text"><strong>context_reasoning produced an inverted tier pattern.</strong> Standard bullwhip analysis predicts variability increasing upstream: Component noisier than Ancillary, Ancillary noisier than OEM. context_reasoning flipped this entirely. OEM OVAR 6.349, Ancillary 4.191, Component 2.698. The three other configurations followed the expected pattern.</span>
@@ -660,7 +660,7 @@
             </tbody>
           </table>
         </div>
-        <p class="table-note">* Parse error in run 5 inflates component mean by ~+0.129. Clean estimate: 3.283 &plusmn; 0.220. &nbsp;&nbsp; &#9888; CV &gt; 10% &mdash; high run-to-run instability; means are directional, not reliable point estimates.</p>
+        <p class="table-note">* Parse error in run 5 inflates component mean by ~+0.129. Clean estimate: 3.283 &plusmn; 0.220. &nbsp;&nbsp; &#9888; CV &gt; 10%; high run-to-run instability; means are directional, not reliable point estimates.</p>
 
         <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Stockouts and excess inventory</p>
         <div class="results-table-wrap">
@@ -696,7 +696,7 @@
             </tbody>
           </table>
         </div>
-        <p class="table-note">context_reasoning had the fewest stockouts and the highest excess inventory &mdash; 654,728 units, roughly 6&times; blind_lightweight. Fewer stockouts, but at significant inventory cost.</p>
+        <p class="table-note">context_reasoning had the fewest stockouts and the highest excess inventory: 654,728 units, roughly 6&times; blind_lightweight. Fewer stockouts, but at significant inventory cost.</p>
 
         <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Hypothesis verdicts</p>
         <div class="results-table-wrap">
@@ -741,7 +741,7 @@
         <h2 class="section-title">The context effect</h2>
         <div class="prose">
           <p>The context effect ran in opposite directions depending on the model. For gpt-4.1-mini, context reduced chain OVAR by 0.228. For o1, context increased it by 0.577. The sharpest divergence was at the OEM tier, which is the tier observing real consumer demand. Context had near-zero effect on gpt-4.1-mini there (delta &minus;0.030). For o1 at the same tier, context pushed OVAR up by 2.149. A model capable of reasoning about seasonality, given a month name and a market identity, appears to build forward-looking ordering strategies that inject variance at the chain head rather than reduce it.</p>
-          <p>The inverted cascade in context_reasoning is the clearest expression of this. The OEM agent ordered aggressively ahead of anticipated demand peaks &mdash; 654,728 units of excess inventory chain-wide, while stockouts fell to 12.8. Whether this pattern holds at more runs is what Agentic Bullwhip Effect Version 2 is designed to test. With CV values of 22&ndash;57% for o1 configurations, these means are directional at n=5 &mdash; real enough to follow up, not settled enough to conclude on.</p>
+          <p>The inverted cascade in context_reasoning is the clearest expression of this. The OEM agent ordered aggressively ahead of anticipated demand peaks: 654,728 units of excess inventory chain-wide, while stockouts fell to 12.8. Whether this pattern holds at more runs is what Agentic Bullwhip Effect Version 2 is designed to test. With CV values of 22&ndash;57% for o1 configurations, these means are directional at n=5, real enough to follow up, not settled enough to conclude on.</p>
         </div>
       </div>
 
@@ -767,7 +767,7 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Methodology note</p>
-          <p>All scenarios, companies, products, and supply chain structures are fictional. No proprietary data was used. Exploratory study &mdash; 5 runs per configuration. Results are directional. gpt-4.1-mini at temperature 0.4, 600 max tokens. o1 at API-fixed temperature, 16,000 max tokens.</p>
+          <p>All scenarios, companies, products, and supply chain structures are fictional. No proprietary data was used. Exploratory study; 5 runs per configuration. Results are directional. gpt-4.1-mini at temperature 0.4, 600 max tokens. o1 at API-fixed temperature, 16,000 max tokens.</p>
         </div>
       </div>
 

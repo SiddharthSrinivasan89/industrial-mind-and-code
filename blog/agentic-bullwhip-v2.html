@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LLM Agents Against Heuristic Baselines in Supply Chain Replenishment &mdash; Industrial Mind &amp; Code</title>
+  <title>LLM Agents Against Heuristic Baselines in Supply Chain Replenishment | Industrial Mind &amp; Code</title>
   <meta name="description" content="Every heuristic outperformed every LLM configuration on both order variance and stockouts simultaneously. Exponential smoothing beat the best LLM by 8x on both metrics. All seven hypotheses rejected." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="LLM Agents Against Heuristic Baselines in Supply Chain Replenishment — Industrial Mind &amp; Code" />
+  <meta property="og:title" content="LLM Agents Against Heuristic Baselines in Supply Chain Replenishment | Industrial Mind &amp; Code" />
   <meta property="og:description" content="Every heuristic outperformed every LLM configuration on both order variance and stockouts simultaneously. Exponential smoothing beat the best LLM by 8x on both metrics. All seven hypotheses rejected." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -516,7 +516,7 @@
         <table class="setup-table">
           <tbody>
             <tr><td>Models</td><td>gpt-4.1-mini (frontier lightweight) &middot; o4-mini (frontier reasoning) &middot; phi4:14b (local lightweight) &middot; gpt-oss:120b (local reasoning)</td></tr>
-            <tr><td>Design</td><td>2&times;2 factorial (model tier &times; context treatment) across two backends: frontier (Azure) and local (Ollama) &mdash; 8 backend-specific model-condition cells in total</td></tr>
+            <tr><td>Design</td><td>2&times;2 factorial (model tier &times; context treatment) across two backends: frontier (Azure) and local (Ollama), 8 backend-specific model-condition cells in total</td></tr>
             <tr><td>Replications</td><td>20 per LLM configuration &middot; 1 per heuristic (deterministic)</td></tr>
             <tr><td>Primary metrics</td><td>OVAR (Order Variance Amplification Ratio) = Var(orders) / Var(demand). Stockout count. Both always reported together. MPRD threshold: |&Delta;OVAR| &ge; 0.5 required for a practically meaningful claim.</td></tr>
             <tr><td>Heuristic baselines</td><td>Exponential smoothing (&alpha;=0.30) &middot; Naive passthrough &middot; Order-up-to with fixed safety stock</td></tr>
@@ -763,37 +763,37 @@
             <tbody>
               <tr>
                 <td>H1</td>
-                <td>At least one LLM achieves lower OVAR than exp smoothing (0.54) with &le;5 stockouts &mdash; best LLM: OVAR 4.33, 41 stockouts</td>
+                <td>At least one LLM achieves lower OVAR than exp smoothing (0.54) with &le;5 stockouts; best LLM: OVAR 4.33, 41 stockouts</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H2</td>
-                <td>context_lightweight OVAR &lt; blind_lightweight by &ge;0.5 &mdash; actual &Delta; = 0.23, below MPRD</td>
+                <td>context_lightweight OVAR &lt; blind_lightweight by &ge;0.5; actual &Delta; = 0.23, below MPRD</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H3</td>
-                <td>context_reasoning OVAR &lt; blind_reasoning by &ge;0.5 &mdash; actual &Delta; = 0.20, below MPRD</td>
+                <td>context_reasoning OVAR &lt; blind_reasoning by &ge;0.5; actual &Delta; = 0.20, below MPRD</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H4</td>
-                <td>blind_reasoning OVAR &lt; blind_lightweight by &ge;0.5 &mdash; actual &Delta; = &minus;0.02, opposite direction</td>
+                <td>blind_reasoning OVAR &lt; blind_lightweight by &ge;0.5; actual &Delta; = &minus;0.02, opposite direction</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H5</td>
-                <td>context_reasoning OVAR &lt; context_lightweight by &ge;0.5 &mdash; actual &Delta; = &minus;0.05, opposite direction</td>
+                <td>context_reasoning OVAR &lt; context_lightweight by &ge;0.5; actual &Delta; = &minus;0.05, opposite direction</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H6</td>
-                <td>Context benefit larger for reasoning tier than lightweight &mdash; actual: &minus;0.03, opposite direction</td>
+                <td>Context benefit larger for reasoning tier than lightweight; actual: &minus;0.03, opposite direction</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
               <tr>
                 <td>H7</td>
-                <td>Local context_lightweight within &plusmn;0.5 of frontier context_lightweight &mdash; actual &Delta; = 1.88, well outside equivalence bounds</td>
+                <td>Local context_lightweight within &plusmn;0.5 of frontier context_lightweight; actual &Delta; = 1.88, well outside equivalence bounds</td>
                 <td><span class="verdict verdict-rejected">REJECTED</span></td>
               </tr>
             </tbody>
@@ -807,7 +807,7 @@
         <h2 class="section-title">Why the gap is structural</h2>
         <div class="prose">
           <p>The bullwhip failure is structural. Each agent sees only the current period, with no memory of what it ordered previously. Without that causal chain, there is no self-correction mechanism. A stateless agent that over-ordered last period arrives at the next period without knowing it did. Combined with the fact that LLMs generate plausible text rather than numerically precise outcomes, the result is an agent that picks a number that sounds reasonable rather than one that dampens variance.</p>
-          <p>The phi4:14b context result is worth noting separately. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape ordering behaviour &mdash; it introduced variance. In some runs it may have triggered aggressive anticipatory ordering, in others conservative responses. The blind model failed consistently and identically across all 20 runs. Consistent failure can be diagnosed and compensated for. Intermittent instability &mdash; where the same model with the same prompt produces order-of-magnitude different outcomes across runs &mdash; is harder to anticipate and mitigate in a real deployment.</p>
+          <p>The phi4:14b context result is worth noting separately. The standard deviation of 8.14 on Ancillary-tier OVAR across 20 runs indicates that the business context prompt did not consistently shape ordering behaviour; it introduced variance. In some runs it may have triggered aggressive anticipatory ordering, in others conservative responses. The blind model failed consistently and identically across all 20 runs. Consistent failure can be diagnosed and compensated for. Intermittent instability, where the same model with the same prompt produces order-of-magnitude different outcomes across runs, is harder to anticipate and mitigate in a real deployment.</p>
         </div>
       </div>
 
@@ -816,9 +816,9 @@
         <p class="section-label">Industry Implications</p>
         <h2 class="section-title">What this means for practitioners</h2>
         <div class="prose">
-          <p>Do not replace your ordering formula with an LLM. The formula was built for this task and it will do it better. This experiment is not a close result — exponential smoothing, a method from the 1950s, produced orders eight times less variable than the best LLM configuration, with fewer stockouts at the same time.</p>
+          <p>Do not replace your ordering formula with an LLM. The formula was built for this task and it will do it better. This experiment is not a close result: exponential smoothing, a method from the 1950s, produced orders eight times less variable than the best LLM configuration, with fewer stockouts at the same time.</p>
           <p>Where LLMs might add value is earlier in the process: reading demand signals, spotting something unusual in the data, providing context to a planner. That is a different task from executing the order quantity decision, and it was not tested here. But using an LLM to inform a formula, rather than replace it, is a more plausible role than the one tested in this experiment.</p>
-          <p>The phi4:14b result is worth noting separately. When given business context, that model did not fail in a predictable way — it produced reasonable results in most runs and extreme results in a few, with nothing to distinguish the two from the outside. A model that fails consistently is easier to manage. You remove it and move on. A model that is mostly fine is harder to catch.</p>
+          <p>The phi4:14b result is worth noting separately. When given business context, that model did not fail in a predictable way: it produced reasonable results in most runs and extreme results in a few, with nothing to distinguish the two from the outside. A model that fails consistently is easier to manage. You remove it and move on. A model that is mostly fine is harder to catch.</p>
         </div>
       </div>
 

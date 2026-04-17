@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B &mdash; Industrial Mind &amp; Code</title>
+  <title>sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B | Industrial Mind &amp; Code</title>
   <meta name="description" content="sarvam-30b versus GPT OSS 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2a.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B — Industrial Mind &amp; Code" />
+  <meta property="og:title" content="sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B | Industrial Mind &amp; Code" />
   <meta property="og:description" content="sarvam-30b versus GPT OSS 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2a.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -518,7 +518,7 @@
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>Agentic Bullwhip Effect Version 2 showed that no LLM configuration could beat a simple exponential smoothing heuristic on supply chain order variance or stockouts. This experiment asked a follow-up question: would a model trained on Indian data show stronger seasonal awareness on an Indian automotive demand series?</p>
-          <p>I tested sarvam-30b — India's sovereign model, 30B total parameters, 2.4B active — against GPT OSS 120B as a reference. The demand series was calibrated to real Indian PV market seasonality: festive peaks, monsoon troughs, fiscal year-end patterns. The agents received the current month name plus four numeric state variables. Any seasonal reasoning would have to come from the model's world knowledge.</p>
+          <p>I tested sarvam-30b (India's sovereign model, 30B total parameters, 2.4B active) against GPT OSS 120B as a reference. The demand series was calibrated to real Indian PV market seasonality: festive peaks, monsoon troughs, fiscal year-end patterns. The agents received the current month name plus four numeric state variables. Any seasonal reasoning would have to come from the model's world knowledge.</p>
           <p>The answer: no meaningful difference. sarvam-30b chain OVAR 4.504 vs GPT OSS 120B 4.52. No practically meaningful difference in the tested context conditions. Neither model detected Indian seasonal demand patterns. Exponential smoothing (OVAR 0.54) won by roughly 8x.</p>
           <p>One finding emerged from the integration work: enabling sarvam-30b's native reasoning flag (think=True) was associated with eliminating run-level failures without affecting supply chain outcomes.</p>
         </div>
@@ -543,7 +543,7 @@
             <tr>
               <td>Conditions</td>
               <td>E1: context, think=False &middot; E2: context, think=True</td>
-              <td>Blind condition not run — see note below table</td>
+              <td>Blind condition not run. See note below table</td>
             </tr>
             <tr>
               <td>Replications</td>
@@ -610,10 +610,10 @@
             <span class="finding-text"><strong>No practically meaningful difference in task performance was observed in the tested conditions.</strong> sarvam-30b chain OVAR 4.504 &plusmn; 0.044 (E1) and 4.501 &plusmn; 0.093 (E2). GPT OSS 120B achieved 4.52 &plusmn; 0.05 (Agentic Bullwhip Effect Version 2 context reference; not re-run in Version 2a). The difference is 0.02, well within noise and below the MPRD threshold of 0.5. India's sovereign model did not produce different ordering behaviour in the tested context conditions, despite being trained on Indian data and the demand series being calibrated to Indian market seasonality.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Neither model detected Indian seasonal demand patterns.</strong> Pattern scores: sarvam-30b 0.219&ndash;0.232, GPT OSS 120B 0.21. All identical within noise. The demand series contains two Indian festive cycles with documented peak months, a monsoon trough, and wedding season elevation. Agents received the month name plus four numeric state variables in the user prompt — no event labels, no year. Neither model showed seasonal awareness. Cultural training data did not produce measurably different ordering behaviour on this task.</span>
+            <span class="finding-text"><strong>Neither model detected Indian seasonal demand patterns.</strong> Pattern scores: sarvam-30b 0.219&ndash;0.232, GPT OSS 120B 0.21. All identical within noise. The demand series contains two Indian festive cycles with documented peak months, a monsoon trough, and wedding season elevation. Agents received the month name plus four numeric state variables in the user prompt. No event labels, no year. Neither model showed seasonal awareness. Cultural training data did not produce measurably different ordering behaviour on this task.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Enabling think=True was associated with eliminating run-level failures without changing supply chain outcomes.</strong> E1 (think=False): 15 of 25 run attempts needed replacement. E2 (think=True): 0 of 10 run attempts needed replacement. Chain OVAR difference between E1 and E2: 0.003. Note: E1 also had a separate API-flag/prompt conflict &mdash; the system prompt contained a &ldquo;Think silently&rdquo; instruction that contradicted the think=False flag. The reliability improvement in E2 cannot be fully isolated to the reasoning flag alone. Regardless, think=True produced reliable run completion and is the recommended configuration for local GGUF deployment of sarvam-30b via llama-server.</span>
+            <span class="finding-text"><strong>Enabling think=True was associated with eliminating run-level failures without changing supply chain outcomes.</strong> E1 (think=False): 15 of 25 run attempts needed replacement. E2 (think=True): 0 of 10 run attempts needed replacement. Chain OVAR difference between E1 and E2: 0.003. Note: E1 also had a separate API-flag/prompt conflict: the system prompt contained a &ldquo;Think silently&rdquo; instruction that contradicted the think=False flag. The reliability improvement in E2 cannot be fully isolated to the reasoning flag alone. Regardless, think=True produced reliable run completion and is the recommended configuration for local GGUF deployment of sarvam-30b via llama-server.</span>
           </li>
           <li>
             <span class="finding-text"><strong>The structural constraint holds.</strong> LLMs are stateless in this architecture: each agent sees the current period&rsquo;s state and places an order with no memory of prior decisions. Exponential smoothing carries one number forward and partially self-corrects. The LLM agent cannot. The current results are consistent with an architectural bottleneck: stateless agents cannot self-correct across periods regardless of training data. Whether cultural training or model size would change outcomes in a stateful architecture is outside what this experiment can establish.</span>
@@ -741,7 +741,7 @@
         <div class="prose">
           <p>The seasonal awareness hypothesis was not confirmed. I expected that a model with Indian training data would show different ordering behaviour on a demand series calibrated to Indian market seasonality. It did not.</p>
           <p>The agents received the current month name plus four numeric state variables. No event labels, no seasonal context, no year. Any seasonal signal would have to come from the model's world knowledge about what October and November mean in India. Neither sarvam-30b nor GPT OSS showed it. Pattern scores of 0.22 and 0.21 indicate very low, approximately equal, seasonal sensitivity in both models.</p>
-          <p>One possible explanation: the task framing as a supply chain ordering problem may not activate seasonal world knowledge, even when the model possesses it. Whether the model draws on broader seasonal knowledge when asked to make an inventory decision — rather than a factual question about seasonality — is unclear from these results alone.</p>
+          <p>One possible explanation: the task framing as a supply chain ordering problem may not activate seasonal world knowledge, even when the model possesses it. Whether the model draws on broader seasonal knowledge when asked to make an inventory decision (rather than a factual question about seasonality) is unclear from these results alone.</p>
           <p>The structural argument also applies. Stateless agents without memory cannot self-correct drift regardless of what they know about seasonality. Even if a model correctly anticipated a festive peak in period 14, it cannot carry that anticipation forward without memory of what it planned.</p>
         </div>
       </div>
@@ -752,7 +752,7 @@
         <h2 class="section-title">What this means for practitioners</h2>
         <div class="prose">
           <p>A model trained on Indian data does not automatically use that knowledge when asked to place a supply chain order. sarvam-30b received an Indian demand series and the current month name but showed no seasonal sensitivity. If seasonal awareness matters for your use case, you need to build it into the prompt or the system design explicitly. You cannot assume a model will apply its training knowledge to an operational task just because the task is in the same domain.</p>
-          <p>If you are running sarvam-30b locally via llama-server, use think=True. It removed all run-level failures in this experiment with no downside. Do not use cloud temperature settings for a local GGUF model — use what the model card specifies (temperature 1.0 in this case).</p>
+          <p>If you are running sarvam-30b locally via llama-server, use think=True. It removed all run-level failures in this experiment with no downside. Do not use cloud temperature settings for a local GGUF model. Use what the model card specifies (temperature 1.0 in this case).</p>
           <p>A model that fails consistently is actually easier to deal with than one that fails unpredictably. When a model errors out on some runs and not others with no clear pattern, you have a harder problem: you cannot rely on the output without checking it each time. Run your own reliability tests under the specific conditions you plan to deploy, rather than inferring reliability from benchmark scores.</p>
         </div>
       </div>
@@ -779,7 +779,7 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Scope and limitations</p>
-          <p>Context conditions only. Blind results not available for sarvam-30b. 10 runs per condition — Agentic Bullwhip Effect Version 2 used 20, so confidence intervals are wider here. Single product, single supply chain structure, fixed deterministic lead times. Stateless agents only, no inter-tier communication. Integration findings are specific to local GGUF deployment via llama-server; cloud API deployment is a different integration surface. Results should not be generalised to supply chain management broadly.</p>
+          <p>Context conditions only. Blind results not available for sarvam-30b. 10 runs per condition; Agentic Bullwhip Effect Version 2 used 20, so confidence intervals are wider here. Single product, single supply chain structure, fixed deterministic lead times. Stateless agents only, no inter-tier communication. Integration findings are specific to local GGUF deployment via llama-server; cloud API deployment is a different integration surface. Results should not be generalised to supply chain management broadly.</p>
           <p>All scenarios, companies, products, and supply chain structures are fictional. The demand series is calibrated to real Indian PV market data but is synthetic. No proprietary data was used.</p>
         </div>
       </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Industrial Mind &amp; Code</title>
-  <meta name="description" content="Industrial Mind &amp; Code — Placing probabilistic systems inside deterministic environments. Independent AI research in industrial engineering." />
+  <meta name="description" content="Industrial Mind &amp; Code. Placing probabilistic systems inside deterministic environments. Independent AI research in industrial engineering." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -353,7 +353,7 @@
       line-height: 1.55;
     }
     .exp-bullets li::before {
-      content: '—';
+      content: '·';
       position: absolute;
       left: 0;
       color: var(--text-muted);
@@ -514,7 +514,7 @@
         Industrial Mind<br />&amp; <em>Code</em>
       </h1>
       <p class="hero-sub">
-        An experimental research program investigating the performance of LLM agents in industrial engineering decision environments. Each study places LLM agents in a controlled simulation &mdash; like supply chains, maintenance systems, production planning &mdash; and evaluates their performance against deterministic analytical baselines or suitable comparison mechanisms.
+        An experimental research program investigating the performance of LLM agents in industrial engineering decision environments. Each study places LLM agents in a controlled simulation (like supply chains, maintenance systems, production planning) and evaluates their performance against deterministic analytical baselines or suitable comparison mechanisms.
       </p>
       <div class="hero-meta">
         <div class="hero-meta-item">
@@ -550,7 +550,7 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP &middot; 11,520 LLM CALLS</p>
           <p class="experiment-finding">
-            Four LLM configurations &mdash; spanning frontier and local inference, lightweight and reasoning tiers &mdash; were evaluated against three heuristic baselines in a three-tier serial supply chain simulation. The published comparison combines eight backend-specific model-condition cells across four two-condition bundles, 20 replications per cell, 11,520 LLM calls.
+            Four LLM configurations (spanning frontier and local inference, lightweight and reasoning tiers) were evaluated against three heuristic baselines in a three-tier serial supply chain simulation. The published comparison combines eight backend-specific model-condition cells across four two-condition bundles, 20 replications per cell, 11,520 LLM calls.
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -584,7 +584,7 @@
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
               <li>No measurable difference: sarvam-30b chain OVAR 4.504 vs. GPT-OSS-120B 4.52 (Agentic Bullwhip Effect Version 2 context reference, not co-run). Difference within noise; neither model detected Indian seasonal demand patterns.</li>
-              <li>Exponential smoothing achieved OVAR 0.54 &mdash; an 8&times; gap over both models.</li>
+              <li>Exponential smoothing achieved OVAR 0.54, an 8&times; gap over both models.</li>
               <li>Secondary finding: enabling the native reasoning flag (think=True) was associated with eliminating run-level failures without affecting ordering performance.</li>
             </ul>
           </div>
@@ -613,7 +613,7 @@
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
               <li>All configurations produced bullwhip amplification. Context reduced chain OVAR for the lightweight model (&minus;7.2%) and increased it for the reasoning model (+15.0%).</li>
-              <li>The context + reasoning condition produced a fully inverted tier pattern (OEM OVAR 6.349, Component 2.698) &mdash; the demand-facing tier was the noisiest, the furthest upstream tier the quietest.</li>
+              <li>The context + reasoning condition produced a fully inverted tier pattern (OEM OVAR 6.349, Component 2.698): the demand-facing tier was the noisiest, the furthest upstream tier the quietest.</li>
               <li>Results are directional (n = 5) and motivated the expanded design in Agentic Bullwhip Effect Version 2.</li>
             </ul>
           </div>
@@ -671,17 +671,17 @@
         <div class="method-card">
           <p class="method-card-number">02</p>
           <p class="method-card-title">Analytical baselines</p>
-          <p class="method-card-body">Performance is measured against deterministic methods that already exist for the problem &mdash; exponential smoothing, order-up-to policies, SPC rules. The evaluation question is whether LLM agents add value beyond established approaches.</p>
+          <p class="method-card-body">Performance is measured against deterministic methods that already exist for the problem: exponential smoothing, order-up-to policies, SPC rules. The evaluation question is whether LLM agents add value beyond established approaches.</p>
         </div>
         <div class="method-card">
           <p class="method-card-number">03</p>
           <p class="method-card-title">Model performance across deployment surfaces</p>
-          <p class="method-card-body">Each experiment tests models across frontier and local inference, spanning lightweight and reasoning tiers. Model tier, context treatment, and inference backend are treated as experimental factors &mdash; not background conditions.</p>
+          <p class="method-card-body">Each experiment tests models across frontier and local inference, spanning lightweight and reasoning tiers. Model tier, context treatment, and inference backend are treated as experimental factors, not background conditions.</p>
         </div>
         <div class="method-card">
           <p class="method-card-number">04</p>
           <p class="method-card-title">Optimised architecture</p>
-          <p class="method-card-body">Experimental results are used to identify where hybrid deployments &mdash; combining LLM agents with deterministic methods &mdash; may outperform either approach alone. The design question is not whether AI replaces the established method, but whether and where it can improve on it.</p>
+          <p class="method-card-body">Experimental results are used to identify where hybrid deployments (combining LLM agents with deterministic methods) may outperform either approach alone. The design question is not whether AI replaces the established method, but whether and where it can improve on it.</p>
         </div>
       </div>
 
@@ -725,7 +725,7 @@
           My background is in industrial engineering. I work in digital engineering software, where AI tools meet the operational realities of industrial organisations.
         </p>
         <p>
-          This research program came from a direct question: where do LLM agents actually hold up in the domains I know best &mdash; manufacturing, supply chain, maintenance, and production planning &mdash; and where do they fall short?
+          This research program came from a direct question: where do LLM agents actually hold up in the domains I know best (manufacturing, supply chain, maintenance, and production planning) and where do they fall short?
         </p>
         <p>
           Each experiment takes a foundational industrial engineering problem, builds a controlled simulation, places LLM agents in the decision-making role, and measures the result against what a deterministic method would have done.
