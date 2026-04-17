@@ -750,8 +750,8 @@
         <p class="section-label">Industry Implications</p>
         <h2 class="section-title">What this means for practitioners</h2>
         <div class="prose">
-          <p>More context is not always better, and a more capable model does not automatically make better operational decisions in a system where each order affects the next period's inventory. The common assumption — that richer context fed to a more capable model produces monotonically better outcomes — does not hold in feedback-coupled environments like supply chain ordering.</p>
-          <p>The o1 result illustrates a deployment risk distinct from underperformance: run-to-run unpredictability. Consistent failure can be diagnosed and compensated for. A model that produces reasonable-looking results in some runs and extreme results in others — with the same prompt and the same inputs — is harder to manage in an operational setting. This is the more relevant risk to assess before deploying reasoning-tier models in sequential decision tasks.</p>
+          <p>More context and a more capable model did not produce better ordering decisions. The assumption that richer input to a more capable model will always improve the result does not hold when each order directly affects the next period's inventory. In a supply chain, a bad order this month makes the situation harder next month, and the model has no memory of what it did.</p>
+          <p>The o1 result points to a specific deployment risk: inconsistency. When a model produces reasonable results in some runs and extreme results in others with the same inputs every time, you cannot tell in advance which type of run you are getting. That is harder to manage than a model that fails consistently, because at least a consistent failure is predictable. Before using a reasoning-tier model in any sequential operational task, run enough trials to understand how much its output varies.</p>
         </div>
       </div>
 
