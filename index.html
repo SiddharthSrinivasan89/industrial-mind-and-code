@@ -542,6 +542,35 @@
       <p class="section-label" style="margin-bottom:0.75rem;">Published</p>
       <div class="experiment-list">
 
+        <!-- V3b: Hybrid Architecture -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">Hybrid AI Safety Stock Control in Supply Chain Replenishment</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; HYBRID ARCHITECTURE &middot; 12,960 LLM CALLS</p>
+          <p class="experiment-finding">
+            Three AI models were given direct control over the safety stock multiplier in a hybrid architecture where a mathematical formula executed the actual order quantities. Tested across three information conditions (Blind, Context, Stateful) with 20 replications per condition.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>All four hypotheses rejected. exp_smoothing OVAR 0.5446 with 5 stockouts; best AI condition (gpt-4.1-mini, Blind) OVAR 2.3325 with 10.6 stockouts; worst (o4-mini, Stateful) OVAR 3.1211.</li>
+              <li>Context provision increased order variance for two out of three models. More information triggered more panic-buying, not more precision.</li>
+              <li>o4-mini in the Stateful condition anchored on prior stockouts and over-corrected violently each period &mdash; the highest OVAR in the experiment, and a textbook bullwhip trigger generated inside the model&rsquo;s reasoning loop.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V3b_HybridArch" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v3b.html">
+              Read the writeup
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
         <!-- V2: Heuristic Dominance -->
         <div class="experiment-card">
           <div class="experiment-header">
