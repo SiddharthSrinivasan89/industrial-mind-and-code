@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiments | Industrial Mind &amp; Code</title>
+  <meta name="description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Experiments | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --status-published: #1d7a4a;
+      --status-published-bg: #e6f4ed;
+      --status-active: #8a5a00;
+      --status-active-bg: #fdf3e0;
+      --status-planned: #5a5a5a;
+      --status-planned-bg: #efefef;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    /* ─── Page header ─── */
+    #hero {
+      padding: 7rem 0 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ─── Section headers ─── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    /* ─── Post list ─── */
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .post-card {
+      background: #fff;
+      padding: 1.75rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .post-card:last-child { border-bottom: none; }
+    .post-card:hover { background: var(--surface); }
+    .post-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+    .post-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .post-domain {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .post-description {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .post-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .post-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+    .post-link:hover { color: var(--accent-mid); }
+    .post-link svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      margin-bottom: 3rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      #hero { padding: 4rem 0 3rem; }
+      section { padding: 3.5rem 0; }
+      .post-card-header { flex-direction: column; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="./" class="active">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page header -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Research</p>
+      <h1 class="hero-title">Experiments</h1>
+      <p class="hero-sub">
+        Experimental research on LLM agent performance in industrial engineering decision environments.
+      </p>
+    </div>
+  </section>
+
+  <!-- Post listing -->
+  <section id="posts">
+    <div class="container">
+      <a class="back-link" href="../">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to homepage
+      </a>
+
+      <p class="section-label">Published</p>
+      <h2 class="section-title">Published Experiments</h2>
+
+      <div class="post-list">
+
+        <!-- V6: Adaptive Alpha — First positive result -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            For the first time in this research program, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: nemotron 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v6.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V6_StatelessSwing" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V5: Research Program Close -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Ceiling Is in the Formula: Oracle Labels and the End of the Research Program</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. Fourteen architectural variants tested. None passed the gate. The 0.540-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. Five versions. One definitive answer.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v5.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V5_ControlArch" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V4: Equaliser Effect -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Four AI models &mdash; from a lightweight fast model to a 120-billion-parameter reasoning behemoth &mdash; produced statistically identical supply chain outcomes across three information conditions. Replacing the AI&rsquo;s float output with five discrete text labels fixed the calibration problem from V3b. It simultaneously created a structural ceiling no model or prompt can escape.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v4.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V4_WorldEvents" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V3b: Hybrid Architecture -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">Hybrid AI Safety Stock Control in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; HYBRID ARCHITECTURE &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Three AI models controlled the safety stock multiplier in a hybrid architecture; a mathematical formula handled the order quantity. All four hypotheses failed across three information conditions and 20 replications per condition. Every AI condition produced higher order variance than doing nothing. Context made two out of three models worse. Memory caused the advanced reasoning model to collapse.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v3b.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V3b_HybridArch" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V2a: sarvam-30b -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B</span>
+            <span class="post-date">March 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; SOVEREIGN MODEL &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            India&rsquo;s sovereign model showed no measurable difference from GPT OSS on this task: OVAR 4.504 vs. 4.52. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by approximately 8&times;. The GPT OSS result is an Agentic Bullwhip Effect Version 2 context reference, not a co-run comparison.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v2a.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2a" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V2: Heuristic Dominance -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">LLM Agents Against Heuristic Baselines in Supply Chain Replenishment: An Experimental Comparison</span>
+            <span class="post-date">March 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Four LLM configurations evaluated against three heuristic baselines across 20 replications and 11,520 LLM calls. Every heuristic outperformed every LLM on both order variance and stockout count simultaneously. All seven hypotheses rejected.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v2.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V1: Inverted Cascade -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">Context and Model Capability in AI-Driven Supply Chain Ordering: An Experimental Study</span>
+            <span class="post-date">February 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            All four configurations amplified demand variability. The context &times; reasoning condition produced a fully inverted tier pattern (OEM as the noisiest tier, Component as the quietest), reversing the standard upstream cascade.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v1.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/agentic_bullwhip_effect_version_1" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal academic research &middot; not affiliated with any employer, platform or model provider</span>
+      <ul class="footer-links">
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

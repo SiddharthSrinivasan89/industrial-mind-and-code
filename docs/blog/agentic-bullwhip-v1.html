@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context and Model Capability in AI-Driven Supply Chain Ordering | Industrial Mind &amp; Code</title>
+  <meta name="description" content="Context helped the lightweight model and hurt the reasoning model. The most capable, most expensive configuration was worst of all four. Every configuration amplified order variability." />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v1.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Context and Model Capability in AI-Driven Supply Chain Ordering | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="Context helped the lightweight model and hurt the reasoning model. The most capable, most expensive configuration was worst of all four. Every configuration amplified order variability." />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v1.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --verdict-rejected-bg: #fdf0f0;
+      --verdict-rejected: #8a2a2a;
+      --verdict-partial-bg: #fdf6e0;
+      --verdict-partial: #7a5500;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    /* ─── Post header ─── */
+    .post-header {
+      padding: 7rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+    .post-summary {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .post-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .post-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .post-meta-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .post-meta-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Post body ─── */
+    .post-body {
+      padding: 4rem 0;
+    }
+    .post-section {
+      margin-bottom: 3.5rem;
+    }
+    .post-section:last-child { margin-bottom: 0; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+
+    /* ─── TL;DR block ─── */
+    .abstract-block {
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 4px 4px 0;
+    }
+    .abstract-block p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Setup table ─── */
+    .setup-table {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td {
+      padding: 0.75rem 1.25rem;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .setup-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 180px;
+    }
+    .setup-table td:last-child {
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* ─── Key findings list ─── */
+    .findings-list {
+      list-style: none;
+      counter-reset: finding;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .findings-list li {
+      counter-increment: finding;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .findings-list li::before {
+      content: counter(finding, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      margin-top: 4px;
+      min-width: 24px;
+    }
+    .finding-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .finding-text strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── Results tables ─── */
+    .results-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
+    .results-table-wrap:last-child { margin-bottom: 0; }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .results-table thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .results-table thead th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .results-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td {
+      padding: 0.65rem 1.25rem;
+      color: var(--text-primary);
+      font-weight: 300;
+      vertical-align: middle;
+    }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500 !important;
+    }
+    .tag-cell {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .best { color: var(--verdict-supported) !important; }
+    .worst { color: var(--verdict-rejected) !important; }
+    .unstable { color: var(--verdict-partial) !important; }
+
+    /* ─── Verdict badges ─── */
+    .verdict {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+    .verdict-rejected { background: var(--verdict-rejected-bg); color: var(--verdict-rejected); }
+    .verdict-partial { background: var(--verdict-partial-bg); color: var(--verdict-partial); }
+    .verdict-supported { background: var(--verdict-supported-bg); color: var(--verdict-supported); }
+
+    /* ─── Discussion prose ─── */
+    .prose p {
+      font-size: 15.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.1rem;
+      max-width: 640px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .prose em { font-style: italic; }
+
+    /* ─── Table note ─── */
+    .table-note {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* ─── Methodology callout ─── */
+    .method-callout {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .method-callout-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .method-callout p {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .method-callout p + p { margin-top: 0.75rem; }
+    .method-callout a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .method-callout a:hover { color: var(--accent-mid); }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      margin-top: 3rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="./" class="active">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Post header -->
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Supply Chain &middot; Experiment Writeup</p>
+      <h1 class="post-title">Context and Model Capability in AI-Driven Supply Chain Ordering</h1>
+      <p class="post-summary">
+        Context helped the lightweight model and hurt the reasoning model. The most capable, most expensive setup was the worst of all four. Every configuration amplified order variability.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <span class="post-meta-value">February 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Experiment</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 1</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Design</span>
+          <span class="post-meta-value">2&times;2 Factorial &middot; 5 runs &middot; 720 LLM calls</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Author</span>
+          <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post body -->
+  <main class="post-body">
+    <div class="container">
+
+      <!-- TL;DR -->
+      <div class="post-section">
+        <p class="section-label">TL;DR</p>
+        <div class="abstract-block">
+          <p>Context helped the lightweight model and hurt the reasoning model. The most capable, most expensive setup was the worst of all four. Every configuration amplified order variability.</p>
+        </div>
+      </div>
+
+      <!-- Overview -->
+      <div class="post-section">
+        <p class="section-label">Overview</p>
+        <h2 class="section-title">What this experiment explored</h2>
+        <div class="prose">
+          <p>The bullwhip effect is a well-known supply chain problem: small shifts in consumer demand turn into larger and larger order swings as you move upstream through the chain. Version 1 put LLM agents in the ordering role across a three-tier supply chain and asked whether giving them business context (company identity, product details, calendar month) changed how much variability they added.</p>
+          <p>This was an exploratory study, 5 runs per configuration, designed to establish a baseline and surface anything unexpected before scaling the experiment. One result was unexpected enough to motivate the larger Agentic Bullwhip Effect Version 2 design.</p>
+        </div>
+      </div>
+
+      <!-- Experiment Setup -->
+      <div class="post-section">
+        <p class="section-label">Experiment Setup</p>
+        <h2 class="section-title">Design &amp; configuration</h2>
+        <table class="setup-table">
+          <tbody>
+            <tr><td>Models</td><td>gpt-4.1-mini (lightweight) &middot; o1 (reasoning)</td></tr>
+            <tr><td>Design</td><td>2&times;2 factorial: model tier &times; context treatment</td></tr>
+            <tr><td>Replications</td><td>5 per configuration &middot; 20 total runs</td></tr>
+            <tr><td>Primary metric</td><td>OVAR (Order Variance Amplification Ratio) = Var(orders) / Var(demand). Below 1.0 = dampening &middot; 1.0 = pass-through &middot; above 1.0 = amplification</td></tr>
+            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors (OEM) &rarr; Lighting Manufacturer (Ancillary) &rarr; LED Component Manufacturer</td></tr>
+            <tr><td>Demand series</td><td>13 months (Dec 2024 to Dec 2025) &middot; single SKU &middot; 606,771 total units</td></tr>
+            <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
+            <tr><td>Initial inventory</td><td>43,000 units at all tiers</td></tr>
+            <tr><td>LLM calls</td><td>720 total (12 periods &times; 3 tiers &times; 5 runs &times; 4 configurations)</td></tr>
+            <tr><td>Agent design</td><td>Stateless, no memory between periods</td></tr>
+            <tr><td>Blind condition</td><td>Agent receives numeric state only: demand, on-hand inventory, backlog, in-transit orders, lead time. No company identity, product, or calendar context.</td></tr>
+            <tr><td>Context condition</td><td>Agent receives the same numeric state plus company identity, product details, market position, and calendar month/year.</td></tr>
+            <tr><td>gpt-4.1-mini</td><td>Temperature 0.4, 600 max tokens</td></tr>
+            <tr><td>o1</td><td>API-fixed temperature, 16,000 max tokens</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Key Findings -->
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every configuration amplified demand variability.</strong> OVAR exceeded 1.0 at every tier, in every run, across all four configurations. No configuration reduced variability.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context made the lightweight model more stable.</strong> context_lightweight chain OVAR 2.929 vs blind_lightweight 3.157, a 7.2% reduction. context_lightweight also showed the highest seasonal responsiveness, raising orders at event months in 83% of cases.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context made the reasoning model worse.</strong> context_reasoning chain OVAR 4.412 vs blind_reasoning 3.835. The most capable, fully-informed configuration produced the highest chain variability of all four, 39.7% above the blind lightweight baseline.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>context_reasoning produced an inverted tier pattern.</strong> Standard bullwhip analysis predicts variability increasing upstream: Component noisier than Ancillary, Ancillary noisier than OEM. context_reasoning flipped this entirely. OEM OVAR 6.349, Ancillary 4.191, Component 2.698. The three other configurations followed the expected pattern.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>o1 showed high run-to-run variability.</strong> CV for o1 OVAR: 22&ndash;57%. For gpt-4.1-mini: under 2%. At n=5, o1 means are directional, not reliable point estimates.</span>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Results -->
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Chain-average OVAR by configuration</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Configuration</th>
+                <th>Model</th>
+                <th>Treatment</th>
+                <th>Chain avg OVAR</th>
+                <th>vs blind_lightweight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>context_lightweight</td>
+                <td class="tag-cell">gpt-4.1-mini</td>
+                <td>Context</td>
+                <td class="value-cell best">2.929</td>
+                <td class="value-cell">&minus;7.2%</td>
+              </tr>
+              <tr>
+                <td>blind_lightweight</td>
+                <td class="tag-cell">gpt-4.1-mini</td>
+                <td>Blind</td>
+                <td class="value-cell">3.157</td>
+                <td class="value-cell">baseline</td>
+              </tr>
+              <tr>
+                <td>blind_reasoning</td>
+                <td class="tag-cell">o1</td>
+                <td>Blind</td>
+                <td class="value-cell">3.835</td>
+                <td class="value-cell">+21.5%</td>
+              </tr>
+              <tr>
+                <td>context_reasoning</td>
+                <td class="tag-cell">o1</td>
+                <td>Context</td>
+                <td class="value-cell worst">4.412</td>
+                <td class="value-cell">+39.7%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">OVAR by tier (mean &plusmn; std, CV%)</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Configuration</th>
+                <th>OEM OVAR</th>
+                <th>CV%</th>
+                <th>Ancillary OVAR</th>
+                <th>CV%</th>
+                <th>Component OVAR</th>
+                <th>CV%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>blind_lightweight</td>
+                <td class="value-cell">2.267 &plusmn; 0.009</td>
+                <td class="tag-cell">0.41</td>
+                <td class="value-cell">2.938 &plusmn; 0.044</td>
+                <td class="tag-cell">1.50</td>
+                <td class="value-cell">4.266 &plusmn; 0.078</td>
+                <td class="tag-cell">1.82</td>
+              </tr>
+              <tr>
+                <td>context_lightweight</td>
+                <td class="value-cell">2.237 &plusmn; 0.006</td>
+                <td class="tag-cell">0.29</td>
+                <td class="value-cell">3.138 &plusmn; 0.080</td>
+                <td class="tag-cell">2.55</td>
+                <td class="value-cell">3.412 &plusmn; 0.347 *</td>
+                <td class="tag-cell">10.18</td>
+              </tr>
+              <tr>
+                <td>blind_reasoning</td>
+                <td class="value-cell unstable">4.200 &plusmn; 2.400</td>
+                <td class="tag-cell unstable">57.15 &#9888;</td>
+                <td class="value-cell unstable">3.656 &plusmn; 1.350</td>
+                <td class="tag-cell unstable">36.94 &#9888;</td>
+                <td class="value-cell unstable">3.649 &plusmn; 0.608</td>
+                <td class="tag-cell unstable">16.66 &#9888;</td>
+              </tr>
+              <tr>
+                <td>context_reasoning</td>
+                <td class="value-cell worst">6.349 &plusmn; 1.452</td>
+                <td class="tag-cell unstable">22.86 &#9888;</td>
+                <td class="value-cell">4.191 &plusmn; 1.373</td>
+                <td class="tag-cell unstable">32.76 &#9888;</td>
+                <td class="value-cell best">2.698 &plusmn; 0.677</td>
+                <td class="tag-cell unstable">25.10 &#9888;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">* Parse error in run 5 inflates component mean by ~+0.129. Clean estimate: 3.283 &plusmn; 0.220. &nbsp;&nbsp; &#9888; CV &gt; 10%; high run-to-run instability; means are directional, not reliable point estimates.</p>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Stockouts and excess inventory</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Configuration</th>
+                <th>Stockouts (chain total)</th>
+                <th>Excess inventory (chain total)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>blind_lightweight</td>
+                <td class="value-cell">21.4</td>
+                <td class="value-cell">109,360</td>
+              </tr>
+              <tr>
+                <td>context_lightweight</td>
+                <td class="value-cell">19.6</td>
+                <td class="value-cell">151,246</td>
+              </tr>
+              <tr>
+                <td>blind_reasoning</td>
+                <td class="value-cell">20.0</td>
+                <td class="value-cell">330,649</td>
+              </tr>
+              <tr>
+                <td>context_reasoning</td>
+                <td class="value-cell best">12.8</td>
+                <td class="value-cell worst">654,728</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">context_reasoning had the fewest stockouts and the highest excess inventory: 654,728 units, roughly 6&times; blind_lightweight. Fewer stockouts, but at significant inventory cost.</p>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Hypothesis verdicts</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Hypothesis</th>
+                <th>Prediction</th>
+                <th>Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>H1</td>
+                <td>Context reduces OVAR at all three tiers</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H2</td>
+                <td>Blind reasoning performs similarly to blind lightweight</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H3</td>
+                <td>context_reasoning achieves the lowest chain OVAR</td>
+                <td><span class="verdict verdict-rejected">REJECTED</span></td>
+              </tr>
+              <tr>
+                <td>H4</td>
+                <td>Context agents respond better to seasonal demand</td>
+                <td><span class="verdict verdict-partial">PARTIAL</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">H4 held for the lightweight model (seasonal elevation score of 83%) but reversed for the reasoning model.</p>
+      </div>
+
+      <!-- Discussion -->
+      <div class="post-section">
+        <p class="section-label">Discussion</p>
+        <h2 class="section-title">The context effect</h2>
+        <div class="prose">
+          <p>The context effect ran in opposite directions depending on the model. For gpt-4.1-mini, context reduced chain OVAR by 0.228. For o1, context increased it by 0.577. The sharpest divergence was at the OEM tier, which is the tier observing real consumer demand. Context had near-zero effect on gpt-4.1-mini there (delta &minus;0.030). For o1 at the same tier, context pushed OVAR up by 2.149. A model capable of reasoning about seasonality, given a month name and a market identity, appears to build forward-looking ordering strategies that inject variance at the chain head rather than reduce it.</p>
+          <p>The inverted cascade in context_reasoning is the clearest expression of this. The OEM agent ordered aggressively ahead of anticipated demand peaks: 654,728 units of excess inventory chain-wide, while stockouts fell to 12.8. Whether this pattern holds at more runs is what Agentic Bullwhip Effect Version 2 is designed to test. With CV values of 22&ndash;57% for o1 configurations, these means are directional at n=5, real enough to follow up, not settled enough to conclude on.</p>
+        </div>
+      </div>
+
+      <!-- Industry Implications -->
+      <div class="post-section">
+        <p class="section-label">Industry Implications</p>
+        <h2 class="section-title">What this means for practitioners</h2>
+        <div class="prose">
+          <p>More context and a more capable model did not produce better ordering decisions. The assumption that richer input to a more capable model will always improve the result does not hold when each order directly affects the next period's inventory. In a supply chain, a bad order this month makes the situation harder next month, and the model has no memory of what it did.</p>
+          <p>The o1 result points to a specific deployment risk: inconsistency. When a model produces reasonable results in some runs and extreme results in others with the same inputs every time, you cannot tell in advance which type of run you are getting. That is harder to manage than a model that fails consistently, because at least a consistent failure is predictable. Before using a reasoning-tier model in any sequential operational task, run enough trials to understand how much its output varies.</p>
+        </div>
+      </div>
+
+      <!-- Experiment source -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_1" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+        </div>
+      </div>
+
+      <!-- Methodology note -->
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Methodology note</p>
+          <p>All scenarios, companies, products, and supply chain structures are fictional. No proprietary data was used. Exploratory study; 5 runs per configuration. Results are directional. gpt-4.1-mini at temperature 0.4, 600 max tokens. o1 at API-fixed temperature, 16,000 max tokens.</p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to Experiments
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal research &middot; not affiliated with any employer</span>
+      <ul class="footer-links">
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
