@@ -1,0 +1,49 @@
+{
+  "version": "V4_WorldEvents",
+  "experiment": "E4_IC_azure",
+  "timestamp_utc": "20260422T175350",
+  "demand_file": "data/synthetic/tatva_monthly_dispatches_36m.csv",
+  "demand_checksum_sha256": "03b0bea6551ce8630ecbb0bbee95babf01ae183fa7d28a220965ca151a9b4bbe",
+  "backend": "azure",
+  "noise_cv": 0.08,
+  "world_events_enabled": [
+    "conflict",
+    "pandemic",
+    "port_disruption"
+  ],
+  "model_lightweight": "gpt-4.1-mini",
+  "model_reasoning": "o4-mini",
+  "intent_multiplier_map": {
+    "STRONG_INCREASE": 1.3,
+    "MODERATE_INCREASE": 1.15,
+    "NEUTRAL": 1.0,
+    "MODERATE_DECREASE": 0.9,
+    "STRONG_DECREASE": 0.8
+  },
+  "temperature_config": {
+    "blind_lightweight": 0.4,
+    "context_lightweight": 0.4,
+    "unstructured_lightweight": 0.4,
+    "blind_reasoning": 1.0,
+    "context_reasoning": 1.0,
+    "unstructured_reasoning": 1.0
+  },
+  "run_stats": {
+    "ic_blind_neutral_gpt41mini": {
+      "attempts": 20,
+      "replacements": 0
+    },
+    "ic_context_neutral_gpt41mini": {
+      "attempts": 20,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {
+    "n_calls": 4200,
+    "mean_ms": 2526.9,
+    "p50_ms": 2407.6,
+    "p95_ms": 3485.0,
+    "total_wall_time_s": 10612.8
+  },
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+}

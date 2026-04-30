@@ -1,0 +1,245 @@
+[
+  {
+    "condition": "oracle_v4map",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 1.7759153691060665,
+      "std": 0.09319985324763473
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.608085987968556,
+        "std": 0.23084915895111774
+      },
+      "Ancillary": {
+        "mean": 1.3892597934948347,
+        "std": 0.09353665454790215
+      },
+      "Component": {
+        "mean": 1.3304003258548087,
+        "std": 0.08395568303939863
+      }
+    },
+    "chain_stockouts": {
+      "mean": 87.05,
+      "std": 2.4809802816416613
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "demand_fill_rate": {
+      "mean": 0.7653929637223198,
+      "std": 0.01646056288738418
+    },
+    "tier_demand_fill_rate": {
+      "OEM": {
+        "mean": 0.7741023309349674,
+        "std": 0.033161322344884926
+      },
+      "Ancillary": {
+        "mean": 0.7637716439268369,
+        "std": 0.024112338816798407
+      },
+      "Component": {
+        "mean": 0.7583049163051548,
+        "std": 0.031000102053807106
+      }
+    },
+    "service_level": {
+      "mean": 0.47596155895176845,
+      "std": 0.018242007919514594
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.623479571383091,
+        "std": 0.03136617453888394
+      },
+      "Ancillary": {
+        "mean": 0.42857789771690297,
+        "std": 0.02670629324432187
+      },
+      "Component": {
+        "mean": 0.3758272077553114,
+        "std": 0.01704844911348997
+      }
+    },
+    "avg_backlog": {
+      "mean": 95919.1957142857,
+      "std": 8065.952397108708
+    },
+    "max_backlog": {
+      "mean": 228918.34999999995,
+      "std": 18812.807739582397
+    },
+    "avg_on_hand": {
+      "mean": 1860.9609523809527,
+      "std": 356.57521251580266
+    },
+    "order_adj_variance": {
+      "mean": 158690281.35207963,
+      "std": 25150965.49768889
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.130200533781307,
+      "std": 4.556259157007654e-16
+    },
+    "intent_distribution": {
+      "oracle_v4map_r01_5dd59e": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r02_1ae8b5": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r03_375e79": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r04_7cc2e3": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r05_16ac42": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r06_319a74": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r07_193bab": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r08_f27374": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r09_e9462b": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r10_15fb27": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r11_364ffd": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r12_8a48ee": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r13_a4c893": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r14_da176b": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r15_d6d554": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r16_b9106b": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r17_14d66d": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r18_a0be4e": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r19_c44f1b": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "oracle_v4map_r20_1e8ab0": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "condition": "ic_context_azure",
+    "policy": "intent",
+    "n_runs": 10,
+    "chain_ovar": {
+      "mean": 3.2355733664014137,
+      "std": 0.04594613634386854
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 5.804725421801776,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 1.820464601740833,
+        "std": 0.16934413460060296
+      },
+      "Component": {
+        "mean": 2.081530075661633,
+        "std": 0.06569322154846631
+      }
+    },
+    "chain_stockouts": {
+      "mean": 15.4,
+      "std": 0.5163977794943222
+    },
+    "mean_on_hand": {
+      "mean": 6429.736111111111,
+      "std": 96.07810595247834
+    },
+    "pattern_score": {
+      "mean": 0.4136363636363637,
+      "std": 0.012473827308311576
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 0.7857142857142857,
+        "std": 0.0
+      },
+      "n_event_periods": 14
+    },
+    "intent_entropy": {
+      "mean": 2.1174924611847556,
+      "std": 4.681111291435602e-16
+    },
+    "intent_distribution": {
+      "ic_context_azure_r01_06b934": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r02_91cadd": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r03_f8d883": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r04_cf16f2": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r05_f5bc2e": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r06_5977de": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r07_cf6d6c": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r08_f2049f": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r09_e75dd8": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r10_860f42": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "condition": "mini_ctx_computed",
+    "policy": "adaptive_alpha",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 0.7032413546866394,
+      "std": 0.02355198242886559
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 0.20499303051929685,
+        "std": 0.02372112810736393
+      },
+      "Ancillary": {
+        "mean": 0.7267429298106605,
+        "std": 0.2400134330809915
+      },
+      "Component": {
+        "mean": 1.1779881037299607,
+        "std": 0.19307861390175884
+      }
+    },
+    "chain_stockouts": {
+      "mean": 8.0,
+      "std": 2.8284271247461903
+    },
+    "mean_on_hand": {
+      "mean": 4285.993055555556,
+      "std": 32.39923987686752
+    },
+    "alpha_mean": {
+      "mean": 0.2625,
+      "std": 0.005892556509887875
+    },
+    "alpha_entropy": {
+      "mean": 1.4745411476764105,
+      "std": 0.021769315552787414
+    },
+    "alpha_fallback_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_distribution": {
+      "mini_ctx_computed_r01_220e85": {
+        "0.3": 4,
+        "0.5": 8,
+        "0.1": 12
+      },
+      "mini_ctx_computed_r02_4717b3": {
+        "0.3": 5,
+        "0.5": 7,
+        "0.1": 12
+      }
+    }
+  },
+  {
+    "condition": "mini_ctx_debiased",
+    "policy": "adaptive_alpha",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 0.6009098884102431,
+      "std": 0.01028311337431318
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 0.7009907931524711,
+        "std": 0.0071473259913624595
+      },
+      "Ancillary": {
+        "mean": 0.4196381850836364,
+        "std": 0.11996519228839463
+      },
+      "Component": {
+        "mean": 0.6821006869946218,
+        "std": 0.09626317815681767
+      }
+    },
+    "chain_stockouts": {
+      "mean": 8.0,
+      "std": 0.0
+    },
+    "mean_on_hand": {
+      "mean": 4308.944444444444,
+      "std": 31.937656283591966
+    },
+    "alpha_mean": {
+      "mean": 0.3208333333333333,
+      "std": 0.005892556509887914
+    },
+    "alpha_entropy": {
+      "mean": 1.817448747196557,
+      "std": 0.04682680185260016
+    },
+    "alpha_fallback_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_distribution": {
+      "mini_ctx_debiased_r01_637735": {
+        "0.3": 11,
+        "0.1": 7,
+        "0.5": 3,
+        "0.7": 3
+      },
+      "mini_ctx_debiased_r02_9151b7": {
+        "0.3": 10,
+        "0.1": 7,
+        "0.5": 4,
+        "0.7": 3
+      }
+    }
+  }
+]

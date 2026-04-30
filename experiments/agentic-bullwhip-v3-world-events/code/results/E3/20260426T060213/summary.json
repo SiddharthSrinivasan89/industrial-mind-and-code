@@ -1,0 +1,62 @@
+[
+  {
+    "condition": "no_events_blind",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "Component": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "chain_stockouts": {
+      "mean": 99.0,
+      "std": 1.4142135623730951
+    },
+    "pattern_score": {
+      "mean": 0.1015625,
+      "std": 0.011048543456039806
+    }
+  },
+  {
+    "condition": "no_events_context",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "Component": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "chain_stockouts": {
+      "mean": 99.0,
+      "std": 1.4142135623730951
+    },
+    "pattern_score": {
+      "mean": 0.1015625,
+      "std": 0.011048543456039806
+    }
+  }
+]

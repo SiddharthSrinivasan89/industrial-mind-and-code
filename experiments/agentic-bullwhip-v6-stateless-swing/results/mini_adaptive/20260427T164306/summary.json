@@ -1,0 +1,155 @@
+[
+  {
+    "condition": "mini_blind",
+    "policy": "adaptive_alpha",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 0.5445652495905194,
+      "std": 0.0
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 0.4079533752683417,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 0.6474120192984518,
+        "std": 0.0
+      },
+      "Component": {
+        "mean": 0.5783303542047649,
+        "std": 0.0
+      }
+    },
+    "chain_stockouts": {
+      "mean": 5.0,
+      "std": 0.0
+    },
+    "mean_on_hand": {
+      "mean": 4769.055555555556,
+      "std": 0.0
+    },
+    "alpha_mean": {
+      "mean": 0.3,
+      "std": 0.0
+    },
+    "alpha_entropy": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_fallback_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_distribution": {
+      "mini_blind_r01_4a6762": {
+        "0.3": 24
+      },
+      "mini_blind_r02_56bc26": {
+        "0.3": 24
+      }
+    }
+  },
+  {
+    "condition": "mini_context",
+    "policy": "adaptive_alpha",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 0.5445652495905194,
+      "std": 0.0
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 0.4079533752683417,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 0.6474120192984518,
+        "std": 0.0
+      },
+      "Component": {
+        "mean": 0.5783303542047649,
+        "std": 0.0
+      }
+    },
+    "chain_stockouts": {
+      "mean": 5.0,
+      "std": 0.0
+    },
+    "mean_on_hand": {
+      "mean": 4769.055555555556,
+      "std": 0.0
+    },
+    "alpha_mean": {
+      "mean": 0.3,
+      "std": 0.0
+    },
+    "alpha_entropy": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_fallback_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_distribution": {
+      "mini_context_r01_6fcf33": {
+        "0.3": 24
+      },
+      "mini_context_r02_f3b2f7": {
+        "0.3": 24
+      }
+    }
+  },
+  {
+    "condition": "mini_stateful",
+    "policy": "adaptive_alpha",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 0.5445652495905194,
+      "std": 0.0
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 0.4079533752683417,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 0.6474120192984518,
+        "std": 0.0
+      },
+      "Component": {
+        "mean": 0.5783303542047649,
+        "std": 0.0
+      }
+    },
+    "chain_stockouts": {
+      "mean": 5.0,
+      "std": 0.0
+    },
+    "mean_on_hand": {
+      "mean": 4769.055555555556,
+      "std": 0.0
+    },
+    "alpha_mean": {
+      "mean": 0.3,
+      "std": 0.0
+    },
+    "alpha_entropy": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_fallback_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_distribution": {
+      "mini_stateful_r01_40f70e": {
+        "0.3": 24
+      },
+      "mini_stateful_r02_3663c1": {
+        "0.3": 24
+      }
+    }
+  }
+]

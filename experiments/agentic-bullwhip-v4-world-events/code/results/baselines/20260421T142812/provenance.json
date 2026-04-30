@@ -1,0 +1,47 @@
+{
+  "version": "V4_WorldEvents",
+  "experiment": "baselines",
+  "timestamp_utc": "20260421T142813",
+  "demand_file": "data/synthetic/tatva_monthly_dispatches_36m.csv",
+  "demand_checksum_sha256": "03b0bea6551ce8630ecbb0bbee95babf01ae183fa7d28a220965ca151a9b4bbe",
+  "backend": "unknown",
+  "noise_cv": 0.08,
+  "world_events_enabled": [
+    "conflict",
+    "port_disruption",
+    "pandemic"
+  ],
+  "model_lightweight": "",
+  "model_reasoning": "",
+  "intent_multiplier_map": {
+    "STRONG_INCREASE": 1.3,
+    "MODERATE_INCREASE": 1.15,
+    "NEUTRAL": 1.0,
+    "MODERATE_DECREASE": 0.9,
+    "STRONG_DECREASE": 0.8
+  },
+  "temperature_config": {
+    "blind_lightweight": 0.4,
+    "context_lightweight": 0.4,
+    "unstructured_lightweight": 0.4,
+    "blind_reasoning": 0.0,
+    "context_reasoning": 0.3,
+    "unstructured_reasoning": 0.3
+  },
+  "run_stats": {
+    "naive_passthrough": {
+      "attempts": 100,
+      "replacements": 0
+    },
+    "exp_smoothing": {
+      "attempts": 100,
+      "replacements": 0
+    },
+    "order_up_to": {
+      "attempts": 100,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "condition": "ic_stateful_azure",
+    "policy": "intent",
+    "n_runs": 10,
+    "chain_ovar": {
+      "mean": 3.755128469917204,
+      "std": 0.062297420869372185
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 5.81324331304914,
+        "std": 0.026935937203282585
+      },
+      "Ancillary": {
+        "mean": 2.919269880673791,
+        "std": 0.21389581729088727
+      },
+      "Component": {
+        "mean": 2.5328722160286796,
+        "std": 0.10077975907301459
+      }
+    },
+    "chain_stockouts": {
+      "mean": 12.0,
+      "std": 1.3333333333333333
+    },
+    "mean_on_hand": {
+      "mean": 7469.298611111112,
+      "std": 165.92534815773485
+    },
+    "pattern_score": {
+      "mean": 0.3795454545454545,
+      "std": 0.018366764187846652
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 0.7857142857142857,
+        "std": 0.0
+      },
+      "n_event_periods": 14
+    },
+    "intent_entropy": {
+      "mean": 2.1219937756074887,
+      "std": 0.01423440604040329
+    },
+    "intent_distribution": {
+      "ic_stateful_azure_r01_c472e0": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r02_819b45": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r03_fcd947": {
+        "NEUTRAL": 9,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r04_3fe451": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r05_9723e2": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r06_d7944e": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r07_3d9a53": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r08_dd802d": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r09_13af9c": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_stateful_azure_r10_5fc388": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

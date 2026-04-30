@@ -1,0 +1,53 @@
+{
+  "version": "V4_WorldEvents",
+  "experiment": "E2_IC_nemotron",
+  "timestamp_utc": "20260422T233819",
+  "demand_file": "data/synthetic/tatva_monthly_dispatches_36m.csv",
+  "demand_checksum_sha256": "03b0bea6551ce8630ecbb0bbee95babf01ae183fa7d28a220965ca151a9b4bbe",
+  "backend": "local",
+  "noise_cv": 0.08,
+  "world_events_enabled": [
+    "conflict",
+    "port_disruption",
+    "pandemic"
+  ],
+  "model_lightweight": "phi4:14b",
+  "model_reasoning": "nemotron-3-super:120b",
+  "intent_multiplier_map": {
+    "STRONG_INCREASE": 1.3,
+    "MODERATE_INCREASE": 1.15,
+    "NEUTRAL": 1.0,
+    "MODERATE_DECREASE": 0.9,
+    "STRONG_DECREASE": 0.8
+  },
+  "temperature_config": {
+    "blind_lightweight": 0.4,
+    "context_lightweight": 0.4,
+    "unstructured_lightweight": 0.4,
+    "blind_reasoning": 0.0,
+    "context_reasoning": 0.3,
+    "unstructured_reasoning": 0.3
+  },
+  "run_stats": {
+    "ic_blind_nemotron": {
+      "attempts": 10,
+      "replacements": 0
+    },
+    "ic_context_nemotron": {
+      "attempts": 10,
+      "replacements": 0
+    },
+    "ic_unstructured_nemotron": {
+      "attempts": 10,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {
+    "n_calls": 3150,
+    "mean_ms": 32190.5,
+    "p50_ms": 25805.6,
+    "p95_ms": 75887.4,
+    "total_wall_time_s": 101400.1
+  },
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+}

@@ -1,0 +1,48 @@
+{
+  "experiment": "H1",
+  "timestamp_utc": "20260415T025859",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "dry_run": false,
+  "backend": "azure",
+  "model_local": "nemotron-3-super:120b",
+  "model_lightweight": "gpt-4.1-mini",
+  "hybrid_params": {
+    "alpha": 0.3,
+    "base_ss": 5061,
+    "multiplier_bounds": [
+      0.5,
+      3.0
+    ],
+    "multiplier_fallback": 1.0,
+    "history_window": 3
+  },
+  "temperature_config": {
+    "hybrid_all_conditions": 0.3
+  },
+  "run_stats": {
+    "hybrid_blind_azure": {
+      "attempts": 2,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {
+    "n_calls": 144,
+    "mean_ms": 2274.7,
+    "p50_ms": 2195.3,
+    "p95_ms": 3029.4,
+    "p99_ms": 3653.1,
+    "total_prompt_tokens": 52506,
+    "total_completion_tokens": 6740,
+    "retry_rate": 0.0,
+    "total_wall_time_s": 327.6,
+    "mean_generation_tps": 20.9,
+    "multiplier_fallback_rate": 0.0,
+    "multiplier_clamp_rate": 0.0
+  },
+  "infra_context": {
+    "type": "azure",
+    "endpoint": "https://industrial-mind-and-cod-resource.openai.azure.com/",
+    "api_version": "2025-01-01-preview",
+    "model_lightweight": "gpt-4.1-mini"
+  }
+}

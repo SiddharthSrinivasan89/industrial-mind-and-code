@@ -1,0 +1,94 @@
+[
+  {
+    "condition": "oracle_v4map",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 1.8464161599058324,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.6853002339284133,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.4589090917325227,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.3950391540565616,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 83.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.4909814271637784,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6213981721391578,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.46039431753168825,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.39115179182048904,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 94800.76190476191,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 226653.0,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 2427.1428571428573,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 192011018.33303627,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "oracle_v4map_r01_e48ebb": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

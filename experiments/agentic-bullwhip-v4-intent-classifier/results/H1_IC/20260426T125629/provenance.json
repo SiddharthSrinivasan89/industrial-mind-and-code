@@ -1,0 +1,49 @@
+{
+  "version": "V4_IC",
+  "experiment": "H1_IC",
+  "timestamp_utc": "20260426T125629",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "dry_run": false,
+  "backend": "local",
+  "model_lightweight": "phi4:14b",
+  "model_reasoning": "gpt-oss:120b",
+  "intent_params": {
+    "multiplier_map": {
+      "STRONG_INCREASE": 2.5,
+      "MODERATE_INCREASE": 1.5,
+      "NEUTRAL": 1.0,
+      "MODERATE_DECREASE": 0.75,
+      "STRONG_DECREASE": 0.5
+    },
+    "fallback_intent": "NEUTRAL",
+    "history_window": 3,
+    "formula_alpha": 0.3,
+    "base_ss": 5061
+  },
+  "run_stats": {
+    "ic_blind_local": {
+      "attempts": 5,
+      "replacements": 0
+    },
+    "ic_blind_local_phi": {
+      "attempts": 5,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {
+    "n_calls": 720,
+    "mean_ms": 8333.2,
+    "p50_ms": 6813.4,
+    "p95_ms": 16221.6,
+    "total_prompt_tokens": 314107,
+    "total_completion_tokens": 29366,
+    "total_wall_time_s": 5999.9,
+    "intent_fallback_rate": 0.0
+  },
+  "infra_context": {
+    "type": "local",
+    "endpoint": "http://localhost:11434/v1",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "gpu": "NVIDIA GB10, [N/A]"
+  }
+}

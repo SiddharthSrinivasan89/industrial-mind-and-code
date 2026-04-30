@@ -1,0 +1,38 @@
+{
+  "version": "V6_StatelessSwing",
+  "experiment": "oss120b_debiased",
+  "timestamp_utc": "20260429T090233",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "dry_run": true,
+  "backend": "local",
+  "model_lightweight": "phi4:14b",
+  "model_reasoning": "gpt-oss:120b",
+  "alpha_params": {
+    "alpha_values": [
+      0.1,
+      0.3,
+      0.5,
+      0.7
+    ],
+    "alpha_fallback": 0.3,
+    "history_window": 3,
+    "demand_window": 5
+  },
+  "run_stats": {
+    "oss120b_ctx_debiased": {
+      "attempts": 2,
+      "replacements": 0
+    },
+    "oss120b_ctx_computed": {
+      "attempts": 2,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "infra_context": {
+    "type": "local",
+    "endpoint": "http://localhost:11434/v1",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "gpu": "NVIDIA GB10, [N/A]"
+  }
+}

@@ -1,0 +1,370 @@
+[
+  {
+    "condition": "neutral_dampened_out",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 2.197556900400196,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 3.8262601653263486,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.4095645634762135,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.3568459723980248,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 86.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.488972064191211,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6542484527623902,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.4242992306474589,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.3883685091637839,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 88160.39047619049,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 215905.33333333334,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 2759.4666666666667,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 283019787.92097443,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "neutral_dampened_out_r01_4703f5": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  },
+  {
+    "condition": "neutral_floor_only",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 2.2006233688347097,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 3.76784034288773,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.5547963996024452,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.279233364013954,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 84.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.49788504334330014,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6616968094175525,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.4461350602154696,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.3858232603968782,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 84954.7142857143,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 220660.33333333334,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 2799.9142857142856,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 251319318.11794415,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "neutral_floor_only_r01_4a22bd": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  },
+  {
+    "condition": "neutral_repeat_last",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 2.3752481772467458,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 4.492034819628928,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.3777475865419724,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.2559621255693374,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 83.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.49964323276473693,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6618838265508655,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.4498236241697296,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.3872222475736157,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 83006.85714285714,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 211228.0,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 3177.609523809524,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 287775011.7456922,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "neutral_repeat_last_r01_a731f1": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  },
+  {
+    "condition": "neutral_smoothed_forecast",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 1.7769427248800678,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.5682586156399414,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.415169672194902,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.34739988680536,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 83.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.45255505087532916,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.5463527708253658,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.41755271965240076,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.3937596621482209,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 102677.92380952381,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 230821.0,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 2126.2761904761905,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 273070028.59566253,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "neutral_smoothed_forecast_r01_e9e0c9": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

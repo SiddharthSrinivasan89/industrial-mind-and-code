@@ -1,0 +1,51 @@
+[
+  {
+    "condition": "hybrid_blind_azure",
+    "policy": "hybrid",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 2.3324920912358498,
+      "std": 0.11083900170941854
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.3474130461025684,
+        "std": 0.20519218169560205
+      },
+      "Ancillary": {
+        "mean": 2.312508124188355,
+        "std": 0.19014710341063368
+      },
+      "Component": {
+        "mean": 2.3375551034166246,
+        "std": 0.15711432985366988
+      }
+    },
+    "chain_stockouts": {
+      "mean": 10.6,
+      "std": 1.2732056517228265
+    },
+    "mean_on_hand": {
+      "mean": 6030.380555555556,
+      "std": 148.8055718210955
+    },
+    "pattern_score": {
+      "mean": 0.2011363636363636,
+      "std": 0.01863389981249825
+    },
+    "multiplier_pattern_score": {
+      "mean": 0.18749999999999997,
+      "std": 0.02277705870747541
+    },
+    "multiplier_stats": {
+      "mean_mean_multiplier": 1.1297916666666667,
+      "std_mean_multiplier": 0.0329209573117209,
+      "mean_n_fallback": 0.0,
+      "mean_n_clamped": 0.0
+    },
+    "llm_compliance_rate": {
+      "mean": 1.0,
+      "std": 0.0
+    }
+  }
+]

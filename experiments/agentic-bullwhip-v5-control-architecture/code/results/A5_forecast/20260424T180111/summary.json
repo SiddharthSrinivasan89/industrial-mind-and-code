@@ -1,0 +1,245 @@
+[
+  {
+    "condition": "forecast_oracle_events",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 2.009407323294371,
+      "std": 0.1399576375426495
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 3.1197165211439106,
+        "std": 0.42022451139296835
+      },
+      "Ancillary": {
+        "mean": 1.5696880473585149,
+        "std": 0.0739714148859072
+      },
+      "Component": {
+        "mean": 1.338817401380689,
+        "std": 0.06231092215622012
+      }
+    },
+    "chain_stockouts": {
+      "mean": 85.35,
+      "std": 2.7003898354048617
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "demand_fill_rate": {
+      "mean": 0.7702727891534196,
+      "std": 0.019041907061778753
+    },
+    "tier_demand_fill_rate": {
+      "OEM": {
+        "mean": 0.770180145906666,
+        "std": 0.033009615473459826
+      },
+      "Ancillary": {
+        "mean": 0.7753050660257667,
+        "std": 0.029083327260548717
+      },
+      "Component": {
+        "mean": 0.765333155527826,
+        "std": 0.03117543462257244
+      }
+    },
+    "service_level": {
+      "mean": 0.48341598669903074,
+      "std": 0.021534618110248798
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6086198592296311,
+        "std": 0.03060729966703911
+      },
+      "Ancillary": {
+        "mean": 0.445555486484645,
+        "std": 0.034389424526390745
+      },
+      "Component": {
+        "mean": 0.3960726143828165,
+        "std": 0.020370006868770187
+      }
+    },
+    "avg_backlog": {
+      "mean": 92603.83,
+      "std": 9475.288518134708
+    },
+    "max_backlog": {
+      "mean": 227738.7666666667,
+      "std": 17107.68803308696
+    },
+    "avg_on_hand": {
+      "mean": 2665.2261904761904,
+      "std": 286.64068643669117
+    },
+    "order_adj_variance": {
+      "mean": 213853223.420098,
+      "std": 26901735.090677485
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.130200533781307,
+      "std": 4.556259157007654e-16
+    },
+    "intent_distribution": {
+      "forecast_oracle_events_r01_8739e0": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r02_ca6975": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r03_16fc36": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r04_a4f293": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r05_be6fd1": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r06_f50f5a": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r07_871677": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r08_218e20": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r09_19fb62": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r10_4b39a2": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r11_9614c2": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r12_8f9567": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r13_b5a4b6": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r14_c1cf4c": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r15_31d363": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r16_fb88a2": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r17_c4b3a8": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r18_a9f6ad": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r19_c44f25": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "forecast_oracle_events_r20_e852dc": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

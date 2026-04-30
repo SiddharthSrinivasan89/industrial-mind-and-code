@@ -1,0 +1,515 @@
+[
+  {
+    "condition": "ic_blind_gpt41mini",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 1.4899808509622627,
+      "std": 0.16656289584977735
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.125593834905689,
+        "std": 0.46718618596971
+      },
+      "Ancillary": {
+        "mean": 1.0625533631023905,
+        "std": 0.21152646614663187
+      },
+      "Component": {
+        "mean": 1.281795354878709,
+        "std": 0.16492528506852633
+      }
+    },
+    "chain_stockouts": {
+      "mean": 82.7,
+      "std": 2.4942038071454684
+    },
+    "pattern_score": {
+      "mean": 0.08671875000000001,
+      "std": 0.02541881237347784
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.3060000000000001,
+        "std": 0.029806392814823775
+      },
+      "direction": {
+        "mean": 0.37600000000000006,
+        "std": 0.03978891673238721
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 0.9533788641903165,
+      "std": 0.036782663405238454
+    },
+    "intent_distribution": {
+      "ic_blind_gpt41mini_r01_16facc": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 22
+      },
+      "ic_blind_gpt41mini_r02_17b685": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 22
+      },
+      "ic_blind_gpt41mini_r03_4e2f13": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r04_d030f6": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r05_917302": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 22
+      },
+      "ic_blind_gpt41mini_r06_60f6a0": {
+        "NEUTRAL": 12,
+        "STRONG_INCREASE": 23
+      },
+      "ic_blind_gpt41mini_r07_a582e8": {
+        "NEUTRAL": 9,
+        "STRONG_INCREASE": 26
+      },
+      "ic_blind_gpt41mini_r08_11bae4": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r09_6371bb": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r10_380077": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r11_a2d162": {
+        "NEUTRAL": 15,
+        "STRONG_INCREASE": 20
+      },
+      "ic_blind_gpt41mini_r12_7632d9": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 22
+      },
+      "ic_blind_gpt41mini_r13_8305ae": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 22
+      },
+      "ic_blind_gpt41mini_r14_eb7e58": {
+        "NEUTRAL": 15,
+        "STRONG_INCREASE": 20
+      },
+      "ic_blind_gpt41mini_r15_08a086": {
+        "NEUTRAL": 11,
+        "STRONG_INCREASE": 24
+      },
+      "ic_blind_gpt41mini_r16_9976f1": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 22
+      },
+      "ic_blind_gpt41mini_r17_725ca5": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r18_8039eb": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r19_38b66a": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      },
+      "ic_blind_gpt41mini_r20_ab6c38": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 21
+      }
+    }
+  },
+  {
+    "condition": "ic_context_gpt41mini",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 1.5049005211590383,
+      "std": 0.20561573203205294
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.159114512835904,
+        "std": 0.5936619018259212
+      },
+      "Ancillary": {
+        "mean": 1.068685585887886,
+        "std": 0.2079377032327581
+      },
+      "Component": {
+        "mean": 1.2869014647533246,
+        "std": 0.15486071105462704
+      }
+    },
+    "chain_stockouts": {
+      "mean": 83.4,
+      "std": 2.835860585987593
+    },
+    "pattern_score": {
+      "mean": 0.3010416666666667,
+      "std": 0.024811975685682525
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.4000000000000001,
+        "std": 5.695323946259567e-17
+      },
+      "direction": {
+        "mean": 0.7200000000000001,
+        "std": 1.1390647892519134e-16
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.141077833403516,
+      "std": 4.556259157007654e-16
+    },
+    "intent_distribution": {
+      "ic_context_gpt41mini_r01_a0dff2": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r02_c8f444": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r03_abb9ec": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r04_f8046a": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r05_62813b": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r06_49bd82": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r07_bfe4fe": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r08_b2ceea": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r09_73a78d": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r10_00b564": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r11_59fe9b": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r12_f5b515": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r13_92d461": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r14_721475": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r15_6cb957": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r16_8e21d2": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r17_8452fb": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r18_2c00bf": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r19_ee59e6": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_context_gpt41mini_r20_9bf4e7": {
+        "NEUTRAL": 14,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 6,
+        "STRONG_DECREASE": 6,
+        "MODERATE_INCREASE": 3
+      }
+    }
+  },
+  {
+    "condition": "ic_unstructured_gpt41mini",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 1.5153701776395585,
+      "std": 0.210973626884088
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.1707542505446726,
+        "std": 0.5999981081344494
+      },
+      "Ancillary": {
+        "mean": 1.0752166540639498,
+        "std": 0.20938842953892722
+      },
+      "Component": {
+        "mean": 1.300139628310054,
+        "std": 0.15972245699246398
+      }
+    },
+    "chain_stockouts": {
+      "mean": 83.45,
+      "std": 2.799906013460189
+    },
+    "pattern_score": {
+      "mean": 0.26536458333333335,
+      "std": 0.021802760313166584
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.4800000000000001,
+        "std": 1.1390647892519134e-16
+      },
+      "direction": {
+        "mean": 0.76,
+        "std": 0.0
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.158425322180355,
+      "std": 4.556259157007654e-16
+    },
+    "intent_distribution": {
+      "ic_unstructured_gpt41mini_r01_a11aa4": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r02_69a23e": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r03_4a831f": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r04_db002c": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r05_bb2174": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r06_272e8e": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r07_cf1478": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r08_6c772d": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r09_8d02ac": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r10_baf869": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r11_06be43": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r12_731f1c": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r13_3f113e": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r14_ad0fee": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r15_3a6a59": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r16_81c509": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r17_3ae349": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r18_c5287f": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r19_0a1cee": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      },
+      "ic_unstructured_gpt41mini_r20_b4252f": {
+        "NEUTRAL": 13,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 8,
+        "MODERATE_INCREASE": 3
+      }
+    }
+  }
+]

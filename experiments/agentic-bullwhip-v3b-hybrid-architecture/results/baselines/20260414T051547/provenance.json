@@ -1,0 +1,46 @@
+{
+  "experiment": "baselines",
+  "timestamp_utc": "20260414T051547",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "dry_run": true,
+  "backend": "local",
+  "model_local": "nemotron-3-super:120b",
+  "model_lightweight": "nemotron-3-super:120b",
+  "hybrid_params": {
+    "alpha": 0.3,
+    "base_ss": 5061,
+    "multiplier_bounds": [
+      0.5,
+      3.0
+    ],
+    "multiplier_fallback": 1.0,
+    "history_window": 3
+  },
+  "temperature_config": {
+    "hybrid_all_conditions": 0.3
+  },
+  "run_stats": {
+    "naive_passthrough": {
+      "attempts": 1,
+      "replacements": 0
+    },
+    "exp_smoothing": {
+      "attempts": 1,
+      "replacements": 0
+    },
+    "hybrid_control": {
+      "attempts": 1,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "infra_context": {
+    "type": "local",
+    "endpoint": "http://localhost:11434/v1",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "cpu": "aarch64",
+    "cpu_cores": 20,
+    "python": "3.12.3",
+    "gpu": "NVIDIA GB10, [N/A], [N/A]"
+  }
+}

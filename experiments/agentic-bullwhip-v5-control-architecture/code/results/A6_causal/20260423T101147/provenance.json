@@ -1,0 +1,40 @@
+{
+  "version": "V5_ControlArch",
+  "experiment": "A6_causal",
+  "timestamp_utc": "20260423T101147",
+  "demand_file": "data/synthetic/tatva_monthly_dispatches_36m.csv",
+  "demand_checksum_sha256": "03b0bea6551ce8630ecbb0bbee95babf01ae183fa7d28a220965ca151a9b4bbe",
+  "backend": "unknown",
+  "noise_cv": 0.08,
+  "world_events_enabled": [
+    "port_disruption",
+    "conflict",
+    "pandemic"
+  ],
+  "model_lightweight": "",
+  "model_reasoning": "",
+  "v5_params": {
+    "causal_context": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "out",
+      "dampening_beta": 1.0
+    },
+    "causal_unstructured": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "out",
+      "dampening_beta": 1.0
+    }
+  },
+  "run_stats": {
+    "causal_context": {
+      "attempts": 1,
+      "replacements": 0
+    },
+    "causal_unstructured": {
+      "attempts": 1,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+}

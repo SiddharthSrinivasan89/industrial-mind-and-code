@@ -1,0 +1,224 @@
+[
+  {
+    "condition": "ic_blind_neutral_o4mini",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 1.752715486589652,
+      "std": 0.10351896488539071
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.564149025890355,
+        "std": 0.24678927515542134
+      },
+      "Ancillary": {
+        "mean": 1.3806656158508717,
+        "std": 0.09885610766712555
+      },
+      "Component": {
+        "mean": 1.3133318180277291,
+        "std": 0.08932152434618133
+      }
+    },
+    "chain_stockouts": {
+      "mean": 87.35,
+      "std": 2.852053738328889
+    },
+    "pattern_score": {
+      "mean": 0.11744791666666668,
+      "std": 0.022256425557991587
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "intent_distribution": {
+      "ic_blind_neutral_o4mini_r01_d5dc1d": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r02_18ed93": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r03_ce61a0": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r04_263afe": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r05_a21146": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r06_d1e01c": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r07_932a07": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r08_2327a5": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r09_051f17": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r10_501d2a": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r11_ba09f0": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r12_f0fe64": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r13_8c6fb4": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r14_af6e1e": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r15_839b0a": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r16_e73749": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r17_a99c14": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r18_3f8278": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r19_735c6e": {
+        "NEUTRAL": 35
+      },
+      "ic_blind_neutral_o4mini_r20_cfc682": {
+        "NEUTRAL": 35
+      }
+    }
+  },
+  {
+    "condition": "ic_context_neutral_o4mini",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 1.752715486589652,
+      "std": 0.10351896488539071
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.564149025890355,
+        "std": 0.24678927515542134
+      },
+      "Ancillary": {
+        "mean": 1.3806656158508717,
+        "std": 0.09885610766712555
+      },
+      "Component": {
+        "mean": 1.3133318180277291,
+        "std": 0.08932152434618133
+      }
+    },
+    "chain_stockouts": {
+      "mean": 87.35,
+      "std": 2.852053738328889
+    },
+    "pattern_score": {
+      "mean": 0.11744791666666668,
+      "std": 0.022256425557991587
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "intent_distribution": {
+      "ic_context_neutral_o4mini_r01_2d659a": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r02_80174e": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r03_53e1e7": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r04_4c543a": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r05_149df8": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r06_77a6b0": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r07_44d85b": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r08_da5b31": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r09_2b539c": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r10_9aea24": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r11_a66a38": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r12_9cd40d": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r13_f1fe2f": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r14_a8b7ac": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r15_cc1f1c": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r16_c18d07": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r17_bba04e": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r18_19f269": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r19_6834c9": {
+        "NEUTRAL": 35
+      },
+      "ic_context_neutral_o4mini_r20_883343": {
+        "NEUTRAL": 35
+      }
+    }
+  }
+]

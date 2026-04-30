@@ -1,0 +1,58 @@
+{
+  "version": "V5_ControlArch",
+  "experiment": "A3_neutral",
+  "timestamp_utc": "20260424T180110",
+  "demand_file": "data/synthetic/tatva_monthly_dispatches_36m.csv",
+  "demand_checksum_sha256": "03b0bea6551ce8630ecbb0bbee95babf01ae183fa7d28a220965ca151a9b4bbe",
+  "backend": "unknown",
+  "noise_cv": 0.08,
+  "world_events_enabled": [
+    "conflict",
+    "port_disruption",
+    "pandemic"
+  ],
+  "model_lightweight": "",
+  "model_reasoning": "",
+  "v5_params": {
+    "neutral_repeat_last": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "repeat_last",
+      "dampening_beta": 1.0
+    },
+    "neutral_smoothed_forecast": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "smoothed_forecast",
+      "dampening_beta": 1.0
+    },
+    "neutral_dampened_out": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "dampened_out",
+      "dampening_beta": 1.0
+    },
+    "neutral_floor_only": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "floor_only",
+      "dampening_beta": 1.0
+    }
+  },
+  "run_stats": {
+    "neutral_repeat_last": {
+      "attempts": 20,
+      "replacements": 0
+    },
+    "neutral_smoothed_forecast": {
+      "attempts": 20,
+      "replacements": 0
+    },
+    "neutral_dampened_out": {
+      "attempts": 20,
+      "replacements": 0
+    },
+    "neutral_floor_only": {
+      "attempts": 20,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+}

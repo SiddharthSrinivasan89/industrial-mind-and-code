@@ -1,0 +1,35 @@
+{
+  "experiment": "H1",
+  "timestamp_utc": "20260414T051556",
+  "demand_checksum_sha256": "c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e",
+  "dry_run": true,
+  "backend": "azure",
+  "model_local": "nemotron-3-super:120b",
+  "model_lightweight": "gpt-5-nano",
+  "hybrid_params": {
+    "alpha": 0.3,
+    "base_ss": 5061,
+    "multiplier_bounds": [
+      0.5,
+      3.0
+    ],
+    "multiplier_fallback": 1.0,
+    "history_window": 3
+  },
+  "temperature_config": {
+    "hybrid_all_conditions": 0.3
+  },
+  "run_stats": {
+    "hybrid_blind_azure": {
+      "attempts": 2,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "infra_context": {
+    "type": "azure",
+    "endpoint": "https://industrial-mind-and-cod-resource.openai.azure.com/",
+    "api_version": "2025-01-01-preview",
+    "model_lightweight": "gpt-5-nano"
+  }
+}

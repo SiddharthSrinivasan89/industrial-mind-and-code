@@ -1,0 +1,72 @@
+[
+  {
+    "condition": "ic_context_azure",
+    "policy": "intent",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 3.305457594991379,
+      "std": 0.0469363437446846
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 5.804725421801776,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 1.9461060462957365,
+        "std": 0.22239173038454374
+      },
+      "Component": {
+        "mean": 2.1655413168766233,
+        "std": 0.08158269915048949
+      }
+    },
+    "chain_stockouts": {
+      "mean": 15.5,
+      "std": 0.7071067811865476
+    },
+    "mean_on_hand": {
+      "mean": 6636.5,
+      "std": 24.25769096570524
+    },
+    "pattern_score": {
+      "mean": 0.42424242424242425,
+      "std": 0.02142747821777415
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 0.7857142857142857,
+        "std": 0.0
+      },
+      "n_event_periods": 14
+    },
+    "intent_entropy": {
+      "mean": 2.117492461184755,
+      "std": 0.0
+    },
+    "intent_distribution": {
+      "ic_context_azure_r01_9963eb": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      },
+      "ic_context_azure_r02_59c5a7": {
+        "NEUTRAL": 10,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 4,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

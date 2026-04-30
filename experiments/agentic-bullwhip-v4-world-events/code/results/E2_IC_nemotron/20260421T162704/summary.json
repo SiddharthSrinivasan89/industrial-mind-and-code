@@ -1,0 +1,341 @@
+[
+  {
+    "condition": "ic_blind_nemotron",
+    "n_runs": 10,
+    "chain_ovar": {
+      "mean": 1.7338278548810906,
+      "std": 0.13300077340567165
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.511148155202247,
+        "std": 0.3494390339267411
+      },
+      "Ancillary": {
+        "mean": 1.3774848472166528,
+        "std": 0.11362351106325681
+      },
+      "Component": {
+        "mean": 1.312850562224371,
+        "std": 0.12697919302322017
+      }
+    },
+    "chain_stockouts": {
+      "mean": 84.7,
+      "std": 2.7507574714370344
+    },
+    "pattern_score": {
+      "mean": 0.11770833333333335,
+      "std": 0.019049814894923894
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.36,
+        "std": 0.018856180831641273
+      },
+      "direction": {
+        "mean": 0.46799999999999997,
+        "std": 0.019321835661585907
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 0.2986332444595389,
+      "std": 0.13033543088840477
+    },
+    "intent_distribution": {
+      "ic_blind_nemotron_r01_3985af": {
+        "STRONG_DECREASE": 1,
+        "STRONG_INCREASE": 33,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_nemotron_r02_335df3": {
+        "STRONG_INCREASE": 33,
+        "MODERATE_DECREASE": 1,
+        "NEUTRAL": 1
+      },
+      "ic_blind_nemotron_r03_1ee5e7": {
+        "NEUTRAL": 1,
+        "STRONG_INCREASE": 33,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_nemotron_r04_41f7d9": {
+        "STRONG_INCREASE": 33,
+        "MODERATE_DECREASE": 1,
+        "MODERATE_INCREASE": 1
+      },
+      "ic_blind_nemotron_r05_7107b5": {
+        "STRONG_INCREASE": 35
+      },
+      "ic_blind_nemotron_r06_4399f8": {
+        "STRONG_INCREASE": 34,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_nemotron_r07_6d1a3d": {
+        "STRONG_INCREASE": 34,
+        "STRONG_DECREASE": 1
+      },
+      "ic_blind_nemotron_r08_b75eb1": {
+        "NEUTRAL": 1,
+        "STRONG_INCREASE": 33,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_nemotron_r09_b556a4": {
+        "NEUTRAL": 1,
+        "MODERATE_INCREASE": 1,
+        "STRONG_INCREASE": 33
+      },
+      "ic_blind_nemotron_r10_2fff6c": {
+        "STRONG_INCREASE": 33,
+        "MODERATE_DECREASE": 1,
+        "MODERATE_INCREASE": 1
+      }
+    }
+  },
+  {
+    "condition": "ic_context_nemotron",
+    "n_runs": 10,
+    "chain_ovar": {
+      "mean": 1.7446914091096768,
+      "std": 0.12812392622426885
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.5433923983291513,
+        "std": 0.2781719848668425
+      },
+      "Ancillary": {
+        "mean": 1.3631425127371424,
+        "std": 0.08480851463622098
+      },
+      "Component": {
+        "mean": 1.3275393162627362,
+        "std": 0.10890872669692593
+      }
+    },
+    "chain_stockouts": {
+      "mean": 86.7,
+      "std": 2.8303906287138374
+    },
+    "pattern_score": {
+      "mean": 0.3651041666666667,
+      "std": 0.02423725522609897
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.41600000000000004,
+        "std": 0.02065591117977288
+      },
+      "direction": {
+        "mean": 0.74,
+        "std": 0.021081851067789214
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.212122727934178,
+      "std": 0.052027673468087086
+    },
+    "intent_distribution": {
+      "ic_context_nemotron_r01_c37427": {
+        "MODERATE_DECREASE": 12,
+        "MODERATE_INCREASE": 9,
+        "STRONG_INCREASE": 6,
+        "STRONG_DECREASE": 6,
+        "NEUTRAL": 2
+      },
+      "ic_context_nemotron_r02_57fb8f": {
+        "NEUTRAL": 4,
+        "MODERATE_INCREASE": 9,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 10,
+        "STRONG_DECREASE": 6
+      },
+      "ic_context_nemotron_r03_a5f30d": {
+        "MODERATE_DECREASE": 10,
+        "MODERATE_INCREASE": 9,
+        "STRONG_INCREASE": 6,
+        "NEUTRAL": 4,
+        "STRONG_DECREASE": 6
+      },
+      "ic_context_nemotron_r04_9e82f9": {
+        "MODERATE_DECREASE": 11,
+        "MODERATE_INCREASE": 10,
+        "STRONG_INCREASE": 6,
+        "NEUTRAL": 2,
+        "STRONG_DECREASE": 6
+      },
+      "ic_context_nemotron_r05_927a95": {
+        "NEUTRAL": 3,
+        "MODERATE_INCREASE": 8,
+        "STRONG_INCREASE": 7,
+        "MODERATE_DECREASE": 11,
+        "STRONG_DECREASE": 6
+      },
+      "ic_context_nemotron_r06_f932f0": {
+        "MODERATE_INCREASE": 10,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 10,
+        "STRONG_DECREASE": 6,
+        "NEUTRAL": 3
+      },
+      "ic_context_nemotron_r07_619101": {
+        "MODERATE_INCREASE": 11,
+        "STRONG_INCREASE": 6,
+        "MODERATE_DECREASE": 8,
+        "STRONG_DECREASE": 6,
+        "NEUTRAL": 4
+      },
+      "ic_context_nemotron_r08_f0a316": {
+        "MODERATE_DECREASE": 12,
+        "MODERATE_INCREASE": 9,
+        "STRONG_INCREASE": 6,
+        "STRONG_DECREASE": 6,
+        "NEUTRAL": 2
+      },
+      "ic_context_nemotron_r09_1c5df3": {
+        "NEUTRAL": 5,
+        "MODERATE_INCREASE": 8,
+        "STRONG_INCREASE": 7,
+        "MODERATE_DECREASE": 9,
+        "STRONG_DECREASE": 6
+      },
+      "ic_context_nemotron_r10_6fb009": {
+        "NEUTRAL": 3,
+        "MODERATE_INCREASE": 8,
+        "STRONG_INCREASE": 8,
+        "MODERATE_DECREASE": 10,
+        "STRONG_DECREASE": 6
+      }
+    }
+  },
+  {
+    "condition": "ic_unstructured_nemotron",
+    "n_runs": 10,
+    "chain_ovar": {
+      "mean": 1.7749904592970143,
+      "std": 0.12968491608769303
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.5902885724495572,
+        "std": 0.2849202280027073
+      },
+      "Ancillary": {
+        "mean": 1.388529779827458,
+        "std": 0.09046994554211506
+      },
+      "Component": {
+        "mean": 1.3461530256140277,
+        "std": 0.11096949355996989
+      }
+    },
+    "chain_stockouts": {
+      "mean": 86.7,
+      "std": 2.9458068127047605
+    },
+    "pattern_score": {
+      "mean": 0.3317708333333333,
+      "std": 0.02915943197309966
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.504,
+        "std": 0.04695151163109069
+      },
+      "direction": {
+        "mean": 0.8280000000000001,
+        "std": 0.02699794230842209
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.2144381630552847,
+      "std": 0.060610715049218396
+    },
+    "intent_distribution": {
+      "ic_unstructured_nemotron_r01_0e54fe": {
+        "MODERATE_DECREASE": 7,
+        "MODERATE_INCREASE": 6,
+        "STRONG_INCREASE": 9,
+        "NEUTRAL": 3,
+        "STRONG_DECREASE": 10
+      },
+      "ic_unstructured_nemotron_r02_7fecb7": {
+        "MODERATE_DECREASE": 9,
+        "MODERATE_INCREASE": 6,
+        "STRONG_INCREASE": 8,
+        "NEUTRAL": 3,
+        "STRONG_DECREASE": 9
+      },
+      "ic_unstructured_nemotron_r03_bd078e": {
+        "MODERATE_DECREASE": 10,
+        "MODERATE_INCREASE": 7,
+        "STRONG_INCREASE": 8,
+        "STRONG_DECREASE": 9,
+        "NEUTRAL": 1
+      },
+      "ic_unstructured_nemotron_r04_fc0a67": {
+        "MODERATE_DECREASE": 9,
+        "MODERATE_INCREASE": 8,
+        "STRONG_INCREASE": 8,
+        "STRONG_DECREASE": 9,
+        "NEUTRAL": 1
+      },
+      "ic_unstructured_nemotron_r05_4f52f4": {
+        "MODERATE_DECREASE": 7,
+        "MODERATE_INCREASE": 6,
+        "STRONG_INCREASE": 9,
+        "NEUTRAL": 3,
+        "STRONG_DECREASE": 10
+      },
+      "ic_unstructured_nemotron_r06_309a22": {
+        "NEUTRAL": 6,
+        "STRONG_INCREASE": 8,
+        "MODERATE_DECREASE": 5,
+        "STRONG_DECREASE": 9,
+        "MODERATE_INCREASE": 7
+      },
+      "ic_unstructured_nemotron_r07_ef2dfb": {
+        "MODERATE_DECREASE": 7,
+        "MODERATE_INCREASE": 7,
+        "STRONG_INCREASE": 10,
+        "NEUTRAL": 2,
+        "STRONG_DECREASE": 9
+      },
+      "ic_unstructured_nemotron_r08_b2ed60": {
+        "NEUTRAL": 4,
+        "MODERATE_INCREASE": 6,
+        "STRONG_INCREASE": 8,
+        "MODERATE_DECREASE": 8,
+        "STRONG_DECREASE": 9
+      },
+      "ic_unstructured_nemotron_r09_78c674": {
+        "MODERATE_DECREASE": 9,
+        "MODERATE_INCREASE": 7,
+        "STRONG_INCREASE": 7,
+        "STRONG_DECREASE": 10,
+        "NEUTRAL": 2
+      },
+      "ic_unstructured_nemotron_r10_7b8d0e": {
+        "MODERATE_DECREASE": 6,
+        "MODERATE_INCREASE": 7,
+        "STRONG_INCREASE": 7,
+        "NEUTRAL": 5,
+        "STRONG_DECREASE": 10
+      }
+    }
+  }
+]

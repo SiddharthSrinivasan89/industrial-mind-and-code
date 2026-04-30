@@ -1,0 +1,114 @@
+[
+  {
+    "condition": "mini_ctx_computed",
+    "policy": "adaptive_alpha",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 0.6778353556116048,
+      "std": 0.006218597897365109
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 0.188219659977185,
+        "std": 0.0
+      },
+      "Ancillary": {
+        "mean": 0.5439441865125709,
+        "std": 0.0185030288759248
+      },
+      "Component": {
+        "mean": 1.3013422203450584,
+        "std": 0.03715882256801997
+      }
+    },
+    "chain_stockouts": {
+      "mean": 7.0,
+      "std": 2.8284271247461903
+    },
+    "mean_on_hand": {
+      "mean": 4345.097222222223,
+      "std": 0.3928371006592645
+    },
+    "alpha_mean": {
+      "mean": 0.26666666666666666,
+      "std": 0.0
+    },
+    "alpha_entropy": {
+      "mean": 1.4591479170272448,
+      "std": 0.0
+    },
+    "alpha_fallback_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_distribution": {
+      "mini_ctx_computed_r01_a263e6": {
+        "0.3": 4,
+        "0.5": 8,
+        "0.1": 12
+      },
+      "mini_ctx_computed_r02_19bd6a": {
+        "0.3": 4,
+        "0.5": 8,
+        "0.1": 12
+      }
+    }
+  },
+  {
+    "condition": "mini_ctx_debiased",
+    "policy": "adaptive_alpha",
+    "n_runs": 2,
+    "chain_ovar": {
+      "mean": 0.740959338242343,
+      "std": 0.011452459434363906
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 0.6146481280143952,
+        "std": 0.21499502018767377
+      },
+      "Ancillary": {
+        "mean": 0.8282843226022227,
+        "std": 0.21639030527914666
+      },
+      "Component": {
+        "mean": 0.7799455641104108,
+        "std": 0.032962093211618464
+      }
+    },
+    "chain_stockouts": {
+      "mean": 6.0,
+      "std": 1.4142135623730951
+    },
+    "mean_on_hand": {
+      "mean": 4201.708333333334,
+      "std": 15.340288780741417
+    },
+    "alpha_mean": {
+      "mean": 0.325,
+      "std": 0.0
+    },
+    "alpha_entropy": {
+      "mean": 1.8492075553638374,
+      "std": 0.001913064617626824
+    },
+    "alpha_fallback_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "alpha_distribution": {
+      "mini_ctx_debiased_r01_a13ec7": {
+        "0.7": 3,
+        "0.1": 7,
+        "0.5": 4,
+        "0.3": 10
+      },
+      "mini_ctx_debiased_r02_8d8702": {
+        "0.7": 2,
+        "0.1": 7,
+        "0.3": 9,
+        "0.5": 6
+      }
+    }
+  }
+]

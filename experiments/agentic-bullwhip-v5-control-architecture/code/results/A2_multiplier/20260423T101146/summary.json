@@ -1,0 +1,278 @@
+[
+  {
+    "condition": "oracle_aggressive",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 2.0441414217827205,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 3.2691563988941654,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.435195919784246,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.4280719466697496,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 81.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.507686912137789,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6809509055543403,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.4518078197553986,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.3903020111036282,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 89279.41904761904,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 223082.0,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 2522.247619047619,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 217514878.5258467,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "oracle_aggressive_r01_5c8737": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  },
+  {
+    "condition": "oracle_asymmetric",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 2.0224264897996838,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 3.1468938043535846,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.496057503414851,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.4243281616306154,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 82.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.5084519355392836,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6784230526860415,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.45508215308019745,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.3918506008516117,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 88948.25714285714,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 222646.33333333334,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 2514.6190476190477,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 207917400.23796788,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "oracle_asymmetric_r01_037b63": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  },
+  {
+    "condition": "oracle_moderate",
+    "n_runs": 1,
+    "chain_ovar": {
+      "mean": 1.8753804363539637,
+      "std": null
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 2.7510040875757884,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 1.4634038941223766,
+        "std": null
+      },
+      "Component": {
+        "mean": 1.4117333273637267,
+        "std": null
+      }
+    },
+    "chain_stockouts": {
+      "mean": 83.0,
+      "std": null
+    },
+    "pattern_score": {
+      "mean": null,
+      "std": null
+    },
+    "service_level": {
+      "mean": 0.4889323896974511,
+      "std": null
+    },
+    "tier_service_level": {
+      "OEM": {
+        "mean": 0.6204754450896033,
+        "std": null
+      },
+      "Ancillary": {
+        "mean": 0.45634949782465534,
+        "std": null
+      },
+      "Component": {
+        "mean": 0.3899722261780948,
+        "std": null
+      }
+    },
+    "avg_backlog": {
+      "mean": 95204.7619047619,
+      "std": null
+    },
+    "max_backlog": {
+      "mean": 227168.33333333334,
+      "std": null
+    },
+    "avg_on_hand": {
+      "mean": 2478.6,
+      "std": null
+    },
+    "order_adj_variance": {
+      "mean": 203431064.20588234,
+      "std": null
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": null
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 1.0,
+        "std": null
+      },
+      "direction": {
+        "mean": 1.0,
+        "std": null
+      },
+      "n_event_periods": 25
+    },
+    "intent_entropy": {
+      "mean": 2.1302005337813075,
+      "std": null
+    },
+    "intent_distribution": {
+      "oracle_moderate_r01_cebdf1": {
+        "NEUTRAL": 10,
+        "MODERATE_DECREASE": 10,
+        "STRONG_INCREASE": 9,
+        "STRONG_DECREASE": 4,
+        "MODERATE_INCREASE": 2
+      }
+    }
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "version": "V5_ControlArch",
+  "experiment": "A4_dampening",
+  "timestamp_utc": "20260423T101147",
+  "demand_file": "data/synthetic/tatva_monthly_dispatches_36m.csv",
+  "demand_checksum_sha256": "03b0bea6551ce8630ecbb0bbee95babf01ae183fa7d28a220965ca151a9b4bbe",
+  "backend": "unknown",
+  "noise_cv": 0.08,
+  "world_events_enabled": [
+    "port_disruption",
+    "conflict",
+    "pandemic"
+  ],
+  "model_lightweight": "",
+  "model_reasoning": "",
+  "v5_params": {
+    "dampened_beta75": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "out",
+      "dampening_beta": 0.75
+    },
+    "dampened_beta50": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "out",
+      "dampening_beta": 0.5
+    },
+    "dampened_beta25": {
+      "multiplier_map": "conservative",
+      "neutral_mode": "out",
+      "dampening_beta": 0.25
+    }
+  },
+  "run_stats": {
+    "dampened_beta75": {
+      "attempts": 1,
+      "replacements": 0
+    },
+    "dampened_beta50": {
+      "attempts": 1,
+      "replacements": 0
+    },
+    "dampened_beta25": {
+      "attempts": 1,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+}

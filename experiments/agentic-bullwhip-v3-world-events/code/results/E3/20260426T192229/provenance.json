@@ -1,0 +1,36 @@
+{
+  "version": "V3",
+  "experiment": "E3",
+  "timestamp_utc": "20260426T200105",
+  "demand_file": "data/synthetic/tatva_monthly_dispatches_36m.csv",
+  "demand_checksum_sha256": "03b0bea6551ce8630ecbb0bbee95babf01ae183fa7d28a220965ca151a9b4bbe",
+  "backend": "local",
+  "noise_cv": 0.08,
+  "world_events_enabled": [
+    "conflict",
+    "pandemic",
+    "port_disruption"
+  ],
+  "model_lightweight": "phi4:14b",
+  "model_reasoning": "gpt-oss:120b",
+  "temperature_config": {
+    "blind_lightweight": 0.4,
+    "context_lightweight": 0.4,
+    "unstructured_lightweight": 0.4,
+    "blind_reasoning": 0.0,
+    "context_reasoning": 0.3,
+    "unstructured_reasoning": 0.3
+  },
+  "run_stats": {
+    "no_events_blind": {
+      "attempts": 5,
+      "replacements": 0
+    },
+    "no_events_context": {
+      "attempts": 5,
+      "replacements": 0
+    }
+  },
+  "latency_stats": {},
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39"
+}
