@@ -323,6 +323,72 @@
 
       <div class="post-list">
 
+        <!-- V6: Adaptive Alpha — First positive result -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            For the first time in this research program, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: nemotron 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v6.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V6_StatelessSwing" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V5: Research Program Close -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Ceiling Is in the Formula: Oracle Labels and the End of the Research Program</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. Fourteen architectural variants tested. None passed the gate. The 0.540-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. Five versions. One definitive answer.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v5.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V5_ControlArch" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V4: Equaliser Effect -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Four AI models &mdash; from a lightweight fast model to a 120-billion-parameter reasoning behemoth &mdash; produced statistically identical supply chain outcomes across three information conditions. Replacing the AI&rsquo;s float output with five discrete text labels fixed the calibration problem from V3b. It simultaneously created a structural ceiling no model or prompt can escape.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v4.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V4_WorldEvents" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
         <!-- V3b: Hybrid Architecture -->
         <div class="post-card">
           <div class="post-card-header">

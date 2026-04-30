@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment | Industrial Mind &amp; Code</title>
+  <meta name="description" content="For the first time in this research program, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v6.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="For the first time in this research program, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v6.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --verdict-rejected-bg: #fdf0f0;
+      --verdict-rejected: #8a2a2a;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font-sans); font-size: 16px; line-height: 1.7; font-weight: 300; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+    nav { position: sticky; top: 0; background: rgba(250, 250, 248, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+    .nav-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-brand { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    .post-header { padding: 7rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .post-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.25rem; }
+    .post-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .post-summary { font-size: 17px; font-weight: 300; color: var(--text-secondary); max-width: 580px; line-height: 1.75; margin-bottom: 2rem; }
+    .post-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .post-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .post-meta-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; }
+    .post-meta-value { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+
+    .post-body { padding: 4rem 0; }
+    .post-section { margin-bottom: 3.5rem; }
+    .post-section:last-child { margin-bottom: 0; }
+    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.25; }
+
+    .abstract-block { padding: 1.5rem 1.75rem; border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 4px 4px 0; }
+    .abstract-block p { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.75rem; }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong { font-weight: 500; color: var(--text-primary); }
+
+    .setup-table { width: 100%; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; border-collapse: collapse; }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td { padding: 0.75rem 1.25rem; font-size: 14px; vertical-align: top; }
+    .setup-table td:first-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; width: 180px; }
+    .setup-table td:last-child { font-weight: 400; color: var(--text-primary); }
+
+    .findings-list { list-style: none; counter-reset: finding; display: flex; flex-direction: column; gap: 1.1rem; }
+    .findings-list li { counter-increment: finding; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .findings-list li::before { content: counter(finding, decimal-leading-zero); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; flex-shrink: 0; margin-top: 4px; min-width: 24px; }
+    .finding-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .finding-text strong { font-weight: 500; color: var(--text-primary); }
+
+    .results-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1.5rem; }
+    .results-table-wrap:last-child { margin-bottom: 0; }
+    .results-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .results-table thead tr { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .results-table thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; padding: 0.65rem 1.25rem; text-align: left; white-space: nowrap; }
+    .results-table tbody tr { border-bottom: 1px solid var(--border); background: #fff; }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td { padding: 0.65rem 1.25rem; color: var(--text-primary); font-weight: 300; vertical-align: middle; }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell { font-family: var(--font-mono); font-size: 13px; font-weight: 500 !important; }
+    .tag-cell { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    .best { color: var(--verdict-supported) !important; }
+    .highlight-row { background: var(--accent-light) !important; }
+
+    .prose p { font-size: 15.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; max-width: 640px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 500; color: var(--text-primary); }
+
+    .table-note { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5; }
+
+    .callout-positive { padding: 1.25rem 1.5rem; border: 1px solid var(--verdict-supported); border-radius: 6px; background: var(--verdict-supported-bg); margin-bottom: 1.5rem; }
+    .callout-positive p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .callout-positive strong { font-weight: 500; color: var(--text-primary); }
+
+    .method-callout { padding: 1.25rem 1.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+    .method-callout-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .method-callout p { font-size: 13.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .method-callout p + p { margin-top: 0.75rem; }
+    .method-callout a { color: var(--accent); text-decoration: none; font-weight: 400; }
+    .method-callout a:hover { color: var(--accent-mid); }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; margin-top: 3rem; transition: color 0.15s; }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    footer { padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
+    .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="./" class="active">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Supply Chain &middot; Adaptive Smoothing &middot; Experiment Writeup</p>
+      <h1 class="post-title">The Architecture That Finally Worked</h1>
+      <p class="post-summary">
+        Five versions of failing taught us what the wrong lever looks like. V6 changes the lever. The AI now controls the smoothing parameter &alpha; inside exponential smoothing itself. Every AI condition produced OVAR below 1.0. The best result marginally beats the fixed &alpha;=0.3 baseline. First positive result in this research program.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <span class="post-meta-value">April 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Experiment</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 6 &mdash; StatelessSwing Adaptive &alpha;</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Design</span>
+          <span class="post-meta-value">3 models &middot; 3 conditions + V6b debiased &middot; 10 runs each &middot; 25-month simulation</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Author</span>
+          <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="post-body">
+    <div class="container">
+
+      <div class="post-section">
+        <p class="section-label">TL;DR</p>
+        <div class="abstract-block">
+          <p>V5 proved that the Order-Up-To formula with a discrete intent-classification interface cannot beat exponential smoothing &mdash; and that the gap is architectural, not a model quality problem. Its closing note identified the only plausible next step: give the AI control of the EMA smoothing parameter &alpha; instead of a safety stock multiplier. <strong>That is what V6 tests.</strong></p>
+          <p>The AI is no longer &ldquo;outside&rdquo; the formula adjusting a buffer on top of it. It is now &ldquo;inside&rdquo; the formula, selecting the coefficient that determines how responsive the exponential smoother is to recent demand. It picks one of {0.1, 0.3, 0.5, 0.7} per period, per tier. Every AI condition produced OVAR below 1.0. <strong>This is the first time in this research program that any AI-driven configuration has achieved consistent dampening rather than amplification.</strong> The best result &mdash; nemotron 120B, blind conditions &mdash; reached OVAR 0.535, matching and marginally beating the fixed &alpha;=0.3 baseline at 0.545.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Experiment Setup</p>
+        <h2 class="section-title">Design &amp; configuration</h2>
+        <table class="setup-table">
+          <tbody>
+            <tr><td>Architecture</td><td>AI selects &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period per tier &rarr; exponential smoothing executes with that &alpha;. No OUT formula. No safety stock multiplier.</td></tr>
+            <tr><td>Models</td><td>gpt-4.1-mini (adaptive) &middot; o4-mini (adaptive) &middot; nemotron-super 120B (adaptive)</td></tr>
+            <tr><td>Conditions</td><td>Blind (numbers only) &middot; Context (calendar + seasonal persona) &middot; Stateful (context + recent &alpha; history)</td></tr>
+            <tr><td>V6b debiased</td><td>mini_ctx_computed &middot; mini_ctx_debiased &middot; oss120b_ctx_computed &middot; oss120b_ctx_debiased. Tests whether the context-induced &alpha;-inflation bias can be corrected by restricting option sets or explicit instruction.</td></tr>
+            <tr><td>Replications</td><td>10 runs per adaptive condition &middot; 5 runs per debiased condition &middot; 1 run per fixed baseline (deterministic)</td></tr>
+            <tr><td>Demand series</td><td>25 months &middot; Indian automotive seasonal patterns (monsoon slump, Diwali peak, FY-end surge)</td></tr>
+            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors OEM &rarr; Ancillary Supplier &rarr; Component Supplier</td></tr>
+            <tr><td>Lead time</td><td>1 month deterministic at all tiers (returns to V1/V2 environment to isolate the architecture change)</td></tr>
+            <tr><td>Fixed baselines</td><td>exp_smooth_0.1 (OVAR 0.620) &middot; exp_smooth_0.3 (OVAR 0.545) &middot; exp_smooth_0.5 (OVAR 0.729)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+
+        <div class="callout-positive">
+          <p><strong>For the first time in this research program, every AI condition produced OVAR below 1.0.</strong> In V1 through V5, every AI-driven configuration amplified order variance by 30% to 1,200% above demand variance. In V6, the worst AI condition reaches OVAR 0.739 &mdash; which is still damping. The architecture change eliminated amplification entirely.</p>
+        </div>
+
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>The best AI condition matches and marginally beats the fixed exponential smoothing baseline.</strong> Nemotron 120B in blind conditions achieved OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts. The fixed &alpha;=0.3 baseline achieves OVAR 0.545 with 5 stockouts. The difference is within the confidence interval, but represents the first time in six experiments that an AI-driven condition can plausibly match its deterministic counterpart on the primary metric without sacrificing service level.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The context penalty persists &mdash; but the mechanism is now understood and partially correctable.</strong> Adding context increases &alpha; choices. Models given a calendar and seasonal persona consistently choose higher &alpha; values (more reactive smoothing), which increases variance. This is a calibrated over-responsiveness effect, far less severe than the panic buying of V2 or the memory collapse of V3b. The debiased conditions (V6b) close most of the gap: oss120b_ctx_computed reaches OVAR 0.585 vs. oss120b_context at 0.739.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Stateful conditions land in the middle.</strong> Providing recent &alpha; history moderates the context-inflation effect without fully eliminating it. Mini stateful: 0.695. OSS120b stateful: 0.684. o4-mini stateful: 0.705. All three sit between their blind and context counterparts.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The 120B model has a structural advantage in blind conditions.</strong> Without context, nemotron 120B naturally converges to &alpha;=0.3 as its dominant choice &mdash; the standard textbook value for exponential smoothing. Smaller models select &alpha;=0.7 more frequently, adding variance. The advantage disappears in context conditions, where all models inflate &alpha; similarly when given seasonal information.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Debiasing shows that context-induced &alpha;-inflation is correctable.</strong> oss120b_ctx_computed (which restricts &alpha; to {0.1, 0.3, 0.5} and has the model derive &alpha; from observable statistics) achieves OVAR 0.585 with 5.6 stockouts &mdash; recovering most of the blind condition&rsquo;s advantage while providing seasonal information. The context penalty is structural but not immovable.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Fixed baselines (no AI)</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr><th>Condition</th><th>Chain OVAR</th><th>Stockouts</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>exp_smooth_0.1</td><td class="value-cell">0.620</td><td class="value-cell">16</td></tr>
+              <tr class="highlight-row"><td><strong>exp_smooth_0.3 (target)</strong></td><td class="value-cell best">0.545</td><td class="value-cell best">5</td></tr>
+              <tr><td>exp_smooth_0.5</td><td class="value-cell">0.729</td><td class="value-cell">3</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">AI adaptive conditions (n=10 each)</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr><th>Model</th><th>Condition</th><th>Chain OVAR</th><th>&plusmn;std</th><th>Stockouts</th><th>&alpha; mean</th></tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row"><td>nemotron 120B</td><td class="tag-cell">BLIND</td><td class="value-cell best">0.535</td><td class="value-cell">0.048</td><td class="value-cell">4.4</td><td class="value-cell">0.368</td></tr>
+              <tr><td>gpt-4.1-mini</td><td class="tag-cell">BLIND</td><td class="value-cell">0.597</td><td class="value-cell">0.041</td><td class="value-cell">7.3</td><td class="value-cell">0.367</td></tr>
+              <tr><td>o4-mini</td><td class="tag-cell">BLIND</td><td class="value-cell">0.657</td><td class="value-cell">0.091</td><td class="value-cell">4.0</td><td class="value-cell">0.404</td></tr>
+              <tr><td>nemotron 120B</td><td class="tag-cell">STATEFUL</td><td class="value-cell">0.684</td><td class="value-cell">0.121</td><td class="value-cell">6.2</td><td class="value-cell">0.397</td></tr>
+              <tr><td>gpt-4.1-mini</td><td class="tag-cell">STATEFUL</td><td class="value-cell">0.695</td><td class="value-cell">0.045</td><td class="value-cell">8.8</td><td class="value-cell">0.365</td></tr>
+              <tr><td>o4-mini</td><td class="tag-cell">STATEFUL</td><td class="value-cell">0.705</td><td class="value-cell">0.125</td><td class="value-cell">6.5</td><td class="value-cell">0.397</td></tr>
+              <tr><td>gpt-4.1-mini</td><td class="tag-cell">CONTEXT</td><td class="value-cell">0.715</td><td class="value-cell">0.020</td><td class="value-cell">10.4</td><td class="value-cell">0.363</td></tr>
+              <tr><td>nemotron 120B</td><td class="tag-cell">CONTEXT</td><td class="value-cell">0.739</td><td class="value-cell">0.040</td><td class="value-cell">9.3</td><td class="value-cell">0.340</td></tr>
+              <tr><td>o4-mini</td><td class="tag-cell">CONTEXT</td><td class="value-cell">0.741</td><td class="value-cell">0.045</td><td class="value-cell">10.4</td><td class="value-cell">0.359</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">All conditions produce OVAR &lt; 1.0. Every value in this table represents damping, not amplification. The highlighted row (oss120b blind) is the first AI result to plausibly match the fixed optimal baseline.</p>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">V6b debiased conditions (n=5 each)</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr><th>Condition</th><th>Chain OVAR</th><th>&plusmn;std</th><th>Stockouts</th><th>&alpha; mean</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>oss120b_ctx_computed</td><td class="value-cell">0.585</td><td class="value-cell">0.036</td><td class="value-cell">5.6</td><td class="value-cell">0.322</td></tr>
+              <tr><td>oss120b_ctx_debiased</td><td class="value-cell">0.597</td><td class="value-cell">0.077</td><td class="value-cell">6.6</td><td class="value-cell">0.387</td></tr>
+              <tr><td>mini_ctx_debiased</td><td class="value-cell">0.596</td><td class="value-cell">0.063</td><td class="value-cell">7.4</td><td class="value-cell">0.337</td></tr>
+              <tr><td>mini_ctx_computed</td><td class="value-cell">0.679</td><td class="value-cell">0.007</td><td class="value-cell">8.4</td><td class="value-cell">0.267</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Computed conditions restrict &alpha; &isin; {0.1, 0.3, 0.5} and have the model derive &alpha; from observable statistics. Debiased conditions correct for the context-induced &alpha;-inflation bias while keeping the full option set. Both approaches recover most of the blind condition&rsquo;s advantage while providing the model with seasonal information.</p>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Discussion</p>
+        <h2 class="section-title">Why this architecture works when the others did not</h2>
+        <div class="prose">
+          <p>The safety stock multiplier &mdash; what the AI controlled from V3b through V5 &mdash; governs the buffer held above the forecast. Adjusting it changes how much inventory is held but does not directly affect how volatile orders are at the formula level. The EMA smoothing parameter &alpha;, by contrast, governs how much each period&rsquo;s demand observation moves the forecast. Lower &alpha;: sluggish forecast, smooth orders. Higher &alpha;: reactive forecast, noisy orders. <strong>The AI is now controlling the dimension of the formula that directly determines variance. This is the right lever.</strong></p>
+          <p>The context penalty in V6 has a quantifiable cause. When given seasonal context, models increase &alpha;. The reasoning is transparent: &ldquo;It&rsquo;s festival season, demand is about to surge, I should be more responsive.&rdquo; The logic is correct. The calibration is off &mdash; &alpha;=0.7 in a supply chain with a predictable seasonal pattern introduces more variance than the pattern itself justifies. In V2 and V3b, context caused order quantities to spike upward by 40&ndash;60%. Here, it causes occasional &alpha;=0.7 selections. The effect is real but structurally far more tractable.</p>
+          <p>The 120B model&rsquo;s blind advantage is about default priors, not reasoning capability. Without context, models rely entirely on the inventory numbers and the &alpha; structure. The larger model, with more training exposure to control system and operations patterns, defaults naturally to &alpha;=0.3 &mdash; the standard exponential smoothing textbook value. Smaller models default to a more spread distribution with more &alpha;=0.7 selections. The advantage disappears entirely when context is added, confirming it is a prior effect rather than a reasoning capability effect.</p>
+          <p>The debiased conditions show that the context penalty is largely correctable. oss120b_ctx_computed at OVAR 0.585 recovers most of the blind advantage while providing the model with seasonal information. Future designs can extract the benefits of context without paying the full variance cost by restricting the option set or explicitly instructing about the bias.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V6_StatelessSwing" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Methodology note</p>
+          <p>All scenarios, companies, products, and supply chain structures are entirely fictional. The demand series is synthetic, calibrated to Indian automotive seasonal patterns across 25 months. V6 uses deterministic lead times, returning to the V1/V2 simulation environment to isolate the architecture change cleanly from stochastic supply-side effects tested in V4/V5.</p>
+          <p>Results should not be generalised to supply chain management broadly. The correct scope: in a 3-tier exponential smoothing architecture where the AI selects &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period, all tested AI conditions produce OVAR below 1.0, with the best result matching or marginally beating the fixed &alpha;=0.3 baseline across 10 runs.</p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to Experiments
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal research &middot; not affiliated with any employer</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Equaliser Effect: Intent Classification in Supply Chain Replenishment | Industrial Mind &amp; Code</title>
+  <meta name="description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced statistically identical supply chain outcomes. The Equaliser Effect: discrete labels create a structural ceiling no model can escape." />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The Equaliser Effect: Intent Classification in Supply Chain Replenishment | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced statistically identical supply chain outcomes. The Equaliser Effect: discrete labels create a structural ceiling no model can escape." />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --verdict-rejected-bg: #fdf0f0;
+      --verdict-rejected: #8a2a2a;
+      --verdict-partial-bg: #fdf6e0;
+      --verdict-partial: #7a5500;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+    nav {
+      position: sticky; top: 0;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 760px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; height: 56px;
+    }
+    .nav-brand { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    .post-header { padding: 7rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .post-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.25rem; }
+    .post-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .post-summary { font-size: 17px; font-weight: 300; color: var(--text-secondary); max-width: 580px; line-height: 1.75; margin-bottom: 2rem; }
+    .post-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .post-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .post-meta-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; }
+    .post-meta-value { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+
+    .post-body { padding: 4rem 0; }
+    .post-section { margin-bottom: 3.5rem; }
+    .post-section:last-child { margin-bottom: 0; }
+    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.25; }
+
+    .abstract-block { padding: 1.5rem 1.75rem; border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 4px 4px 0; }
+    .abstract-block p { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.75rem; }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong { font-weight: 500; color: var(--text-primary); }
+
+    .setup-table { width: 100%; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; border-collapse: collapse; }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td { padding: 0.75rem 1.25rem; font-size: 14px; vertical-align: top; }
+    .setup-table td:first-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; width: 180px; }
+    .setup-table td:last-child { font-weight: 400; color: var(--text-primary); }
+
+    .findings-list { list-style: none; counter-reset: finding; display: flex; flex-direction: column; gap: 1.1rem; }
+    .findings-list li { counter-increment: finding; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .findings-list li::before { content: counter(finding, decimal-leading-zero); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; flex-shrink: 0; margin-top: 4px; min-width: 24px; }
+    .finding-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .finding-text strong { font-weight: 500; color: var(--text-primary); }
+
+    .results-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1.5rem; }
+    .results-table-wrap:last-child { margin-bottom: 0; }
+    .results-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .results-table thead tr { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .results-table thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; padding: 0.65rem 1.25rem; text-align: left; white-space: nowrap; }
+    .results-table tbody tr { border-bottom: 1px solid var(--border); background: #fff; }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td { padding: 0.65rem 1.25rem; color: var(--text-primary); font-weight: 300; vertical-align: middle; }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell { font-family: var(--font-mono); font-size: 13px; font-weight: 500 !important; }
+    .tag-cell { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    .best { color: var(--verdict-supported) !important; }
+    .worst { color: var(--verdict-rejected) !important; }
+
+    .verdict { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 3px; font-weight: 500; }
+    .verdict-rejected { background: var(--verdict-rejected-bg); color: var(--verdict-rejected); }
+    .verdict-supported { background: var(--verdict-supported-bg); color: var(--verdict-supported); }
+
+    .prose p { font-size: 15.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; max-width: 640px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 500; color: var(--text-primary); }
+    .prose em { font-style: italic; }
+
+    .table-note { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5; }
+
+    .method-callout { padding: 1.25rem 1.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+    .method-callout-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .method-callout p { font-size: 13.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .method-callout p + p { margin-top: 0.75rem; }
+    .method-callout a { color: var(--accent); text-decoration: none; font-weight: 400; }
+    .method-callout a:hover { color: var(--accent-mid); }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; margin-top: 3rem; transition: color 0.15s; }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    footer { padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
+    .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="./" class="active">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Supply Chain &middot; Intent Classification &middot; Experiment Writeup</p>
+      <h1 class="post-title">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</h1>
+      <p class="post-summary">
+        Four AI models produced statistically identical supply chain outcomes, regardless of size, reasoning capability, or information level. Replacing the AI&rsquo;s float output with discrete labels fixed the calibration problem. It created a new ceiling instead.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <span class="post-meta-value">April 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Experiment</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 4 &mdash; WorldEvents Intent Classification</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Design</span>
+          <span class="post-meta-value">4 models &middot; 3 conditions &middot; 36-month stochastic simulation &middot; world events</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Author</span>
+          <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="post-body">
+    <div class="container">
+
+      <div class="post-section">
+        <p class="section-label">TL;DR</p>
+        <div class="abstract-block">
+          <p>Version 3b ended with a clear diagnosis: LLMs cannot invent precise multipliers. The proposed fix was to remove the invented number entirely &mdash; replace it with a pre-approved text label, and let a hard-coded lookup table do the arithmetic. <strong>This is V4.</strong></p>
+          <p>The fix worked as a guardrail. OVAR dropped from the 2.3&ndash;3.1 range of V3b to a tight 1.73&ndash;1.78 across all four models and all three information conditions. No configuration caused catastrophic amplification. The fix did not work as an improvement. A 120-billion-parameter reasoning model and a lightweight fast model produced outcomes within 0.05 OVAR units of each other. Context doubled classification accuracy and barely moved the supply chain outcome. <strong>The Equaliser Effect: a discrete-label architecture creates a structural ceiling that no amount of intelligence, context, or prompt engineering can escape.</strong></p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Experiment Setup</p>
+        <h2 class="section-title">Design &amp; configuration</h2>
+        <table class="setup-table">
+          <tbody>
+            <tr><td>Architecture</td><td>5-label intent classification &rarr; hard-coded lookup &rarr; Order-Up-To formula. The AI&rsquo;s only job: pick one text label per period per tier. Everything downstream is deterministic software.</td></tr>
+            <tr><td>Labels &amp; lookup</td><td>STRONG_INCREASE&rarr;1.30 &middot; MOD_INCREASE&rarr;1.15 &middot; NEUTRAL&rarr;1.00 &middot; MOD_DECREASE&rarr;0.90 &middot; STRONG_DECREASE&rarr;0.80</td></tr>
+            <tr><td>Models</td><td>gpt-4.1-mini &middot; o4-mini (reasoning) &middot; phi4:14b (local 14B) &middot; nemotron-super 120B (local 120B)</td></tr>
+            <tr><td>Conditions</td><td>Blind (numbers only) &middot; Context (calendar + seasonal persona) &middot; Unstructured (context + live event headlines)</td></tr>
+            <tr><td>Replications</td><td>20 runs per frontier condition &middot; 10 runs per local condition &middot; 100 runs per baseline</td></tr>
+            <tr><td>Simulation horizon</td><td>36 months &middot; stochastic lead times (LogNormal) &middot; stochastic fill rates (Beta)</td></tr>
+            <tr><td>World events</td><td>Pandemic (months 7&ndash;12) &middot; Geopolitical conflict (months 19&ndash;21) &middot; Port strike (months 28&ndash;30)</td></tr>
+            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors OEM &rarr; Ancillary Supplier &rarr; Component Supplier</td></tr>
+            <tr><td>Primary metric</td><td>Chain OVAR = Var(orders) / Var(demand). Target: exp_smoothing at OVAR 1.185.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every AI condition produced OVAR in a 0.05-unit band, regardless of model or information level.</strong> gpt-4.1-mini: 1.737&ndash;1.771. phi4:14b: 1.726&ndash;1.780. o4-mini: 1.748&ndash;1.774. nemotron 120B: 1.734&ndash;1.775. The entire range across 16 distinct model-condition combinations is narrower than the standard deviation of many individual runs. This is not noise. It is a ceiling.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context doubled classification accuracy and did not move the supply chain outcome.</strong> Direction accuracy went from 0.41&ndash;0.48 in blind conditions to 0.72&ndash;0.84 with context. A roughly twofold improvement in situational awareness. Chain OVAR moved by 0.01&ndash;0.02. The accuracy gain is real. It is discarded entirely at the lookup table.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>More information made outcomes marginally worse, not better.</strong> In every model, the unstructured condition (live event headlines) produced higher OVAR than the context condition. When shown explicit disruption headlines, models over-committed to extreme labels, adding noise to the formula. gpt-4.1-mini context &rarr; unstructured: 1.737 &rarr; 1.771. phi4 context &rarr; unstructured: 1.726 &rarr; 1.780.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Explicitly instructing the AI to default to inaction produced zero effect on OVAR.</strong> Sub-experiment E4 added a neutral-prior instruction: &ldquo;Default to NEUTRAL unless the signal is strong and unambiguous.&rdquo; Label distributions shifted. OVAR did not. The reason: NEUTRAL maps to multiplier 1.00, which still executes a full Order-Up-To calculation. &ldquo;Do nothing&rdquo; in the prompt is not &ldquo;do nothing&rdquo; in the formula.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Removing world events made OVAR worse, not better.</strong> The ablation (events disabled) produced OVAR 2.08&ndash;2.12, well above the events-on results of 1.73&ndash;1.78. Disruption events create correlated demand and order spikes that partially cancel their own contribution to OVAR. A cleaner seasonal signal exposes the underlying formula amplification without that natural cancellation.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Baselines</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr><th>Policy</th><th>Chain OVAR</th><th>Stockouts / run</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>exp_smoothing</strong></td><td class="value-cell best">1.185</td><td class="value-cell best">89.6</td></tr>
+              <tr><td>order_up_to (formula ceiling)</td><td class="value-cell">1.767</td><td class="value-cell">87.0</td></tr>
+              <tr><td>naive_passthrough</td><td class="value-cell">0.996</td><td class="value-cell">96.0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">order_up_to is the structural ceiling: every AI agent uses this formula internally. Landing near 1.767 means the AI&rsquo;s classification is adding nothing on top of the formula alone.</p>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">All AI conditions</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr><th>Model</th><th>Condition</th><th>Chain OVAR</th><th>&plusmn;std</th><th>Dir Accuracy</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>phi4:14b</td><td class="tag-cell">CONTEXT</td><td class="value-cell best">1.726</td><td class="value-cell">0.093</td><td class="value-cell">0.80</td></tr>
+              <tr><td>nemotron 120B</td><td class="tag-cell">BLIND</td><td class="value-cell">1.734</td><td class="value-cell">0.133</td><td class="value-cell">0.47</td></tr>
+              <tr><td>gpt-4.1-mini</td><td class="tag-cell">CONTEXT</td><td class="value-cell">1.737</td><td class="value-cell">0.088</td><td class="value-cell">0.72</td></tr>
+              <tr><td>nemotron 120B</td><td class="tag-cell">CONTEXT</td><td class="value-cell">1.745</td><td class="value-cell">0.128</td><td class="value-cell">0.74</td></tr>
+              <tr><td>gpt-4.1-mini</td><td class="tag-cell">BLIND</td><td class="value-cell">1.747</td><td class="value-cell">0.092</td><td class="value-cell">0.41</td></tr>
+              <tr><td>phi4:14b</td><td class="tag-cell">BLIND</td><td class="value-cell">1.748</td><td class="value-cell">0.130</td><td class="value-cell">0.48</td></tr>
+              <tr><td>o4-mini</td><td class="tag-cell">CONTEXT</td><td class="value-cell">1.748</td><td class="value-cell">0.105</td><td class="value-cell">0.72</td></tr>
+              <tr><td>o4-mini</td><td class="tag-cell">BLIND</td><td class="value-cell">1.763</td><td class="value-cell">0.113</td><td class="value-cell">0.44</td></tr>
+              <tr><td>gpt-4.1-mini</td><td class="tag-cell">UNSTRUCTURED</td><td class="value-cell">1.771</td><td class="value-cell">0.108</td><td class="value-cell">0.76</td></tr>
+              <tr><td>o4-mini</td><td class="tag-cell">UNSTRUCTURED</td><td class="value-cell">1.774</td><td class="value-cell">0.106</td><td class="value-cell">0.79</td></tr>
+              <tr><td>nemotron 120B</td><td class="tag-cell">UNSTRUCTURED</td><td class="value-cell">1.775</td><td class="value-cell">0.130</td><td class="value-cell">0.83</td></tr>
+              <tr><td>phi4:14b</td><td class="tag-cell">UNSTRUCTURED</td><td class="value-cell worst">1.780</td><td class="value-cell">0.130</td><td class="value-cell">0.84</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Best AI condition: phi4:14b context, OVAR 1.726 &mdash; 46% above the exp_smoothing target of 1.185.</p>
+
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Hypothesis verdicts</p>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr><th>Hypothesis</th><th>Prediction</th><th>Verdict</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>H1</td><td>Any AI condition beats exp_smoothing (OVAR &le; 1.185)</td><td><span class="verdict verdict-rejected">FAILED</span></td></tr>
+              <tr><td>H2</td><td>Unstructured condition reduces OVAR vs. context condition</td><td><span class="verdict verdict-rejected">FAILED</span></td></tr>
+              <tr><td>H3</td><td>Event signal improves direction accuracy by &ge; 10 percentage points</td><td><span class="verdict verdict-rejected">FAILED</span></td></tr>
+              <tr><td>H4</td><td>Intent compliance &ge; 0.99 under all conditions</td><td><span class="verdict verdict-supported">PASSED</span></td></tr>
+              <tr><td>H5</td><td>World events materially change OVAR</td><td><span class="verdict verdict-supported">PASSED</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">H5 passed &mdash; but in a surprising direction. World events present &rarr; lower OVAR. World events removed &rarr; higher OVAR (2.08&ndash;2.12). Disruptions partially cancel their own variance contribution.</p>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Discussion</p>
+        <h2 class="section-title">The Equaliser Effect</h2>
+        <div class="prose">
+          <p>The AI controls one variable: the safety stock multiplier, ranging from 0.80 to 1.30. Order amplification in this simulation is primarily driven by stochastic lead times and fill rates &mdash; randomness in when stock arrives and how much of an order gets fulfilled. These are physical supply chain properties, not features of the AI&rsquo;s decision. Even perfect classification would still produce OVAR near 1.77, because the Order-Up-To formula&rsquo;s response to arrival randomness dominates.</p>
+          <p>Restricting the output to five labels successfully eliminated the calibration problem from V3b. It simultaneously eliminated any possibility of improvement, because the AI can no longer make the fine-grained adjustments that would close the gap to exponential smoothing. <strong>The discrete architecture trades runaway amplification for a hard ceiling.</strong></p>
+          <p>One result from this experiment is easy to miss. Without context, every blind model defaults to classifying STRONG_INCREASE between 75% and 95% of all periods &mdash; even though only 25&ndash;33% of periods actually warrant an increase. This is catastrophically wrong. With a calendar and persona, models use all five labels accurately, with direction accuracy near 0.80. The discrimination is real. The control is not. An AI that correctly identifies the direction of demand and then outputs the same order as one that is completely wrong has been made intelligent in the wrong place.</p>
+          <p>V4 leaves open two interpretations of this ceiling: (a) a better model would classify more accurately, and more accurate classification would eventually move OVAR; or (b) the ceiling is architectural &mdash; even perfect labels cannot close the gap. V5 tested this directly by removing the LLM entirely and replacing it with oracle ground-truth labels.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V4_WorldEvents" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Methodology note</p>
+          <p>All scenarios, companies, products, and supply chain structures are entirely fictional. The demand series is synthetic, calibrated to Indian automotive seasonal patterns across 36 months with injected world events (pandemic, geopolitical conflict, port strike).</p>
+          <p>Results should not be generalised to supply chain management broadly. The correct scope: in a 3-tier discrete intent-classification architecture with a 5-label set and a fixed multiplier lookup, no tested LLM configuration &mdash; from 14B to 120B parameters, across three information conditions &mdash; produced OVAR meaningfully below the deterministic Order-Up-To baseline.</p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to Experiments
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal research &middot; not affiliated with any employer</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

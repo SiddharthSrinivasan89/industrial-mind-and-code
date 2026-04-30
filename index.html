@@ -542,6 +542,93 @@
       <p class="section-label" style="margin-bottom:0.75rem;">Published</p>
       <div class="experiment-list">
 
+        <!-- V6: Adaptive Alpha — First positive result -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; V6 STATELESSSWING</p>
+          <p class="experiment-finding">
+            Tests a fundamentally different architecture: the AI selects the EMA smoothing parameter &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period rather than a safety stock buffer. Three models tested across blind, context, and stateful conditions, plus four debiased conditions (V6b). 25-month simulation, deterministic lead times.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>First experiment in this program where every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it, across all nine primary conditions.</li>
+              <li>Best result: nemotron 120B blind, OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts &mdash; matching and marginally beating the fixed &alpha;=0.3 baseline at OVAR 0.545, 5 stockouts.</li>
+              <li>Context penalty persists in a new form: context causes &alpha;-inflation (models choose more reactive smoothing), not panic buying. Debiased conditions (V6b) recover most of the blind condition&rsquo;s advantage while providing seasonal information.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V6_StatelessSwing" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v6.html">
+              Read the writeup
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V5: Research Program Close -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">The Ceiling Is in the Formula: Oracle Labels and the End of the Research Program</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; V5 CONTROL ARCHITECTURE</p>
+          <p class="experiment-finding">
+            Phase 1 ablation: the LLM is removed entirely and replaced with oracle (ground-truth perfect) labels or causal rule-based classifiers. Fourteen architectural variants tested &mdash; multiplier maps, NEUTRAL redefinitions, order dampening, forecast oracle &mdash; 20 replications each. Phase 2 gate not passed; program closed.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>Oracle labels (perfect ground-truth classifications) produced OVAR 1.776 &mdash; worse than the Order-Up-To formula with no AI at OVAR 1.753. Perfect intelligence in the wrong position is worse than no intelligence.</li>
+              <li>The 0.540-unit gap between the best achievable result and exp_smoothing (1.193) is invariant to label quality. It is an architectural property of the safety-stock-based OUT formula, not a model quality problem.</li>
+              <li>Definitive close of the intent-classification research lineage (V1&ndash;V5). The incompatibility is structural.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V5_ControlArch" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v5.html">
+              Read the writeup
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V4: Equaliser Effect -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; V4 WORLDEVENTS &middot; 36-MONTH SIMULATION</p>
+          <p class="experiment-finding">
+            Tests a 5-label discrete intent classification architecture (STRONG_INCREASE through STRONG_DECREASE) with a hard-coded multiplier lookup replacing the AI&rsquo;s continuous float output from V3b. Four models across three information conditions (Blind, Context, Unstructured), 20&ndash;100 replications per condition, stochastic lead times and world events.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>All four models (14B to 120B) produced OVAR in a 0.05-unit band (1.726&ndash;1.780), clustering on the Order-Up-To formula baseline regardless of model size, reasoning capability, or information level. The Equaliser Effect.</li>
+              <li>Context roughly doubled direction accuracy (0.41&ndash;0.48 &rarr; 0.72&ndash;0.84) without materially moving OVAR. Accuracy improvement discarded at the lookup table.</li>
+              <li>Neutral-prior prompt instruction (E4 sub-experiment) had zero effect on OVAR across all three models tested. You cannot prompt your way out of the bullwhip effect.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V4_WorldEvents" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/agentic-bullwhip-v4.html">
+              Read the writeup
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
         <!-- V3b: Hybrid Architecture -->
         <div class="experiment-card">
           <div class="experiment-header">
