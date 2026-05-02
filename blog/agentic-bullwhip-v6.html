@@ -179,7 +179,7 @@
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>V5 proved that the Order-Up-To formula with a discrete intent-classification interface cannot beat exponential smoothing &mdash; and that the gap is architectural, not a model quality problem. Its closing note identified the only plausible next step: give the AI control of the EMA smoothing parameter &alpha; instead of a safety stock multiplier. <strong>That is what V6 tests.</strong></p>
-          <p>The AI is no longer &ldquo;outside&rdquo; the formula adjusting a buffer on top of it. It is now &ldquo;inside&rdquo; the formula, selecting the coefficient that determines how responsive the exponential smoother is to recent demand. It picks one of {0.1, 0.3, 0.5, 0.7} per period, per tier. Every AI condition produced OVAR below 1.0. <strong>This is the first time in this research program that any AI-driven configuration has achieved consistent dampening rather than amplification.</strong> The best result &mdash; nemotron 120B, blind conditions &mdash; reached OVAR 0.535, matching and marginally beating the fixed &alpha;=0.3 baseline at 0.545.</p>
+          <p>The AI is no longer &ldquo;outside&rdquo; the formula adjusting a buffer on top of it. It is now &ldquo;inside&rdquo; the formula, selecting the coefficient that determines how responsive the exponential smoother is to recent demand. It picks one of {0.1, 0.3, 0.5, 0.7} per period, per tier. Every AI condition produced OVAR below 1.0. <strong>This is the first time in this research program that any AI-driven configuration has achieved consistent dampening rather than amplification.</strong> The best result &mdash; gpt-oss 120B, blind conditions &mdash; reached OVAR 0.535, matching and marginally beating the fixed &alpha;=0.3 baseline at 0.545.</p>
         </div>
       </div>
 
@@ -189,7 +189,7 @@
         <table class="setup-table">
           <tbody>
             <tr><td>Architecture</td><td>AI selects &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period per tier &rarr; exponential smoothing executes with that &alpha;. No OUT formula. No safety stock multiplier.</td></tr>
-            <tr><td>Models</td><td>gpt-4.1-mini (adaptive) &middot; o4-mini (adaptive) &middot; nemotron-super 120B (adaptive)</td></tr>
+            <tr><td>Models</td><td>gpt-4.1-mini (adaptive) &middot; o4-mini (adaptive) &middot; gpt-oss 120B (adaptive)</td></tr>
             <tr><td>Conditions</td><td>Blind (numbers only) &middot; Context (calendar + seasonal persona) &middot; Stateful (context + recent &alpha; history)</td></tr>
             <tr><td>V6b debiased</td><td>mini_ctx_computed &middot; mini_ctx_debiased &middot; oss120b_ctx_computed &middot; oss120b_ctx_debiased. Tests whether the context-induced &alpha;-inflation bias can be corrected by restricting option sets or explicit instruction.</td></tr>
             <tr><td>Replications</td><td>10 runs per adaptive condition &middot; 5 runs per debiased condition &middot; 1 run per fixed baseline (deterministic)</td></tr>
@@ -211,7 +211,7 @@
 
         <ol class="findings-list">
           <li>
-            <span class="finding-text"><strong>The best AI condition matches and marginally beats the fixed exponential smoothing baseline.</strong> Nemotron 120B in blind conditions achieved OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts. The fixed &alpha;=0.3 baseline achieves OVAR 0.545 with 5 stockouts. The difference is within the confidence interval, but represents the first time in six experiments that an AI-driven condition can plausibly match its deterministic counterpart on the primary metric without sacrificing service level.</span>
+            <span class="finding-text"><strong>The best AI condition matches and marginally beats the fixed exponential smoothing baseline.</strong> gpt-oss 120B in blind conditions achieved OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts. The fixed &alpha;=0.3 baseline achieves OVAR 0.545 with 5 stockouts. The difference is within the confidence interval, but represents the first time in six experiments that an AI-driven condition can plausibly match its deterministic counterpart on the primary metric without sacrificing service level.</span>
           </li>
           <li>
             <span class="finding-text"><strong>The context penalty persists &mdash; but the mechanism is now understood and partially correctable.</strong> Adding context increases &alpha; choices. Models given a calendar and seasonal persona consistently choose higher &alpha; values (more reactive smoothing), which increases variance. This is a calibrated over-responsiveness effect, far less severe than the panic buying of V2 or the memory collapse of V3b. The debiased conditions (V6b) close most of the gap: oss120b_ctx_computed reaches OVAR 0.585 vs. oss120b_context at 0.739.</span>
@@ -220,7 +220,7 @@
             <span class="finding-text"><strong>Stateful conditions land in the middle.</strong> Providing recent &alpha; history moderates the context-inflation effect without fully eliminating it. Mini stateful: 0.695. OSS120b stateful: 0.684. o4-mini stateful: 0.705. All three sit between their blind and context counterparts.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>The 120B model has a structural advantage in blind conditions.</strong> Without context, nemotron 120B naturally converges to &alpha;=0.3 as its dominant choice &mdash; the standard textbook value for exponential smoothing. Smaller models select &alpha;=0.7 more frequently, adding variance. The advantage disappears in context conditions, where all models inflate &alpha; similarly when given seasonal information.</span>
+            <span class="finding-text"><strong>The 120B model has a structural advantage in blind conditions.</strong> Without context, gpt-oss 120B naturally converges to &alpha;=0.3 as its dominant choice &mdash; the standard textbook value for exponential smoothing. Smaller models select &alpha;=0.7 more frequently, adding variance. The advantage disappears in context conditions, where all models inflate &alpha; similarly when given seasonal information.</span>
           </li>
           <li>
             <span class="finding-text"><strong>Debiasing shows that context-induced &alpha;-inflation is correctable.</strong> oss120b_ctx_computed (which restricts &alpha; to {0.1, 0.3, 0.5} and has the model derive &alpha; from observable statistics) achieves OVAR 0.585 with 5.6 stockouts &mdash; recovering most of the blind condition&rsquo;s advantage while providing seasonal information. The context penalty is structural but not immovable.</span>
@@ -253,14 +253,14 @@
               <tr><th>Model</th><th>Condition</th><th>Chain OVAR</th><th>&plusmn;std</th><th>Stockouts</th><th>&alpha; mean</th></tr>
             </thead>
             <tbody>
-              <tr class="highlight-row"><td>nemotron 120B</td><td class="tag-cell">BLIND</td><td class="value-cell best">0.535</td><td class="value-cell">0.048</td><td class="value-cell">4.4</td><td class="value-cell">0.368</td></tr>
+              <tr class="highlight-row"><td>gpt-oss 120B</td><td class="tag-cell">BLIND</td><td class="value-cell best">0.535</td><td class="value-cell">0.048</td><td class="value-cell">4.4</td><td class="value-cell">0.368</td></tr>
               <tr><td>gpt-4.1-mini</td><td class="tag-cell">BLIND</td><td class="value-cell">0.597</td><td class="value-cell">0.041</td><td class="value-cell">7.3</td><td class="value-cell">0.367</td></tr>
               <tr><td>o4-mini</td><td class="tag-cell">BLIND</td><td class="value-cell">0.657</td><td class="value-cell">0.091</td><td class="value-cell">4.0</td><td class="value-cell">0.404</td></tr>
-              <tr><td>nemotron 120B</td><td class="tag-cell">STATEFUL</td><td class="value-cell">0.684</td><td class="value-cell">0.121</td><td class="value-cell">6.2</td><td class="value-cell">0.397</td></tr>
+              <tr><td>gpt-oss 120B</td><td class="tag-cell">STATEFUL</td><td class="value-cell">0.684</td><td class="value-cell">0.121</td><td class="value-cell">6.2</td><td class="value-cell">0.397</td></tr>
               <tr><td>gpt-4.1-mini</td><td class="tag-cell">STATEFUL</td><td class="value-cell">0.695</td><td class="value-cell">0.045</td><td class="value-cell">8.8</td><td class="value-cell">0.365</td></tr>
               <tr><td>o4-mini</td><td class="tag-cell">STATEFUL</td><td class="value-cell">0.705</td><td class="value-cell">0.125</td><td class="value-cell">6.5</td><td class="value-cell">0.397</td></tr>
               <tr><td>gpt-4.1-mini</td><td class="tag-cell">CONTEXT</td><td class="value-cell">0.715</td><td class="value-cell">0.020</td><td class="value-cell">10.4</td><td class="value-cell">0.363</td></tr>
-              <tr><td>nemotron 120B</td><td class="tag-cell">CONTEXT</td><td class="value-cell">0.739</td><td class="value-cell">0.040</td><td class="value-cell">9.3</td><td class="value-cell">0.340</td></tr>
+              <tr><td>gpt-oss 120B</td><td class="tag-cell">CONTEXT</td><td class="value-cell">0.739</td><td class="value-cell">0.040</td><td class="value-cell">9.3</td><td class="value-cell">0.340</td></tr>
               <tr><td>o4-mini</td><td class="tag-cell">CONTEXT</td><td class="value-cell">0.741</td><td class="value-cell">0.045</td><td class="value-cell">10.4</td><td class="value-cell">0.359</td></tr>
             </tbody>
           </table>
@@ -298,7 +298,7 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Full code and results on GitHub</p>
-          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V6_StatelessSwing" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>
 

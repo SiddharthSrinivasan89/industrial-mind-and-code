@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experiments — Industrial Mind &amp; Code</title>
-  <meta name="description" content="Experimental research on LLM agent performance in industrial engineering decision environments — supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
+  <title>Experiments | Industrial Mind &amp; Code</title>
+  <meta name="description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Experiments — Industrial Mind &amp; Code" />
-  <meta property="og:description" content="Experimental research on LLM agent performance in industrial engineering decision environments — supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
+  <meta property="og:title" content="Experiments | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -323,22 +323,110 @@
 
       <div class="post-list">
 
+        <!-- V6: Adaptive Alpha — First positive result -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            For the first time in this research program, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: gpt-oss 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v6.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V5: Structural Incompatibility -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Ceiling Is in the Formula: Oracle Labels and Structural Incompatibility</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. Fourteen architectural variants tested. None passed the gate. The 0.540-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. V5 closes the intent-classification line; V6 changes the control lever.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v5.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V4: Equaliser Effect -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Four AI models &mdash; from a lightweight fast model to a 120-billion-parameter reasoning behemoth &mdash; produced statistically identical supply chain outcomes across three information conditions. Replacing the AI&rsquo;s float output with five discrete text labels fixed the calibration problem from V3b. It simultaneously created a structural ceiling no model or prompt can escape.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v4.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4-world-events" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- V3b: Hybrid Architecture -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="post-title">Hybrid AI Safety Stock Control in Supply Chain Replenishment</span>
+            <span class="post-date">April 2026</span>
+          </div>
+          <p class="post-domain">SUPPLY CHAIN &middot; HYBRID ARCHITECTURE &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            Three AI models controlled the safety stock multiplier in a hybrid architecture; a mathematical formula handled the order quantity. All four hypotheses failed across three information conditions and 20 replications per condition. Every AI condition produced higher order variance than doing nothing. Context made two out of three models worse. Memory caused the advanced reasoning model to collapse.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="agentic-bullwhip-v3b.html">
+              Read
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v3b-hybrid-architecture" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
         <!-- V2a: sarvam-30b -->
         <div class="post-card">
           <div class="post-card-header">
-            <span class="post-title">Sovereign Model Performance in Stateless Supply Chain Replenishment: sarvam-30b vs. GPT-OSS-120B</span>
+            <span class="post-title">sarvam-30b in Supply Chain Ordering: A Comparison with gpt-oss 120B</span>
             <span class="post-date">March 2026</span>
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; SOVEREIGN MODEL &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            India&rsquo;s sovereign model showed no measurable difference from GPT OSS on this task &mdash; OVAR 4.504 vs. 4.52. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by approximately 8&times;. The GPT OSS result is a V2 context reference, not a co-run comparison.
+            India&rsquo;s sovereign model showed no measurable difference from gpt-oss on this task: OVAR 4.504 vs. 4.52. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by approximately 8&times;. The gpt-oss result is an Agentic Bullwhip Effect Version 2 context reference, not a co-run comparison.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v2a.html">
               Read
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
-            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_2a" target="_blank" rel="noopener">
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -348,7 +436,7 @@
         <!-- V2: Heuristic Dominance -->
         <div class="post-card">
           <div class="post-card-header">
-            <span class="post-title">Heuristic Dominance Over LLM Agents in Stateless Linear Supply Chain Replenishment: An Experimental Study</span>
+            <span class="post-title">LLM Agents Against Heuristic Baselines in Supply Chain Replenishment: An Experimental Comparison</span>
             <span class="post-date">March 2026</span>
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP</p>
@@ -360,7 +448,7 @@
               Read
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
-            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener">
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2-context-model-interactions" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -370,19 +458,19 @@
         <!-- V1: Inverted Cascade -->
         <div class="post-card">
           <div class="post-card-header">
-            <span class="post-title">Context &times; Model Interactions in LLM-Driven Supply Chain Ordering: An Inverted Bullwhip Cascade</span>
+            <span class="post-title">Context and Model Capability in AI-Driven Supply Chain Ordering: An Experimental Study</span>
             <span class="post-date">February 2026</span>
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            All four configurations amplified demand variability. The context &times; reasoning condition produced a fully inverted tier pattern &mdash; OEM as the noisiest tier, Component as the quietest &mdash; reversing the standard upstream cascade.
+            All four configurations amplified demand variability. The context &times; reasoning condition produced a fully inverted tier pattern (OEM as the noisiest tier, Component as the quietest), reversing the standard upstream cascade.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v1.html">
               Read
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
-            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_1" target="_blank" rel="noopener">
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v1-direct-ordering" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>

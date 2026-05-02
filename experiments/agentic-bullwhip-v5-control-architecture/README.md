@@ -6,7 +6,7 @@ This experiment is Version 5 in a five-experiment series examining whether Large
 
 Fourteen conditions across six ablation groups were evaluated using n=20 runs each, spanning oracle label quality, multiplier map range, NEUTRAL class redefinition, order dampening, forecast oracle, and causal rule-based classification. The best result across all conditions is `neutral_smoothed_forecast` at OVAR 1.733, which improves on the Order-Up-To (OUT) baseline (1.753) by only 0.019 and remains 0.540 above the exponential smoothing baseline (1.193).
 
-The Phase 1 gate criterion (any condition beats order_up_to by >= 0.10, or comes within 0.30 of exp_smoothing) was not met. Phase 2 LLM experiments were not warranted. The research program was closed at the completion of this phase.
+The Phase 1 gate criterion (any condition beats order_up_to by >= 0.10, or comes within 0.30 of exp_smoothing) was not met. Phase 2 LLM experiments were not warranted for this architecture. V5 closed the intent-classification lineage that ran from V1 through V5 and redirected the broader research program toward a different control architecture.
 
 OVAR is defined as: OVAR = Var(orders) / Var(demand), computed per tier using sample variance (ddof=1) over all active ordering periods, then averaged as arithmetic mean across 3 tiers. Values below 1.0 indicate variance dampening; values above 1.0 indicate amplification.
 
@@ -151,7 +151,7 @@ The causal rule-based result confirms that calendar and event labels carry essen
 4. **Single demand profile:** Results are specific to the 36-month Indian automotive seasonal demand series with three injected disruption types.
 5. **n=20 per condition:** Adequate for detecting effects at the defined MPRD threshold; smaller effects may be underpowered.
 6. **Hypotheses were not pre-registered.** They were stated in the design document prior to execution but not deposited with any external registry.
-7. **Program closure:** The decision to close the research program at Phase 1 reflects the absence of any finding that would justify continued investment in this architectural direction. It is not a claim that no AI-augmented supply chain architecture can outperform exponential smoothing; it is a claim that this specific five-label intent classifier approach with the OUT formula cannot.
+7. **Lineage closure:** The decision to close the V1-V5 intent-classification line at Phase 1 reflects the absence of any finding that would justify continued investment in this architectural direction. It is not a claim that no AI-augmented supply chain architecture can outperform exponential smoothing; it is a claim that this specific five-label intent classifier approach with the OUT formula cannot. The broader research program continues by changing the control lever, beginning with V6 adaptive smoothing.
 
 ## How to Reproduce
 
@@ -202,7 +202,7 @@ Note: Because all conditions are deterministic (no LLM calls), run time is deter
 
 ## Citation
 
-Srinivasan, S. (2026). *Agentic Bullwhip Effect V5: The Ceiling Is in the Formula — Oracle Labels and the End of the Research Program.* Industrial Mind and Code. https://industrialmindandcode.ai/blog/agentic-bullwhip-v5
+Srinivasan, S. (2026). *Agentic Bullwhip Effect V5: The Ceiling Is in the Formula — Oracle Labels and the End of the Intent-Classification Line.* Industrial Mind and Code. https://industrialmindandcode.ai/blog/agentic-bullwhip-v5
 
 Related work in this series:
 - Lee, H.L., Padmanabhan, V., & Whang, S. (1997). Information Distortion in a Supply Chain: The Bullwhip Effect. *Management Science*, 43(4), 546–558. https://doi.org/10.1287/mnsc.43.4.546

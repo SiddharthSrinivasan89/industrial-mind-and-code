@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B | Industrial Mind &amp; Code</title>
-  <meta name="description" content="sarvam-30b versus GPT OSS 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
+  <title>sarvam-30b in Supply Chain Ordering: A Comparison with gpt-oss 120B | Industrial Mind &amp; Code</title>
+  <meta name="description" content="sarvam-30b versus gpt-oss 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2a.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B | Industrial Mind &amp; Code" />
-  <meta property="og:description" content="sarvam-30b versus GPT OSS 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
+  <meta property="og:title" content="sarvam-30b in Supply Chain Ordering: A Comparison with gpt-oss 120B | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="sarvam-30b versus gpt-oss 120B on a synthetic Indian automotive demand series. No meaningful difference on any metric. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by 8x." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v2a.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -488,9 +488,9 @@
   <header class="post-header">
     <div class="container">
       <p class="post-eyebrow">Supply Chain · Sovereign Model · Experiment Writeup</p>
-      <h1 class="post-title">sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B</h1>
+      <h1 class="post-title">sarvam-30b in Supply Chain Ordering: A Comparison with gpt-oss 120B</h1>
       <p class="post-summary">
-        India's sovereign model produced no meaningful difference from GPT OSS 120B on supply chain ordering. Neither model detected Indian seasonal patterns. Exponential smoothing outperformed both by roughly 8x.
+        India's sovereign model produced no meaningful difference from gpt-oss 120B on supply chain ordering. Neither model detected Indian seasonal patterns. Exponential smoothing outperformed both by roughly 8x.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -518,8 +518,8 @@
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>Agentic Bullwhip Effect Version 2 showed that no LLM configuration could beat a simple exponential smoothing heuristic on supply chain order variance or stockouts. This experiment asked a follow-up question: would a model trained on Indian data show stronger seasonal awareness on an Indian automotive demand series?</p>
-          <p>I tested sarvam-30b (India's sovereign model, 30B total parameters, 2.4B active) against GPT OSS 120B as a reference. The demand series was calibrated to real Indian PV market seasonality: festive peaks, monsoon troughs, fiscal year-end patterns. The agents received the current month name plus four numeric state variables. Any seasonal reasoning would have to come from the model's world knowledge.</p>
-          <p>The answer: no meaningful difference. sarvam-30b chain OVAR 4.504 vs GPT OSS 120B 4.52. No practically meaningful difference in the tested context conditions. Neither model detected Indian seasonal demand patterns. Exponential smoothing (OVAR 0.54) won by roughly 8x.</p>
+          <p>I tested sarvam-30b (India's sovereign model, 30B total parameters, 2.4B active) against gpt-oss 120B as a reference. The demand series was calibrated to real Indian PV market seasonality: festive peaks, monsoon troughs, fiscal year-end patterns. The agents received the current month name plus four numeric state variables. Any seasonal reasoning would have to come from the model's world knowledge.</p>
+          <p>The answer: no meaningful difference. sarvam-30b chain OVAR 4.504 vs gpt-oss 120B 4.52. No practically meaningful difference in the tested context conditions. Neither model detected Indian seasonal demand patterns. Exponential smoothing (OVAR 0.54) won by roughly 8x.</p>
           <p>One finding emerged from the integration work: enabling sarvam-30b's native reasoning flag (think=True) was associated with eliminating run-level failures without affecting supply chain outcomes.</p>
         </div>
       </div>
@@ -607,10 +607,10 @@
         <h2 class="section-title">What I found</h2>
         <ol class="findings-list">
           <li>
-            <span class="finding-text"><strong>No practically meaningful difference in task performance was observed in the tested conditions.</strong> sarvam-30b chain OVAR 4.504 &plusmn; 0.044 (E1) and 4.501 &plusmn; 0.093 (E2). GPT OSS 120B achieved 4.52 &plusmn; 0.05 (Agentic Bullwhip Effect Version 2 context reference; not re-run in Version 2a). The difference is 0.02, well within noise and below the MPRD threshold of 0.5. India's sovereign model did not produce different ordering behaviour in the tested context conditions, despite being trained on Indian data and the demand series being calibrated to Indian market seasonality.</span>
+            <span class="finding-text"><strong>No practically meaningful difference in task performance was observed in the tested conditions.</strong> sarvam-30b chain OVAR 4.504 &plusmn; 0.044 (E1) and 4.501 &plusmn; 0.093 (E2). gpt-oss 120B achieved 4.52 &plusmn; 0.05 (Agentic Bullwhip Effect Version 2 context reference; not re-run in Version 2a). The difference is 0.02, well within noise and below the MPRD threshold of 0.5. India's sovereign model did not produce different ordering behaviour in the tested context conditions, despite being trained on Indian data and the demand series being calibrated to Indian market seasonality.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Neither model detected Indian seasonal demand patterns.</strong> Pattern scores: sarvam-30b 0.219&ndash;0.232, GPT OSS 120B 0.21. All identical within noise. The demand series contains two Indian festive cycles with documented peak months, a monsoon trough, and wedding season elevation. Agents received the month name plus four numeric state variables in the user prompt. No event labels, no year. Neither model showed seasonal awareness. Cultural training data did not produce measurably different ordering behaviour on this task.</span>
+            <span class="finding-text"><strong>Neither model detected Indian seasonal demand patterns.</strong> Pattern scores: sarvam-30b 0.219&ndash;0.232, gpt-oss 120B 0.21. All identical within noise. The demand series contains two Indian festive cycles with documented peak months, a monsoon trough, and wedding season elevation. Agents received the month name plus four numeric state variables in the user prompt. No event labels, no year. Neither model showed seasonal awareness. Cultural training data did not produce measurably different ordering behaviour on this task.</span>
           </li>
           <li>
             <span class="finding-text"><strong>Enabling think=True was associated with eliminating run-level failures without changing supply chain outcomes.</strong> E1 (think=False): 15 of 25 run attempts needed replacement. E2 (think=True): 0 of 10 run attempts needed replacement. Chain OVAR difference between E1 and E2: 0.003. Note: E1 also had a separate API-flag/prompt conflict: the system prompt contained a &ldquo;Think silently&rdquo; instruction that contradicted the think=False flag. The reliability improvement in E2 cannot be fully isolated to the reasoning flag alone. Regardless, think=True produced reliable run completion and is the recommended configuration for local GGUF deployment of sarvam-30b via llama-server.</span>
@@ -703,7 +703,7 @@
         <h2 class="section-title">Model-specific issues</h2>
 
         <div class="prose" style="margin-bottom:1.5rem;">
-          <p>Two model-specific issues required resolution before stable runs were possible. Both are reproducible and specific to local GGUF deployment of sarvam-30b via llama-server. GPT OSS 120B triggered neither across 20 runs.</p>
+          <p>Two model-specific issues required resolution before stable runs were possible. Both are reproducible and specific to local GGUF deployment of sarvam-30b via llama-server. gpt-oss 120B triggered neither across 20 runs.</p>
         </div>
 
         <table class="issues-table">
@@ -740,7 +740,7 @@
 
         <div class="prose">
           <p>The seasonal awareness hypothesis was not confirmed. I expected that a model with Indian training data would show different ordering behaviour on a demand series calibrated to Indian market seasonality. It did not.</p>
-          <p>The agents received the current month name plus four numeric state variables. No event labels, no seasonal context, no year. Any seasonal signal would have to come from the model's world knowledge about what October and November mean in India. Neither sarvam-30b nor GPT OSS showed it. Pattern scores of 0.22 and 0.21 indicate very low, approximately equal, seasonal sensitivity in both models.</p>
+          <p>The agents received the current month name plus four numeric state variables. No event labels, no seasonal context, no year. Any seasonal signal would have to come from the model's world knowledge about what October and November mean in India. Neither sarvam-30b nor gpt-oss showed it. Pattern scores of 0.22 and 0.21 indicate very low, approximately equal, seasonal sensitivity in both models.</p>
           <p>One possible explanation: the task framing as a supply chain ordering problem may not activate seasonal world knowledge, even when the model possesses it. Whether the model draws on broader seasonal knowledge when asked to make an inventory decision (rather than a factual question about seasonality) is unclear from these results alone.</p>
           <p>The structural argument also applies. Stateless agents without memory cannot self-correct drift regardless of what they know about seasonality. Even if a model correctly anticipated a festive peak in period 14, it cannot carry that anticipation forward without memory of what it planned.</p>
         </div>
@@ -763,14 +763,14 @@
           <p class="method-callout-label">Full code and results on GitHub</p>
           <p>
             Full report, code, and data are available on GitHub.
-            &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_2a" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub &rarr;</a>
+            &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub &rarr;</a>
           </p>
           <p>
-            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/experiments/Agentic_Bullwhip_Effect_Version_2a/ANALYSIS.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">ANALYSIS.md</a>
+            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation/ANALYSIS.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">ANALYSIS.md</a>
             &nbsp;&middot;&nbsp;
-            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/experiments/Agentic_Bullwhip_Effect_Version_2a/DESIGN.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">DESIGN.md</a>
+            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation/DESIGN.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">DESIGN.md</a>
             &nbsp;&middot;&nbsp;
-            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/experiments/Agentic_Bullwhip_Effect_Version_2a/COMPARISON.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">COMPARISON.md</a>
+            <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/blob/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation/COMPARISON.md" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">COMPARISON.md</a>
           </p>
         </div>
       </div>

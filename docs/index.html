@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -555,12 +561,12 @@
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
               <li>First experiment in this program where every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it, across all nine primary conditions.</li>
-              <li>Best result: GPT OSS 120B blind, OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts &mdash; matching and marginally beating the fixed &alpha;=0.3 baseline at OVAR 0.545, 5 stockouts.</li>
+              <li>Best result: gpt-oss 120B blind, OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts &mdash; matching and marginally beating the fixed &alpha;=0.3 baseline at OVAR 0.545, 5 stockouts.</li>
               <li>Context penalty persists in a new form: context causes &alpha;-inflation (models choose more reactive smoothing), not panic buying. Debiased conditions (V6b) recover most of the blind condition&rsquo;s advantage while providing seasonal information.</li>
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V6_StatelessSwing" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -571,25 +577,25 @@
           </div>
         </div>
 
-        <!-- V5: Research Program Close -->
+        <!-- V5: Structural Incompatibility -->
         <div class="experiment-card">
           <div class="experiment-header">
-            <span class="experiment-name">The Ceiling Is in the Formula: Oracle Labels and the End of the Research Program</span>
+            <span class="experiment-name">The Ceiling Is in the Formula: Oracle Labels and Structural Incompatibility</span>
             <span class="status-badge status-published">Published</span>
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; V5 CONTROL ARCHITECTURE</p>
           <p class="experiment-finding">
-            Phase 1 ablation: the LLM is removed entirely and replaced with oracle (ground-truth perfect) labels or causal rule-based classifiers. Fourteen architectural variants tested &mdash; multiplier maps, NEUTRAL redefinitions, order dampening, forecast oracle &mdash; 20 replications each. Phase 2 gate not passed; program closed.
+            Phase 1 ablation: the LLM is removed entirely and replaced with oracle (ground-truth perfect) labels or causal rule-based classifiers. Fourteen architectural variants tested &mdash; multiplier maps, NEUTRAL redefinitions, order dampening, forecast oracle &mdash; 20 replications each. Phase 2 gate not passed for this architecture; the intent-classification line closed.
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
               <li>Oracle labels (perfect ground-truth classifications) produced OVAR 1.776 &mdash; worse than the Order-Up-To formula with no AI at OVAR 1.753. Perfect intelligence in the wrong position is worse than no intelligence.</li>
               <li>The 0.540-unit gap between the best achievable result and exp_smoothing (1.193) is invariant to label quality. It is an architectural property of the safety-stock-based OUT formula, not a model quality problem.</li>
-              <li>Definitive close of the intent-classification research lineage (V1&ndash;V5). The incompatibility is structural.</li>
+              <li>Closed the intent-classification lineage (V1&ndash;V5). The 0.540-unit gap is an architectural property of the OUT formula&rsquo;s safety stock structure; V6 tests a different architecture entirely.</li>
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V5_ControlArch" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -618,7 +624,7 @@
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V4_WorldEvents" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4-world-events" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -647,7 +653,7 @@
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V3b_HybridArch" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v3b-hybrid-architecture" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -676,7 +682,7 @@
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_2" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2-context-model-interactions" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -690,7 +696,7 @@
         <!-- V2a: sarvam-30b -->
         <div class="experiment-card">
           <div class="experiment-header">
-            <span class="experiment-name">sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B</span>
+            <span class="experiment-name">sarvam-30b in Supply Chain Ordering: A Comparison with gpt-oss 120B</span>
             <span class="status-badge status-published">Published</span>
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; SOVEREIGN MODELS &middot; 1,440 LLM CALLS</p>
@@ -699,13 +705,13 @@
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
-              <li>No measurable difference: sarvam-30b chain OVAR 4.504 vs. GPT-OSS-120B 4.52 (Agentic Bullwhip Effect Version 2 context reference, not co-run). Difference within noise; neither model detected Indian seasonal demand patterns.</li>
+              <li>No measurable difference: sarvam-30b chain OVAR 4.504 vs. gpt-oss 120B 4.52 (Agentic Bullwhip Effect Version 2 context reference, not co-run). Difference within noise; neither model detected Indian seasonal demand patterns.</li>
               <li>Exponential smoothing achieved OVAR 0.54, an 8&times; gap over both models.</li>
               <li>Secondary finding: enabling the native reasoning flag (think=True) was associated with eliminating run-level failures without affecting ordering performance.</li>
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_2a" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -734,7 +740,7 @@
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_Version_1" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v1-direct-ordering" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>

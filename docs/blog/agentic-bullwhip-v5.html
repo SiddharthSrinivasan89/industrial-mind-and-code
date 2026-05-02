@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Ceiling Is in the Formula: Oracle Labels and the End of This Experimental Line | Industrial Mind &amp; Code</title>
-  <meta name="description" content="Perfect ground-truth labels fed directly to the architecture produced worse OVAR than the Order-Up-To formula with no AI. The 0.54-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. This experimental line is closed." />
+  <title>The Ceiling Is in the Formula: Oracle Labels and the End of the Intent-Classification Line | Industrial Mind &amp; Code</title>
+  <meta name="description" content="Perfect ground-truth labels fed directly to the architecture produced worse OVAR than the Order-Up-To formula with no AI. The 0.54-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. V5 closes the intent-classification line and redirects the research trajectory." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v5.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="The Ceiling Is in the Formula: Oracle Labels and the End of This Experimental Line | Industrial Mind &amp; Code" />
-  <meta property="og:description" content="Perfect ground-truth labels fed directly to the architecture produced worse OVAR than the Order-Up-To formula with no AI. The 0.54-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. This experimental line is closed." />
+  <meta property="og:title" content="The Ceiling Is in the Formula: Oracle Labels and the End of the Intent-Classification Line | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="Perfect ground-truth labels fed directly to the architecture produced worse OVAR than the Order-Up-To formula with no AI. The 0.54-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. V5 closes the intent-classification line and redirects the research trajectory." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v5.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -161,7 +161,7 @@
       <p class="post-eyebrow">Supply Chain &middot; Oracle Ablation &middot; Experiment Writeup</p>
       <h1 class="post-title">The Ceiling Is in the Formula</h1>
       <p class="post-summary">
-        Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. The 0.54-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. Five versions. One definitive answer.
+        Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. The 0.54-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. V5 closes the intent-classification line and sets up the V6 shift to adaptive smoothing.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -191,7 +191,7 @@
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>V4 left open two interpretations of the Equaliser Effect: the ceiling exists because current models classify poorly, or it exists because even perfect classification cannot move OVAR within the Order-Up-To formula architecture. V5 Phase 1 tested interpretation two by removing the LLM entirely and replacing it with oracle labels &mdash; ground-truth perfect classifications derived from the simulation&rsquo;s own demand trajectory.</p>
-          <p><strong>Oracle labels produced OVAR 1.776 &mdash; worse than the Order-Up-To formula running with no AI at OVAR 1.753.</strong> Perfect intelligence in the wrong position is worse than no intelligence. Fourteen architectural variants were tested. None passed the Phase 1 gate. The 0.540-unit gap to exponential smoothing is preserved exactly. This experimental line is closed: LLMs with intent-classification interfaces cannot replicate the variance-dampening properties of exponential smoothing within the Order-Up-To formula architecture. This is a structural incompatibility, not a model quality problem.</p>
+          <p><strong>Oracle labels produced OVAR 1.776 &mdash; worse than the Order-Up-To formula running with no AI at OVAR 1.753.</strong> Perfect intelligence in the wrong position is worse than no intelligence. Fourteen architectural variants were tested. None passed the Phase 1 gate. The 0.540-unit gap to exponential smoothing is preserved exactly. The intent-classification line is closed: LLMs with intent-classification interfaces cannot replicate the variance-dampening properties of exponential smoothing within the Order-Up-To formula architecture. This is a structural incompatibility, not a model quality problem, and it is why V6 changes the control architecture rather than improving the classifier.</p>
         </div>
       </div>
 
@@ -296,7 +296,7 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Full code and results on GitHub</p>
-          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/Agentic_Bullwhip_Effect_V5_ControlArch" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>
 

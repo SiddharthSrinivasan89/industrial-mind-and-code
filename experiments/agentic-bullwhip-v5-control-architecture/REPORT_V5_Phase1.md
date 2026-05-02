@@ -3,7 +3,7 @@
 **Experiment:** `Agentic_Bullwhip_Effect_V5_ControlArch`
 **Phase:** 1 — Deterministic Ablations (Oracle and Causal Upper Bounds)
 **Date completed:** April 2026
-**Verdict:** Phase 1 gate NOT passed. Phase 2 LLM conditions not justified. Research program closed.
+**Verdict:** Phase 1 gate NOT passed. Phase 2 LLM conditions not justified for this architecture. Intent-classification lineage closed; broader research trajectory changed.
 
 ---
 
@@ -17,7 +17,7 @@ V5 Phase 1 answered this question by removing the LLM entirely. Using determinis
 
 The best Phase 1 result across 14 conditions and 20 runs each is `neutral_smoothed_forecast` at OVAR 1.733. This barely beats `order_up_to` (1.753) — and remains 0.540 above `exp_smoothing` (1.193). The gap to exponential smoothing is preserved exactly, confirming the ceiling is architectural: the OUT formula structure generates irreducible variance that no decision-layer improvement can eliminate.
 
-**The research program is closed.** The five-version chain has produced a definitive finding: LLMs with intent-classification interfaces cannot replicate the variance-dampening properties of exponential smoothing within the OUT formula architecture. This is a structural incompatibility, not a model quality or prompt engineering problem.
+**The intent-classification lineage is closed.** The five-version chain has produced a definitive finding: LLMs with intent-classification interfaces cannot replicate the variance-dampening properties of exponential smoothing within the OUT formula architecture. This is a structural incompatibility, not a model quality or prompt engineering problem. The broader research program continues by changing the control lever rather than improving this interface.
 
 ---
 
@@ -148,7 +148,7 @@ The gap between the best Phase 1 condition (1.7334) and `exp_smoothing` (1.1931)
 
 ---
 
-## 6. Research Program Close-Out
+## 6. Intent-Classification Lineage Close-Out
 
 ### The five-version chain and what each one proved
 
@@ -171,7 +171,7 @@ The gap between the best Phase 1 condition (1.7334) and `exp_smoothing` (1.1931)
 
 The only architectural change that could theoretically break the ceiling is replacing the OUT formula entirely with an EMA-based forecasting policy where the LLM modifies the EMA smoothing parameter rather than the safety stock multiplier. This is a fundamentally different design space (predict-then-smooth rather than forecast-then-buffer). No evidence yet that this is tractable; it would require a new experiment lineage.
 
-**Decision: research program closed at V5 Phase 1.**
+**Decision: intent-classification lineage closed at V5 Phase 1.**
 
 ---
 
@@ -205,4 +205,4 @@ The only architectural change that could theoretically break the ceiling is repl
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 1.0 | 2026-04-25 | Siddharth Srinivasan | Phase 1 complete; gate verdict written; program closed |
+| 1.0 | 2026-04-25 | Siddharth Srinivasan | Phase 1 complete; gate verdict written; intent-classification lineage closed |

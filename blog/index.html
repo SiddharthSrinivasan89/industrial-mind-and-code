@@ -331,7 +331,7 @@
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            For the first time in this research program, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: nemotron 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
+            For the first time in this research program, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: gpt-oss 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v6.html">
@@ -353,7 +353,7 @@
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. Fourteen architectural variants tested. None passed the gate. The 0.540-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. Five versions. One definitive answer.
+            Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. Fourteen architectural variants tested. None passed the gate. The 0.540-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. V5 closes the intent-classification line; V6 changes the control lever.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v5.html">
@@ -414,12 +414,12 @@
         <!-- V2a: sarvam-30b -->
         <div class="post-card">
           <div class="post-card-header">
-            <span class="post-title">sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B</span>
+            <span class="post-title">sarvam-30b in Supply Chain Ordering: A Comparison with gpt-oss 120B</span>
             <span class="post-date">March 2026</span>
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; SOVEREIGN MODEL &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            India&rsquo;s sovereign model showed no measurable difference from GPT OSS on this task: OVAR 4.504 vs. 4.52. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by approximately 8&times;. The GPT OSS result is an Agentic Bullwhip Effect Version 2 context reference, not a co-run comparison.
+            India&rsquo;s sovereign model showed no measurable difference from gpt-oss on this task: OVAR 4.504 vs. 4.52. Neither model detected Indian seasonal demand patterns. Exponential smoothing outperformed both by approximately 8&times;. The gpt-oss result is an Agentic Bullwhip Effect Version 2 context reference, not a co-run comparison.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v2a.html">
@@ -470,7 +470,7 @@
               Read
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
-            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/agentic_bullwhip_effect_version_1" target="_blank" rel="noopener">
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v1-direct-ordering" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
