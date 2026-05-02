@@ -2,7 +2,7 @@
 
 Industrial Mind & Code is an independent research repository for testing LLM agents inside industrial engineering decision environments. The current published program focuses on the Agentic Bullwhip Effect: a controlled supply-chain simulation series that asks whether language-model agents can make replenishment decisions without amplifying demand variance.
 
-The public site is hosted through GitHub Pages at `industrialmindandcode.ai`. The homepage is `index.html`; experiment writeups live under `blog/`; a mirrored `docs/` tree is kept for GitHub Pages publishing compatibility.
+The public site is hosted through GitHub Pages at `industrialmindandcode.ai`. GitHub Pages deploys from `docs/`: the homepage is `docs/index.html`, and experiment writeups live under `docs/blog/`.
 
 ## Research Frame
 
@@ -34,24 +34,20 @@ Published supply-chain sequence:
 
 ```text
 .
-├── index.html                 # Public homepage served at the site root
-├── blog/                      # Published experiment HTML writeups
-├── docs/                      # Mirrored GitHub Pages copy of the site
+├── docs/                      # GitHub Pages site source
 ├── experiments/               # Reproducible experiment source, data, reports, and results
-├── CNAME                      # Custom domain for GitHub Pages
 └── README.md                  # Technical overview for repository readers
 ```
 
-The `experiments/` directory is the source of research truth. Each experiment folder contains some combination of `README.md`, design notes, analysis reports, code, synthetic data, and result summaries. The `blog/` and `docs/blog/` HTML files are hand-authored public writeups derived from those experiment artifacts, not generated automatically by a build system.
+The `experiments/` directory is the source of research truth. Each experiment folder contains some combination of `README.md`, design notes, analysis reports, code, synthetic data, and result summaries. The `docs/blog/` HTML files are hand-authored public writeups derived from those experiment artifacts, not generated automatically by a build system.
 
 ## Publishing Model
 
-There are two site copies in the repository:
+The repository has a single published site source:
 
-- Root site files: `index.html`, `blog/`, and `CNAME`.
-- GitHub Pages mirror: `docs/index.html`, `docs/blog/`, and `docs/CNAME`.
+- GitHub Pages source: `docs/index.html`, `docs/blog/`, `docs/CNAME`, and `docs/.nojekyll`.
 
-The mirrored files should remain content-equivalent. When a public writeup changes, update the root copy and mirror the same visible content into `docs/`. This keeps the repository readable from the root while preserving compatibility with Pages configurations that serve from `/docs`.
+When a public writeup changes, update the `docs/` copy directly. The repository root is reserved for project documentation and experiment source, which avoids maintaining duplicate HTML trees.
 
 ## Reproduction Entry Points
 
