@@ -231,8 +231,8 @@ def _period_to_month(hist_period: int, current_period: int, current_month: str) 
     """
     Approximate the calendar month label for a history entry.
 
-    We know the current period's calendar_month (e.g. "Nov 2025") and the
-    history entry's period number. We count backwards by the period difference
+    the current period's calendar_month (e.g. "Nov 2025") and the
+    history entry's period number. Count backwards by the period difference
     to get an approximate month label for display purposes only — accuracy to
     within ±1 month is sufficient for the agent's self-correction reasoning.
     """

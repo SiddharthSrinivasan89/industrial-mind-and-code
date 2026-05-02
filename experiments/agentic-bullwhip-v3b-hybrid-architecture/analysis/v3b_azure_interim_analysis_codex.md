@@ -62,7 +62,7 @@ This allows the experiment to test whether the LLM adds value through contextual
 ### 2.9 Pattern Score
 Pattern score measures whether the **final orders placed** align with expected seasonal demand patterns.
 
-What we are looking for:
+What I am looking for:
 - in festive or elevated-demand months, final orders should move upward relative to the tier’s typical level
 - in monsoon or dip months, final orders should move downward
 - the rationale should mention the relevant seasonal signal
@@ -72,7 +72,7 @@ Pattern score therefore tests whether seasonal reasoning is visible in actual op
 ### 2.10 Multiplier Pattern Score
 Multiplier pattern score measures whether the **LLM’s chosen safety-stock multiplier** moves in the expected seasonal direction, independent of the final order quantity.
 
-What we are looking for:
+What I am looking for:
 - multiplier above neutral in elevated-demand months
 - multiplier below neutral in dip months
 - rationale consistent with the seasonal context
@@ -88,7 +88,7 @@ In this experiment, a compliant response is one that:
 - remains within the allowed multiplier range
 - does not require fallback handling
 
-Compliance is a technical reliability metric. It tells us whether the system worked cleanly, not whether the decisions were good.
+Compliance is a technical reliability metric. It indicates whether the system worked cleanly, not whether the decisions were good.
 
 ## 3. Experimental Design
 The simulation represents a three-tier serial supply chain:

@@ -2,13 +2,13 @@
 
 ## Executive Summary
 
-This report documents Version 4 of our ongoing research into whether Large Language Models (LLMs) can meaningfully improve supply chain inventory management. V4 was directly motivated by a specific failure uncovered in V3b: the previous architecture asked the AI to invent a precise mathematical number (a multiplier like `1.34`), and it consistently over-estimated, causing dangerous inventory swings. **V4 tests the proposed fix: replace that free-form math with a multiple-choice question.**
+This report documents Version 4 of my ongoing research into whether Large Language Models (LLMs) can meaningfully improve supply chain inventory management. V4 was directly motivated by a specific failure uncovered in V3b: the previous architecture asked the AI to invent a precise mathematical number (a multiplier like `1.34`), and it consistently over-estimated, causing dangerous inventory swings. **V4 tests the proposed fix: replace that free-form math with a multiple-choice question.**
 
 Instead of calculating a number, the AI is now asked to classify the situation into one of five text labels — `STRONG_INCREASE`, `MODERATE_INCREASE`, `NEUTRAL`, `MODERATE_DECREASE`, or `STRONG_DECREASE`. A fixed, hard-coded lookup table then translates that label into a pre-approved multiplier. This is a fundamental architectural change: the AI reads the situation, and software does the math.
 
 **The fix worked as a guardrail — but not as an improvement.** Compared to V3b, order variance was successfully contained (OVAR dropped from 2.3–3.1 down to 1.73–1.78). The AI no longer caused catastrophic amplification. However, all four AI models tested — from a lightweight fast model to a 120-billion-parameter reasoning behemoth — produced identical supply chain outcomes. No model, no prompt design, and no amount of additional information could push performance below the deterministic mathematical baseline.
 
-We then ran a specific sub-experiment (E4) to test whether explicitly telling the AI to "do nothing unless the signal is clear" would reduce order variance. It did not. Not by a single meaningful unit.
+I then ran a specific sub-experiment (E4) to test whether explicitly telling the AI to "do nothing unless the signal is clear" would reduce order variance. It did not. Not by a single meaningful unit.
 
 **The core discovery of V4 is the Equaliser Effect**: the discrete-label architecture creates a structural ceiling and floor on OVAR. Once you commit to translating five text labels into five fixed numbers, you have removed the AI's ability to make fine-grained adjustments. All models, regardless of how intelligently they classify, are forced through the same narrow funnel.
 
@@ -33,7 +33,7 @@ To understand V4, it helps to understand what came before.
 | V3b | AI sets a float multiplier × math formula | Invented a number like `1.34` | Float output unreliable; context made things worse; best OVAR 2.33 |
 | **V4 WorldEvents** | AI picks a 5-label class → lookup → math formula | Chose one of 5 text labels | Guardrail success; Equaliser Effect discovered; best OVAR 1.73 |
 
-**The Bullwhip Effect** is the central phenomenon under study. In a supply chain, small fluctuations in customer demand get amplified as they travel upstream — a 5% demand blip at the shop floor becomes a 20% order swing at the factory. We measure this amplification using **OVAR** (Order Variance Amplification Ratio):
+**The Bullwhip Effect** is the central phenomenon under study. In a supply chain, small fluctuations in customer demand get amplified as they travel upstream — a 5% demand blip at the shop floor becomes a 20% order swing at the factory. This research measures amplification using **OVAR** (Order Variance Amplification Ratio):
 - OVAR = 1.0 → perfect, orders match demand exactly
 - OVAR > 1.0 → bullwhip effect; orders are more volatile than demand
 - OVAR < 1.0 → system is actively smoothing demand (excellent)
@@ -46,7 +46,7 @@ To understand V4, it helps to understand what came before.
 
 ### 2.1 The Architecture
 
-Each month, for each of three supply chain tiers (OEM → Ancillary Supplier → Component Supplier), the AI receives the current inventory situation and answers one question: *"How should we adjust safety stock this period?"*
+Each month, for each of three supply chain tiers (OEM → Ancillary Supplier → Component Supplier), the AI receives the current inventory situation and answers one question: *"How should safety stock be adjusted this period?"*
 
 ```
 LAYER 1 — AI Classification

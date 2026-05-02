@@ -67,7 +67,7 @@ The switch to SimPy (a Python discrete-event simulation library) is the core str
 
 ---
 
-## V2 Results — What We Know Going In
+## V2 Results — What I Know Going In
 
 V2 tested LLM ordering agents across four models (gpt-4.1-mini, phi4:14b, o4-mini, gpt-oss:120b) in a clean, idealised supply chain over 25 months. 11,520 API calls, zero parse failures, ~$6.28 total cost. The results were decisive: mathematical heuristics outperformed every LLM condition by a wide margin.
 
@@ -76,7 +76,7 @@ V2 tested LLM ordering agents across four models (gpt-4.1-mini, phi4:14b, o4-min
 - Best LLM (phi4:14b blind): OVAR 4.33, 41 stockouts
 - LLMs were **8x worse on both metrics simultaneously** — not a tradeoff between variance and service level, but a failure on both
 
-**What we learned:**
+**What I learned:**
 - Adding context (calendar month + company persona) was marginally helpful for frontier models (gpt-4.1-mini: 4.70 to 4.47 OVAR) but **catastrophically harmful** for the local model (phi4:14b: 4.33 to 6.35 OVAR, +47%, std exploding from 0.00 to 2.53)
 - Reasoning models (o4-mini, gpt-oss:120b) showed **no advantage** over lightweight models despite generating 10x more tokens (o4-mini: 1.08M reasoning tokens for the same OVAR as gpt-4.1-mini)
 - Pattern scores were uniformly low (0.20-0.23) — agents could describe seasonal events in their rationale ("Diwali approaching") but did not adjust their orders accordingly
@@ -559,7 +559,7 @@ The `records.parquet` schema:
 
 ---
 
-## What We Are Measuring and Why
+## What I Am Measuring and Why
 
 The central hypothesis: in V2's clean environment, heuristics won because their parameters were calibrated for that environment — exponential smoothing achieved OVAR 0.54 with only 5 stockouts, while the best LLM managed OVAR 4.33 with 41 stockouts. In V3's disrupted environment, the heuristic parameters become liabilities — the fixed smoothing coefficient (alpha=0.30) that worked perfectly in stable conditions anchors too slowly when demand collapses by 45% (pandemic shock), and too sluggishly when it surges by 35% (reopening). An LLM with world knowledge may recognise disruption signals and adjust more appropriately.
 

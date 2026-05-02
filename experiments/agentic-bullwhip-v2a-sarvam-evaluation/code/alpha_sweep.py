@@ -111,7 +111,7 @@ def compute_metrics(records):
                 df[df["tier"] == "OEM"]["order"].tolist()
             ).var(ddof=1)
             # OVAR = Var(OEM orders) / Var(retail demand) — but retail demand
-            # is the input, not stored in records. We'll compute separately.
+            # is the input, not stored in records. Compute it separately.
 
         metrics[tier] = {"var_orders": var_orders, "stockouts": int(stockouts)}
 

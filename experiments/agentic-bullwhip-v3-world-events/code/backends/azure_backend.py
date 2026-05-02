@@ -47,7 +47,7 @@ def _build_client() -> AzureOpenAI:
         azure_endpoint=os.environ["AZURE_ENDPOINT"],
         api_key=os.environ["AZURE_API_KEY"],
         api_version=os.environ["AZURE_API_VERSION"],
-        max_retries=0,  # we handle retries ourselves via call_with_backoff
+        max_retries=0,  # retries are handled here via call_with_backoff
     )
 
 
@@ -185,7 +185,7 @@ def get_order_decision(
     Layer 1 — server/network errors (transient: 500, 429, 503, connection):
       call_with_backoff() retries the API call up to 10 times with exponential
       backoff (1s, 2s, 4s … capped at 60s). This layer never triggers on parse
-      failures — it only catches openai exceptions raised before we get a response.
+      failures — it only catches openai exceptions raised before a response is received.
 
     Layer 2 — JSON parse failures (model-side):
       Attempt 1 — Streaming call, JSON mode enforced

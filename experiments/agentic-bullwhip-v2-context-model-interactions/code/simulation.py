@@ -117,9 +117,9 @@ def apply_fulfilment(on_hand: int, demand: int, backlog_prev: int) -> dict:
     A stockout is recorded whenever shortfall_t > 0.
     on_hand_after is what the agent sees when making its order decision.
     """
-    total_obligation = demand + backlog_prev      # what we owe this period
-    fulfilled = min(on_hand, total_obligation)    # what we can actually ship
-    shortfall = max(0, total_obligation - on_hand)  # what we cannot ship
+    total_obligation = demand + backlog_prev      # total owed this period
+    fulfilled = min(on_hand, total_obligation)    # actual shippable quantity
+    shortfall = max(0, total_obligation - on_hand)  # unshippable quantity
     on_hand_after = on_hand - fulfilled           # stock remaining after shipping
     backlog_new = shortfall                       # unpaid obligation rolls forward
     stockout = shortfall > 0
@@ -254,7 +254,7 @@ def run_simulation(
         # --- Serial execution: OEM first, then Ancillary, then Component ---
         # downstream_order is what the current tier must serve.
         # It starts as retail demand at OEM, then becomes each tier's placed order
-        # as we move upstream. This is how the bullwhip propagates.
+        # as tiers move upstream. This is how the bullwhip propagates.
         downstream_order = retail_demand
 
         for tier in TIERS:
@@ -394,7 +394,7 @@ def run_simulation(
     # Period 25 — fulfilment only, no orders placed
     # ---------------------------------------------------------------------------
     # The simulation design closes out with a final period where demand is served
-    # from remaining stock but no new orders are placed. This lets us measure
+    # from remaining stock but no new orders are placed. This allows measurement of
     # any stockouts from unfilled backlog still in the system at period 24.
     last_row = demand_series[demand_series["period"] == demand_series["period"].max()].iloc[0]
     period = int(last_row["period"])

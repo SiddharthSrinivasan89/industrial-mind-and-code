@@ -10,7 +10,7 @@
 #
 # This fills the gap between:
 #   temp=0.4 (failed — 40-60% empty responses)
-#   temp=1.0 (V2a — 94.6% SOR, our working setting)
+#   temp=1.0 (V2a — 94.6% SOR, the working setting)
 #
 # Also convergence point with cloud API think-mode recommendation (>=0.5).
 #

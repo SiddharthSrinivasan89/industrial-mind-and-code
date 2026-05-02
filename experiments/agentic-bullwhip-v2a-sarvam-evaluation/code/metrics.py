@@ -74,7 +74,7 @@ def _active_periods(df: pd.DataFrame) -> pd.DataFrame:
     (artificially adding a 0 to every tier's order series) and understate the
     bullwhip effect.
 
-    We filter by period number (period < max), NOT by order_placed > 0. Filtering
+    Filter by period number (period < max), NOT by order_placed > 0. Filtering
     by order quantity would silently drop legitimate zero orders that agents or
     heuristics might place in slack periods — that would be a bug.
     """
@@ -93,7 +93,7 @@ def compute_ovar(df: pd.DataFrame) -> pd.DataFrame:
     Formula:  OVAR = Var(order_placed) / Var(demand_received)
               using sample variance (ddof=1) over the 24 active periods.
 
-    Why ddof=1?  We have a finite sample (24 periods) and want an unbiased
+    Why ddof=1?  This is a finite sample (24 periods) and want an unbiased
     estimate of the true variance, not the population variance of the sample.
 
     Returns a DataFrame with columns: run_id, tier, ovar.

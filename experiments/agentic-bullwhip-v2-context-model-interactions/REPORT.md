@@ -14,7 +14,7 @@
 
 This paper presents the results of a controlled simulation experiment investigating the efficacy of Large Language Models (LLMs) as autonomous supply chain planners. The study tests whether LLM agents can outperform traditional statistical heuristics in a multi-echelon (OEM → Ancillary → Component) environment characterised by 25 periods of synthetic demand, deterministic lead times, and seasonal demand patterns reflecting Indian automotive market dynamics (FY-end peaks, monsoon dips, Diwali surges).
 
-We compared four LLM models across two context conditions, running 20 independent trials per condition. All results were measured against three heuristic baselines run under identical conditions.
+I compared four LLM models across two context conditions, running 20 independent trials per condition. All results were measured against three heuristic baselines run under identical conditions.
 
 **Principal Findings:**
 
@@ -53,7 +53,7 @@ Building on the foundational diagnosis of Lee, Padmanabhan, and Whang (1997), re
 
 As LLMs become capable of acting as autonomous agents, a critical question arises: **can LLMs interpret complex, event-driven demand patterns to smooth orders better than deterministic algorithms?**
 
-We address this question through a rigorous, multi-run simulation of a 3-tier supply chain over 25 periods. We evaluate not just whether LLMs "understand" the demand environment, but whether that understanding translates into better ordering behaviour. The joint reporting of OVAR and stockout count is mandatory: a smoother order pattern achieved by chronic under-ordering is not a success — it is a different failure mode.
+I address this question through a rigorous, multi-run simulation of a 3-tier supply chain over 25 periods. The evaluation asks not just whether LLMs "understand" the demand environment, but whether that understanding translates into better ordering behaviour. The joint reporting of OVAR and stockout count is mandatory: a smoother order pattern achieved by chronic under-ordering is not a success — it is a different failure mode.
 
 ### 1.1 Scope and Boundaries
 
@@ -383,7 +383,7 @@ A secondary finding worth noting: `order_up_to` — one of the most widely deplo
 
 ### 6.4 Practical Implications
 
-- **Our results indicate that LLM agents are not suitable as autonomous order-placement agents in replenishment tasks with this profile.** The observed gap to a simple statistical heuristic is large and was not closed by any combination of model size, context, or backend. Whether this finding extends to more complex supply chain settings — exceptions, disruptions, multi-objective tradeoffs — is outside the scope of this study.
+- **These results indicate that LLM agents are not suitable as autonomous order-placement agents in replenishment tasks with this profile.** The observed gap to a simple statistical heuristic is large and was not closed by any combination of model size, context, or backend. Whether this finding extends to more complex supply chain settings — exceptions, disruptions, multi-objective tradeoffs — is outside the scope of this study.
 
 - **Higher inference spend produced no observed improvement in ordering outcomes in this task.** Upgrading from a lightweight to a reasoning model cost 3.4× more in mean call latency and substantially more in tokens, with no observed OVAR or stockout improvement. The reasoning/lightweight comparison is confounded by model family (and by temperature on Azure, though local conditions used identical temperatures across both tiers), so this should be treated as a directional finding rather than a causal one.
 
@@ -395,13 +395,13 @@ A secondary finding worth noting: `order_up_to` — one of the most widely deplo
 
 ## 7. Conclusion
 
-We tested the hypothesis that LLM agents — including state-of-the-art reasoning models — can outperform traditional statistical heuristics in supply chain order management. **The hypothesis was rejected across all configurations and both model families.**
+I tested the hypothesis that LLM agents — including state-of-the-art reasoning models — can outperform traditional statistical heuristics in supply chain order management. **The hypothesis was rejected across all configurations and both model families.**
 
 In this task — single product, fixed lead times, three tiers, 24 ordering periods, stateless agents — the exponential smoothing heuristic achieved OVAR=0.54 and 5 stockouts. Every LLM configuration produced chain-average OVAR between 4.33 and 6.35 and between 37 and 43 stockouts. Within the bounds of this study, no combination of model size, context treatment, or backend closed that gap.
 
 These findings are specific to the task tested. This study was deliberately scoped to a stable, low-information, single-product setting — the class of problem where heuristics are known to be strong competitors. Results should not be extrapolated to supply chain settings involving exceptions, disruptions, unstructured information, or multi-objective decisions. In particular, the LLM planning and rationale capability observed through the pattern score component suggests that agents may add value in settings that require interpretation of unstructured signals or exception handling — settings outside the scope tested here.
 
-For replenishment tasks with the profile studied (single product, fixed lead times, low information state), our results indicate that heuristics are faster, cheaper, more predictable, and substantially more effective on both primary metrics. Higher inference spend produced no ordering benefit: the latency and token cost of reasoning models (3.4× mean call time) corresponded to no observed OVAR or stockout improvement, a directional finding that should not be read as a controlled comparison of reasoning capability alone. For organisations evaluating local inference for simulation workloads, the reasoning model conditions provide a narrow datapoint: local gpt-oss:120b produced similar OVAR means to frontier o4-mini with zero failures and lower latency variance (p95: 6,844ms vs 11,128ms), though the comparison conflates model, quantisation, and stack differences and cannot be generalised.
+For replenishment tasks with the profile studied (single product, fixed lead times, low information state), these results indicate that heuristics are faster, cheaper, more predictable, and substantially more effective on both primary metrics. Higher inference spend produced no ordering benefit: the latency and token cost of reasoning models (3.4× mean call time) corresponded to no observed OVAR or stockout improvement, a directional finding that should not be read as a controlled comparison of reasoning capability alone. For organisations evaluating local inference for simulation workloads, the reasoning model conditions provide a narrow datapoint: local gpt-oss:120b produced similar OVAR means to frontier o4-mini with zero failures and lower latency variance (p95: 6,844ms vs 11,128ms), though the comparison conflates model, quantisation, and stack differences and cannot be generalised.
 
 Where LLM value is more plausible, it is in the planning loop rather than the execution loop — generating demand commentary, flagging seasonal anomalies, or parameterising safety stock adjustments for a deterministic model to execute. Future work should examine whether hybrid architectures of this type — using LLM reasoning to adjust the parameters of a deterministic ordering policy — can bridge the gap between semantic planning capability and the numerical precision that fully autonomous LLM agents did not demonstrate in this setting.
 
@@ -431,4 +431,4 @@ API calls per condition = 20 runs × 3 tiers × 24 ordering periods = 1,440.
 
 **Result artifacts:** Raw run outputs (`records.parquet`, `summary.json`, `provenance.json`) are written by the runner to `results/<experiment>/<timestamp>/` and are required for full auditability and reproducibility. Summary statistics and provenance details in this paper are derived from those files. Anyone seeking to verify or reproduce individual run-level results should locate or regenerate those artifacts; the summary statistics reported here cannot substitute for them.
 
-**Disclaimer:** Personal experiments. Data is synthetic. No employer, vendor, or technology partner data was used. Local compute runs on an Asus Ascent GX10 with NVIDIA GB10 Blackwell SoC — personally owned. Azure and other AI subscriptions are personal in nature. 
+**Disclaimer:** Personal experiments. Data is synthetic. No employer, vendor, or technology partner data was used. Local compute runs on an Asus Ascent GX10 with NVIDIA GB10 Blackwell SoC — personally owned. Azure and other AI subscriptions are personal in nature.

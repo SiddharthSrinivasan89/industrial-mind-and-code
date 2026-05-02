@@ -159,7 +159,7 @@ def derive_safety_stock(demand_df: pd.DataFrame, S: int) -> int:
     The OUT baseline uses a dynamic target position of:
       smoothed_forecast + safety_stock
 
-    We derive safety_stock from the same demand moments as S so the heuristic
+    Safety_stock is derived from the same demand moments as S so the heuristic
     remains tied to the dataset:
       safety_stock = S - mean_demand
     """
@@ -197,13 +197,13 @@ def run_one(
 
     model_name resolution for E4
     -----------------------------
-    If spec contains "model_env_key" (e.g. "MODEL_OSS_REASONING"), we read
+    If spec contains "model_env_key" (e.g. "MODEL_OSS_REASONING"), the code reads
     that env var at runtime to get the actual model name string. This decouples
     the experiment spec from the model name so you can change models just by
     editing the env file, and it means the provenance stamp can record exactly
     which model was used.
 
-    If the env var is missing entirely, we exit immediately — running E4 without
+    If the env var is missing entirely, the run exits immediately — running E4 without
     MODEL_OSS_REASONING set would silently fall back to MODEL_REASONING, which
     would produce contaminated data.
     """
@@ -258,11 +258,11 @@ def run_condition(
 
     Heuristic policies
       Are deterministic — the same demand series produces the same output
-      every time. We run them exactly once (target = 1) regardless of n_runs.
+      every time. They run exactly once (target = 1) regardless of n_runs.
 
     max_attempts safety cap
       Set to target × 5. If more than 80% of attempts fail, something is
-      systemically wrong (API down, model not deployed, etc.) and we exit
+      systemically wrong (API down, model not deployed, etc.) and the run exits
       rather than looping indefinitely.
     """
     all_records  = []
@@ -291,7 +291,7 @@ def run_condition(
             )
 
     if completed < target:
-        # We hit max_attempts without completing all runs — this is a hard failure
+        # max_attempts was hit without completing all runs — this is a hard failure
         logger.error(
             "Condition %s: only %d/%d runs completed after %d attempts (%d replacements). "
             "Check API connectivity and model availability.",

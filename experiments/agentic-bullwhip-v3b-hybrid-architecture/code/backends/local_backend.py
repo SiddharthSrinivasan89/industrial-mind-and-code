@@ -58,7 +58,7 @@ def _build_client() -> OpenAI:
     return OpenAI(
         base_url=os.environ["LOCAL_ENDPOINT"],
         api_key=os.environ.get("LOCAL_API_KEY", "ollama"),
-        max_retries=0,  # we handle retries ourselves via call_with_backoff
+        max_retries=0,  # retries are handled here via call_with_backoff
     )
 
 

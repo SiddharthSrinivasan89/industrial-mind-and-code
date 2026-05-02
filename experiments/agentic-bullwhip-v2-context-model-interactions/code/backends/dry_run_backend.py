@@ -43,9 +43,9 @@ def get_order_decision(
     """
     Extract demand_received from the user_prompt and return it as the order quantity.
 
-    Parsing is intentionally simple: we look for the line that starts with
+    Parsing is intentionally simple: the parser looks for the line that starts with
     "Demand received this period:" and pull the integer after it.
-    If parsing fails (e.g. prompt format changed), we fall back to 0 and log a warning.
+    If parsing fails (e.g. prompt format changed), the parser falls back to 0 and log a warning.
     """
     match = re.search(r"Demand received this period:\s*([\d,]+)", user_prompt)
     if match:

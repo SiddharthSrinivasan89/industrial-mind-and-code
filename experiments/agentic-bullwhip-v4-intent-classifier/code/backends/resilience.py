@@ -27,7 +27,7 @@ Backoff schedule (base=1s, factor=2, jitter=uniform[0,1], cap=60s):
 
 With 10 retries the total worst-case wait before giving up is ~8 minutes.
 This is intentional: a transient Azure 500 burst typically clears within
-60–120s. We want to survive it without hammering the endpoint.
+60–120s. The retry policy should survive it without hammering the endpoint.
 """
 
 import logging
@@ -48,7 +48,7 @@ _RETRYABLE = (InternalServerError, RateLimitError, APIConnectionError, APITimeou
 
 _BASE_WAIT  = 1.0   # seconds
 _FACTOR     = 2.0
-_MAX_WAIT   = 60.0  # seconds — cap so we don't wait >1 min between retries
+_MAX_WAIT   = 60.0  # seconds — cap so the code does not wait >1 min between retries
 
 
 def call_with_backoff(fn, *args, max_retries: int = 10, context: str = "", **kwargs):
