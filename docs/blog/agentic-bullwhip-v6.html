@@ -10,6 +10,9 @@
   <meta property="og:title" content="The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment | Industrial Mind &amp; Code" />
   <meta property="og:description" content="For the first time in this research program, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v6.html" />
+  <meta property="og:image" content="https://www.industrialmindandcode.ai/images/Agentic-BullWhip-V6.jpg" />
+  <meta property="og:image:width" content="1536" />
+  <meta property="og:image:height" content="1024" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -119,6 +122,9 @@
     .back-link:hover { color: var(--text-primary); }
     .back-link svg { width: 10px; height: 10px; }
 
+    .post-highlight-image { width: 100%; border-bottom: 1px solid var(--border); }
+    .post-highlight-image img { display: block; width: 100%; max-height: 480px; object-fit: cover; object-position: center; }
+
     footer { padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
     .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
@@ -171,6 +177,10 @@
       </div>
     </div>
   </header>
+
+  <div class="post-highlight-image">
+    <img src="../images/Agentic-BullWhip-V6.jpg" alt="Agentic Bullwhip Effect V6 — StatelessSwing results chart" loading="lazy" />
+  </div>
 
   <main class="post-body">
     <div class="container">
