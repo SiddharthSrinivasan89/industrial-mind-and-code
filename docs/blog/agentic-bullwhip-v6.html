@@ -190,18 +190,15 @@
 
       <div class="post-section">
         <p class="section-label">Experiment Setup</p>
-        <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
-            <tr><td>Architecture</td><td>AI selects &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period per tier &rarr; exponential smoothing executes with that &alpha;. No OUT formula. No safety stock multiplier.</td></tr>
-            <tr><td>Models</td><td>gpt-4.1-mini &middot; o4-mini &middot; gpt-oss 120B</td></tr>
-            <tr><td>Conditions</td><td>Blind (numbers only) &middot; Context (calendar + seasonal persona) &middot; Stateful (context + recent &alpha; history)</td></tr>
-            <tr><td>V6b debiased</td><td>mini_ctx_computed &middot; mini_ctx_debiased &middot; oss120b_ctx_computed &middot; oss120b_ctx_debiased. Tests whether restricting the option set or explicit instruction corrects context-induced &alpha;-inflation.</td></tr>
-            <tr><td>Replications</td><td>10 runs per adaptive condition &middot; 5 runs per debiased condition &middot; 1 run per fixed baseline (deterministic)</td></tr>
-            <tr><td>Demand series</td><td>25 months &middot; Indian automotive seasonal patterns (monsoon slump, Diwali peak, FY-end surge)</td></tr>
-            <tr><td>Supply chain</td><td>3-tier serial: Tatva Motors OEM &rarr; Ancillary Supplier &rarr; Component Supplier</td></tr>
-            <tr><td>Lead time</td><td>1 month deterministic at all tiers</td></tr>
-            <tr><td>Fixed baselines</td><td>exp_smooth_0.1 (OVAR 0.620) &middot; exp_smooth_0.3 (OVAR 0.545) &middot; exp_smooth_0.5 (OVAR 0.729)</td></tr>
+            <tr><td>What the AI does</td><td>Each month, at each tier, the AI picks how responsive the demand forecast should be &mdash; on a scale from sluggish (0.1) to highly reactive (0.7). The forecast then runs with that setting. Lower values smooth out noise; higher values track demand closely but amplify swings.</td></tr>
+            <tr><td>Models tested</td><td>gpt-4.1-mini &middot; o4-mini &middot; gpt-oss 120B</td></tr>
+            <tr><td>What the AI was told</td><td>Three variants: inventory numbers only (blind); numbers plus a seasonal calendar (context); numbers plus its own recent choices (stateful). A fourth set tested whether the context-driven tendency to over-react could be corrected by restricting options or giving explicit guidance.</td></tr>
+            <tr><td>How many runs</td><td>10 runs per AI condition to account for response variability. Fixed baselines run once &mdash; they are deterministic.</td></tr>
+            <tr><td>Demand used</td><td>25 months of synthetic demand shaped around Indian automotive patterns &mdash; a monsoon slump, a Diwali peak, and a financial year-end surge.</td></tr>
+            <tr><td>Supply chain</td><td>A fictional 3-tier chain: OEM (Tatva Motors) &rarr; component supplier &rarr; sub-supplier. Orders placed monthly, lead time fixed at one month across all tiers.</td></tr>
+            <tr><td>Benchmarks</td><td>Pure algorithmic baselines with no AI: exponential smoothing at fixed settings of 0.1, 0.3, and 0.5. The target to beat is the 0.3 setting, which produces the best balance of stability and service level.</td></tr>
           </tbody>
         </table>
       </div>
