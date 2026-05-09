@@ -194,7 +194,7 @@
         <table class="setup-table">
           <tbody>
             <tr><td>Architecture</td><td>AI selects &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period per tier &rarr; exponential smoothing executes with that &alpha;. No OUT formula. No safety stock multiplier.</td></tr>
-            <tr><td>Models</td><td>gpt-4.1-mini (adaptive) &middot; o4-mini (adaptive) &middot; gpt-oss 120B (adaptive)</td></tr>
+            <tr><td>Models</td><td>gpt-4.1-mini &middot; o4-mini &middot; gpt-oss 120B</td></tr>
             <tr><td>Conditions</td><td>Blind (numbers only) &middot; Context (calendar + seasonal persona) &middot; Stateful (context + recent &alpha; history)</td></tr>
             <tr><td>V6b debiased</td><td>mini_ctx_computed &middot; mini_ctx_debiased &middot; oss120b_ctx_computed &middot; oss120b_ctx_debiased. Tests whether restricting the option set or explicit instruction corrects context-induced &alpha;-inflation.</td></tr>
             <tr><td>Replications</td><td>10 runs per adaptive condition &middot; 5 runs per debiased condition &middot; 1 run per fixed baseline (deterministic)</td></tr>
