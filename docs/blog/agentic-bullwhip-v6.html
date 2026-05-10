@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment | Industrial Mind &amp; Code</title>
-  <meta name="description" content="For the first time in this research program, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
+  <title>The Experiment That Put AI on the Right Control Lever | Industrial Mind &amp; Code</title>
+  <meta name="description" content="This experiment tested whether an AI agent can reduce the bullwhip effect by choosing the smoothing parameter inside a supply-chain forecasting formula. Every AI condition dampened order variance instead of amplifying it." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v6.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment | Industrial Mind &amp; Code" />
-  <meta property="og:description" content="For the first time in this research program, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
+  <meta property="og:title" content="The Experiment That Put AI on the Right Control Lever | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="This experiment tested whether an AI agent can reduce the bullwhip effect by choosing the smoothing parameter inside a supply-chain forecasting formula. Every AI condition dampened order variance instead of amplifying it." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v6.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -149,9 +149,9 @@
   <header class="post-header">
     <div class="container">
       <p class="post-eyebrow">Supply Chain &middot; Adaptive Smoothing &middot; Experiment Writeup</p>
-      <h1 class="post-title">The Architecture That Finally Worked</h1>
+      <h1 class="post-title">The Experiment That Finally Put the AI on the Right Control Lever</h1>
       <p class="post-summary">
-        Five versions of failing taught me what the wrong lever looks like. V6 changes the lever. The AI now controls the smoothing parameter &alpha; inside exponential smoothing itself. Every AI condition produced OVAR below 1.0. The best result marginally beats the fixed &alpha;=0.3 baseline. First positive result in this research program.
+        In a supply chain, a small change in customer demand can become a much larger swing in upstream orders. This experiment asks whether an AI agent can reduce that bullwhip effect when it is given a precise control lever: the smoothing parameter &alpha; inside the forecasting formula. The result is the first positive finding in this research program. Every AI condition dampened order variance instead of amplifying it.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -164,7 +164,7 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
-          <span class="post-meta-value">3 models &middot; 3 conditions + V6b debiased &middot; 10 runs each &middot; 25-month simulation</span>
+          <span class="post-meta-value">3 models &middot; 3 information conditions + debiasing checks &middot; 25-month simulation</span>
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
@@ -175,16 +175,27 @@
   </header>
 
   <div class="post-highlight-image">
-    <img src="../images/Agentic-BullWhip-V6.jpg" alt="Agentic Bullwhip Effect V6 — StatelessSwing results chart" loading="lazy" />
+    <img src="../images/Agentic-BullWhip-V6.jpg" alt="Adaptive smoothing experiment results chart" loading="lazy" />
   </div>
 
   <main class="post-body">
     <div class="container">
 
       <div class="post-section">
-        <p class="section-label">TL;DR</p>
+        <p class="section-label">What this experiment is</p>
         <div class="abstract-block">
-          <p>V6 gives the AI control of the exponential smoothing parameter &alpha; rather than a safety stock multiplier. It selects from {0.1, 0.3, 0.5, 0.7} per period per tier. <strong>Every AI condition produced OVAR below 1.0 &mdash; the first time in this program that any AI configuration dampened variance rather than amplified it.</strong></p>
+          <p>This experiment tests a specific idea: do not ask the AI to invent the order quantity. Ask it to choose how reactive the forecast should be, then let a simple forecasting formula do the ordering math.</p>
+          <p>Each month, at each tier of a fictional automotive supply chain, the AI selects the exponential smoothing parameter &alpha; from {0.1, 0.3, 0.5, 0.7}. Lower &alpha; means the forecast moves slowly and filters noise. Higher &alpha; means the forecast reacts quickly to recent demand. <strong>Every AI condition produced OVAR below 1.0, meaning orders were less volatile than demand rather than more volatile.</strong></p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Reader context</p>
+        <h2 class="section-title">The problem is not ordering once. It is ordering repeatedly.</h2>
+        <div class="prose">
+          <p>The bullwhip effect is what happens when small changes in customer demand become larger and larger order swings as they travel upstream through a supply chain. A retailer sees a bump in demand, the manufacturer orders extra to avoid shortage, the component supplier sees that larger order and reacts again. By the time the signal reaches the top of the chain, a modest demand change can look like a crisis.</p>
+          <p>This series studies that failure mode with AI agents. The setting is intentionally narrow: a fictional three-tier Indian automotive chain, monthly demand, one-month lead times, and synthetic seasonal demand with a monsoon slump, a Diwali peak, and a financial year-end surge. The metric is OVAR, or order variance divided by demand variance. OVAR below 1.0 means the replenishment policy is damping volatility. OVAR above 1.0 means it is creating bullwhip amplification.</p>
+          <p>The earlier experiments mostly showed what does not work. Giving the model context, memory, or a safety-stock multiplier did not reliably reduce bullwhip. This sixth experiment in the series changes the control surface: the AI no longer adjusts a buffer on top of the forecast. It chooses the forecast's responsiveness itself.</p>
         </div>
       </div>
 
@@ -192,13 +203,13 @@
         <p class="section-label">Experiment Setup</p>
         <table class="setup-table">
           <tbody>
-            <tr><td>What the AI does</td><td>Each month, at each tier, the AI picks how responsive the demand forecast should be &mdash; on a scale from sluggish (0.1) to highly reactive (0.7). The forecast then runs with that setting. Lower values smooth out noise; higher values track demand closely but amplify swings.</td></tr>
+            <tr><td>What the AI does</td><td>Each month, at each tier, the AI chooses how responsive the demand forecast should be. It does not place the order directly. The formula takes the selected &alpha;, updates the forecast, and produces the order.</td></tr>
             <tr><td>Models tested</td><td>gpt-4.1-mini &middot; o4-mini &middot; gpt-oss 120B</td></tr>
             <tr><td>What the AI was told</td><td>Three variants: inventory numbers only (blind); numbers plus a seasonal calendar (context); numbers plus its own recent choices (stateful). A fourth set tested whether the context-driven tendency to over-react could be corrected by restricting options or giving explicit guidance.</td></tr>
             <tr><td>How many runs</td><td>10 runs per AI condition to account for response variability. Fixed baselines run once &mdash; they are deterministic.</td></tr>
             <tr><td>Demand used</td><td>25 months of synthetic demand shaped around Indian automotive patterns &mdash; a monsoon slump, a Diwali peak, and a financial year-end surge.</td></tr>
             <tr><td>Supply chain</td><td>A fictional 3-tier chain: OEM (Tatva Motors) &rarr; component supplier &rarr; sub-supplier. Orders placed monthly, lead time fixed at one month across all tiers.</td></tr>
-            <tr><td>Benchmarks</td><td>Pure algorithmic baselines with no AI: exponential smoothing at fixed settings of 0.1, 0.3, and 0.5. The target to beat is the 0.3 setting, which produces the best balance of stability and service level.</td></tr>
+            <tr><td>Benchmarks</td><td>Pure algorithmic baselines with no AI: exponential smoothing at fixed &alpha; settings of 0.1, 0.3, and 0.5. The target to match is &alpha;=0.3, which produced the best balance of stability and service level in this setup.</td></tr>
           </tbody>
         </table>
       </div>
@@ -208,18 +219,18 @@
         <h2 class="section-title">What I found</h2>
 
         <div class="callout-positive">
-          <p><strong>For the first time in this program, every AI condition produced OVAR below 1.0.</strong> In V1 through V5, AI configurations amplified order variance by 30% to 1,200%. In V6, the worst result is 0.739 &mdash; still damping.</p>
+          <p><strong>For the first time in this program, every AI condition produced OVAR below 1.0.</strong> In the first five experiments, AI-driven configurations amplified order variance by 30% to 1,200%. In this experiment, even the weakest AI result is 0.741 &mdash; still damping.</p>
         </div>
 
         <ol class="findings-list">
           <li>
-            <span class="finding-text"><strong>The best AI condition matches the fixed baseline.</strong> gpt-oss 120B in blind conditions reached OVAR 0.535 with 4.4 stockouts. The fixed &alpha;=0.3 baseline is 0.545 with 5 stockouts. The difference is within the confidence interval.</span>
+            <span class="finding-text"><strong>The best AI condition matches the fixed baseline, but only marginally.</strong> gpt-oss 120B in blind conditions reached OVAR 0.535 with 4.4 stockouts. The fixed &alpha;=0.3 baseline is 0.545 with 5 stockouts. The difference is inside the confidence interval, so the strong claim is not that AI defeated the algorithm. The strong claim is that the architecture stopped the AI from making the bullwhip problem worse.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Context increases &alpha; selections and adds variance.</strong> Models given seasonal information consistently choose higher &alpha; values. The debiased conditions close most of the gap: oss120b_ctx_computed reaches OVAR 0.585 against oss120b_context at 0.739.</span>
+            <span class="finding-text"><strong>Context made the models more reactive.</strong> Seasonal information sounds useful, and the models used it in a plausible way: they chose more responsive forecasts. But in this environment that extra responsiveness added variance. The debiased conditions recovered much of the loss: oss120b_ctx_computed reached OVAR 0.585 against oss120b_context at 0.739.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>The 120B model defaults to &alpha;=0.3 in blind conditions</strong> &mdash; the standard exponential smoothing value. Smaller models select &alpha;=0.7 more often, adding variance. The advantage disappears when context is added.</span>
+            <span class="finding-text"><strong>The larger model's advantage looks like a prior, not magic reasoning.</strong> In blind conditions, gpt-oss 120B gravitated toward &alpha;=0.3, the standard exponential smoothing value. Smaller models selected &alpha;=0.7 more often, adding variance. Once context was added, the model-size advantage disappeared.</span>
           </li>
         </ol>
       </div>
@@ -227,6 +238,9 @@
       <div class="post-section">
         <p class="section-label">Results</p>
         <h2 class="section-title">Numeric results</h2>
+        <div class="prose">
+          <p>Read these tables with one rule in mind: lower OVAR means less order volatility. A value below 1.0 means the ordering policy is absorbing volatility rather than transmitting it upstream. The fixed &alpha;=0.3 baseline is the reference point because it gives the best balance of variance reduction and stockout count among the deterministic baselines.</p>
+        </div>
 
         <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;">Fixed baselines (no AI)</p>
         <div class="results-table-wrap">
@@ -261,9 +275,9 @@
             </tbody>
           </table>
         </div>
-        <p class="table-note">Every value above is below 1.0. The highlighted row is the first AI result to match the fixed optimal baseline.</p>
+        <p class="table-note">Every value above is below 1.0. The highlighted row is the first AI result in the research program to match the fixed optimal baseline within uncertainty.</p>
 
-        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">V6b debiased conditions (n=5 each)</p>
+        <p style="font-size:13px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.04em;margin-bottom:0.75rem;margin-top:1.5rem;">Debiased context conditions (n=5 each)</p>
         <div class="results-table-wrap">
           <table class="results-table">
             <thead>
@@ -281,11 +295,22 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Discussion</p>
-        <h2 class="section-title">Why this architecture is different</h2>
+        <p class="section-label">Mechanism</p>
+        <h2 class="section-title">Why this control lever matters</h2>
         <div class="prose">
-          <p>In V3b through V5, the AI controlled a safety stock multiplier &mdash; the buffer held above the forecast. Adjusting the buffer changes inventory levels but does not directly affect how volatile orders are. &alpha; determines how much each demand observation moves the forecast; lower values produce stable orders, higher values produce reactive ones.</p>
-          <p>When models receive seasonal context, they select higher &alpha; values. The reasoning is sound; the calibration is off. Restricting the option set or providing explicit correction recovers most of the blind condition&rsquo;s advantage, as the V6b results show.</p>
+          <p>Earlier architectures gave the AI a safety stock multiplier: a buffer held above the forecast. That sounds operationally meaningful, but it is the wrong lever for bullwhip. Safety stock changes how much inventory the system wants to hold. It does not directly control how sharply the forecast reacts to each new demand observation.</p>
+          <p>The smoothing parameter &alpha; does. If &alpha; is low, the forecast moves slowly and ignores some noise. If &alpha; is high, the forecast chases recent demand. That is why this experiment is different: the AI is finally acting on the part of the formula that directly governs order variance.</p>
+          <p>The implication is uncomfortable but useful. Better context is not automatically better control. When models saw seasonal context, they reacted as if the coming season justified faster movement. The direction was understandable; the calibration was too aggressive. Restricting the option set or explicitly correcting for alpha inflation recovered most of the blind condition&rsquo;s advantage.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Implications</p>
+        <h2 class="section-title">The lesson is architectural</h2>
+        <div class="prose">
+          <p>This is not a story about a language model suddenly becoming a supply-chain optimizer. The deterministic &alpha;=0.3 baseline remains essentially tied with the best AI result. The real result is that the AI stopped causing amplification once its action space was aligned with the metric that mattered.</p>
+          <p>That matters for industrial agent design. If an AI system is placed outside the control loop and asked to produce operational quantities directly, it can sound reasonable while injecting volatility. If it is placed inside a narrow, calibrated control surface, the same model can become useful because the surrounding system constrains what its judgment can change.</p>
+          <p>In practical terms: do not start by asking an AI agent how much to order. Start by asking which parameter in a known control policy should move, how far it is allowed to move, and what failure mode that parameter actually controls.</p>
         </div>
       </div>
 
@@ -299,7 +324,7 @@
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Methodology note</p>
-          <p>All scenarios, companies, and products are fictional. The demand series is synthetic, calibrated to Indian automotive seasonal patterns across 25 months, using deterministic lead times to isolate the architecture change from stochastic supply-side effects tested in V4/V5. Results apply to a 3-tier exponential smoothing architecture where the AI selects &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period; do not generalise beyond this scope.</p>
+          <p>All scenarios, companies, and products are fictional. The demand series is synthetic, calibrated to Indian automotive seasonal patterns across 25 months. Lead times are deterministic to isolate the architecture change from stochastic supply-side effects tested in earlier experiments. Results apply to a 3-tier exponential smoothing architecture where the AI selects &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period; do not generalise beyond this scope. The best AI result only marginally matches the fixed baseline, so the headline finding is variance dampening across all AI conditions, not a decisive win over deterministic forecasting.</p>
         </div>
       </div>
 
