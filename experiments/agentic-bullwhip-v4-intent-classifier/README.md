@@ -93,13 +93,15 @@ Layer 3 — Execution (deterministic, OUT-style)
 | **H-IC4** | IC-Stateful accuracy exceeds IC-Context accuracy | Delta accuracy >= 0.10 | History enables self-correction of classification errors |
 | **H-IC5** | IC-Context entropy exceeds IC-Blind entropy | IC-Context entropy > IC-Blind entropy | Context increases classification discrimination |
 
-Note: This experiment was not completed as a standalone production run before the WorldEvents variant superseded it as the primary V4 result. The design was carried forward intact into V4 WorldEvents.
+Note: This variant was run at exploratory scale (5 to 10 runs per LLM condition) rather than the planned production scale of 20 runs. The design was then carried forward intact into V4 WorldEvents, which constitutes the primary published V4 result.
 
 ## Results
 
-This variant was not run to production. The design artifacts — architecture, lookup table, prompt templates, ground-truth intent schedule, and metric definitions — were validated in dry-run and smoke-test phases and then carried forward into the V4 WorldEvents experiment, which constitutes the primary published V4 result.
+I ran this variant at exploratory scale: 5 to 10 runs per LLM condition against single-run deterministic baselines. The condition-level result summaries are preserved under `results/` (`summary.json` per condition), and a consolidated write-up of what was tested, the exact numbers, and the limitations is in `FINDINGS.md`.
 
-For hypothesis verdicts, complete results tables, and discussion, see the V4 WorldEvents README and report in this repository, and the published writeup at `https://industrialmindandcode.ai/blog/agentic-bullwhip-v4`.
+In short: every intent condition kept label compliance at 1.0, exponential smoothing remained the strongest policy on order variance, and adding calendar context raised directional classification accuracy without lowering Order Variance Amplification Ratio (OVAR) — the early signal of the Equaliser Effect later confirmed in V4 WorldEvents. See `FINDINGS.md` for the full tables.
+
+For the primary V4 hypothesis verdicts and the published writeup, see the V4 WorldEvents experiment in this repository and `https://industrialmindandcode.ai/blog/agentic-bullwhip-v4`.
 
 ## Discussion
 
@@ -118,8 +120,34 @@ The key insight subsequently confirmed in the WorldEvents variant is that this c
 3. **Synthetic calibration:** The intent-to-multiplier lookup values are either domain-logic-driven or intended to be calibrated from V3b float output medians. Neither approach is guaranteed to be globally optimal.
 4. **Model-specific results:** Findings for nemotron-3-super:120b and gpt-4.1-mini may not generalise to other language models.
 5. **No adversarial conditions:** The 25-month simulation tests seasonal variation but not demand shocks, supply disruptions, or structural mean shifts.
-6. **n=20:** A sample of 20 runs provides adequate variance estimates at the defined MPRD threshold of 0.5 OVAR units; smaller effects may be underpowered.
-7. **Design-only status:** This variant was not run to production and does not constitute a completed empirical result. The WorldEvents variant carries the published evidence.
+6. **Exploratory sample size:** runs here are 5 to 10 per LLM condition, below the design target of 20. The 0.5-OVAR MPRD threshold was defined for the n=20 design; at this scale smaller effects may be underpowered.
+7. **Exploratory status:** this variant carries the architecture, lookup table, prompts, and exploratory-scale results. The WorldEvents variant carries the primary published V4 evidence.
+
+## Repository Layout
+
+```
+agentic-bullwhip-v4-intent-classifier/
+├── README.md            — this file: overview, design summary, reproducibility
+├── DESIGN.md            — full design: hypotheses, lookup table, prompts, metrics, plan
+├── FINDINGS.md          — consolidated findings with exact numbers and limitations
+├── data/
+│   └── tatva_monthly_dispatches_25m.csv   — synthetic Indian-automotive demand series
+├── code/
+│   ├── run_experiment.py        — entry point (experiment registry, runner, provenance)
+│   ├── simulation.py            — 3-tier serial chain + policies (intent / exp_smoothing / hybrid_control)
+│   ├── agent_interface.py       — intent classification + INTENT_MULTIPLIER_MAP lookup
+│   ├── metrics.py               — OVAR, stockouts, intent accuracy / entropy / compliance
+│   ├── backends/                — azure / local (Ollama) / dry-run backends + resilience
+│   ├── data/synthetic/          — duplicate of the demand series shipped with the code
+│   └── requirements.txt         — Python dependencies
+└── results/
+    ├── baselines/<timestamp>/   — exp_smoothing + hybrid_control (summary.json, provenance.json)
+    ├── H1_IC/<timestamp>/        — IC-Blind condition summaries
+    ├── H2_IC/<timestamp>/        — IC-Context condition summaries
+    └── H3_IC/<timestamp>/        — IC-Stateful condition summaries
+```
+
+Only condition-level summaries and provenance are kept under `results/`; per-call record dumps are not part of the public copy.
 
 ## How to Reproduce
 
@@ -133,15 +161,16 @@ The key insight subsequently confirmed in the WorldEvents variant is that this c
 ### Environment Setup
 
 ```bash
-cd experiments/Agentic_Bullwhip_Effect_V4_IntentClassifier/code/
+cd experiments/agentic-bullwhip-v4-intent-classifier/code/
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Configure credentials
-cp .env.azure.template .env.azure   # fill in Azure endpoint, API key, API version, deployment name
-cp .env.local.template .env.local   # fill in Ollama endpoint URL and model name
 ```
+
+Create two local env files (credentials are read via `os.getenv`; nothing is hard-coded). They are git-ignored and must not be committed:
+
+- `.env.azure` — Azure endpoint, API key, API version, deployment name (variables below)
+- `.env.local` — Ollama endpoint URL and model name (variables below)
 
 Required variables in `.env.azure`:
 ```
@@ -159,10 +188,11 @@ LOCAL_MODEL=nemotron-3-super:120b
 
 ### Running the Experiment
 
+The entry point is `code/run_experiment.py`. It reads the demand series from `../data/tatva_monthly_dispatches_25m.csv`, stamps a SHA-256 checksum into each run's `provenance.json`, and writes one timestamped result bundle per experiment group under `../results/`. Experiment groups are `baselines`, `H1_IC`, `H2_IC`, `H3_IC`. The `BACKEND` env var (`azure` or `local`) selects which condition specs run; `DRY_RUN=1` skips all LLM calls.
+
 **Dry run (no LLM calls, pipeline validation):**
 ```bash
 DRY_RUN=1 python run_experiment.py --experiments baselines H1_IC --runs 2 --env .env.azure
-python verify_outputs.py --results-dir ../results/
 ```
 
 **Smoke test (2 runs, real LLM):**
@@ -174,27 +204,22 @@ BACKEND=azure python run_experiment.py --experiments H1_IC --runs 2 --env .env.a
 BACKEND=local python run_experiment.py --experiments H1_IC --runs 2 --env .env.local
 ```
 
-**Production runs (in tmux with nohup for long-running local model):**
+**Exploratory / production runs (in tmux with nohup for the long-running local model):**
 ```bash
-# Azure (~5 hours total)
-tmux new-session -s prod_v4ic_azure
+# Azure backend
+tmux new-session -s v4ic_azure
 BACKEND=azure nohup python run_experiment.py \
-    --experiments baselines H1_IC H2_IC H3_IC --runs 20 --env .env.azure \
-    > ../logs/v4ic_azure_prod.log 2>&1
+    --experiments baselines H1_IC H2_IC H3_IC --runs 10 --env .env.azure \
+    > v4ic_azure.log 2>&1
 
-# Local (~51 hours total, GPU cooldown built in)
-tmux new-session -s prod_v4ic_local
+# Local backend (nemotron-3-super:120b — multi-hour)
+tmux new-session -s v4ic_local
 BACKEND=local nohup python run_experiment.py \
-    --experiments baselines H1_IC H2_IC H3_IC --runs 20 --env .env.local \
-    > ../logs/v4ic_local_prod.log 2>&1
+    --experiments baselines H1_IC H2_IC H3_IC --runs 5 --env .env.local \
+    > v4ic_local.log 2>&1
 ```
 
-**Generate figures after runs complete:**
-```bash
-python generate_figures.py --results-dir ../results/
-```
-
-Note: Local runs with nemotron-3-super:120b require approximately 51 minutes per run across 3 conditions times 20 runs. A 30-minute GPU cooldown is triggered automatically whenever wall time exceeds 8 hours.
+Note: local runs with nemotron-3-super:120b are slow (roughly tens of minutes per run). For multi-day continuous local runs, a 30-minute GPU cool-down is inserted between experiment groups once total wall time exceeds 8 hours. The `--runs` values above match the exploratory scale actually used here (10 for Azure, 5 for local); the original design target was 20.
 
 ## Citation
 
@@ -204,3 +229,7 @@ Related work in this series:
 - Lee, H.L., Padmanabhan, V., & Whang, S. (1997). Information Distortion in a Supply Chain: The Bullwhip Effect. *Management Science*, 43(4), 546–558. https://doi.org/10.1287/mnsc.43.4.546
 - Chen, F., Drezner, Z., Ryan, J.K., & Simchi-Levi, D. (2000). Quantifying the Bullwhip Effect in a Simple Supply Chain. *Management Science*, 46(3), 436–443. https://doi.org/10.1287/mnsc.46.3.436.12069
 - Silver, E.A., Pyke, D.F., & Thomas, D.J. (2017). *Inventory and Production Management in Supply Chains* (4th ed.). CRC Press.
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*

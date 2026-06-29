@@ -152,7 +152,7 @@ The decision to supersede V3 with V3b reflects a design insight: before testing 
 Credentials are never hardcoded. Copy the appropriate template and fill in your own values:
 
 ```bash
-cd experiments/Agentic_Bullwhip_Effect_V3_WorldEvents/code/
+cd experiments/agentic-bullwhip-v3-world-events/code/
 
 # Azure backend
 cp env.azure.template .env.azure
@@ -231,7 +231,7 @@ BACKEND=local nohup python run_experiment.py \
 | `E2` | Reasoning model x {blind, context, unstructured} |
 | `E3` | Ablation: lightweight x {blind, context} with world events disabled |
 
-Results are written to timestamped subdirectories under `code/results/`. The local and Azure backends produce separate result directories; analysis must draw from both.
+A live run writes timestamped subdirectories under `code/results/` (relative to the `code/` working directory). The local and Azure backends produce separate result directories; analysis must draw from both. The smoke-test summaries committed to this repository are kept under the top-level `results/` directory (summary and provenance JSON only — full per-step `records.parquet` files are excluded from the public copy).
 
 ## Citation
 
@@ -243,4 +243,8 @@ Agentic Bullwhip Effect Series, Version 3b. industrialmindandcode.ai, April 2026
 https://industrialmindandcode.ai/blog/agentic-bullwhip-v3b
 ```
 
-The V3 experiment design document is available at `DESIGN_V3_WorldEvents.md` in this directory.
+The V3 experiment design document is available at `DESIGN.md` in this directory. A plain-language walkthrough is in `EXPLAINER.md`, and a consolidated findings note is in `FINDINGS.md`.
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*

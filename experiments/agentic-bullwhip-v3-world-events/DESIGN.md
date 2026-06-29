@@ -1,7 +1,7 @@
 # V3 — Realistic Supply Chain Simulation with SimPy
 
-**Experiment:** `Agentic_Bullwhip_Effect_V3_WorldEvents`
-**Researcher:** Sid
+**Experiment:** `agentic-bullwhip-v3-world-events`
+**Researcher:** Siddharth Srinivasan
 **Date:** March 2026
 **Status:** Code complete, ready to run
 
@@ -344,7 +344,7 @@ Script: `code/generate_demand_36m.py`
 ## Files to Create
 
 ```
-experiments/Agentic_Bullwhip_Effect_V3_WorldEvents/
+experiments/agentic-bullwhip-v3-world-events/
 ├── DESIGN.md                       ← this file
 └── code/
     ├── generate_demand_36m.py      ← extend V2 CSV to 36 months

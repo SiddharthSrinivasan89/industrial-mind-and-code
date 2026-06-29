@@ -151,9 +151,9 @@ This yields **8 backend-specific model-condition cells** and **11,520 total LLM 
 
 - **Series length:** 25 months. 24 active ordering periods. Month 25 is demand fulfilment only — no orders placed, simulation closes out.
 - **Series start:** January 2025. Period 1 = Jan 2025, Period 25 = Jan 2027.
-- **File:** `data/synthetic/tatva_monthly_dispatches_25m.csv`
+- **File:** `data/tatva_monthly_dispatches_25m.csv`
 - **Demand events captured:** see calendar table in Section 8.3.
-- **Calibration:** Synthetic data calibrated against real Indian PV market data (autopunditz.com CY2023–2025). See `data/real/findings.md` for derivation.
+- **Calibration:** Synthetic data calibrated against real Indian PV market data (autopunditz.com CY2023–2025). See `data/calibration_notes.md` for the derivation and `data/sources.md` for citations.
 
 ### Why 25 months (extended from 13)
 

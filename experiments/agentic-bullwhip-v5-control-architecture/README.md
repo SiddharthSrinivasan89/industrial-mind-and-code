@@ -10,6 +10,16 @@ The Phase 1 gate criterion (any condition beats order_up_to by >= 0.10, or comes
 
 OVAR is defined as: OVAR = Var(orders) / Var(demand), computed per tier using sample variance (ddof=1) over all active ordering periods, then averaged as arithmetic mean across 3 tiers. Values below 1.0 indicate variance dampening; values above 1.0 indicate amplification.
 
+## Repository Layout
+
+- `README.md` — this overview, repo layout, and reproducibility instructions.
+- `DESIGN.md` — design, parameters, conditions, and hypotheses.
+- `FINDINGS.md` — consolidated findings with exact numbers and limitations.
+- `REPORT_V5_Phase1.md` — the full Phase 1 gate report.
+- `code/` — the runnable experiment: `run_experiment.py` (entry point), `simulation.py`, `agent_interface.py`, `oracle_policies.py`, `world_events.py`, `metrics.py`, `generate_demand_36m.py`, `backends/`, and `requirements.txt`.
+- `code/data/synthetic/` — the synthetic 36-month demand series.
+- `code/results/` — per-group result summaries (`summary.json`, `provenance.json`) for each timestamped run.
+
 ## Research Question
 
 V4's Equaliser Effect finding left two competing interpretations:
@@ -165,7 +175,7 @@ The causal rule-based result confirms that calendar and event labels carry essen
 ### Environment Setup
 
 ```bash
-cd experiments/Agentic_Bullwhip_Effect_V5_ControlArch_COMPLETED/code/
+cd experiments/agentic-bullwhip-v5-control-architecture/code/
 
 # Install dependencies
 pip install -r requirements.txt
@@ -175,30 +185,27 @@ No API credentials are required for Phase 1 conditions. All label sources are de
 
 ### Running the Experiment
 
+The entry point is `code/run_experiment.py`. Its flags are: `--experiments` (one or more group names: `baselines A1_oracle A2_multiplier A3_neutral A4_dampening A5_forecast A6_causal`), `--runs N` (overrides the per-spec run count for every condition; omit to use the per-spec defaults), `--env` (path to a `.env` file, default `.env`), `--results-dir` (output directory, default `results/`), and `--no-events` (disable all world events). The demand series at `data/synthetic/tatva_monthly_dispatches_36m.csv` is read directly; regenerate it with `python generate_demand_36m.py` if it is missing.
+
 **All Phase 1 conditions (deterministic, no LLM calls):**
 ```bash
-# Run all ablation groups
+# Run all ablation groups at n=20
 python run_experiment.py --experiments baselines A1_oracle A2_multiplier A3_neutral A4_dampening A5_forecast A6_causal --runs 20
 
 # Or run a single group for inspection
 python run_experiment.py --experiments A1_oracle --runs 20
 ```
 
-**In tmux with nohup for full production run:**
+**In tmux with nohup for a full production run:**
 ```bash
 tmux new-session -s prod_v5
 nohup python run_experiment.py \
     --experiments baselines A1_oracle A2_multiplier A3_neutral A4_dampening A5_forecast A6_causal \
     --runs 20 \
-    > ../../logs/v5_prod.log 2>&1
+    > v5_prod.log 2>&1
 ```
 
-**Verify outputs:**
-```bash
-python verify_outputs.py --results-dir results/
-```
-
-Note: Because all conditions are deterministic (no LLM calls), run time is determined by simulation steps only. The full 14-condition suite at n=20 completes within a few hours on a standard CPU.
+Each run writes a timestamped directory under `results/<group>/` containing `summary.json` (the per-condition OVAR, stockout, and service-level statistics) and `provenance.json` (the dataset checksum, world-event configuration, and condition specs). Because all conditions are deterministic (no LLM calls), run time is determined by simulation steps only; the full 14-condition suite at n=20 completes within a few hours on a standard CPU.
 
 ## Citation
 
@@ -209,3 +216,7 @@ Related work in this series:
 - Chen, F., Drezner, Z., Ryan, J.K., & Simchi-Levi, D. (2000). Quantifying the Bullwhip Effect in a Simple Supply Chain. *Management Science*, 46(3), 436–443. https://doi.org/10.1287/mnsc.46.3.436.12069
 - Silver, E.A., Pyke, D.F., & Thomas, D.J. (2017). *Inventory and Production Management in Supply Chains* (4th ed.). CRC Press.
 - Forrester, J.W. (1961). *Industrial Dynamics.* MIT Press.
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*

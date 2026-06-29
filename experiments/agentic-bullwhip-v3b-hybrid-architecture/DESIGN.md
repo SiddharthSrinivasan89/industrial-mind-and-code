@@ -1,6 +1,6 @@
 # V3b Design — Hybrid Architecture Experiment
 
-**Experiment:** `Agentic_Bullwhip_Effect_V3b_HybridArch`
+**Experiment:** `agentic-bullwhip-v3b-hybrid-architecture`
 **Version:** 1.0
 **Date:** March 2026
 **Status:** Code complete, pre-run

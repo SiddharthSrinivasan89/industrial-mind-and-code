@@ -177,7 +177,7 @@ The thinking pass acts as a structured scratchpad that helps the model navigate 
 
 ### F5 — Temperature is a hard constraint for sarvam-30b (local GGUF deployment)
 
-*Note: findings in this section are integration observations from pre-experiment calibration work, documented in full in `research/models/sarvam-30b.md`. They are not derived from the main V2d summary tables. Cloud API deployment was not tested empirically.*
+*Note: findings in this section are integration observations from pre-experiment calibration work (my own sarvam-30b integration notes). They are not derived from the main V2d summary tables. Cloud API deployment was not tested empirically.*
 
 | Temperature | Failure mode | Per-call error rate (observed) |
 |---|---|:---:|
@@ -199,14 +199,14 @@ Context conditions (tier identity prompt — company name, product, role — plu
 
 ## Integration Issues (model-specific, observed during pre-experiment calibration)
 
-*These observations come from calibration and smoke-test work prior to the main V2d run. Full documentation is in `research/models/sarvam-30b.md`. They are not derived from the main experiment summary tables.*
+*These observations come from calibration and smoke-test work prior to the main V2d run (my own sarvam-30b integration notes). They are not derived from the main experiment summary tables.*
 
 Two issues emerged that are specific to sarvam-30b's architecture and behaviour — not caused by operator error:
 
 | # | Issue | Observed behaviour | Source | Resolution |
 |---|---|---|---|---|
-| 3 | System prompt conflict with `think` API flag | Adding "Think silently if needed" to system prompt conflicted with native `think=False` flag, raising per-call error rate from ~5% to ~22% | Pre-experiment calibration; sarvam-30b.md:163 | Revert to original prompts; use only the API-level `think` flag |
-| 4 | Blind condition high failure rate | ~20% per-call error rate with minimal prompt; run failure rate too high for 10-run main experiment | Smoke tests 2026-03-25/26; sarvam-30b.md:196 | Restrict main experiment to context conditions only |
+| 3 | System prompt conflict with `think` API flag | Adding "Think silently if needed" to system prompt conflicted with native `think=False` flag, raising per-call error rate from ~5% to ~22% | Pre-experiment calibration | Revert to original prompts; use only the API-level `think` flag |
+| 4 | Blind condition high failure rate | ~20% per-call error rate with minimal prompt; run failure rate too high for 10-run main experiment | Smoke tests 2026-03-25/26 | Restrict main experiment to context conditions only |
 
 Both issues are only discoverable by running — they cannot be anticipated from model documentation.
 
@@ -247,5 +247,6 @@ Each run directory contains `records.parquet` (per-period orders and inventory),
 | [README.md](README.md) | Experiment overview and how to run |
 | [DESIGN.md](DESIGN.md) | Full experiment design — conditions, metrics, hypotheses |
 | [COMPARISON.md](COMPARISON.md) | V2 vs V2a side-by-side with all filled results |
+| [FINDINGS.md](FINDINGS.md) | Consolidated findings — what was tested, methodology, results, limitations |
 | [data/calibration_notes.md](data/calibration_notes.md) | Demand series calibration against real Indian PV market data |
-| [research/models/sarvam-30b.md](../../research/models/sarvam-30b.md) | Full sarvam-30b integration notes — setup, temperature calibration, architecture details |
+| [data/sources.md](data/sources.md) | Data provenance and sources |

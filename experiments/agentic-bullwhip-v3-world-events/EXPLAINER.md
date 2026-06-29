@@ -1,6 +1,6 @@
 # V3 Experiment — Complete Explainer
 
-**Researcher:** Sid
+**Researcher:** Siddharth Srinivasan
 **Date:** March 2026
 **Status:** Code complete, ready to run
 
@@ -373,7 +373,7 @@ E3 is an ablation study — the same lightweight model under the same prompt con
 ## File Index
 
 ```
-experiments/Agentic_Bullwhip_Effect_V3_WorldEvents/
+experiments/agentic-bullwhip-v3-world-events/
 ├── DESIGN.md                          ← Architecture and design decisions
 ├── EXPLAINER.md                       ← This file
 └── code/

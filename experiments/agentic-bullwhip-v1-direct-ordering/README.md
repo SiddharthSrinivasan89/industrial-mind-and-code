@@ -195,18 +195,41 @@ pip install -r requirements.txt
 python src/test_connection.py
 ```
 
-**Run the full experiment:**
+**Run the full experiment (Azure OpenAI):**
 
 ```bash
 python src/run_experiment.py
 ```
 
-Results are written to:
-- `results/raw/` — per-run JSON files
-- `results/aggregated/` — per-configuration summary JSON files
-- `results/experiment.log` — execution log
+The orchestrator has no command-line flags — it reads everything from `.env` and from `data/synthetic/tatva_monthly_dispatches.csv`, and runs all four configurations (`blind_lightweight`, `context_lightweight`, `blind_reasoning`, `context_reasoning`) for 5 runs each. Total LLM calls: 720.
 
-The experiment runs all four configurations (blind_lightweight, context_lightweight, blind_reasoning, context_reasoning) for 5 runs each. Total LLM calls: 720.
+Results are written to:
+- `results/raw/` — per-run JSON files (full per-call dumps; git-ignored, regenerated on each run)
+- `results/aggregated/` — per-configuration summary JSON files (kept in the repo as the canonical n=5 summaries)
+- `results/experiment.log` — execution log (git-ignored)
+
+**Optional local run (Ollama):** `src/run_experiment_local.py` runs the lightweight configurations against a local Ollama model (used here for the `qwen3.5:latest` cross-check). It reads the same demand CSV and writes to the same `results/` layout.
+
+**Regenerate the PDF report:** `python generate_report.py` rebuilds `results/experiment_report.pdf` from the per-config summaries in `results/aggregated/` (requires `reportlab`, not listed in `requirements.txt`).
+
+---
+
+## Repository Layout
+
+```
+agentic-bullwhip-v1-direct-ordering/
+├── README.md                     # this file — overview and reproduction
+├── DESIGN.md                     # full design: parameters, prompts, mechanics, hypotheses
+├── FINDINGS.md                   # consolidated findings with exact numbers
+├── requirements.txt              # Python dependencies for the experiment
+├── data/synthetic/               # synthetic Tatva Motors demand series
+├── src/                          # experiment code (agents, supply chain, orchestrators)
+├── generate_report.py            # rebuilds the PDF report from aggregated summaries
+└── results/
+    ├── aggregated/               # per-config n=5 summary JSON (kept)
+    ├── qwen3.5_local_analysis.md # local Ollama (qwen3.5) cross-check write-up
+    └── experiment_report.pdf     # formatted report
+```
 
 ---
 
@@ -217,3 +240,7 @@ Published writeup: [https://industrialmindandcode.ai/blog/agentic-bullwhip-v1](h
 Author: Siddharth Srinivasan — [industrialmindandcode.ai](https://industrialmindandcode.ai)
 
 Date: February 2026
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*

@@ -76,7 +76,7 @@ S ≈ 43,600 as derived by `run_experiment.py` using sample std (ddof=1). The bl
 
 ## 5. What Is NOT in the Synthetic Data
 
-The CSV (`data/synthetic/tatva_monthly_dispatches_25m.csv`) contains only:
+The CSV (`data/tatva_monthly_dispatches_25m.csv`) contains only:
 - `period`, `calendar_month`, `year`, `retail_demand`, `phase`
 
 **Event labels are intentionally excluded.** Agents receive only the calendar month and year. Any seasonal reasoning must come from the agent's own world knowledge — this is the capability under test (pattern score, Section 8.3 of experiment design).

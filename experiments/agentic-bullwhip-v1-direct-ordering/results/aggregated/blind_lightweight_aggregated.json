@@ -1,0 +1,55 @@
+{
+  "config": "blind_lightweight",
+  "model": "gpt-4.1-mini",
+  "treatment": "blind",
+  "n_runs": 5,
+  "tiers": {
+    "oem": {
+      "ovar_mean": 2.266939,
+      "ovar_std": 0.009317,
+      "ovar_undefined_count": 0,
+      "ovar_cv_pct": 0.41,
+      "ovar_std_fallback": null,
+      "stockout_count_mean": 8.0,
+      "excess_inventory_mean": 0.0,
+      "total_ordered_mean": 570567.0,
+      "peak_overshoot_mean": 1.2239,
+      "clamp_count_mean": 0.0,
+      "parse_error_count_total": 0
+    },
+    "ancillary": {
+      "ovar_mean": 2.938437,
+      "ovar_std": 0.043973,
+      "ovar_undefined_count": 0,
+      "ovar_cv_pct": 1.5,
+      "ovar_std_fallback": null,
+      "stockout_count_mean": 6.0,
+      "excess_inventory_mean": 50706.0,
+      "total_ordered_mean": 578273.0,
+      "peak_overshoot_mean": 1.4022,
+      "clamp_count_mean": 0.0,
+      "parse_error_count_total": 0
+    },
+    "component": {
+      "ovar_mean": 4.266425,
+      "ovar_std": 0.077728,
+      "ovar_undefined_count": 0,
+      "ovar_cv_pct": 1.82,
+      "ovar_std_fallback": null,
+      "stockout_count_mean": 7.4,
+      "excess_inventory_mean": 58654.0,
+      "total_ordered_mean": 583860.0,
+      "peak_overshoot_mean": 1.5393,
+      "clamp_count_mean": 0.0,
+      "parse_error_count_total": 0
+    }
+  },
+  "pattern_score_mean": 0.35,
+  "pattern_score_std": 0.0204,
+  "keyword_score_mean": 0.0,
+  "keyword_score_std": 0.0,
+  "elevation_score_mean": 0.7,
+  "elevation_score_std": 0.0408,
+  "total_cost_usd_per_run_mean": 0.0046,
+  "total_cost_usd_all_runs": 0.0228
+}

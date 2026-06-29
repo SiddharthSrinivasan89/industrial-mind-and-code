@@ -128,7 +128,7 @@ V2a uses sarvam-30b for both tiers. Blind conditions were not viable (see Sectio
 | **Lightweight** (sarvam-30b, `think=False`) | `context_lightweight` Temp: 1.0 \| Max tokens: 4,096 | Abandoned — ~20% per-call error rate, not viable for 10-run experiment |
 | **Reasoning** (sarvam-30b, `think=True`) | `context_reasoning` Temp: 1.0 \| Max tokens: 8,192 | Abandoned — same reason |
 
-**Temperature:** 1.0 for all conditions. Mandated by the GGUF model card. Pre-experiment calibration showed temp=0.4 caused 40–60% parse failures and temp=0.2 (cloud API recommendation) produced ~100% failure on local GGUF — the two values behave identically in failure mode but were tested separately. See `research/models/sarvam-30b.md` for the full calibration record.
+**Temperature:** 1.0 for all conditions. Mandated by the GGUF model card. Pre-experiment calibration showed temp=0.4 caused 40–60% parse failures and temp=0.2 (cloud API recommendation) produced ~100% failure on local GGUF — the two values behave identically in failure mode but were tested separately. See ANALYSIS.md (F5) for the calibration record.
 
 **Max tokens:** 4,096 for lightweight (direct output, no thinking overhead). 8,192 for reasoning (allows thinking pass + JSON response).
 
@@ -350,11 +350,11 @@ experiment/
 
 ### 11.2 Environment Files
 
-**.env.sarvam (V2a / V2d — sarvam-30b via llama-server)**
+**Canonical V2a / V2d configuration (sarvam-30b via llama-server)** — create this as `.env.local`:
 ```
 BACKEND=local
 LOCAL_ENDPOINT=http://localhost:8080/v1
-LOCAL_API_KEY=ollama
+LOCAL_API_KEY=local
 MODEL_LIGHTWEIGHT=sarvam-30b
 MODEL_REASONING=sarvam-30b
 MODEL_OSS_REASONING=sarvam-30b
@@ -366,7 +366,7 @@ TEMP_REASONING=1.0
 TEMP_CONTEXT_REASONING=1.0
 ```
 
-*For reproducible local setup, start from the committed sarvam env files in the `code/` directory, especially `.env.sarvam_v2d` for the canonical V2d configuration.*
+*Env files are gitignored and not committed (they may hold endpoints and tokens). Create your own `.env.local` from the keys above for the canonical V2d configuration. See README.md for the full setup steps.*
 
 ### 11.3 Common Interface
 

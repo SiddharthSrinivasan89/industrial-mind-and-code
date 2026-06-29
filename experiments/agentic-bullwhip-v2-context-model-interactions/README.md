@@ -251,14 +251,15 @@ The runner uses exponential backoff (10 retries, capped at 60 seconds) and write
 ## Repository Layout
 
 ```
-Agentic_Bullwhip_Effect_Version_2_COMPLETED/
-├── README.md                   This file
+agentic-bullwhip-v2-context-model-interactions/
+├── README.md                   This file — overview, layout, reproducibility
+├── FINDINGS.md                 Consolidated findings — what was tested, results, limitations
 ├── REPORT.md                   Full research paper — methodology, results, discussion
 ├── DESIGN.md                   Experiment design specification
 ├── requirements.txt            Python dependencies
 │
 ├── data/
-│   ├── tatva_monthly_dispatches_25m.csv            Demand series (25 months)
+│   ├── tatva_monthly_dispatches_25m.csv            Demand series (25 months, synthetic)
 │   ├── tatva_monthly_dispatches_25m_annotated.csv  Same series with phase labels
 │   ├── calibration_notes.md                        How the series was calibrated
 │   └── sources.md                                  Data source citations
@@ -268,6 +269,9 @@ Agentic_Bullwhip_Effect_Version_2_COMPLETED/
 │   ├── simulation.py           Per-period simulation loop and heuristic policies
 │   ├── agent_interface.py      LLM abstraction — prompts, state formatting, backend dispatch
 │   ├── metrics.py              OVAR, stockout count, pattern score computation
+│   ├── alpha_sweep.py          Exponential smoothing alpha calibration helper
+│   ├── generate_figures.py     Rebuilds the charts in figures/ from results/
+│   ├── verify_smoke_outputs.py Smoke-test output checker
 │   ├── env.azure.template      Azure credentials template
 │   ├── env.local.template      Local server credentials template
 │   └── backends/
@@ -276,11 +280,17 @@ Agentic_Bullwhip_Effect_Version_2_COMPLETED/
 │       ├── dry_run_backend.py
 │       └── resilience.py       Exponential backoff and retry logic
 │
-└── results/
+├── figures/                    Result charts (fig1–fig4 PNGs)
+│
+└── results/                    Per-run summaries only (summary.json + provenance.json)
     ├── baselines/
     ├── E1/                     Lightweight model runs
     └── E2/                     Reasoning model runs
 ```
+
+Per-run `records.parquet` raw outputs are not included in this public copy; the
+runner regenerates them on a fresh run. `results/` retains the `summary.json` and
+`provenance.json` for each condition.
 
 ---
 
@@ -297,3 +307,7 @@ Published writeup: [https://industrialmindandcode.ai/blog/agentic-bullwhip-v2](h
 Author: Siddharth Srinivasan — [industrialmindandcode.ai](https://industrialmindandcode.ai)
 
 Date: March 2026
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*

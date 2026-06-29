@@ -172,15 +172,28 @@ A broader calibration note: sarvam-30b is available as both a cloud API and a lo
 
 ### Environment Setup
 
-The experiment reads credentials and endpoint configuration from a `.env.local` file. The canonical configuration used for the sarvam_v2d dataset is provided as `.env.sarvam_v2d` in the `code/` directory. Copy it and adjust for your local endpoint:
+The experiment reads endpoint configuration from a `.env.local` file. Env files are gitignored and are not committed (they may hold endpoints and tokens), so you create your own. The canonical V2d settings used for the published dataset are documented below and in DESIGN.md (Section 11.2):
 
 ```bash
 cd code
 python -m venv .venv && source .venv/bin/activate
 pip install -r ../requirements.txt
 
-# Start from the canonical local config
-cp .env.sarvam_v2d .env.local
+# Create .env.local with the canonical V2d keys, then edit for your endpoint
+cat > .env.local <<'EOF'
+BACKEND=local
+LOCAL_ENDPOINT=http://localhost:8080/v1
+LOCAL_API_KEY=local
+MODEL_LIGHTWEIGHT=sarvam-30b
+MODEL_REASONING=sarvam-30b
+MODEL_OSS_REASONING=sarvam-30b
+MAX_TOKENS_LIGHTWEIGHT=4096
+MAX_TOKENS_REASONING=8192
+TEMP_LIGHTWEIGHT=1.0
+TEMP_CONTEXT_LIGHTWEIGHT=1.0
+TEMP_REASONING=1.0
+TEMP_CONTEXT_REASONING=1.0
+EOF
 # Edit .env.local if your endpoint, model name, or token limits differ
 ```
 
@@ -188,7 +201,7 @@ Key configuration notes:
 - Use temperature 1.0 (mandated by the GGUF model card — lower values cause elevated failure rates)
 - Use think=True for E2 conditions (eliminates run-level failures with no effect on supply chain outcomes)
 - Do not use cloud temperature recommendations for local GGUF deployment
-- Do not commit `.env.local` — it is listed in `.gitignore`
+- Do not commit `.env.local` or any `.env.*` file — they are listed in `.gitignore`
 
 ### Running the Experiment
 
@@ -219,31 +232,40 @@ Canonical results are written to `../results/sarvam_v2d/<experiment>/<timestamp>
 ## Repository Layout
 
 ```
-Agentic_Bullwhip_Effect_Version_2a_COMPLETED/
-├── README.md               This file
+agentic-bullwhip-v2a-sarvam-evaluation/
+├── README.md               This file — overview, layout, reproducibility
+├── FINDINGS.md             Consolidated findings — what was tested, methodology, results, limitations
+├── DESIGN.md               Experiment design — conditions, metrics, parameter choices, hypotheses
 ├── ANALYSIS.md             Full V2a analysis — methodology deltas, results, interpretation
-├── DESIGN.md               Experiment design — conditions, metrics, parameter choices
 ├── COMPARISON.md           V2 vs V2a side-by-side results
 ├── requirements.txt        Python dependencies
 │
 ├── data/
-│   ├── (25-month demand series)
-│   └── (calibration notes)
+│   ├── tatva_monthly_dispatches_25m.csv            25-month synthetic demand series
+│   ├── tatva_monthly_dispatches_25m_annotated.csv  Annotated variant
+│   ├── calibration_notes.md                        Calibration against real Indian PV market data
+│   └── sources.md                                  Data provenance / sources
 │
 ├── code/
 │   ├── run_experiment.py   Entry point
 │   ├── simulation.py       Per-period simulation loop and heuristic policies
 │   ├── agent_interface.py  LLM abstraction — prompts, state formatting, backend dispatch
 │   ├── metrics.py          OVAR, stockout count, pattern score computation
-│   ├── .env.sarvam_v2d     Canonical configuration (supply your own endpoint)
+│   ├── generate_figures.py Chart generation
+│   ├── run_*.sh            Convenience run wrappers (supply your own .env.local)
 │   └── backends/
 │       ├── local_backend.py
+│       ├── azure_backend.py
 │       ├── dry_run_backend.py
 │       └── resilience.py   Exponential backoff and retry logic
 │
+├── figures/                Result charts (fig1–fig4)
+│
 └── results/
-    └── sarvam_v2d/         Canonical V2a results
+    └── sarvam_v2d/         Canonical V2a result summaries (summary.json + provenance.json)
 ```
+
+Note: `.env.*` files are gitignored and not committed. Create your own `.env.local` from the keys documented in the Environment Setup section above.
 
 ---
 
@@ -268,3 +290,7 @@ Published writeup: [https://industrialmindandcode.ai/blog/agentic-bullwhip-v2a](
 Author: Siddharth Srinivasan — [industrialmindandcode.ai](https://industrialmindandcode.ai)
 
 Date: March 2026
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*

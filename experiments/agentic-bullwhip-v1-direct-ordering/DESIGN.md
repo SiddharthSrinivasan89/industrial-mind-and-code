@@ -1,8 +1,8 @@
-# Experiment Parameters
+# Design — Agentic Bullwhip Version 1 (Direct Ordering)
 ## Bullwhip Effect in LLM-Powered Supply Chains — Tatva Motors Vecta
 
 **Date:** 2026-02-19
-**Location:** `dev/Agentic_bullwhip_2/`
+**Folder:** `experiments/agentic-bullwhip-v1-direct-ordering/`
 
 ---
 

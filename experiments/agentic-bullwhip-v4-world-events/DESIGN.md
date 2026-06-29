@@ -251,11 +251,10 @@ code/
 ### Setup
 
 ```bash
-cd experiments/Agentic_Bullwhip_Effect_V4_WorldEvents/code/
+cd experiments/agentic-bullwhip-v4-world-events/code/
 
-# Generate demand data (or copy from V3_WorldEvents)
+# Generate the synthetic demand series (already shipped under data/synthetic/)
 python generate_demand_36m.py
-# or: cp ../Agentic_Bullwhip_Effect_V3_WorldEvents/code/data/synthetic/tatva_monthly_dispatches_36m.csv data/synthetic/
 ```
 
 ### Phase 1: Dry-run validation (zero API cost)

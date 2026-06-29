@@ -10,6 +10,28 @@ The central finding is the **Equaliser Effect**: the discrete label-to-multiplie
 
 OVAR is defined as: OVAR = Var(orders) / Var(demand), computed per tier using sample variance (ddof=1) over all active ordering periods, then averaged to chain level. Values below 1.0 indicate variance dampening; values above 1.0 indicate amplification.
 
+## Repository Layout
+
+```
+agentic-bullwhip-v4-world-events/
+├── README.md       # this file — overview, design summary, reproduction steps
+├── DESIGN.md       # full design: parameters, intent classes, hypotheses, conditions
+├── FINDINGS.md     # consolidated findings with exact numbers and limitations
+├── results/        # published result summaries (summary.json + provenance.json per condition)
+└── code/
+    ├── run_experiment.py   # entry point — EXPERIMENTS registry, CLI flags
+    ├── agent_interface.py  # intent prompts + INTENT_MULTIPLIER_MAP + get_intent_class()
+    ├── simulation.py       # SimPy engine, policy_intent_hybrid() + heuristic policies
+    ├── world_events.py     # pandemic / conflict / port-strike injectors
+    ├── metrics.py          # OVAR, stockouts, intent compliance/accuracy/entropy
+    ├── generate_demand_36m.py  # regenerates the synthetic demand series
+    ├── requirements.txt
+    ├── backends/           # azure_backend, local_backend, dry_run_backend, resilience
+    └── data/synthetic/     # tatva_monthly_dispatches_36m.csv (synthetic, 36 months)
+```
+
+For the full design and parameters see [DESIGN.md](DESIGN.md); for the consolidated results and limitations see [FINDINGS.md](FINDINGS.md).
+
 ## Research Question
 
 **Primary:** Does intent classification — where the LLM selects one of five discrete labels that are then mapped to safety stock multipliers by a deterministic lookup table — produce lower order variance amplification (OVAR) than heuristic baselines when world events create sharp demand and supply shocks alongside seasonal variation?
@@ -220,31 +242,31 @@ The neutral-prior sub-experiment (E4) confirms that prompt-layer interventions c
 ### Environment Setup
 
 ```bash
-cd experiments/Agentic_Bullwhip_Effect_V4_WorldEvents_COMPLETED/code/
+cd experiments/agentic-bullwhip-v4-world-events/code/
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Configure credentials — edit the files created below with your own API keys and endpoints
-cp env.azure .env.azure   # fill in Azure endpoint, API key, API version, deployment names
-cp env.local .env.local   # fill in Ollama endpoint URL and model names
 ```
 
-Required variables in `.env.azure`:
+Create your own credential files (they are not shipped — never commit real keys). Create `.env.azure` with your Azure OpenAI details:
 ```
 AZURE_ENDPOINT=<your-endpoint>
 AZURE_API_KEY=<your-key>
-AZURE_API_VERSION=<api-version>
+AZURE_API_VERSION=2025-01-01-preview
 MODEL_LIGHTWEIGHT=gpt-4.1-mini
 MODEL_REASONING=o4-mini
+MAX_TOKENS_LIGHTWEIGHT=256
 MAX_TOKENS_REASONING=32768
 ```
 
-Required variables in `.env.local`:
+Create `.env.local` with your local Ollama details:
 ```
-LOCAL_ENDPOINT=<your-ollama-url>
-LOCAL_MODEL=phi4:14b
-# or LOCAL_MODEL=nemotron-super:120b for the 120B conditions
+LOCAL_ENDPOINT=http://localhost:11434/v1
+LOCAL_API_KEY=ollama
+MODEL_LIGHTWEIGHT=phi4:14b
+MODEL_REASONING=nemotron-super:120b
+MAX_TOKENS_LIGHTWEIGHT=256
+MAX_TOKENS_REASONING=512
 ```
 
 ### Running the Experiment
@@ -265,7 +287,7 @@ tmux new-session -s prod_v4we_azure
 BACKEND=azure nohup python run_experiment.py \
     --experiments baselines E1_IC_azure E2_IC_azure E4_IC_azure E4_IC_o4mini \
     --runs 20 --env .env.azure \
-    > ../../logs/v4we_azure_prod.log 2>&1
+    > v4we_azure_prod.log 2>&1
 ```
 
 **Local LLM conditions (phi4:14b, nemotron 120B), in tmux with nohup:**
@@ -274,13 +296,10 @@ tmux new-session -s prod_v4we_local
 BACKEND=local nohup python run_experiment.py \
     --experiments E1_IC_phi E2_IC_nemotron E3_IC E4_IC_phi \
     --env .env.local \
-    > ../../logs/v4we_local_prod.log 2>&1
+    > v4we_local_prod.log 2>&1
 ```
 
-**Verify outputs after each run:**
-```bash
-python verify_outputs.py --results-dir results/
-```
+Fresh runs write per-condition output directories under `code/results/` (each with a `summary.json` and a `provenance.json` carrying the demand-file SHA-256 and per-run seeds). The published summaries used in this writeup are kept at the top-level `results/` directory.
 
 Note: The Azure reasoning model (o4-mini) requires `MODEL_REASONING` and `MAX_TOKENS_REASONING` in the env file; do not pass `temperature` for this model. A missing key raises `KeyError` at the first API call.
 
@@ -293,3 +312,7 @@ Related work in this series:
 - Chen, F., Drezner, Z., Ryan, J.K., & Simchi-Levi, D. (2000). Quantifying the Bullwhip Effect in a Simple Supply Chain. *Management Science*, 46(3), 436–443. https://doi.org/10.1287/mnsc.46.3.436.12069
 - Forrester, J.W. (1961). *Industrial Dynamics.* MIT Press.
 - Silver, E.A., Pyke, D.F., & Thomas, D.J. (2017). *Inventory and Production Management in Supply Chains* (4th ed.). CRC Press.
+
+---
+
+_Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience._

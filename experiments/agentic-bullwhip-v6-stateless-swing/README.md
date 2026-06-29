@@ -12,6 +12,17 @@ Three models were evaluated (gpt-4.1-mini, o4-mini, gpt-oss 120B) across three i
 
 OVAR is defined as: OVAR = Var(orders) / Var(demand), computed per tier using sample variance (ddof=1) over the 24 active ordering periods, then averaged as arithmetic mean across 3 tiers. Values below 1.0 indicate consistent variance dampening; the entire range of AI results in V6 is below 1.0.
 
+## Repository Layout
+
+| Path | Contents |
+|---|---|
+| [DESIGN.md](DESIGN.md) | Design, parameters, conditions, and hypotheses |
+| [FINDINGS.md](FINDINGS.md) | Consolidated findings — what was tested, methodology, results with exact numbers, and limitations |
+| `code/` | Runnable experiment: `run_experiment.py` (entry point), `simulation.py`, `metrics.py`, `agent_interface.py`, `backends/`, `verify_outputs.py`, and `requirements.txt` |
+| `code/data/synthetic/` | Synthetic demand series used by the runner |
+| `data/` | Synthetic demand series (`tatva_monthly_dispatches_25m.csv`) |
+| `results/<label>/<timestamp>/` | Per-condition `summary.json` and `provenance.json` result summaries |
+
 ## Research Question
 
 **Primary:** Does giving the LLM control of the EMA smoothing parameter alpha — rather than a safety stock multiplier — produce OVAR below 1.0 and allow any AI condition to match or beat the fixed optimal alpha=0.3 exponential smoothing baseline?
@@ -294,3 +305,7 @@ Related work in this series:
 - Chen, F., Drezner, Z., Ryan, J.K., & Simchi-Levi, D. (2000). Quantifying the Bullwhip Effect in a Simple Supply Chain. *Management Science*, 46(3), 436–443. https://doi.org/10.1287/mnsc.46.3.436.12069
 - Silver, E.A., Pyke, D.F., & Thomas, D.J. (2017). *Inventory and Production Management in Supply Chains* (4th ed.). CRC Press.
 - Forrester, J.W. (1961). *Industrial Dynamics.* MIT Press.
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*

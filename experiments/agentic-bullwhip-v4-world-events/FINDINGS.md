@@ -1,4 +1,4 @@
-# V4 WorldEvents — Experimental Analysis Report: Intent Classification in a Disrupted Supply Chain
+# V4 WorldEvents — Findings: Intent Classification in a Disrupted Supply Chain
 
 ## Executive Summary
 
@@ -401,3 +401,7 @@ The demand forecast F_t has much larger leverage on order quantity than the safe
 ---
 
 _All runs used fixed per-run RNG seeds for reproducibility. Each result directory contains a SHA-256 checksum of the demand dataset and a full provenance JSON. Production runs executed on Microsoft Azure (gpt-4.1-mini, o4-mini) and local Ollama (phi4:14b, nemotron 120B). All experiments complete as of 2026-04-23 16:29._
+
+---
+
+_Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience._

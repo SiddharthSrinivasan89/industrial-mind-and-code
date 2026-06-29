@@ -135,6 +135,36 @@ The next logical architectural step is to restrict the output further: instead o
 - **Fixed smoothing alpha.** The alpha=0.30 parameter was empirically selected during V2 on the same demand series. Performance sensitivity to alpha is not evaluated in V3b.
 - **No disruption conditions.** V3b used a clean 25-month environment with no supply disruptions, stochastic lead times, or demand shocks. Whether the hybrid architecture performs differently under disrupted conditions is addressed in the V3 design but was not tested in production runs.
 
+## Repository Layout
+
+```
+agentic-bullwhip-v3b-hybrid-architecture/
+├── README.md                 # This file — overview, layout, reproduction
+├── FINDINGS.md               # Consolidated findings: methodology, results, limitations
+├── DESIGN.md                 # Full design: parameters, conditions, hypotheses, metrics
+├── requirements.txt
+├── data/
+│   ├── tatva_monthly_dispatches_25m.csv            # 25-month synthetic Indian automotive demand series
+│   └── tatva_monthly_dispatches_25m_annotated.csv  # Same series with seasonal event labels
+├── code/
+│   ├── run_experiment.py     # Entry point (CLI orchestration)
+│   ├── simulation.py         # Hybrid + heuristic simulation loop
+│   ├── agent_interface.py    # Hybrid prompts + get_ss_multiplier()
+│   ├── metrics.py            # OVAR, stockouts, multiplier metrics
+│   ├── generate_figures.py   # Figure generation
+│   ├── verify_outputs.py     # Post-run output validation
+│   ├── alpha_sweep.py        # Smoothing-alpha sweep utility
+│   ├── env.azure.template    # Azure env template (copy to .env.azure, never committed)
+│   ├── env.local.template    # Local env template (copy to .env.local, never committed)
+│   └── backends/             # azure_backend.py | local_backend.py | dry_run_backend.py | resilience.py
+├── results/
+│   ├── REPORT.md             # Plain-English experimental report
+│   ├── baselines/ H1/ H2/ H3/  # Per-condition summary.json + provenance.json
+└── figures/azure_prod/       # OVAR, tier heatmap, run-variance, multiplier and order series charts
+```
+
+The published `results/` folder retains only the per-condition summaries (`summary.json`) and provenance records (`provenance.json`); the large raw per-run records (`records.parquet`) are not included in the public copy.
+
 ## How to Reproduce
 
 ### Prerequisites
@@ -148,7 +178,7 @@ The next logical architectural step is to restrict the output further: instead o
 Credentials are never hardcoded. Copy the appropriate template and fill in your own values:
 
 ```bash
-cd experiments/Agentic_Bullwhip_Effect_V3b_HybridArch_COMPLETED/code/
+cd experiments/agentic-bullwhip-v3b-hybrid-architecture/code/
 
 # Azure backend
 cp env.azure.template .env.azure
@@ -241,4 +271,8 @@ Agentic Bullwhip Effect Series, Version 3b. industrialmindandcode.ai, April 2026
 https://industrialmindandcode.ai/blog/agentic-bullwhip-v3b
 ```
 
-Full code, data, and raw results are available in this repository. The accompanying blog writeup with extended discussion and figures is at `https://industrialmindandcode.ai/blog/agentic-bullwhip-v3b`.
+Full code, data, and result summaries are available in this repository. The accompanying blog writeup with extended discussion and figures is at `https://industrialmindandcode.ai/blog/agentic-bullwhip-v3b`.
+
+---
+
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*
