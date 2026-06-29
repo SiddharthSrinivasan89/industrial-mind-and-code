@@ -1,30 +1,76 @@
-# FailureSensorIQ — Small Language Models for Industrial Fault Diagnosis (baseline)
+# FailureSensorIQ — Small Language Models for Industrial Fault Diagnosis
 
-A baseline characterisation of four small (4B-class) language models on **IBM's FailureSensorIQ**
+A baseline characterisation of four small (4B-class) language models on IBM's **FailureSensorIQ**
 benchmark — 2,667 single-answer fault-diagnosis questions across ten industrial asset classes — run
-locally via Ollama under an integration-hygiene discipline (accuracy and output reliability scored as
-separate axes).
+locally via Ollama under an integration-hygiene discipline (accuracy and output reliability scored
+separately).
 
-**Headline:** Nemotron-3 Nano 4B reached **51.8%** with clean, machine-readable output on all 2,667
-calls — above the ~27.5% blind-guessing floor, below the ~60.2% human-expert mean. A capable local
-assistant, not an autonomous decision-maker. The two most practical lessons sit outside the ranking:
-sampling **temperature** and **serving reliability** often decide whether a small model's output is
-usable at all. The full writeup is on the site: [industrialmindandcode.ai](https://www.industrialmindandcode.ai/blog/small-language-models-fault-diagnosis.html).
+**Headline:** Nemotron-3 Nano 4B reached **51.8%** with clean output on all 2,667 calls — above the
+~27.5% guessing floor, below the ~60.2% human-expert mean. A capable local assistant, not an autonomous
+decision-maker. Two practical lessons sit outside the ranking: sampling **temperature** and **serving
+reliability** decide whether a small model's output is usable at all.
 
-## What's here
+→ **Findings:** [FINDINGS.md](FINDINGS.md) (design, methodology, results, limitations — all in one place).
+→ **Plain-language writeup:** [on the site](https://www.industrialmindandcode.ai/blog/small-language-models-fault-diagnosis.html).
 
-- **Findings:** [WHAT-WE-LEARNED.md](WHAT-WE-LEARNED.md) (the lessons), [POST-STUDY-SLM-INDUSTRIAL-FAULT.md](POST-STUDY-SLM-INDUSTRIAL-FAULT.md) (methodology + report), [RUN1-DEGRADATION-REPORT.md](RUN1-DEGRADATION-REPORT.md) (the serving-runtime failure case), and [DESIGN.md](DESIGN.md) (experiment design).
-- **Reproducible assets (code):** the IHF harness and scoring — `ihf.py`, `ihf_preflight.py`, `run_ihf.py`, `run_cold.py`, `rescore.py` — and the data fetcher `fetch_data.py`.
-- **Results:** per-model metric manifests (`results_ihf_*.manifest.json`) carry the accuracy and reliability numbers for each run.
-- **Data provenance:** [data/DATA.md](data/DATA.md), [data/PROVENANCE.json](data/PROVENANCE.json), and placeholder pointers under `data/raw/` to the IBM source.
+## Repository layout
 
-## Data
+```
+FINDINGS.md      consolidated findings (read this first)
+README.md        this file
+ihf.py           integration-hygiene scoring (the two-axis scorer + telemetry)
+ihf_preflight.py ~20-call wiring check before a full run
+run_ihf.py       run the full IHF baseline for one model
+run_cold.py      cold (pretraining-only) baseline runner
+rescore.py       re-score an existing results JSONL
+fetch_data.py    fetch the benchmark into data/raw/
+data/            data provenance + placeholder pointers to the IBM source
+results/         per-model metric manifests (the scored numbers)
+```
 
-This work uses IBM Research's **FailureSensorIQ** benchmark (Apache-2.0). The raw dataset is **not**
-republished here — get it from the source: [Hugging Face](https://huggingface.co/datasets/ibm-research/FailureSensorIQ) ·
-[IBM GitHub](https://github.com/IBM/FailureSensorIQ) · [arXiv:2506.03278](https://arxiv.org/abs/2506.03278).
-The large raw per-call model outputs are also omitted to keep the repository light; the metric manifests
-hold the scored results.
+## Run it yourself
+
+**Prerequisites**
+- [Ollama](https://ollama.com) running locally, and Python 3.12.
+- Pull the models you want to test:
+  ```bash
+  ollama pull nemotron-3-nano:4b
+  ollama pull gemma3:4b
+  ollama pull phi4-mini
+  ollama pull phi4-mini-reasoning
+  ```
+
+**1. Get the data.** FailureSensorIQ is IBM's benchmark (Apache-2.0) and is not bundled here. Fetch it
+into `data/raw/`:
+```bash
+python fetch_data.py
+```
+…or download it manually from [Hugging Face](https://huggingface.co/datasets/ibm-research/FailureSensorIQ)
+and place the JSONL files under `data/raw/failuresensoriq_standard/` (see the READMEs there).
+
+**2. Preflight the wiring** (cheap ~20-call check; aborts if structured output or reliability is broken):
+```bash
+python ihf_preflight.py --model gemma3:4b --num-predict 8192 --temperature 0.3
+```
+
+**3. Run the full baseline** for a model (writes a JSONL of per-call records plus a `*.manifest.json`):
+```bash
+# non-reasoning, deterministic temperature
+python run_ihf.py --model gemma3:4b   --num-predict 8192  --temperature 0.3
+
+# reasoning model: enable native thinking, give it a larger output budget
+python run_ihf.py --model nemotron-3-nano:4b --num-predict 16384 --think
+```
+Useful flags: `--asset "industrial gas turbine"` (one asset only), `--n 200` (cap to first N), `--seed`,
+`--num-ctx`, `--no-gate` (diagnostic: don't abort on the rolling reliability gate).
+
+**4. Score / re-score** an existing results file:
+```bash
+python rescore.py results/<your-results>.jsonl
+```
+
+The metric manifests under [`results/`](results/) are the scored outputs of these runs. Raw per-call
+JSONL outputs are not committed here (they are large); re-running the steps above regenerates them.
 
 ---
 
