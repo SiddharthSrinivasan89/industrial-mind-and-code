@@ -587,7 +587,9 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; V6 STATELESSSWING</p>
           <p class="experiment-finding">
-            Tests a fundamentally different architecture: the AI selects the EMA smoothing parameter &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period rather than a safety stock buffer. Three models tested across blind, context, and stateful conditions, plus four debiased conditions (V6b). 25-month simulation, deterministic lead times.
+            <strong>The question:</strong> can an AI dampen demand swings if it picks the smoothing parameter inside a control loop, instead of choosing order quantities directly?<br /><br />
+            <strong>Models tested:</strong> three models across blind, context, and stateful conditions (plus four debiased V6b conditions), each selecting the EMA smoothing parameter &alpha; &isin; {0.1, 0.3, 0.5, 0.7} per period; 25-month simulation, deterministic lead times.<br /><br />
+            <strong>The answer, in three findings:</strong>
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -616,7 +618,9 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; V5 CONTROL ARCHITECTURE</p>
           <p class="experiment-finding">
-            Phase 1 ablation: the LLM is removed entirely and replaced with oracle (ground-truth perfect) labels or causal rule-based classifiers. Fourteen architectural variants tested &mdash; multiplier maps, NEUTRAL redefinitions, order dampening, forecast oracle &mdash; 20 replications each. Phase 2 gate not passed for this architecture; the intent-classification line closed.
+            <strong>The question:</strong> if the supply-chain formula is handed perfect, ground-truth labels &mdash; no LLM at all &mdash; can it finally beat exponential smoothing?<br /><br />
+            <strong>Models tested:</strong> no LLM &mdash; oracle (ground-truth) labels and causal rule-based classifiers across fourteen architectural variants (multiplier maps, NEUTRAL redefinitions, order dampening, forecast oracle), 20 replications each.<br /><br />
+            <strong>The answer, in three findings:</strong>
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -645,7 +649,9 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; V4 WORLDEVENTS &middot; 36-MONTH SIMULATION</p>
           <p class="experiment-finding">
-            Tests a 5-label discrete intent classification architecture (STRONG_INCREASE through STRONG_DECREASE) with a hard-coded multiplier lookup replacing the AI&rsquo;s continuous float output from V3b. Four models across three information conditions (Blind, Context, Unstructured), 20&ndash;100 replications per condition, stochastic lead times and world events.
+            <strong>The question:</strong> does giving the AI a clean 5-label intent classification (instead of a raw number) let it lower order variance?<br /><br />
+            <strong>Models tested:</strong> four models (14B&ndash;120B) across Blind, Context, and Unstructured conditions, 20&ndash;100 replications each; 36-month simulation with stochastic lead times and world events; a hard-coded multiplier lookup replaces the AI&rsquo;s continuous output.<br /><br />
+            <strong>The answer, in three findings:</strong>
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -674,7 +680,9 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; HYBRID ARCHITECTURE &middot; 12,960 LLM CALLS</p>
           <p class="experiment-finding">
-            Three AI models were given direct control over the safety stock multiplier in a hybrid architecture where a mathematical formula executed the actual order quantities. Tested across three information conditions (Blind, Context, Stateful) with 20 replications per condition.
+            <strong>The question:</strong> if a deterministic formula executes the orders and the AI only sets the safety-stock multiplier, does the hybrid beat the baseline?<br /><br />
+            <strong>Models tested:</strong> three AI models across Blind, Context, and Stateful conditions, 20 replications per condition (12,960 LLM calls).<br /><br />
+            <strong>The answer, in three findings:</strong>
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -703,7 +711,9 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP &middot; 11,520 LLM CALLS</p>
           <p class="experiment-finding">
-            Four LLM configurations (spanning frontier and local inference, lightweight and reasoning tiers) were evaluated against three heuristic baselines in a three-tier serial supply chain simulation. The published comparison combines eight backend-specific model-condition cells across four two-condition bundles, 20 replications per cell, 11,520 LLM calls.
+            <strong>The question:</strong> can any LLM configuration &mdash; frontier or local, lightweight or reasoning &mdash; beat simple heuristic ordering rules in a serial supply chain?<br /><br />
+            <strong>Models tested:</strong> four LLM configurations vs three heuristic baselines in a three-tier serial chain; eight backend-specific model-condition cells, 20 replications per cell (11,520 LLM calls).<br /><br />
+            <strong>The answer, in three findings:</strong>
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -732,7 +742,9 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; SOVEREIGN MODELS &middot; 1,440 LLM CALLS</p>
           <p class="experiment-finding">
-            Follow-up to Agentic Bullwhip Effect Version 2 testing whether a model trained on Indian data (sarvam-30b, 30B total / 2.4B active parameters) demonstrates stronger seasonal awareness on a synthetic Indian automotive demand series than a frontier foundation model. 2 conditions, 10 replications per condition.
+            <strong>The question:</strong> does a model trained on Indian data (sarvam-30b) read Indian seasonal demand better than a frontier model &mdash; and can either beat the formula?<br /><br />
+            <strong>Models tested:</strong> sarvam-30b (30B total / 2.4B active) vs a GPT OSS 120B reference on a synthetic Indian automotive demand series; 2 conditions, 10 replications each.<br /><br />
+            <strong>The answer, in three findings:</strong>
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -761,7 +773,9 @@
           </div>
           <p class="experiment-domain">SUPPLY CHAIN &middot; EXPERIMENT WRITEUP &middot; 720 LLM CALLS</p>
           <p class="experiment-finding">
-            Exploratory study examining the interaction between domain context provision and model capability on demand amplification. 2&times;2 factorial design (gpt-4.1-mini &times; o1, blind &times; context), 5 replications per condition, 720 LLM calls.
+            <strong>The question:</strong> does more domain context, or more reasoning capability, reduce how much an LLM amplifies demand swings?<br /><br />
+            <strong>Models tested:</strong> a 2&times;2 design (gpt-4.1-mini &times; o1, blind &times; context), 5 replications per condition (720 LLM calls) &mdash; exploratory.<br /><br />
+            <strong>The answer, in three findings:</strong>
           </p>
           <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <ul class="exp-bullets">
@@ -795,7 +809,9 @@
           </div>
           <p class="experiment-domain">TPM &middot; PREDICTIVE MAINTENANCE &middot; VERNACULAR NORMALISATION</p>
           <p class="experiment-finding">
-            Evaluates LLM agent performance on TPM decision support when reasoning over fragmented, multilingual maintenance records representative of Indian manufacturing environments. Includes an experimental condition with a vernacular normalisation preprocessing layer.
+            <strong>The question:</strong> can an LLM do Total Productive Maintenance decision support over fragmented, multilingual shop-floor maintenance records &mdash; and does a vernacular-normalisation layer help?<br /><br />
+            <strong>Setup:</strong> LLM agents over maintenance records representative of Indian manufacturing, with and without a vernacular-normalisation preprocessing layer.<br /><br />
+            <strong>Status:</strong> in progress &mdash; results not yet reported.
           </p>
           <div class="experiment-links">
             <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/issues" target="_blank" rel="noopener">
