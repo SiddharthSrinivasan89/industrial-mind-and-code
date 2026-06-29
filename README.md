@@ -60,8 +60,11 @@ Start with the experiment README for the version you want to inspect:
 - `experiments/agentic-bullwhip-v4-world-events/README.md`
 - `experiments/agentic-bullwhip-v5-control-architecture/README.md`
 - `experiments/agentic-bullwhip-v6-stateless-swing/README.md`
+- `experiments/failuresensoriq-v1-reasoning-effect/README.md`
 
 Most experiment folders include a `code/` directory with a `run_experiment.py` entry point and a `requirements.txt`. Some earlier experiments use `src/` instead. Result summaries are stored as JSON under each experiment's `results/` tree.
+
+Beyond the supply-chain series, the program now also covers **small language models for industrial fault diagnosis** — see [`experiments/failuresensoriq-v1-reasoning-effect/`](experiments/failuresensoriq-v1-reasoning-effect/), a baseline of four 4B-class models on IBM's FailureSensorIQ benchmark, with its own README, consolidated FINDINGS, and run-it-yourself instructions.
 
 ## Current Technical Takeaway
 

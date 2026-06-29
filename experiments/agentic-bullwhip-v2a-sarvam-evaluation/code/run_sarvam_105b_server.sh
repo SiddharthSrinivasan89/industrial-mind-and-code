@@ -4,7 +4,7 @@
 #
 # Prerequisites:
 #   1. sarvam-30b server MUST be stopped first — run: tmux kill-session -t sarvam-server
-#   2. 105b GGUF must be at /home/sid/models/llama-cpp-models/sarvam-105b-gguf/
+#   2. 105b GGUF must be at $HOME/models/llama-cpp-models/sarvam-105b-gguf/
 #
 # Memory: ~68 GiB unified (model 64.2 GiB + KV cache)
 # Port: 8080 (same as 30b server — only one can run at a time)
@@ -13,9 +13,9 @@
 
 set -euo pipefail
 
-MODEL_DIR="/home/sid/models/llama-cpp-models/sarvam-105b-gguf"
+MODEL_DIR="$HOME/models/llama-cpp-models/sarvam-105b-gguf"
 MODEL_FILE="$MODEL_DIR/sarvam-105b-Q4_K_M.gguf-00001-of-00009.gguf"
-LLAMA_SERVER="/home/sid/llama.cpp/build/bin/llama-server"
+LLAMA_SERVER="$HOME/llama.cpp/build/bin/llama-server"
 SESSION="sarvam-105b-server"
 
 if [ ! -f "$MODEL_FILE" ]; then

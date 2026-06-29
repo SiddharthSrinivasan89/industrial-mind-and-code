@@ -2,7 +2,7 @@
 # post_run_chain.sh — waits for Azure V6 production run, commits, then runs V6b.
 # Run inside tmux with nohup. Fails loud with diagnostics; never auto-proceeds past a bad gate.
 
-REPO_ROOT="/home/sid/spark-dev-workspace/industrial-mind-and-code-dev"
+REPO_ROOT="$HOME/spark-dev-workspace/industrial-mind-and-code-dev"
 CODE_DIR="$REPO_ROOT/experiments/Agentic_Bullwhip_Effect_V6_StatelessSwing/code"
 AZURE_LOG="/tmp/v6_o4mini.log"
 V6B_LOG="/tmp/v6b_chain.log"

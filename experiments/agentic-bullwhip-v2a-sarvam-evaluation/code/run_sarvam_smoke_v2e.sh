@@ -10,7 +10,7 @@
 #   vs sarvam-30b: think=False (bailingmoe2 architecture)
 #
 # Prerequisites:
-#   1. sarvam-105b GGUF at /home/sid/models/llama-cpp-models/sarvam-105b-gguf/
+#   1. sarvam-105b GGUF at $HOME/models/llama-cpp-models/sarvam-105b-gguf/
 #   2. sarvam-30b llama-server STOPPED (105b needs ~68 GiB unified memory)
 #   3. llama-server started with 105b model (run_sarvam_105b_server.sh)
 #
