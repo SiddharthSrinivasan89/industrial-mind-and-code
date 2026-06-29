@@ -548,6 +548,35 @@
       <p class="section-label" style="margin-bottom:0.75rem;">Published</p>
       <div class="experiment-list">
 
+        <!-- FailureSensorIQ: Small local fault-diagnosis models -->
+        <div class="experiment-card">
+          <div class="experiment-header">
+            <span class="experiment-name">A Capable Assistant, Not a Decision-Maker: Small Language Models on IBM&rsquo;s FailureSensorIQ</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="experiment-domain">MAINTENANCE &amp; RELIABILITY &middot; FAULT DIAGNOSIS &middot; EDGE SLMs &middot; FAILURESENSORIQ</p>
+          <p class="experiment-finding">
+            Tests four 4B-class language models running locally via Ollama on IBM&rsquo;s FailureSensorIQ benchmark &mdash; 2,667 single-answer fault-diagnosis questions across ten industrial asset classes. Accuracy and integration reliability (clean, machine-readable output) are scored as separate axes, with sampling temperature treated as an explicit variable. Edge framing is footprint-only: runs were on a workstation, not constrained edge hardware.
+          </p>
+          <div class="exp-detail" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
+            <ul class="exp-bullets">
+              <li>Best clean full-set result: Nemotron-3 Nano 4B at 51.8% with structured output on all 2,667 calls &mdash; above the ~27.5% blind-guessing floor but below the ~60.2% human-expert mean, so a reasoning layer to assist an engineer, not an autonomous maintenance decision.</li>
+              <li>Temperature is not a detail: Phi-4-mini rose from 30.7% at its 0.8 default to 36.6% at 0.3 on the same weights, with unusable output falling 6.7% &rarr; 4.9% &mdash; a directional, single-model contrast.</li>
+              <li>A Phi-4-mini-reasoning run degraded from serving-runtime state, not model weights (KV-cache pressure the leading but unconfirmed hypothesis) &mdash; excluded from the leaderboard pending a re-run; the integration, not just the model, decides usability.</li>
+            </ul>
+          </div>
+          <div class="experiment-links" style="margin-top:1.25rem;">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/failuresensoriq-v1-reasoning-effect" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="exp-link" href="blog/small-language-models-fault-diagnosis.html">
+              Read the writeup
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+
         <!-- V6: Adaptive Alpha — First positive result -->
         <div class="experiment-card">
           <div class="experiment-header">

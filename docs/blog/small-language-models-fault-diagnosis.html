@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Small Language Models for Industrial Fault Diagnosis: A Baseline on IBM FailureSensorIQ | Industrial Mind &amp; Code</title>
+  <meta name="description" content="A baseline test of four small language models on IBM FailureSensorIQ. Nemotron-3 Nano 4B reached 51.8% with clean output, useful as an assistant but below expert performance." />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/small-language-models-fault-diagnosis.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Small Language Models for Industrial Fault Diagnosis | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="A local 4B-class model reached 51.8% on IBM FailureSensorIQ with clean output. The practical lessons: temperature and serving reliability matter as much as the model ranking." />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/small-language-models-fault-diagnosis.html" />
+  <meta property="og:image" content="https://www.industrialmindandcode.ai/images/failuresensoriq-aikosh-banner.png" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="760" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --warning-bg: #fdf3e0;
+      --warning: #8a5a00;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font-sans); font-size: 16px; line-height: 1.7; font-weight: 300; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+    nav { position: sticky; top: 0; background: rgba(250, 250, 248, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+    .nav-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-brand { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    .post-header { padding: 7rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .post-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.25rem; }
+    .post-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .post-summary { font-size: 17px; font-weight: 300; color: var(--text-secondary); max-width: 610px; line-height: 1.75; margin-bottom: 2rem; }
+    .post-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .post-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .post-meta-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; }
+    .post-meta-value { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+
+    .post-highlight-image { width: 100%; border-bottom: 1px solid var(--border); background: #111; }
+    .post-highlight-image img { display: block; width: 100%; max-height: 480px; object-fit: cover; object-position: center; }
+
+    .post-body { padding: 4rem 0; }
+    .post-section { margin-bottom: 3.5rem; }
+    .post-section:last-child { margin-bottom: 0; }
+    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.25; }
+
+    .abstract-block { padding: 1.5rem 1.75rem; border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 4px 4px 0; }
+    .abstract-block p { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.75rem; }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong { font-weight: 500; color: var(--text-primary); }
+
+    .prose p { font-size: 15.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; max-width: 640px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 500; color: var(--text-primary); }
+    .prose a { color: var(--accent); text-decoration: none; font-weight: 400; }
+    .prose a:hover { color: var(--accent-mid); }
+
+    .setup-table { width: 100%; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; border-collapse: collapse; }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td { padding: 0.75rem 1.25rem; font-size: 14px; vertical-align: top; }
+    .setup-table td:first-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; width: 180px; }
+    .setup-table td:last-child { font-weight: 400; color: var(--text-primary); }
+
+    .results-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1.5rem; }
+    .results-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 660px; }
+    .results-table thead tr { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .results-table thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; padding: 0.65rem 1rem; text-align: left; white-space: nowrap; }
+    .results-table tbody tr { border-bottom: 1px solid var(--border); background: #fff; }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td { padding: 0.65rem 1rem; color: var(--text-primary); font-weight: 300; vertical-align: middle; }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell { font-family: var(--font-mono); font-size: 13px; font-weight: 500 !important; }
+    .tag-cell { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    .best { color: var(--verdict-supported) !important; }
+    .highlight-row { background: var(--accent-light) !important; }
+    .table-note { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5; }
+
+    .findings-list { list-style: none; counter-reset: finding; display: flex; flex-direction: column; gap: 1.1rem; }
+    .findings-list li { counter-increment: finding; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .findings-list li::before { content: counter(finding, decimal-leading-zero); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; flex-shrink: 0; margin-top: 4px; min-width: 24px; }
+    .finding-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .finding-text strong { font-weight: 500; color: var(--text-primary); }
+
+    .callout-positive { padding: 1.25rem 1.5rem; border: 1px solid var(--verdict-supported); border-radius: 6px; background: var(--verdict-supported-bg); margin-bottom: 1.5rem; }
+    .callout-positive p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .callout-positive strong { font-weight: 500; color: var(--text-primary); }
+
+    .callout-warning { padding: 1.25rem 1.5rem; border: 1px solid var(--warning); border-radius: 6px; background: var(--warning-bg); margin-bottom: 1.5rem; }
+    .callout-warning p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .callout-warning strong { font-weight: 500; color: var(--text-primary); }
+
+    .method-callout { padding: 1.25rem 1.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+    .method-callout-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .method-callout p { font-size: 13.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .method-callout p + p { margin-top: 0.75rem; }
+    .method-callout a { color: var(--accent); text-decoration: none; font-weight: 400; }
+    .method-callout a:hover { color: var(--accent-mid); }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; margin-top: 3rem; transition: color 0.15s; }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    footer { padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
+    .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+      .setup-table td { display: block; width: 100%; }
+      .setup-table td:first-child { width: 100%; padding-bottom: 0.25rem; }
+      .setup-table td:last-child { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="./" class="active">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Maintenance &amp; Reliability &middot; Fault Diagnosis &middot; FailureSensorIQ</p>
+      <h1 class="post-title">Small Language Models for Industrial Fault Diagnosis</h1>
+      <p class="post-summary">
+        A baseline on IBM FailureSensorIQ: 2,667 single-answer questions across ten industrial asset classes. A 2.8 GB model reached 51.8% with clean output on every call. Useful signal, but not an autonomous maintenance decision.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <span class="post-meta-value">June 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Benchmark</span>
+          <span class="post-meta-value">IBM FailureSensorIQ &middot; 2,667 single-answer questions</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">Nemotron-3 Nano 4B &middot; Gemma 3 4B &middot; Phi-4-mini</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Author</span>
+          <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-highlight-image">
+    <img src="../images/failuresensoriq-aikosh-banner.png" alt="Industrial fault diagnosis banner showing local edge compute and machinery sensor signals" loading="lazy" />
+  </div>
+
+  <main class="post-body">
+    <div class="container">
+
+      <div class="post-section">
+        <p class="section-label">TL;DR</p>
+        <div class="abstract-block">
+          <p>The practical question was simple: can a language model small enough to run locally near industrial equipment help with fault diagnosis, without sending data to the cloud?</p>
+          <p>I tested four 4B-class models on IBM's public FailureSensorIQ benchmark and scored two things separately: <strong>accuracy</strong> and <strong>output reliability</strong>. The best clean full-set result came from Nemotron-3 Nano 4B: <strong>51.8% accuracy with structured output on all 2,667 calls</strong>. That is well above blind guessing, but below the roughly 60.2% human-expert mean.</p>
+          <p>The right conclusion is not "autonomous diagnosis." It is "plausible local assistant, with engineering guardrails." The two most practical lessons were not the ranking itself: sampling temperature and serving reliability often decide whether a small model's output is usable at all.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Benchmark</p>
+        <h2 class="section-title">What was tested</h2>
+        <div class="prose">
+          <p><a href="https://huggingface.co/datasets/ibm-research/FailureSensorIQ" target="_blank" rel="noopener">FailureSensorIQ</a> is an IBM Research multiple-choice QA benchmark for understanding relationships between industrial sensors and failure modes. I used its single-answer split: 2,667 questions across ten assets including gas turbines, transformers, motors, pumps, compressors, fans, generators, and reciprocating engines.</p>
+          <p>Each question asks for the best option from a labelled set. The benchmark reference points are useful: blind guessing is about 27.5%, always-answer-A is about 28.2%, the human-expert mean is about 60.2%, and the best expert is about 66.2%.</p>
+        </div>
+
+        <table class="setup-table" style="margin-top:1.5rem;">
+          <tbody>
+            <tr><td>Task</td><td>Single-answer industrial fault-diagnosis QA: choose the best sensor/failure-mode relationship from multiple options.</td></tr>
+            <tr><td>Dataset</td><td>IBM Research FailureSensorIQ, single-true multiple-choice split.</td></tr>
+            <tr><td>Scale</td><td>2,667 questions across 10 industrial asset classes.</td></tr>
+            <tr><td>Scoring</td><td>Accuracy and integration reliability scored separately. Reliability means the output was well-formed and machine-readable.</td></tr>
+            <tr><td>Runtime</td><td>Local Ollama runs on a workstation. Edge claim is footprint-only, not a validated edge-hardware deployment.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Clean full-set runs</h2>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Temp</th>
+                <th>n</th>
+                <th>Accuracy</th>
+                <th>Output reliability</th>
+                <th>Unusable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row">
+                <td>Nemotron-3 Nano 4B</td>
+                <td class="tag-cell">Reasoning</td>
+                <td class="value-cell">0.6</td>
+                <td class="value-cell">2,667</td>
+                <td class="value-cell best">51.8%</td>
+                <td class="value-cell best">1.000</td>
+                <td class="value-cell best">0.0%</td>
+              </tr>
+              <tr>
+                <td>Gemma 3 4B</td>
+                <td class="tag-cell">Non-reasoning</td>
+                <td class="value-cell">0.3</td>
+                <td class="value-cell">2,667</td>
+                <td class="value-cell">42.1%</td>
+                <td class="value-cell best">1.000</td>
+                <td class="value-cell best">0.0%</td>
+              </tr>
+              <tr>
+                <td>Gemma 3 4B</td>
+                <td class="tag-cell">Non-reasoning</td>
+                <td class="value-cell">1.0 default</td>
+                <td class="value-cell">2,667</td>
+                <td class="value-cell">41.9%</td>
+                <td class="value-cell best">1.000</td>
+                <td class="value-cell best">0.0%</td>
+              </tr>
+              <tr>
+                <td>Phi-4-mini</td>
+                <td class="tag-cell">Non-reasoning</td>
+                <td class="value-cell">0.3</td>
+                <td class="value-cell">2,667</td>
+                <td class="value-cell">36.6%</td>
+                <td class="value-cell">0.951</td>
+                <td class="value-cell">4.9%</td>
+              </tr>
+              <tr>
+                <td>Phi-4-mini</td>
+                <td class="tag-cell">Non-reasoning</td>
+                <td class="value-cell">0.8 default</td>
+                <td class="value-cell">2,667</td>
+                <td class="value-cell">30.7%</td>
+                <td class="value-cell">0.933</td>
+                <td class="value-cell">6.7%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Phi-4-mini-reasoning is excluded from this leaderboard because it produced no clean full-set run. Its degraded 240-question diagnostic is treated below as a runtime failure case, not as a valid model score.</p>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Findings</p>
+        <h2 class="section-title">What mattered in practice</h2>
+
+        <ol class="findings-list">
+          <li><p class="finding-text"><strong>Nemotron-3 Nano 4B was the best clean result, but not a decision-maker.</strong> Its 51.8% score is a real lift over guessing and came with perfectly clean output across 2,667 calls. It still sits below the expert mean, so the appropriate role is assistant or reasoning layer, not unsupervised maintenance authority.</p></li>
+          <li><p class="finding-text"><strong>Temperature was not a detail.</strong> Phi-4-mini moved from 30.7% at its 0.8 default to 36.6% at 0.3 on the same weights. Its unusable-output rate also moved from 6.7% to 4.9%, crossing the 5% reliability gate used in this baseline. This is a directional single-model contrast, not a universal law.</p></li>
+          <li><p class="finding-text"><strong>Temperature-insensitivity is useful too.</strong> Gemma 3 4B stayed essentially flat: 41.9% at default temperature and 42.1% at 0.3, with clean output on every call at both settings. A model that does not wobble when a setting changes is easier to commission.</p></li>
+          <li><p class="finding-text"><strong>Clean output and correct diagnosis are different axes.</strong> A model can be wired correctly but wrong, or knowledgeable but hard for software to read. In this kind of deployment, the parser and structured-output layer are part of the result.</p></li>
+          <li><p class="finding-text"><strong>The Phi-4-mini-reasoning failure was a serving-runtime issue.</strong> Its output degraded during a long run, but the same questions answered cleanly when re-sent to a freshly loaded model. That points to runtime state, not model weights. KV-cache pressure is the leading hypothesis, but the mechanism is not confirmed.</p></li>
+          <li><p class="finding-text"><strong>Commission per asset.</strong> One average hides large per-asset differences. A shop-floor assistant should be validated asset by asset, rather than accepted from a single headline score.</p></li>
+        </ol>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Runtime caution</p>
+        <h2 class="section-title">The failure that should not be blamed on the model</h2>
+        <div class="callout-warning">
+          <p><strong>Phi-4-mini-reasoning has no clean full-set result.</strong> Its default-temperature run broke, and the temperature-0.3 diagnostic covered only one asset with 240 questions and 40% unusable output. That result is useful as an operational warning, not as a fair comparison against Nemotron.</p>
+        </div>
+        <div class="prose">
+          <p>The evidence points to serving-state degradation: input was identical across the point where output began degrading, question difficulty did not predict failure, and questions that produced garbage late in the run answered cleanly when re-sent to a freshly loaded model.</p>
+          <p>The operational lesson is simple: monitor output reliability continuously and reload or reset the serving runtime on a schedule. A pilot can fail because the serving setup ages over a long run, even when the model itself is not the problem.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Limitations</p>
+        <h2 class="section-title">What this does and does not prove</h2>
+        <div class="callout-positive">
+          <p><strong>This is a baseline characterisation, not a deployment.</strong> The top model is 2.8 GB and fits the footprint of an 8 GB edge box, but the runs were on a workstation. Treat this as footprint evidence, not validation on constrained edge hardware.</p>
+        </div>
+        <div class="prose">
+          <p>The temperature result is a single-model contrast. It is directionally useful for one-right-answer work, but it is not enough by itself to claim a general rule across models or tasks.</p>
+          <p>The architecture explanation for Nemotron's clean endurance is a hypothesis. Its Mamba-hybrid design plausibly carries less growing KV-cache state than a pure Transformer reasoning model, but this experiment compared models, not architecture in isolation.</p>
+          <p>Finally, the 51.8% top score is not good enough for autonomous maintenance action. The deployed use case needs grounding, reference data, retrieval, tools, or a human sign-off layer above the bare model.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">What this informs</p>
+        <h2 class="section-title">A practical local assistant, with guardrails</h2>
+        <div class="prose">
+          <p>The baseline settles a design direction: Nemotron-3 Nano 4B is the primary small reasoning model to build around, with Gemma 3 4B at low temperature as a clean non-reasoning fallback. The bare model should not make the maintenance decision; it should surface likely causes for an engineer or a grounded system to confirm.</p>
+          <p>The engineering rules are less glamorous and more important: set the sampling temperature for the task, score reliability separately from accuracy, monitor serving health over long runs, reload the runtime before degradation becomes invisible, and commission the assistant per asset.</p>
+          <p>If the decision is a fixed threshold or a lookup, keep it in plain code. Use the model only for the judgement-shaped parts of diagnosis where language, symptoms, and sensor-failure relationships need to be connected.</p>
+        </div>
+
+        <div class="method-callout" style="margin-top:1.5rem;">
+          <p class="method-callout-label">Sources</p>
+          <p>Dataset: <a href="https://huggingface.co/datasets/ibm-research/FailureSensorIQ" target="_blank" rel="noopener">IBM Research FailureSensorIQ on Hugging Face</a> &middot; <a href="https://github.com/IBM/FailureSensorIQ" target="_blank" rel="noopener">IBM GitHub repository</a> &middot; <a href="https://arxiv.org/abs/2506.03278" target="_blank" rel="noopener">arXiv:2506.03278</a>.</p>
+          <p>Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded &mdash; run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.</p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
+        Back to experiments
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal academic research &middot; not affiliated with any employer, platform or model provider</span>
+      <ul class="footer-links">
+        <li>
+          <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
