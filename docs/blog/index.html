@@ -331,7 +331,9 @@
           </div>
           <p class="post-domain">MAINTENANCE &amp; RELIABILITY &middot; FAULT DIAGNOSIS &middot; FAILURESENSORIQ</p>
           <p class="post-description">
-            Four 4B-class local models evaluated on IBM FailureSensorIQ, a 2,667-question industrial fault-diagnosis benchmark. Nemotron-3 Nano 4B reached 51.8% with clean output on every call: useful signal for a local assistant, but still below the human-expert mean. The practical lessons are operational &mdash; temperature and serving reliability decide whether the output is usable.
+            <strong>The question:</strong> can a model small enough to run locally &mdash; on a box beside the machines, no cloud &mdash; do real fault diagnosis, and what decides whether its output is usable?<br />
+            <strong>Models tested:</strong> four 4B-class local models &mdash; Nemotron-3 Nano, Gemma 3 4B, and Phi-4-mini (standard and reasoning) &mdash; on IBM&rsquo;s 2,667-question FailureSensorIQ benchmark.<br />
+            <strong>The answer:</strong> a capable assistant, not a decision-maker. The strongest, a 2.8 GB model, scored 51.8% with perfectly clean output &mdash; useful, but short of the human-expert mark. And usability hinged less on the model than on its setup: one temperature change moved another model six points, and a serving-runtime fault quietly reduced a third to garbage.
           </p>
           <div class="post-links">
             <a class="post-link" href="small-language-models-fault-diagnosis.html">
