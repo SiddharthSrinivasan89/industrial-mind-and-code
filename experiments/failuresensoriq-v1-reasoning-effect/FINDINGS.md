@@ -19,6 +19,8 @@ to inform a deployment, not a deployment.
 
 ## Design & methodology
 
+*Full experiment design and hypotheses: [DESIGN.md](DESIGN.md). Summary below.*
+
 - **Benchmark.** FailureSensorIQ (IBM Research): 2,667 single-answer multiple-choice fault-diagnosis
   questions across ten asset classes (gas turbines, transformers, motors, pumps, compressors, fans,
   generators, reciprocating engines, and more). A public, named benchmark — checkable and comparable.

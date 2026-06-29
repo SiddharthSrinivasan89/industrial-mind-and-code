@@ -10,7 +10,8 @@ separately).
 decision-maker. Two practical lessons sit outside the ranking: sampling **temperature** and **serving
 reliability** decide whether a small model's output is usable at all.
 
-→ **Findings:** [FINDINGS.md](FINDINGS.md) (design, methodology, results, limitations — all in one place).
+→ **Findings:** [FINDINGS.md](FINDINGS.md) (methodology, results, limitations — all in one place).
+→ **Experiment design:** [DESIGN.md](DESIGN.md) (the full design and hypotheses).
 → **Plain-language writeup:** [on the site](https://www.industrialmindandcode.ai/blog/small-language-models-fault-diagnosis.html).
 
 ## Repository layout
