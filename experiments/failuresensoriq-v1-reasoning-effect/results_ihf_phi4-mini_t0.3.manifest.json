@@ -1,0 +1,32 @@
+{
+  "model": "phi4-mini",
+  "model_version": "78fad5d182a7c33065e",
+  "settings": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "top_k": null,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 2048
+  },
+  "prompt_fingerprint": "bf95657e34c425b8",
+  "git_commit": "9cc1abc8df2f",
+  "sample": "full_single_answer_2667",
+  "n_total": 2667,
+  "started_utc": "20260624T072947",
+  "rolling_gate": {
+    "n": 250,
+    "sor": 0.956,
+    "fallback_rate": 0.044,
+    "truncated": 0,
+    "pass": true
+  },
+  "completed_utc": "20260624T081156",
+  "n_done": 2667,
+  "accuracy": 0.3663,
+  "ihf": {
+    "sor": 0.951,
+    "fallback_rate": 0.049,
+    "truncated": 3
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "workflow": "work-order-draft",
+  "task_class": "generative",
+  "task_desc": "draft a work order / shift handover",
+  "model": "gemma3:4b",
+  "model_version": "a2af6cc3eb7fa8be850",
+  "is_reasoning": false,
+  "mandated_temperature": 1.0,
+  "num_predict": 2048,
+  "conflicts": [],
+  "relaxations": [],
+  "recommendation": null,
+  "ihf_gate": null,
+  "ihf_checks": null,
+  "verdict": "DRY-RUN (loop logic only, no probe)",
+  "timestamp_utc": "20260624T035034"
+}

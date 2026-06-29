@@ -1,0 +1,25 @@
+{
+  "model": "phi4-mini",
+  "model_version": "78fad5d182a7c33065e",
+  "settings": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": null,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 2048
+  },
+  "prompt_fingerprint": "bf95657e34c425b8",
+  "git_commit": "9cc1abc8df2f",
+  "sample": "full_single_answer_2667",
+  "n_total": 2667,
+  "started_utc": "20260623T182456",
+  "completed_utc": "20260623T191022",
+  "n_done": 2667,
+  "accuracy": 0.3067,
+  "ihf": {
+    "sor": 0.933,
+    "fallback_rate": 0.067,
+    "truncated": 4
+  }
+}

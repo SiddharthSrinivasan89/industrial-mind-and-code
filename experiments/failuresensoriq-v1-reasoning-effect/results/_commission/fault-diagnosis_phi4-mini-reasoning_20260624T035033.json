@@ -1,0 +1,21 @@
+{
+  "workflow": "fault-diagnosis",
+  "task_class": "deterministic",
+  "task_desc": "sensor reading -> failure mode",
+  "model": "phi4-mini-reasoning",
+  "model_version": "3ca8c2865ce91b6be85",
+  "is_reasoning": true,
+  "mandated_temperature": 0.8,
+  "num_predict": 16384,
+  "conflicts": [
+    "deterministic task wants temperature 0-0.3, but a reasoning model loops / never terminates at low temperature"
+  ],
+  "relaxations": [
+    "temperature relaxed to provider default 0.8 (reasoning model cannot run the deterministic-low regime)"
+  ],
+  "recommendation": "for this deterministic task, prefer a non-reasoning local model (gemma3:4b, phi4-mini) at temperature 0.2",
+  "ihf_gate": null,
+  "ihf_checks": null,
+  "verdict": "DRY-RUN (loop logic only, no probe)",
+  "timestamp_utc": "20260624T035033"
+}

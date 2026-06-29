@@ -1,0 +1,139 @@
+{
+  "repo_id": "ibm-research/FailureSensorIQ",
+  "repo_type": "dataset",
+  "revision": "5f9a736201916597345285bb6e712e3b8f4f0cfe",
+  "source_url": "https://huggingface.co/datasets/ibm-research/FailureSensorIQ",
+  "code_repo": "https://github.com/IBM/FailureSensorIQ",
+  "paper": "FailureSensorIQ (IBM Research, NeurIPS 2025), arXiv:2506.03278",
+  "license_hf_cardData": "apache-2.0",
+  "license_github_readme": "CC-BY-4.0",
+  "license_note": "HF card and GitHub README disagree; resolve before redistribution.",
+  "downloaded_utc": "2026-06-20T20:42:11.480410+00:00",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 4342,
+      "sha256": "e00a82be7b78e7cc7c6de4aa59fc5f4c99ad2f326a87a1d153ff6ba4fe41c0b4"
+    },
+    {
+      "file": "failuresensoriq_standard/all.jsonl",
+      "bytes": 1444382,
+      "sha256": "bdc032ab8d73d136372c9ae69276360eb3d85af4d8bfd72ac43bd40d05267898",
+      "rows": 2667,
+      "keys": [
+        "asset_name",
+        "correct",
+        "id",
+        "option_ids",
+        "options",
+        "question",
+        "question_first",
+        "question_type",
+        "relevancy",
+        "subject",
+        "text_type"
+      ]
+    },
+    {
+      "file": "failuresensoriq_standard/all_10_options.jsonl",
+      "bytes": 1773438,
+      "sha256": "cba58d43d4d49dcff00483b150cf4263c41451c9533842c10fec588bf4d494d7",
+      "rows": 2667,
+      "keys": [
+        "asset_name",
+        "correct",
+        "id",
+        "option_ids",
+        "options",
+        "question",
+        "question_first",
+        "subject",
+        "text_type"
+      ]
+    },
+    {
+      "file": "failuresensoriq_standard/all_multi_answers.jsonl",
+      "bytes": 2600469,
+      "sha256": "dfbe854dec555cfeb0f058f434bf980f87e73dd2c37c3fe52df3ae6fa088d318",
+      "rows": 5629,
+      "keys": [
+        "correct",
+        "id",
+        "option_ids",
+        "options",
+        "question",
+        "question_first",
+        "subject",
+        "text_type"
+      ]
+    },
+    {
+      "file": "failuresensoriq_perturbed/perturbed_simple.jsonl",
+      "bytes": 1133782,
+      "sha256": "d7f420cd578ab5539c3c6e1cd29778bb98c6d5f59e9f613da54a2c2aa2396f35",
+      "rows": 2667,
+      "keys": [
+        "correct",
+        "id",
+        "option_ids",
+        "options",
+        "question",
+        "question_first",
+        "subject",
+        "text_type"
+      ]
+    },
+    {
+      "file": "failuresensoriq_perturbed/perturbed_complex.jsonl",
+      "bytes": 1178960,
+      "sha256": "5117d4373d64efeba657556a4996e0205f7b971c683b87b0c9520af5403cf50a",
+      "rows": 2667,
+      "keys": [
+        "correct",
+        "id",
+        "option_ids",
+        "options",
+        "question",
+        "question_first",
+        "subject",
+        "text_type"
+      ]
+    },
+    {
+      "file": "failuresensoriq_perturbed/all_10_options_all_perturbed_simple.jsonl",
+      "bytes": 1822987,
+      "sha256": "66e8022eb705d729f4e5093eb918b07d3a1e043aaa151b9d7c5d44c446c42f24",
+      "rows": 2667,
+      "keys": [
+        "context",
+        "correct",
+        "id",
+        "option_ids",
+        "options",
+        "question",
+        "question_first",
+        "subject",
+        "text_type",
+        "trigger_statement"
+      ]
+    },
+    {
+      "file": "failuresensoriq_perturbed/all_10_options_perturbed_complex.jsonl",
+      "bytes": 1857497,
+      "sha256": "9fbc9568db775b06d19ea0921b4e3cec14967544c6e809019b6d5e200f3716c7",
+      "rows": 2667,
+      "keys": [
+        "context",
+        "correct",
+        "id",
+        "option_ids",
+        "options",
+        "question",
+        "question_first",
+        "subject",
+        "text_type",
+        "trigger_statement"
+      ]
+    }
+  ]
+}

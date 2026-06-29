@@ -1,0 +1,25 @@
+{
+  "model": "phi4-mini-reasoning",
+  "model_version": "3ca8c2865ce91b6be85",
+  "settings": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "top_k": 50,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 16384
+  },
+  "prompt_fingerprint": "a5e55004c18a60ee",
+  "git_commit": "6ee97ba00644",
+  "sample": "industrial gas turbine",
+  "n_total": 240,
+  "started_utc": "20260624T090324",
+  "completed_utc": "20260624T110739",
+  "n_done": 240,
+  "accuracy": 0.2958,
+  "ihf": {
+    "sor": 0.6,
+    "fallback_rate": 0.4,
+    "truncated": 2
+  }
+}

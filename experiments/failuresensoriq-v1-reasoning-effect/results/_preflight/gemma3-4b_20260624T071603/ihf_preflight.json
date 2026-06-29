@@ -1,0 +1,61 @@
+{
+  "model": "gemma3:4b",
+  "model_version": "a2af6cc3eb7fa8be850",
+  "provider_default": {
+    "found": true,
+    "card": "frameworks/models/gemma3-4b.md",
+    "reasoning": false,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64,
+    "rec_output_tokens": 1024,
+    "max_output_tokens": 8192,
+    "context_window": 131072
+  },
+  "settings": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "top_k": 64,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 2048
+  },
+  "n_calls": 20,
+  "metrics": {
+    "strict": 20,
+    "fallback": 0,
+    "sor": 1.0,
+    "fallback_rate": 0.0,
+    "truncated": 0,
+    "empty": 0
+  },
+  "checks": {
+    "SOR": {
+      "pass": true,
+      "value": "1.0 (20/20 first-pass)",
+      "threshold": ">= 0.95"
+    },
+    "AFC": {
+      "pass": true,
+      "value": "temp=0.3 top_p=0.95 top_k=64 empty=0",
+      "threshold": "flags behaved, no empties"
+    },
+    "TCA": {
+      "pass": true,
+      "value": "operating=0.3 vs mandated=0.3 (task-mandated)",
+      "threshold": "== task-mandated temperature"
+    },
+    "TBC": {
+      "pass": true,
+      "value": "budget=2048 rec=1024 max=8192 trunc=0",
+      "threshold": "rec <= budget <= max, no truncation"
+    },
+    "FP": {
+      "pass": true,
+      "value": "fallback=0.0 (0/20)",
+      "threshold": "<= 0.05"
+    }
+  },
+  "gate_pass": true,
+  "timestamp_utc": "20260624T071603"
+}

@@ -1,0 +1,59 @@
+{
+  "model": "phi4-mini",
+  "model_version": "78fad5d182a7c33065e",
+  "provider_default": {
+    "found": true,
+    "card": "frameworks/models/phi4-mini.md",
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "rec_output_tokens": 1024,
+    "max_output_tokens": 8192,
+    "context_window": 131072
+  },
+  "settings": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": null,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 2048
+  },
+  "n_calls": 20,
+  "metrics": {
+    "strict": 20,
+    "fallback": 0,
+    "sor": 1.0,
+    "fallback_rate": 0.0,
+    "truncated": 0,
+    "empty": 0
+  },
+  "checks": {
+    "SOR": {
+      "pass": true,
+      "value": "1.0 (20/20 first-pass)",
+      "threshold": ">= 0.95"
+    },
+    "AFC": {
+      "pass": true,
+      "value": "temp=0.8 top_p=0.95 top_k=None empty=0",
+      "threshold": "flags behaved, no empties"
+    },
+    "TCA": {
+      "pass": true,
+      "value": "operating=0.8 vs card=0.8",
+      "threshold": "== provider default"
+    },
+    "TBC": {
+      "pass": true,
+      "value": "budget=2048 rec=1024 max=8192 trunc=0",
+      "threshold": "rec <= budget <= max, no truncation"
+    },
+    "FP": {
+      "pass": true,
+      "value": "fallback=0.0 (0/20)",
+      "threshold": "<= 0.05"
+    }
+  },
+  "gate_pass": true,
+  "timestamp_utc": "20260623T180121"
+}

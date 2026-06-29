@@ -1,0 +1,26 @@
+{
+  "model": "nemotron-3-nano:4b",
+  "model_version": "6cc467f054393a55e98",
+  "settings": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": null,
+    "seed": 42,
+    "num_ctx": 32768,
+    "num_predict": 16384,
+    "think": true
+  },
+  "prompt_fingerprint": "9efe37ceb3951f85",
+  "git_commit": "51cba96007d1",
+  "sample": "full_single_answer_n12",
+  "n_total": 12,
+  "started_utc": "20260624T131748",
+  "completed_utc": "20260624T131857",
+  "n_done": 12,
+  "accuracy": 0.6667,
+  "ihf": {
+    "sor": 1.0,
+    "fallback_rate": 0.0,
+    "truncated": 0
+  }
+}

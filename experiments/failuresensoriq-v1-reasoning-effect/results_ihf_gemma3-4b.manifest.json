@@ -1,0 +1,25 @@
+{
+  "model": "gemma3:4b",
+  "model_version": "a2af6cc3eb7fa8be850",
+  "settings": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 2048
+  },
+  "prompt_fingerprint": "bf95657e34c425b8",
+  "git_commit": "9cc1abc8df2f",
+  "sample": "full_single_answer_2667",
+  "n_total": 2667,
+  "started_utc": "20260623T180903",
+  "completed_utc": "20260623T182456",
+  "n_done": 2667,
+  "accuracy": 0.4192,
+  "ihf": {
+    "sor": 1.0,
+    "fallback_rate": 0.0,
+    "truncated": 0
+  }
+}

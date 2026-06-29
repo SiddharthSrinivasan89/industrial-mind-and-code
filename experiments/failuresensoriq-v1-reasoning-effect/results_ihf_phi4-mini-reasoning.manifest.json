@@ -1,0 +1,17 @@
+{
+  "model": "phi4-mini-reasoning",
+  "model_version": "3ca8c2865ce91b6be85",
+  "settings": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 50,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 16384
+  },
+  "prompt_fingerprint": "bf95657e34c425b8",
+  "git_commit": "9cc1abc8df2f",
+  "sample": "full_single_answer_2667",
+  "n_total": 2667,
+  "started_utc": "20260623T191033"
+}
