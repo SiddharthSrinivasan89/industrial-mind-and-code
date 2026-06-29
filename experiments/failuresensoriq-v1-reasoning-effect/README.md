@@ -9,19 +9,19 @@ separate axes).
 calls — above the ~27.5% blind-guessing floor, below the ~60.2% human-expert mean. A capable local
 assistant, not an autonomous decision-maker. The two most practical lessons sit outside the ranking:
 sampling **temperature** and **serving reliability** often decide whether a small model's output is
-usable at all.
+usable at all. The full writeup is on the site: [industrialmindandcode.ai](https://www.industrialmindandcode.ai/blog/small-language-models-fault-diagnosis.html).
 
 ## What's here
 
-- **Writeups:** [WHAT-WE-LEARNED.md](WHAT-WE-LEARNED.md) (the lessons), [POST-STUDY-SLM-INDUSTRIAL-FAULT.md](POST-STUDY-SLM-INDUSTRIAL-FAULT.md), [DESIGN.md](DESIGN.md), [PAPER.md](PAPER.md), [RUN1-DEGRADATION-REPORT.md](RUN1-DEGRADATION-REPORT.md) (the serving-runtime failure case), [relevance_audit.md](relevance_audit.md), [cold_review.md](cold_review.md), [sensor_reference.md](sensor_reference.md). A plain-language summary is in [aikosh-post.md](aikosh-post.md).
-- **Code:** the IHF harness and scoring (`ihf.py`, `ihf_preflight.py`, `run_ihf.py`, `run_cold.py`, `rescore.py`), the task/commission scaffold (`icaf.py`, `icaf_catalog.py`), and the data/label helpers (`fetch_data.py`, `difficulty_labels.py`, `build_relevance_matrix.py`, `inspect_data.py`, `jsonl_to_md.py`) plus the run scripts.
-- **Metrics:** per-model result manifests (`results_ihf_*.manifest.json`) carry the accuracy and reliability numbers; the IHF preflight reports and commission samples are under `results/`.
-- **Data provenance:** [data/DATA.md](data/DATA.md) and [data/PROVENANCE.json](data/PROVENANCE.json).
+- **Findings:** [WHAT-WE-LEARNED.md](WHAT-WE-LEARNED.md) (the lessons), [POST-STUDY-SLM-INDUSTRIAL-FAULT.md](POST-STUDY-SLM-INDUSTRIAL-FAULT.md) (methodology + report), [RUN1-DEGRADATION-REPORT.md](RUN1-DEGRADATION-REPORT.md) (the serving-runtime failure case), and [DESIGN.md](DESIGN.md) (experiment design).
+- **Reproducible assets (code):** the IHF harness and scoring — `ihf.py`, `ihf_preflight.py`, `run_ihf.py`, `run_cold.py`, `rescore.py` — and the data fetcher `fetch_data.py`.
+- **Results:** per-model metric manifests (`results_ihf_*.manifest.json`) carry the accuracy and reliability numbers for each run.
+- **Data provenance:** [data/DATA.md](data/DATA.md), [data/PROVENANCE.json](data/PROVENANCE.json), and placeholder pointers under `data/raw/` to the IBM source.
 
 ## Data
 
-This work uses IBM Research's **FailureSensorIQ** benchmark. The raw dataset is **not** republished here —
-get it from the source: [Hugging Face](https://huggingface.co/datasets/ibm-research/FailureSensorIQ) ·
+This work uses IBM Research's **FailureSensorIQ** benchmark (Apache-2.0). The raw dataset is **not**
+republished here — get it from the source: [Hugging Face](https://huggingface.co/datasets/ibm-research/FailureSensorIQ) ·
 [IBM GitHub](https://github.com/IBM/FailureSensorIQ) · [arXiv:2506.03278](https://arxiv.org/abs/2506.03278).
 The large raw per-call model outputs are also omitted to keep the repository light; the metric manifests
 hold the scored results.
