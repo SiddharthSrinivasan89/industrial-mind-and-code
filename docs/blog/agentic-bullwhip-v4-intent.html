@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfect Compliance, Wider Swings: The Five-Label Intent Classifier | Industrial Mind &amp; Code</title>
+  <meta name="description" content="This experiment tested whether confining a language model to a five-label intent classification, with a fixed lookup table doing the arithmetic, keeps supply-chain orders steadier than exponential smoothing. The labels were perfectly reliable, but the orders swung 6 to 7 times wider than the baseline." />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4-intent.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Perfect Compliance, Wider Swings: The Five-Label Intent Classifier | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="This experiment tested whether confining a language model to a five-label intent classification, with a fixed lookup table doing the arithmetic, keeps supply-chain orders steadier than exponential smoothing. The labels were perfectly reliable, but the orders swung 6 to 7 times wider than the baseline." />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4-intent.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #f4f3f0;
+      --border: #e2e0db;
+      --text-primary: #1a1916;
+      --text-secondary: #6b6860;
+      --text-muted: #9e9c98;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --accent-mid: #3a5f9f;
+      --verdict-rejected-bg: #fdf0f0;
+      --verdict-rejected: #8a2a2a;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font-sans); font-size: 16px; line-height: 1.7; font-weight: 300; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+    nav { position: sticky; top: 0; background: rgba(250, 250, 248, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+    .nav-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-brand { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    .post-header { padding: 7rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .post-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.25rem; }
+    .post-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .post-summary { font-size: 17px; font-weight: 300; color: var(--text-secondary); max-width: 580px; line-height: 1.75; margin-bottom: 2rem; }
+    .post-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .post-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .post-meta-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; }
+    .post-meta-value { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+
+    .post-body { padding: 4rem 0; }
+    .post-section { margin-bottom: 3.5rem; }
+    .post-section:last-child { margin-bottom: 0; }
+    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.25; }
+
+    .abstract-block { padding: 1.5rem 1.75rem; border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 4px 4px 0; }
+    .abstract-block p { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.75rem; }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong { font-weight: 500; color: var(--text-primary); }
+
+    .setup-table { width: 100%; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; border-collapse: collapse; }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td { padding: 0.75rem 1.25rem; font-size: 14px; vertical-align: top; }
+    .setup-table td:first-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; width: 180px; }
+    .setup-table td:last-child { font-weight: 400; color: var(--text-primary); }
+
+    .findings-list { list-style: none; counter-reset: finding; display: flex; flex-direction: column; gap: 1.1rem; }
+    .findings-list li { counter-increment: finding; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .findings-list li::before { content: counter(finding, decimal-leading-zero); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; flex-shrink: 0; margin-top: 4px; min-width: 24px; }
+    .finding-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .finding-text strong { font-weight: 500; color: var(--text-primary); }
+
+    .results-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1.5rem; }
+    .results-table-wrap:last-child { margin-bottom: 0; }
+    .results-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .results-table thead tr { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .results-table thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; padding: 0.65rem 1.25rem; text-align: left; white-space: nowrap; }
+    .results-table tbody tr { border-bottom: 1px solid var(--border); background: #fff; }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td { padding: 0.65rem 1.25rem; color: var(--text-primary); font-weight: 300; vertical-align: middle; }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell { font-family: var(--font-mono); font-size: 13px; font-weight: 500 !important; }
+    .tag-cell { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    .best { color: var(--verdict-supported) !important; }
+    .highlight-row { background: var(--accent-light) !important; }
+
+    .prose p { font-size: 15.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; max-width: 640px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 500; color: var(--text-primary); }
+
+    .table-note { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5; }
+
+    .callout-positive { padding: 1.25rem 1.5rem; border: 1px solid var(--verdict-supported); border-radius: 6px; background: var(--verdict-supported-bg); margin-bottom: 1.5rem; }
+    .callout-positive p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .callout-positive strong { font-weight: 500; color: var(--text-primary); }
+
+    .method-callout { padding: 1.25rem 1.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+    .method-callout-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .method-callout p { font-size: 13.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .method-callout p + p { margin-top: 0.75rem; }
+    .method-callout a { color: var(--accent); text-decoration: none; font-weight: 400; }
+    .method-callout a:hover { color: var(--accent-mid); }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; margin-top: 3rem; transition: color 0.15s; }
+    .back-link:hover { color: var(--text-primary); }
+
+    .post-highlight-image { width: 100%; border-bottom: 1px solid var(--border); }
+    .post-highlight-image img { display: block; width: 100%; max-height: 480px; object-fit: cover; object-position: center; }
+
+    footer { padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
+    .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <ul class="nav-links">
+        <li><a href="./" class="active">Experiments</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Supply Chain &middot; Intent Classification &middot; Experiment Writeup</p>
+      <h1 class="post-title">Perfect Compliance, Wider Swings: The Five-Label Intent Classifier</h1>
+      <p class="post-summary">
+        In a supply chain, a small change in customer demand can become a much larger swing in upstream orders. This experiment asks whether confining a language model to a clean five-label classification &mdash; and letting a fixed lookup table do the arithmetic &mdash; keeps orders steadier than a standard forecasting formula. The labels were perfectly reliable. The orders were not.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="post-meta-label">Date</span>
+          <span class="post-meta-value">April 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Experiment</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 4 &mdash; Intent Classifier (intermediate variant)</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Design</span>
+          <span class="post-meta-value">gpt-4.1-mini (Azure) &middot; 3 information conditions &middot; 25-month simulation</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="post-meta-label">Author</span>
+          <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="post-body">
+    <div class="container">
+
+      <div class="post-section">
+        <p class="section-label">What this experiment is</p>
+        <div class="abstract-block">
+          <p>This experiment tests a specific idea: do not ask the AI to produce a number. Ask it to pick one of five plain labels for the month ahead, then let a fixed lookup table and a simple ordering formula do the rest.</p>
+          <p>Each month, at each tier of a fictional automotive supply chain, gpt-4.1-mini chooses one of {STRONG_INCREASE, MODERATE_INCREASE, NEUTRAL, MODERATE_DECREASE, STRONG_DECREASE}. A fixed table turns that label into a buffer multiplier, and an Order-Up-To formula computes the actual order. The model never produces a number; it only classifies the situation. <strong>The label interface was completely reliable &mdash; and every condition still amplified the bullwhip well above the baseline.</strong></p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Reader context</p>
+        <h2 class="section-title">The problem is not ordering once. It is ordering repeatedly.</h2>
+        <div class="prose">
+          <p>The bullwhip effect is what happens when small changes in customer demand become larger and larger order swings as they travel upstream through a supply chain. A retailer sees a bump in demand, the manufacturer orders extra to avoid a shortage, the component supplier sees that larger order and reacts again. By the time the signal reaches the top of the chain, a modest demand change can look like a crisis.</p>
+          <p>I measure that with OVAR, the Order Variance Amplification Ratio: how wildly orders swing compared with how wildly customer demand actually swings. An OVAR of 1 means orders are as steady as demand. Above 1 means the ordering is amplifying the swing. Lower is better.</p>
+          <p>An earlier experiment in this series (V3b) had let the model output a continuous number &mdash; a safety-stock multiplier &mdash; and the model consistently miscalibrated it. Language models have no intrinsic number line; they produce tokens, not quantities. So the design here removes the number entirely. If calibrating a float is the problem, replace the float with a multiple-choice label and let hard-coded software do the arithmetic. This is the intermediate V4 variant; the design it established was then carried forward into the V4 WorldEvents experiment, which is the primary V4 result.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Experiment Setup</p>
+        <table class="setup-table">
+          <tbody>
+            <tr><td>What the AI does</td><td>Each month, at each tier, the AI picks one of five labels describing the demand direction for the month ahead. It does not place the order or produce any number. A fixed lookup table converts the label to a buffer multiplier, and an Order-Up-To formula produces the order.</td></tr>
+            <tr><td>Model tested</td><td>gpt-4.1-mini (Azure OpenAI)</td></tr>
+            <tr><td>What the AI was told</td><td>Three variants: inventory numbers only (IC-Blind); numbers plus a seasonal calendar and tier persona (IC-Context); numbers plus its own last three months of choices (IC-Stateful).</td></tr>
+            <tr><td>How many runs</td><td>20 runs per AI condition to account for response variability. Fixed baselines run once &mdash; they are deterministic.</td></tr>
+            <tr><td>Demand used</td><td>25 months of synthetic demand shaped around Indian automotive patterns &mdash; a monsoon slump, a Diwali peak, and a financial year-end surge. No demand shocks or supply disruptions.</td></tr>
+            <tr><td>Supply chain</td><td>A fictional 3-tier chain: OEM (Tatva Motors) &rarr; ancillary supplier &rarr; component maker. Orders placed monthly, lead time fixed at one month across all tiers.</td></tr>
+            <tr><td>Benchmarks</td><td>Pure algorithmic baselines with no AI: exponential smoothing (a standard demand-forecasting heuristic) and a hybrid control (the same order formula with the buffer fixed at its base level).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+
+        <div class="callout-positive">
+          <p><strong>The label interface was rock-solid.</strong> Intent compliance was perfect &mdash; 1.000 across every condition and every one of the runs, with zero fallbacks. The model returned one of the five valid labels in clean form every single time, so the system never had to fall back to a default. That was the main design bet, and it held.</p>
+        </div>
+
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>But the AI amplified the bullwhip far more than the plain formula.</strong> Every AI condition landed at a chain OVAR between 3.268 &plusmn; 0.062 and 3.843 &plusmn; 0.129, against the exponential-smoothing baseline of 0.545 &mdash; roughly 6 to 7&times; more order-swing. IC-Blind is about 7&times; worse; IC-Context, the steadiest AI condition, is about 6&times; worse. The simple deterministic formula also held fewer stockouts. On the operational metric that matters, exponential smoothing clearly beat the language model here.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The three information conditions barely moved &mdash; the Equaliser Effect.</strong> Giving the model the calendar (IC-Context) or its own history (IC-Stateful) changed the OVAR only a little, and not in a way that rescued it. Once you force the decision into a small fixed set of labels mapped to fixed multipliers, you put a ceiling and a floor on how far the outcome can move. The label set, not the model&rsquo;s cleverness or the information it sees, dominates the result.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The result is robust, not a small-sample fluke.</strong> I first ran 10 repetitions per condition, then doubled it to 20. Across every headline metric &mdash; chain OVAR, the per-tier OVAR, stockouts, and compliance &mdash; every average moved by less than one standard deviation when I doubled the sample. The n=20 set is the result of record; the n=10 set is kept only so this stability check can be reproduced.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
+        <div class="prose">
+          <p>Read this table with one rule in mind: lower OVAR means less order volatility. A value below 1.0 means the ordering policy is absorbing volatility rather than transmitting it upstream. Exponential smoothing is the reference point.</p>
+        </div>
+
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <thead>
+              <tr><th>Condition</th><th>Chain OVAR (n=20)</th><th>Stockouts</th><th>Intent compliance</th></tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row"><td><strong>exp_smoothing (baseline)</strong></td><td class="value-cell best">0.545</td><td class="value-cell best">5</td><td class="tag-cell">&mdash;</td></tr>
+              <tr><td>hybrid_control (baseline)</td><td class="value-cell">1.710</td><td class="value-cell">14</td><td class="tag-cell">&mdash;</td></tr>
+              <tr><td>IC-Blind (gpt-4.1-mini)</td><td class="value-cell">3.843 &plusmn; 0.129</td><td class="value-cell">12.05 &plusmn; 0.94</td><td class="value-cell">1.000</td></tr>
+              <tr><td>IC-Context (gpt-4.1-mini)</td><td class="value-cell">3.268 &plusmn; 0.062</td><td class="value-cell">15.70 &plusmn; 0.80</td><td class="value-cell">1.000</td></tr>
+              <tr><td>IC-Stateful (gpt-4.1-mini)</td><td class="value-cell">3.762 &plusmn; 0.084</td><td class="value-cell">12.05 &plusmn; 1.15</td><td class="value-cell">1.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Every AI condition is between roughly 6&times; and 7&times; the exponential-smoothing baseline. Full run-level data, per-tier OVAR, and standard deviations are in the GitHub repository.</p>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Mechanism</p>
+        <h2 class="section-title">Why the labels could not save the orders</h2>
+        <div class="prose">
+          <p>The design fixed the right problem and exposed a different one. Removing the number from the model&rsquo;s output did exactly what it was meant to: compliance went to a perfect 1.000 with no fallbacks. Confining a language model to a small, fixed set of labels is a dependable way to get structured output. That part of the bet paid off.</p>
+          <p>But the same constraint that made the output reliable also capped the outcome. The five labels map to five fixed multipliers. Whatever the model reasons, the order it ultimately drives can only take one of a handful of values per period. That is the Equaliser Effect: the discrete lookup table creates a structural ceiling and floor on OVAR that no prompt, no extra context, and no memory can escape, because the label-to-multiplier mapping removes the AI&rsquo;s capacity for fine-grained adjustment.</p>
+          <p>In this no-disruption seasonal environment, the multipliers the model selected drove the buffer up and down more aggressively than the demand pattern justified, and the orders swung accordingly &mdash; well past what exponential smoothing produces by gently averaging recent demand.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Implications</p>
+        <h2 class="section-title">What this does and does not show</h2>
+        <div class="prose">
+          <p>For this setup, the discrete-label interface is a dependable way to get structured output from a language model, but it did not beat a standard forecasting heuristic at keeping orders steady. The AI amplified the bullwhip about 6 to 7&times; more than exponential smoothing, and adding context or memory did not close that gap. These are useful, checkable facts about one model and one simulated chain.</p>
+          <p>The limits are worth stating plainly. I tested a single model (gpt-4.1-mini), a single 25-month synthetic demand series calibrated to Indian automotive seasonality, and a single simplified three-tier chain with a one-month lead time and no demand shocks. The intent-to-multiplier lookup values come from domain logic and are not guaranteed to be optimal. I would not generalise these numbers to other models, other markets, or more complex chains without testing them there. The hypotheses here were not pre-registered.</p>
+          <p>This closes the V4 intent-classification line. The architecture it established &mdash; classification by the model, arithmetic by the formula &mdash; is carried forward into the V4 WorldEvents experiment, which tests the same design under stochastic lead times and world events and is the primary V4 result.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p>Full code, data, and result manifests are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4-intent-classifier" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Methodology note</p>
+          <p>All scenarios, companies, and products are fictional. The demand series is synthetic, calibrated to Indian automotive seasonal patterns across 25 months, with deterministic one-month lead times and no demand shocks. Results apply to a 3-tier intent-classifier architecture where gpt-4.1-mini selects one of five labels per period and a fixed lookup table maps each label to a buffer multiplier; do not generalise beyond this scope. The n=20 Azure set is the result of record.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Disclaimer</p>
+          <p>Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded &mdash; run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.</p>
+        </div>
+      </div>
+
+      <a class="back-link" href="./">
+        Back to Experiments
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing a probabilistic system inside a deterministic environment<br>personal research &middot; not affiliated with any employer</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

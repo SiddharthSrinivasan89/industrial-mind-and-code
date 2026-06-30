@@ -1,9 +1,8 @@
 # V4 Design — Intent Classifier Hybrid Architecture
 
-**Experiment:** `Agentic_Bullwhip_Effect_V4_IntentClassifier`
-**Version:** 0.1 (draft — to be refined with V3b results)
+**Experiment:** `agentic-bullwhip-v4-intent-classifier`
 **Date:** April 2026
-**Status:** Pre-code design. Awaiting V3b production results before finalising multiplier calibration and primary threshold.
+**Status:** Complete — run with gpt-4.1-mini on Azure at n=20 across the three intent-classification conditions plus the deterministic baselines. See `FINDINGS.md` for results.
 **Lineage:** V1 → V2 → V2a → V3b (HybridArch) → **V4 (IntentClassifier)**
 
 > **How to use this document:**
@@ -255,11 +254,8 @@ lookup). Baselines run deterministically — no LLM calls.
 |---|---|---|---|
 | `exp_smoothing` | heuristic | — | — |
 | `hybrid_control` | hybrid_control (multiplier=1.0) | — | — |
-| `intent_blind_local` | intent | state only | local |
 | `intent_blind_azure` | intent | state only | azure |
-| `intent_context_local` | intent | state + calendar month + tier persona | local |
 | `intent_context_azure` | intent | state + calendar month + tier persona | azure |
-| `intent_stateful_local` | intent | state + calendar + 3-period intent/outcome history | local |
 | `intent_stateful_azure` | intent | state + calendar + 3-period intent/outcome history | azure |
 
 **Runs:** 20 per LLM condition; 1 per baseline (deterministic).
@@ -317,11 +313,10 @@ and V4 (intent interface) on identical inputs.
 
 | Label | Model | Backend | Temperature |
 |---|---|---|---|
-| local | nemotron-3-super:120b | Ollama (local GPU) | default |
-| azure | gpt-4.1-mini | Azure OpenAI GlobalStandard | default |
+| azure | gpt-4.1-mini | Azure OpenAI GlobalStandard | 0.4 |
 
-Temperature rationale: same as V3b — both are reasoning models. Default temperature
-is used; stochasticity across 20 runs is preserved via model sampling defaults.
+Temperature rationale: gpt-4.1-mini is run at temperature 0.4, which preserves
+stochasticity across the 20 runs (the simulator itself is deterministic).
 
 The constrained output space (one of 5 string labels vs. an unbounded float) should
 substantially reduce variance in outputs and compliance failures compared to V3b.
@@ -569,7 +564,7 @@ value triggers the fallback. Parse failure rate is expected to be near zero beca
 ### Phase 1: Code implementation
 
 ```bash
-cd experiments/Agentic_Bullwhip_Effect_V4_IntentClassifier/code/
+cd experiments/agentic-bullwhip-v4-intent-classifier/code/
 ```
 
 Priority order:
@@ -582,8 +577,8 @@ Priority order:
 ### Phase 2: Dry run validation (zero API cost)
 
 ```bash
-DRY_RUN=1 BACKEND=local /usr/bin/python3 run_experiment.py \
-    --experiments baselines H1_IC --runs 2 --env .env.local
+DRY_RUN=1 BACKEND=azure /usr/bin/python3 run_experiment.py \
+    --experiments baselines H1_IC --runs 2 --env .env.azure
 /usr/bin/python3 verify_outputs.py --results-dir ../results/
 ```
 
@@ -592,11 +587,6 @@ Expected: all records have `intent` field; `intent_compliance_rate=1.0` (dry_run
 ### Phase 3: Smoke test (2 runs, real LLM)
 
 ```bash
-# Local
-BACKEND=local /usr/bin/python3 run_experiment.py \
-    --experiments H1_IC --runs 2 --env .env.local
-
-# Azure
 BACKEND=azure /usr/bin/python3 run_experiment.py \
     --experiments H1_IC --runs 2 --env .env.azure
 ```
@@ -606,12 +596,6 @@ Verify: `intent` field varies across periods, `compliance_rate ≥ 0.99`, ration
 ### Phase 4: Production runs (in tmux with nohup)
 
 ```bash
-# Local (nemotron-3-super:120b)
-tmux new-session -s prod_v4_local
-BACKEND=local nohup /usr/bin/python3 run_experiment.py \
-    --experiments baselines H1_IC H2_IC H3_IC --runs 20 --env .env.local \
-    > ../logs/v4_local_prod.log 2>&1
-
 # Azure (gpt-4.1-mini)
 tmux new-session -s prod_v4_azure
 BACKEND=azure nohup /usr/bin/python3 run_experiment.py \
@@ -619,14 +603,9 @@ BACKEND=azure nohup /usr/bin/python3 run_experiment.py \
     > ../logs/v4_azure_prod.log 2>&1
 ```
 
-**Local run cool-down (built-in):**
-Local runs take ~51h total (3 conditions × 20 runs × ~51 min/run). To prevent GPU
-thermal throttling on multi-day continuous runs, the runner inserts a 30-minute pause
-between experiment groups whenever total wall time exceeds 8 hours.
-
-Implementation in `run_experiment.py` (code phase):
+Implementation note (cool-down between groups):
 ```python
-COOLDOWN_THRESHOLD_H = 8.0      # hours — only triggers on long local runs
+COOLDOWN_THRESHOLD_H = 8.0      # hours
 COOLDOWN_DURATION_S  = 1800     # 30 minutes
 
 # In main(), before the experiment loop:
@@ -674,7 +653,7 @@ Key figures to add (beyond V3b's figure set):
    domain-logic-driven (initial design) or calibrated from V3b float medians. Neither
    is guaranteed to be globally optimal for the OUT-style formula.
 
-4. **Model-specific results:** Findings for nemotron-3-super:120b and gpt-4.1-mini
+4. **Model-specific results:** Findings for gpt-4.1-mini
    may not generalise to other LLMs. The intent classification task may be easier or
    harder for models with different instruction-following capabilities.
 

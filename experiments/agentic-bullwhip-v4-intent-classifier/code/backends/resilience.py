@@ -7,7 +7,7 @@ jitter across transient API errors (500, 429, 503, connection, timeout).
 Separation of concerns
 ----------------------
 This module handles *server-side* failures only:
-  - HTTP 5xx (Azure/Ollama service errors)
+  - HTTP 5xx (Azure service errors)
   - HTTP 429 (rate limit — back off and retry)
   - Network failures (connection reset, DNS, timeout)
 

@@ -138,13 +138,13 @@ def run_simulation(
     demand_series     : DataFrame with [period, calendar_month, retail_demand], 25 rows.
     condition         : "blind" | "context" | "stateful" (for intent policy)
                         or "blind" | "context" for legacy heuristic/hybrid.
-    model_tier        : "lightweight" | "reasoning"
+    model_tier        : "lightweight"
     policy            : "intent" | "hybrid" | "hybrid_control" | "naive" |
                         "order_up_to" | "exp_smoothing"
     S                 : Initial inventory (mean + 1.65σ).
     safety_stock      : Base safety stock (S - mean_demand).
     initial_inventory : Starting on_hand at all tiers (= S).
-    backend           : "azure" | "local" | None (falls back to BACKEND env var)
+    backend           : "azure" | None (falls back to BACKEND env var)
 
     Returns list of dicts — 75 records per run (25 periods × 3 tiers).
     """

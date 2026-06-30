@@ -1,0 +1,164 @@
+[
+  {
+    "condition": "ic_blind_azure",
+    "policy": "intent",
+    "n_runs": 20,
+    "chain_ovar": {
+      "mean": 3.8432355508594953,
+      "std": 0.12861465526096358
+    },
+    "tier_ovar": {
+      "OEM": {
+        "mean": 5.114599359700255,
+        "std": 0.34123027966860403
+      },
+      "Ancillary": {
+        "mean": 3.635349586571447,
+        "std": 0.12148041233077131
+      },
+      "Component": {
+        "mean": 2.7797577063067855,
+        "std": 0.047620636323007566
+      }
+    },
+    "chain_stockouts": {
+      "mean": 12.05,
+      "std": 0.9445132413883327
+    },
+    "mean_on_hand": {
+      "mean": 7918.7875,
+      "std": 244.02112768317156
+    },
+    "pattern_score": {
+      "mean": 0.16174242424242424,
+      "std": 0.008253203267095487
+    },
+    "intent_compliance": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "intent_accuracy": {
+      "full": {
+        "mean": 0.21428571428571427,
+        "std": 0.0
+      },
+      "direction": {
+        "mean": 0.23214285714285715,
+        "std": 0.03173297559423709
+      },
+      "n_event_periods": 14
+    },
+    "intent_entropy": {
+      "mean": 0.9461026148174112,
+      "std": 0.14924877081298232
+    },
+    "intent_distribution": {
+      "ic_blind_azure_r01_977be8": {
+        "NEUTRAL": 20,
+        "STRONG_INCREASE": 3,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r02_501610": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r03_aca50c": {
+        "NEUTRAL": 18,
+        "STRONG_INCREASE": 4,
+        "STRONG_DECREASE": 1,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r04_f3fdb2": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r05_8b0a15": {
+        "NEUTRAL": 17,
+        "STRONG_INCREASE": 4,
+        "MODERATE_INCREASE": 1,
+        "STRONG_DECREASE": 1,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r06_6435c5": {
+        "NEUTRAL": 20,
+        "STRONG_INCREASE": 3,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r07_c0642f": {
+        "NEUTRAL": 20,
+        "STRONG_INCREASE": 3,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r08_02dfac": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r09_afdb57": {
+        "NEUTRAL": 20,
+        "STRONG_INCREASE": 3,
+        "STRONG_DECREASE": 1
+      },
+      "ic_blind_azure_r10_bc334a": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 3,
+        "MODERATE_INCREASE": 1,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r11_a5e974": {
+        "NEUTRAL": 20,
+        "STRONG_INCREASE": 3,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r12_cb25a9": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r13_7aa117": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 3,
+        "STRONG_DECREASE": 1,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r14_b26f45": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r15_4131de": {
+        "NEUTRAL": 18,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 2
+      },
+      "ic_blind_azure_r16_e16e24": {
+        "NEUTRAL": 18,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 2
+      },
+      "ic_blind_azure_r17_fc9507": {
+        "NEUTRAL": 18,
+        "STRONG_INCREASE": 4,
+        "STRONG_DECREASE": 2
+      },
+      "ic_blind_azure_r18_48a814": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 1
+      },
+      "ic_blind_azure_r19_09bfd0": {
+        "NEUTRAL": 18,
+        "STRONG_INCREASE": 4,
+        "MODERATE_INCREASE": 1,
+        "STRONG_DECREASE": 1
+      },
+      "ic_blind_azure_r20_fe6f88": {
+        "NEUTRAL": 19,
+        "STRONG_INCREASE": 4,
+        "MODERATE_DECREASE": 1
+      }
+    }
+  }
+]

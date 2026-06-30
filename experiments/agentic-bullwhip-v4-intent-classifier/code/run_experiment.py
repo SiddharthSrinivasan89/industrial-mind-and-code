@@ -7,15 +7,11 @@ on V3b's continuous float output while using the same OUT-style formula and dema
 Setup
 -----
     cp env.azure.template .env.azure   # fill in Azure credentials
-    cp env.local.template .env.local   # fill in Ollama endpoint + model
 
 Usage
 -----
-    # Azure backend (gpt-4.1-mini), 10 runs
-    python run_experiment.py --experiments baselines H1_IC H2_IC H3_IC --runs 10 --env .env.azure
-
-    # Local backend (nemotron-3-super:120b), 5 runs
-    python run_experiment.py --experiments baselines H1_IC H2_IC H3_IC --runs 5 --env .env.local
+    # Azure backend (gpt-4.1-mini), 20 runs
+    python run_experiment.py --experiments baselines H1_IC H2_IC H3_IC --runs 20 --env .env.azure
 
     # Dry run — validates pipeline without any LLM calls
     DRY_RUN=1 python run_experiment.py --experiments H1_IC --runs 2 --env .env.azure
@@ -23,13 +19,9 @@ Usage
 Experiment labels
 -----------------
     baselines — exp_smoothing, hybrid_control (deterministic, 1 run each)
-    H1_IC     — IC-Blind × azure + local
-    H2_IC     — IC-Context × azure + local
-    H3_IC     — IC-Stateful × azure + local
-
-Each experiment group contains both a local and an azure condition spec.
-When BACKEND=azure, local specs are skipped; when BACKEND=local, azure specs are skipped.
-Run azure and local as separate invocations with their respective env files.
+    H1_IC     — IC-Blind (Azure gpt-4.1-mini)
+    H2_IC     — IC-Context (Azure gpt-4.1-mini)
+    H3_IC     — IC-Stateful (Azure gpt-4.1-mini)
 """
 
 import argparse
@@ -37,8 +29,6 @@ import hashlib
 import json
 import logging
 import os
-import platform
-import subprocess
 import sys
 import uuid
 from datetime import datetime, timezone
@@ -76,22 +66,16 @@ EXPERIMENTS: dict[str, list[dict]] = {
     # H1_IC — IC-Blind: LLM sees state variables only; no calendar context.
     "H1_IC": [
         {"label": "ic_blind_azure",      "policy": "intent", "condition": "blind", "model_tier": "lightweight", "backend": "azure"},
-        {"label": "ic_blind_local",      "policy": "intent", "condition": "blind", "model_tier": "reasoning",   "backend": "local"},
-        {"label": "ic_blind_local_phi",  "policy": "intent", "condition": "blind", "model_tier": "lightweight", "backend": "local"},
     ],
 
     # H2_IC — IC-Context: calendar month + tier persona.
     "H2_IC": [
         {"label": "ic_context_azure",     "policy": "intent", "condition": "context", "model_tier": "lightweight", "backend": "azure"},
-        {"label": "ic_context_local",     "policy": "intent", "condition": "context", "model_tier": "reasoning",   "backend": "local"},
-        {"label": "ic_context_local_phi", "policy": "intent", "condition": "context", "model_tier": "lightweight", "backend": "local"},
     ],
 
     # H3_IC — IC-Stateful: context + last 3 periods of (demand, order, intent, backlog, stockout).
     "H3_IC": [
         {"label": "ic_stateful_azure",     "policy": "intent", "condition": "stateful", "model_tier": "lightweight", "backend": "azure"},
-        {"label": "ic_stateful_local",     "policy": "intent", "condition": "stateful", "model_tier": "reasoning",   "backend": "local"},
-        {"label": "ic_stateful_local_phi", "policy": "intent", "condition": "stateful", "model_tier": "lightweight", "backend": "local"},
     ],
 }
 
@@ -278,27 +262,12 @@ def save_results(
     else:
         latency_stats = {}
 
-    if backend == "local":
-        infra_context = {
-            "type":      "local",
-            "endpoint":  os.environ.get("LOCAL_ENDPOINT", ""),
-            "platform":  platform.platform(),
-        }
-        try:
-            gpu_out = subprocess.check_output(
-                ["nvidia-smi", "--query-gpu=name,memory.total", "--format=csv,noheader"],
-                timeout=5, text=True,
-            ).strip()
-            infra_context["gpu"] = gpu_out
-        except Exception:
-            infra_context["gpu"] = None
-    else:
-        infra_context = {
-            "type":              "azure",
-            "endpoint":          os.environ.get("AZURE_ENDPOINT", ""),
-            "api_version":       os.environ.get("AZURE_API_VERSION", ""),
-            "model_lightweight": os.environ.get("MODEL_LIGHTWEIGHT", ""),
-        }
+    infra_context = {
+        "type":              "azure",
+        "endpoint":          os.environ.get("AZURE_ENDPOINT", ""),
+        "api_version":       os.environ.get("AZURE_API_VERSION", ""),
+        "model_lightweight": os.environ.get("MODEL_LIGHTWEIGHT", ""),
+    }
 
     stamp = {
         "version":                "V4_IC",
@@ -308,7 +277,6 @@ def save_results(
         "dry_run":                os.environ.get("DRY_RUN", "").strip() == "1",
         "backend":                backend,
         "model_lightweight":      os.environ.get("MODEL_LIGHTWEIGHT", ""),
-        "model_reasoning":        os.environ.get("MODEL_REASONING", ""),
         "intent_params": {
             "multiplier_map":  INTENT_MULTIPLIER_MAP,
             "fallback_intent": "NEUTRAL",
@@ -382,7 +350,7 @@ def main():
             logger.info("=== %s already complete at %s — skipping ===", exp_name, out_dir)
             continue
 
-        active_backend = os.environ.get("BACKEND", "local").lower()
+        active_backend = os.environ.get("BACKEND", "azure").lower()
         for spec in EXPERIMENTS[exp_name]:
             spec_backend = spec.get("backend")
             if spec_backend and spec_backend != active_backend:

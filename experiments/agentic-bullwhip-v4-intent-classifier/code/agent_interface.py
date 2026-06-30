@@ -243,10 +243,8 @@ def _load_backend(backend: str | None = None):
     resolved = (backend or os.environ.get("BACKEND", "azure")).lower()
     if resolved == "azure":
         return importlib.import_module("backends.azure_backend")
-    elif resolved == "local":
-        return importlib.import_module("backends.local_backend")
     else:
-        raise ValueError(f"Unknown backend='{resolved}'. Must be 'azure' or 'local'.")
+        raise ValueError(f"Unknown backend='{resolved}'. Must be 'azure'.")
 
 
 # ---------------------------------------------------------------------------

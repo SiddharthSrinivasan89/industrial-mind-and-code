@@ -1,71 +1,98 @@
-# Findings — V4 Intent Classifier (Intermediate Variant)
+# V4 Intent Classifier — Findings
 
-## What I tested
+This is the plain-language summary of what I tested and what I found. It is written for an
+industrial-engineering reader, so I define the few technical terms as I go.
 
-I tested whether replacing the continuous float output of the prior hybrid architecture (V3b) with a discrete five-label intent classification improves supply chain ordering performance and output reliability. In each period and each tier, the language model chooses exactly one of `STRONG_INCREASE`, `MODERATE_INCREASE`, `NEUTRAL`, `MODERATE_DECREASE`, `STRONG_DECREASE`. A fixed deterministic lookup table converts that label to a safety stock multiplier, and an Order-Up-To (OUT) style formula then computes the order quantity. The model never produces a number.
+## What I was testing, in one paragraph
 
-The lookup table used at runtime (recorded in each run's `provenance.json`) was:
+A three-tier supply chain (an OEM, its ancillary supplier, and that supplier's component
+maker) places monthly replenishment orders for an Indian automotive parts line. Each month the
+demand goes up and down with the Indian calendar: a peak at financial-year end in March, the big
+Diwali peak in November, and a dip during the monsoon. I wanted to know whether a language model
+(I used gpt-4.1-mini on Azure) could help set the right safety-stock buffer each month without
+making the ordering swing wildly. The trick I tested is this: instead of asking the model to
+output a number, I only let it pick one of five plain labels for the month ahead --
+STRONG_INCREASE, MODERATE_INCREASE, NEUTRAL, MODERATE_DECREASE, STRONG_DECREASE. A fixed lookup
+table then turns that label into a buffer multiplier (for example, STRONG_INCREASE means hold 2.5
+times the base buffer), and a plain arithmetic formula computes the actual order. The model never
+produces a number; it only classifies the situation.
 
-| Intent class | Multiplier |
-|---|---|
-| `STRONG_INCREASE` | 2.5 |
-| `MODERATE_INCREASE` | 1.5 |
-| `NEUTRAL` | 1.0 |
-| `MODERATE_DECREASE` | 0.75 |
-| `STRONG_DECREASE` | 0.5 |
+The metric I care about most is **OVAR**, the Order Variance Amplification Ratio. In everyday
+words: how wildly the orders swing compared with how wildly customer demand actually swings. An
+OVAR of 1 means orders are as steady as demand. An OVAR above 1 means the ordering is
+*amplifying* the swing -- this is the classic "bullwhip effect," where a small wobble at the
+customer end turns into a big wobble upstream. Lower is better.
 
-This is the intermediate variant of V4: it established the architecture, lookup table, prompts, ground-truth intent schedule, and metric definitions on a 25-month, no-disruption demand series, which were then carried forward into the primary V4 WorldEvents experiment. I ran it at exploratory scale, so the numbers below should be read as directional rather than as the planned production-scale result.
+## The three conditions
 
-## Methodology
+I ran the model under three levels of information, 20 runs each:
 
-The setup is a three-tier serial supply chain (OEM to Ancillary to Component) calibrated to an Indian automotive parts context, with a one-month deterministic lead time and no cross-tier information sharing. The demand series is `tatva_monthly_dispatches_25m.csv` (SHA-256 `c9b26afdbfd551f4f88f72eb119292a3ed0e9c2619c787a26b29d63250539c4e`), 25 months covering January 2025 through January 2027 with 24 active ordering periods, a mean of 38,446 units per month, and two annual cycles of Indian-calendar seasonal variation. The base safety stock recorded in provenance is 5,061 units and the forecast smoothing weight is 0.30.
+- **IC-Blind** -- the model sees only the current inventory numbers, no calendar.
+- **IC-Context** -- it also sees the current month and a note about Indian automotive seasonality.
+- **IC-Stateful** -- it sees all of the above plus the last three months of its own history.
 
-I compared two deterministic baselines against three intent conditions, each run on two backends:
+I also ran two non-AI baselines for comparison: **exponential smoothing** (a standard demand-
+forecasting heuristic that gently averages recent demand) and a **hybrid control** (the same
+order formula with the buffer fixed at its base level).
 
-- `exp_smoothing` — exponential-smoothing heuristic baseline (1 run)
-- `hybrid_control` — OUT formula with the multiplier fixed at 1.0 (1 run)
-- IC-Blind (H1_IC) — intent classification from state variables only
-- IC-Context (H2_IC) — intent classification with calendar month and tier persona added
-- IC-Stateful (H3_IC) — context plus the last three periods of intent and outcome history
+## What I found
 
-The LLM conditions ran on Azure (gpt-4.1-mini) at 10 runs each and locally (nemotron-3-super:120b, and a lightweight local model labelled `_phi`) at 5 runs each. All result bundles cited here are live runs (`dry_run: false` in provenance), distinct from the dry-run pipeline checks also present under `results/`.
+**1. The label interface is rock-solid.** Intent compliance was perfect -- 1.000 across every
+condition and every one of the runs, with zero fallbacks. "Compliance" here means the model
+returned one of the five valid labels in clean form every single time, so the system never had to
+fall back to a default. This is the good news: confining the model to a small fixed set of labels
+gave a completely reliable output format. That was the main design bet, and it held.
 
-The primary operational metric is the Order Variance Amplification Ratio (OVAR) — order variance divided by demand variance, averaged across the three tiers — reported alongside stockout counts. The classification-specific metrics are intent compliance (share of periods returning a valid, non-fallback label), intent accuracy against the deviation-based ground-truth schedule (both direction-only and full-label-match), and intent entropy over the five classes.
+**2. But the AI amplified the bullwhip far more than the plain formula.** Here are the headline
+chain-OVAR numbers (lower is better):
 
-## Key results
+| Approach | Chain OVAR | Stockouts |
+|---|---|---|
+| Exponential smoothing (baseline) | 0.545 | 5 |
+| Hybrid control (baseline) | 1.710 | 14 |
+| IC-Blind (gpt-4.1-mini) | 3.843 | 12.05 |
+| IC-Context (gpt-4.1-mini) | 3.268 | 15.70 |
+| IC-Stateful (gpt-4.1-mini) | 3.762 | 12.05 |
 
-### Deterministic baselines
+Read that against the exponential-smoothing baseline of 0.545. Every AI condition landed between
+about 3.3 and 3.8 -- roughly six to seven times more order-swing than the plain smoothing formula
+(IC-Blind is about 7x worse; IC-Context, the steadiest AI condition, is about 6x worse). The
+exponential-smoothing heuristic also held fewer stockouts. So on the operational metric that
+matters, the simple deterministic formula clearly beat the language model here.
 
-Exponential smoothing was the strongest policy on order variance, with chain OVAR 0.545 and 5 stockouts. The fixed-multiplier hybrid control reached chain OVAR 1.710 with 14 stockouts. Every intent condition landed above both baselines on OVAR.
+**3. The three information conditions barely moved -- the "Equaliser Effect."** Giving the model
+the calendar (IC-Context) or its own history (IC-Stateful) changed the OVAR only a little, and not
+in a way that rescued it. This is the same pattern the later V4 WorldEvents experiment named the
+**Equaliser Effect**: once you force the decision into a small fixed set of labels mapped to fixed
+multipliers, you put a ceiling and a floor on how far the outcome can move. The label set, not the
+model's cleverness or the information it sees, dominates the result. More context could not push
+the outcome past that structural wall.
 
-### Intent conditions (live runs)
+**4. The result is robust, not a small-sample fluke.** I first ran 10 repetitions per condition,
+then doubled it to 20. Across every headline metric -- chain OVAR, the per-tier OVAR for the OEM,
+ancillary, and component tiers, stockouts, and compliance -- every average moved by less than one
+standard deviation when I doubled the sample. In plain terms: the extra runs did not change the
+story, so I am confident the numbers above are stable rather than noise. The n=20 set is the
+result of record here; the earlier n=10 set is kept only so this stability check can be reproduced.
 
-| Condition | Backend | n | Chain OVAR | Stockouts | Compliance | Direction accuracy | Full-match accuracy | Entropy |
-|---|---|---|---|---|---|---|---|---|
-| IC-Blind | Azure (gpt-4.1-mini) | 10 | 3.803 +/- 0.131 | 11.9 | 1.0 | 0.221 | 0.214 | 0.931 |
-| IC-Blind | local (nemotron-3-super:120b) | 5 | 2.328 +/- 0.133 | 3.2 | 1.0 | 0.500 | 0.257 | 0.568 |
-| IC-Blind | local (`_phi`) | 5 | 2.960 +/- 0.508 | 7.0 | 1.0 | 0.443 | 0.271 | 0.665 |
-| IC-Context | Azure (gpt-4.1-mini) | 10 | 3.236 +/- 0.046 | 15.4 | 1.0 | 0.786 | 0.500 | 2.117 |
-| IC-Context | local (nemotron-3-super:120b) | 5 | 3.745 +/- 0.137 | 16.4 | 1.0 | 0.786 | 0.500 | 2.117 |
-| IC-Context | local (`_phi`) | 5 | 3.218 +/- 0.195 | 15.0 | 1.0 | 0.786 | 0.500 | 2.180 |
-| IC-Stateful | Azure (gpt-4.1-mini) | 10 | 3.755 +/- 0.062 | 12.0 | 1.0 | 0.786 | 0.500 | 2.122 |
-| IC-Stateful | local (nemotron-3-super:120b) | 5 | 4.017 +/- 0.065 | 15.0 | 1.0 | 0.786 | 0.500 | 2.197 |
-| IC-Stateful | local (`_phi`) | 5 | 3.420 +/- 0.084 | 13.4 | 1.0 | 0.800 | 0.514 | 2.272 |
+## What this does and does not show
 
-Accuracy is evaluated over 14 non-neutral event periods. The +/- values are standard deviations across runs.
+This experiment shows, for this setup, that the discrete-label interface is a dependable way to
+get structured output from a language model, but that it did not beat a standard forecasting
+heuristic at keeping orders steady -- the AI amplified the bullwhip about six to seven times more
+than exponential smoothing, and adding context or memory did not close that gap. These are useful,
+checkable facts about one model and one simulated chain.
 
-### What the numbers say
-
-Compliance was 1.0 in every intent condition on both backends. The discrete five-label interface eliminated the parse and calibration failures that motivated the design — the model never had to invent a number, and never produced an invalid one.
-
-Adding calendar context clearly improved classification. Directional accuracy rose from 0.221 for blind gpt-4.1-mini to 0.786 once month and persona context were supplied, and full-label-match accuracy rose from 0.214 to 0.500. Intent entropy rose in step, from 0.931 (blind) to 2.117 (context) for gpt-4.1-mini against a maximum of log2(5) of about 2.32, confirming the context conditions spread their choices across the five classes rather than collapsing onto one label. The blind conditions clustered low.
-
-Better classification did not translate into lower OVAR. Despite directional accuracy more than tripling from blind to context for gpt-4.1-mini, chain OVAR stayed in the 3.2 to 4.0 band across all context and stateful conditions, well above both deterministic baselines and far above the 0.5-OVAR MPRD threshold. Adding three periods of intent and outcome history (IC-Stateful) did not improve directional accuracy over IC-Context — both sat at 0.786 for the larger models — and did not lower OVAR. This is the early, in-variant signal of what the V4 WorldEvents report names the Equaliser Effect: the discrete lookup table imposes a structural ceiling and floor on OVAR, so a wide range of classification quality maps onto a narrow band of ordering behaviour. The label-to-multiplier mapping removes the model's capacity for the fine-grained adjustment that would be needed to approach the smoothing baseline.
-
-## Limitations
-
-These results are exploratory: 5 to 10 runs per LLM condition against single-run deterministic baselines, below the design target of 20 runs. The 0.5-OVAR MPRD threshold was defined for the n=20 design, so smaller effects are underpowered here. The findings rest on a single synthetic demand series specific to Indian automotive seasonality and a single simplified three-tier serial topology with unit lead time, and they cover gpt-4.1-mini and the two local models only; they are not established to generalise to other markets, topologies, or models. The 25-month series tests seasonal variation but no demand shocks, supply disruptions, or structural mean shifts. The intent-to-multiplier lookup values are domain-logic-driven and are not guaranteed to be globally optimal for the OUT formula. The primary, production-scale V4 evidence and hypothesis verdicts live in the V4 WorldEvents experiment; this variant carries the architecture and the exploratory-scale confirmation of the Equaliser Effect.
+The limits are worth stating plainly. I tested a single model (gpt-4.1-mini), a single 25-month
+synthetic demand series calibrated to Indian automotive seasonality, and a single simplified
+three-tier chain with a one-month lead time and no demand shocks or supply disruptions. The
+intent-to-multiplier lookup values come from domain logic and are not guaranteed to be optimal.
+So I would not generalise these numbers to other models, other markets, or more complex chains
+without testing them there. The hypotheses here were not pre-registered.
 
 ---
 
-*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. This work is self-funded — run on personally procured hardware and subscriptions, using publicly available data or synthetic data derived from publicly available sources and my own professional experience.*
+*Independent personal research by Siddharth Srinivasan. Views are my own and do not represent my
+employer, any model or service provider, or any third party. This work is self-funded -- run on
+personally procured hardware and subscriptions, using publicly available data or synthetic data
+derived from publicly available sources and my own professional experience.*
