@@ -1,4 +1,4 @@
-# V4 WorldEvents Design — Intent Classifier in a Disrupted Supply Chain
+# V4b WorldEvents Design — Intent Classifier in a Disrupted Supply Chain
 
 **Experiment:** `Agentic_Bullwhip_Effect_V4_WorldEvents`
 **Version:** 1.0
@@ -41,10 +41,10 @@ demand and supply shocks — conditions where the `STRONG_DECREASE` and
 |---|---|---|
 | V2 | LLM orders directly, 25-month, no disruptions | LLM amplifies order variance well above exp_smoothing |
 | V3b HybridArch | LLM outputs float multiplier × OUT formula, 25-month, no disruptions | Float output unreliable; context made things worse |
-| V4 IntentClassifier | LLM classifies 5-label intent × lookup × OUT formula, 25-month, no disruptions | Design-complete; awaiting production runs |
-| **V4_WorldEvents** | Intent classifier × 36-month × pandemic + conflict + port disruption | *This experiment* |
+| V4a IntentClassifier | LLM classifies 5-label intent × lookup × OUT formula, 25-month, no disruptions | Design-complete; awaiting production runs |
+| **V4b_WorldEvents** | Intent classifier × 36-month × pandemic + conflict + port disruption | *This experiment* |
 
-V4_WorldEvents deliberately introduces world events into the intent classifier
+V4b_WorldEvents deliberately introduces world events into the intent classifier
 architecture. The disruption periods create unambiguous ground-truth intents
 (pandemic_shock → STRONG_DECREASE; pandemic_surge → STRONG_INCREASE) that are
 externally testable against model classifications.
@@ -251,7 +251,7 @@ code/
 ### Setup
 
 ```bash
-cd experiments/agentic-bullwhip-v4-world-events/code/
+cd experiments/agentic-bullwhip-v4b-world-events/code/
 
 # Generate the synthetic demand series (already shipped under data/synthetic/)
 python generate_demand_36m.py

@@ -647,7 +647,7 @@
             <span class="experiment-name">Perfect Compliance, Wider Swings: The Five-Label Intent Classifier</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <p class="experiment-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; V4 INTENTCLASSIFIER &middot; 25-MONTH SIMULATION</p>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; V4A INTENTCLASSIFIER &middot; 25-MONTH SIMULATION</p>
           <p class="experiment-finding">
             <strong>The question:</strong> if the AI only picks one of five plain labels for the month ahead &mdash; and a fixed lookup table turns that label into a buffer multiplier &mdash; does confining it to a clean classification task keep orders steadier than a standard forecasting formula?<br /><br />
             <strong>Models tested:</strong> gpt-4.1-mini (Azure), 20 replications each across three information conditions (IC-Blind, IC-Context, IC-Stateful), on a 25-month no-disruption Indian automotive demand series, against exponential-smoothing and hybrid-control baselines.<br /><br />
@@ -657,15 +657,15 @@
             <ul class="exp-bullets">
               <li>Every AI condition amplified order-swing well above the baseline: chain OVAR 3.268 &plusmn; 0.062 to 3.843 &plusmn; 0.129 against exponential smoothing&rsquo;s 0.545 &mdash; roughly 6&ndash;7&times; more order-swing, with more stockouts too.</li>
               <li>Intent compliance was perfect (1.000, zero fallbacks across every run), confirming the five-label interface as a reliable output format &mdash; yet the three information conditions barely separated. The fixed label&rarr;multiplier table caps how far any condition can move: the Equaliser Effect.</li>
-              <li>Means held stable from n=10 to n=20 (every metric moved less than one standard deviation). This closes the V4 intent-classification line; the V4 WorldEvents variant carries the design forward as the primary V4 result.</li>
+              <li>Means held stable from n=10 to n=20 (every metric moved less than one standard deviation). This closes the V4a intent-classification line; the <strong>V4b</strong> WorldEvents variant carries the design forward as the primary V4 result.</li>
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4-intent-classifier" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
-            <a class="exp-link" href="blog/agentic-bullwhip-v4-intent.html">
+            <a class="exp-link" href="blog/agentic-bullwhip-v4a-intent.html">
               Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
@@ -678,7 +678,7 @@
             <span class="experiment-name">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <p class="experiment-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; V4 WORLDEVENTS &middot; 36-MONTH SIMULATION</p>
+          <p class="experiment-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; V4B WORLDEVENTS &middot; 36-MONTH SIMULATION</p>
           <p class="experiment-finding">
             <strong>The question:</strong> does giving the AI a clean 5-label intent classification (instead of a raw number) let it lower order variance?<br /><br />
             <strong>Models tested:</strong> four models (14B&ndash;120B) across Blind, Context, and Unstructured conditions, 20&ndash;100 replications each; 36-month simulation with stochastic lead times and world events; a hard-coded multiplier lookup replaces the AI&rsquo;s continuous output.<br /><br />
@@ -692,11 +692,11 @@
             </ul>
           </div>
           <div class="experiment-links" style="margin-top:1.25rem;">
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4-world-events" target="_blank" rel="noopener">
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">
               GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
-            <a class="exp-link" href="blog/agentic-bullwhip-v4.html">
+            <a class="exp-link" href="blog/agentic-bullwhip-v4b.html">
               Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>

@@ -1,4 +1,4 @@
-# Agentic Bullwhip Effect — Version 4: Intent Classifier (Intermediate Variant)
+# Agentic Bullwhip Effect — Version 4a: Intent Classifier (Intermediate Variant)
 
 ## Abstract
 
@@ -117,7 +117,7 @@ I ran this experiment with gpt-4.1-mini on Azure at n=20 across the three intent
 
 Three findings stand out. First, intent compliance was perfect — 1.000 across every condition and every run, with zero fallbacks — confirming the discrete five-label interface as a reliable output format. Second, every LLM condition amplified order-swing well above the exponential-smoothing baseline: chain OVAR of roughly 3.3 to 3.8 against the baseline's 0.545, about six to seven times larger. Third, the three information conditions barely separated, the "Equaliser Effect": forcing the decision into a small fixed label set caps how far any condition's outcome can move. The means were stable when I doubled the sample from n=10 to n=20 (every metric moved less than one standard deviation), so the picture is robust rather than a small-sample fluke.
 
-For the same architecture tested under world-events disruptions, see the V4 WorldEvents README and report in this repository, and the writeup at `https://industrialmindandcode.ai/blog/agentic-bullwhip-v4`.
+For the same architecture tested under world-events disruptions, see the V4b WorldEvents README and report in this repository, and the writeup at `https://industrialmindandcode.ai/blog/agentic-bullwhip-v4b`.
 
 ## Discussion
 
@@ -127,7 +127,7 @@ The five-class structure was chosen to match the five qualitatively distinct dem
 
 The lookup table design represents a deliberate architectural constraint: by exposing the multiplier values to the LLM in the system prompt (e.g., "STRONG_INCREASE maps to multiplier 2.5"), the model is informed of the downstream consequences of its classification, making the reasoning task concrete rather than abstract.
 
-The key insight subsequently confirmed in the WorldEvents variant is that this constraint introduces what the V4 WorldEvents report terms the "Equaliser Effect": the discrete lookup table creates a structural ceiling and floor on OVAR that no model, prompt design, or information condition can escape, because the label-to-multiplier mapping removes the AI's capacity for fine-grained adjustment.
+The key insight subsequently confirmed in the WorldEvents variant is that this constraint introduces what the V4b WorldEvents report terms the "Equaliser Effect": the discrete lookup table creates a structural ceiling and floor on OVAR that no model, prompt design, or information condition can escape, because the label-to-multiplier mapping removes the AI's capacity for fine-grained adjustment.
 
 ## Limitations
 
@@ -150,7 +150,7 @@ The key insight subsequently confirmed in the WorldEvents variant is that this c
 ### Environment Setup
 
 ```bash
-cd experiments/agentic-bullwhip-v4-intent-classifier/code/
+cd experiments/agentic-bullwhip-v4a-intent-classifier/code/
 
 # Install dependencies
 pip install -r requirements.txt
@@ -191,7 +191,7 @@ Each run writes a timestamped bundle under `results/<group>/<timestamp>/` contai
 
 ## Citation
 
-Srinivasan, S. (2026). *Agentic Bullwhip Effect V4: The Equaliser Effect — Intent Classification in Supply Chain Replenishment.* Industrial Mind and Code. https://industrialmindandcode.ai/blog/agentic-bullwhip-v4
+Srinivasan, S. (2026). *Agentic Bullwhip Effect V4b: The Equaliser Effect — Intent Classification in Supply Chain Replenishment.* Industrial Mind and Code. https://industrialmindandcode.ai/blog/agentic-bullwhip-v4b
 
 Related work in this series:
 - Lee, H.L., Padmanabhan, V., & Whang, S. (1997). Information Distortion in a Supply Chain: The Bullwhip Effect. *Management Science*, 43(4), 546–558. https://doi.org/10.1287/mnsc.43.4.546

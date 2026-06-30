@@ -26,7 +26,7 @@ Published supply-chain sequence:
 | V2 | LLM agents versus heuristic baselines | Every heuristic beat every LLM condition on OVAR and stockouts. |
 | V2a | sarvam-30b sovereign model evaluation | No meaningful difference from gpt-oss 120B in the tested context conditions. |
 | V3b | Hybrid safety-stock multiplier control | Formula execution helped, but AI-controlled multipliers still amplified variance. |
-| V4 | Discrete intent-classification interface | Better label accuracy did not translate into lower OVAR; the Equaliser Effect appeared. |
+| V4a / V4b | Discrete intent-classification interface (V4a intent-classifier, V4b world-events) | Better label accuracy did not translate into lower OVAR; the Equaliser Effect appeared. |
 | V5 | Oracle labels and control-architecture ablations | Perfect labels failed; the V1-V5 intent-classification lineage closed. |
 | V6 | Adaptive exponential-smoothing parameter control | New trajectory; all AI conditions dampened variance below OVAR 1.0. |
 
@@ -57,7 +57,8 @@ Start with the experiment README for the version you want to inspect:
 - `experiments/agentic-bullwhip-v2-context-model-interactions/README.md`
 - `experiments/agentic-bullwhip-v2a-sarvam-evaluation/README.md`
 - `experiments/agentic-bullwhip-v3b-hybrid-architecture/README.md`
-- `experiments/agentic-bullwhip-v4-world-events/README.md`
+- `experiments/agentic-bullwhip-v4a-intent-classifier/README.md`
+- `experiments/agentic-bullwhip-v4b-world-events/README.md`
 - `experiments/agentic-bullwhip-v5-control-architecture/README.md`
 - `experiments/agentic-bullwhip-v6-stateless-swing/README.md`
 - `experiments/failuresensoriq-v1-reasoning-effect/README.md`

@@ -1,4 +1,4 @@
-# V4 WorldEvents — Findings: Intent Classification in a Disrupted Supply Chain
+# V4b WorldEvents — Findings: Intent Classification in a Disrupted Supply Chain
 
 ## Executive Summary
 
@@ -31,7 +31,7 @@ To understand V4, it helps to understand what came before.
 |---|---|---|---|
 | V2 | AI orders directly | Computed exact unit quantities | LLM order variance far exceeded any baseline |
 | V3b | AI sets a float multiplier × math formula | Invented a number like `1.34` | Float output unreliable; context made things worse; best OVAR 2.33 |
-| **V4 WorldEvents** | AI picks a 5-label class → lookup → math formula | Chose one of 5 text labels | Guardrail success; Equaliser Effect discovered; best OVAR 1.73 |
+| **V4b WorldEvents** | AI picks a 5-label class → lookup → math formula | Chose one of 5 text labels | Guardrail success; Equaliser Effect discovered; best OVAR 1.73 |
 
 **The Bullwhip Effect** is the central phenomenon under study. In a supply chain, small fluctuations in customer demand get amplified as they travel upstream — a 5% demand blip at the shop floor becomes a 20% order swing at the factory. This research measures amplification using **OVAR** (Order Variance Amplification Ratio):
 - OVAR = 1.0 → perfect, orders match demand exactly

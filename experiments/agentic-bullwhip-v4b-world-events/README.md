@@ -1,8 +1,8 @@
-# Agentic Bullwhip Effect — Version 4: Intent Classifier with World Events
+# Agentic Bullwhip Effect — Version 4b: Intent Classifier with World Events
 
 ## Abstract
 
-This experiment is the primary published Version 4 result in a five-experiment series examining whether Large Language Models (LLMs) can reduce order variance amplification in multi-tier supply chains. Building on the discrete intent-classification architecture established in the V4 IntentClassifier variant, this experiment extends the simulation to 36 months and introduces three real-world disruption types — a pandemic, a geopolitical conflict, and a port strike — to stress-test the architecture under conditions that activate all five intent classes.
+This experiment is the primary published Version 4 result in a five-experiment series examining whether Large Language Models (LLMs) can reduce order variance amplification in multi-tier supply chains. Building on the discrete intent-classification architecture established in the V4a IntentClassifier variant, this experiment extends the simulation to 36 months and introduces three real-world disruption types — a pandemic, a geopolitical conflict, and a port strike — to stress-test the architecture under conditions that activate all five intent classes.
 
 Four LLMs were evaluated (gpt-4.1-mini, o4-mini, phi4:14b, nemotron-super 120B) across three information conditions (blind, context, unstructured) and two ablation sub-experiments. The experiment is complete as of 23 April 2026.
 
@@ -13,7 +13,7 @@ OVAR is defined as: OVAR = Var(orders) / Var(demand), computed per tier using sa
 ## Repository Layout
 
 ```
-agentic-bullwhip-v4-world-events/
+agentic-bullwhip-v4b-world-events/
 ├── README.md       # this file — overview, design summary, reproduction steps
 ├── DESIGN.md       # full design: parameters, intent classes, hypotheses, conditions
 ├── FINDINGS.md     # consolidated findings with exact numbers and limitations
@@ -223,7 +223,7 @@ The neutral-prior sub-experiment (E4) confirms that prompt-layer interventions c
 ## Limitations
 
 1. **Simulation environment:** All supply chain entities, companies, and demand figures are entirely synthetic. The demand series is calibrated to Indian automotive seasonal patterns but is not real data.
-2. **Stochastic lead times and fill rates:** The V4 WorldEvents environment uses LogNormal lead time and Beta fill rate distributions. Results are specific to this parameterisation. The simpler V4 IntentClassifier variant used deterministic lead times.
+2. **Stochastic lead times and fill rates:** The V4b WorldEvents environment uses LogNormal lead time and Beta fill rate distributions. Results are specific to this parameterisation. The simpler V4a IntentClassifier variant used deterministic lead times.
 3. **Structural ceiling:** OVAR cannot improve beyond the OUT formula baseline without changing the formula, as established by the subsequent V5 oracle experiment.
 4. **Single supply chain topology:** Three-tier serial cascade. Real supply chains involve variable lead times, lateral flows, and multi-echelon complexity.
 5. **Model-specific results:** Findings are specific to the four models tested (gpt-4.1-mini, o4-mini, phi4:14b, nemotron-super 120B). Generalisation to other models is not established.
@@ -242,7 +242,7 @@ The neutral-prior sub-experiment (E4) confirms that prompt-layer interventions c
 ### Environment Setup
 
 ```bash
-cd experiments/agentic-bullwhip-v4-world-events/code/
+cd experiments/agentic-bullwhip-v4b-world-events/code/
 
 # Install dependencies
 pip install -r requirements.txt
@@ -305,7 +305,7 @@ Note: The Azure reasoning model (o4-mini) requires `MODEL_REASONING` and `MAX_TO
 
 ## Citation
 
-Srinivasan, S. (2026). *Agentic Bullwhip Effect V4: The Equaliser Effect — Intent Classification in Supply Chain Replenishment.* Industrial Mind and Code. https://industrialmindandcode.ai/blog/agentic-bullwhip-v4
+Srinivasan, S. (2026). *Agentic Bullwhip Effect V4b: The Equaliser Effect — Intent Classification in Supply Chain Replenishment.* Industrial Mind and Code. https://industrialmindandcode.ai/blog/agentic-bullwhip-v4b
 
 Related work in this series:
 - Lee, H.L., Padmanabhan, V., & Whang, S. (1997). Information Distortion in a Supply Chain: The Bullwhip Effect. *Management Science*, 43(4), 546–558. https://doi.org/10.1287/mnsc.43.4.546

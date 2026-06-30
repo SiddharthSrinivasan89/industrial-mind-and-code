@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfect Compliance, Wider Swings: The Five-Label Intent Classifier | Industrial Mind &amp; Code</title>
   <meta name="description" content="This experiment tested whether confining a language model to a five-label intent classification, with a fixed lookup table doing the arithmetic, keeps supply-chain orders steadier than exponential smoothing. The labels were perfectly reliable, but the orders swung 6 to 7 times wider than the baseline." />
-  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4-intent.html" />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4a-intent.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Perfect Compliance, Wider Swings: The Five-Label Intent Classifier | Industrial Mind &amp; Code" />
   <meta property="og:description" content="This experiment tested whether confining a language model to a five-label intent classification, with a fixed lookup table doing the arithmetic, keeps supply-chain orders steadier than exponential smoothing. The labels were perfectly reliable, but the orders swung 6 to 7 times wider than the baseline." />
-  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4-intent.html" />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4a-intent.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -160,7 +160,7 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Experiment</span>
-          <span class="post-meta-value">Agentic Bullwhip Effect Version 4 &mdash; Intent Classifier (intermediate variant)</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 4a &mdash; Intent Classifier (intermediate variant)</span>
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
@@ -191,7 +191,7 @@
         <div class="prose">
           <p>The bullwhip effect is what happens when small changes in customer demand become larger and larger order swings as they travel upstream through a supply chain. A retailer sees a bump in demand, the manufacturer orders extra to avoid a shortage, the component supplier sees that larger order and reacts again. By the time the signal reaches the top of the chain, a modest demand change can look like a crisis.</p>
           <p>I measure that with OVAR, the Order Variance Amplification Ratio: how wildly orders swing compared with how wildly customer demand actually swings. An OVAR of 1 means orders are as steady as demand. Above 1 means the ordering is amplifying the swing. Lower is better.</p>
-          <p>An earlier experiment in this series (V3b) had let the model output a continuous number &mdash; a safety-stock multiplier &mdash; and the model consistently miscalibrated it. Language models have no intrinsic number line; they produce tokens, not quantities. So the design here removes the number entirely. If calibrating a float is the problem, replace the float with a multiple-choice label and let hard-coded software do the arithmetic. This is the intermediate V4 variant; the design it established was then carried forward into the V4 WorldEvents experiment, which is the primary V4 result.</p>
+          <p>An earlier experiment in this series (V3b) had let the model output a continuous number &mdash; a safety-stock multiplier &mdash; and the model consistently miscalibrated it. Language models have no intrinsic number line; they produce tokens, not quantities. So the design here removes the number entirely. If calibrating a float is the problem, replace the float with a multiple-choice label and let hard-coded software do the arithmetic. This is the intermediate V4a variant; the design it established was then carried forward into the V4b WorldEvents experiment, which is the primary V4 result.</p>
         </div>
       </div>
 
@@ -271,14 +271,14 @@
         <div class="prose">
           <p>For this setup, the discrete-label interface is a dependable way to get structured output from a language model, but it did not beat a standard forecasting heuristic at keeping orders steady. The AI amplified the bullwhip about 6 to 7&times; more than exponential smoothing, and adding context or memory did not close that gap. These are useful, checkable facts about one model and one simulated chain.</p>
           <p>The limits are worth stating plainly. I tested a single model (gpt-4.1-mini), a single 25-month synthetic demand series calibrated to Indian automotive seasonality, and a single simplified three-tier chain with a one-month lead time and no demand shocks. The intent-to-multiplier lookup values come from domain logic and are not guaranteed to be optimal. I would not generalise these numbers to other models, other markets, or more complex chains without testing them there. The hypotheses here were not pre-registered.</p>
-          <p>This closes the V4 intent-classification line. The architecture it established &mdash; classification by the model, arithmetic by the formula &mdash; is carried forward into the V4 WorldEvents experiment, which tests the same design under stochastic lead times and world events and is the primary V4 result.</p>
+          <p>This closes the V4a intent-classification line. The architecture it established &mdash; classification by the model, arithmetic by the formula &mdash; is carried forward into the V4b WorldEvents experiment, which tests the same design under stochastic lead times and world events and is the primary V4 result.</p>
         </div>
       </div>
 
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Full code and results on GitHub</p>
-          <p>Full code, data, and result manifests are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4-intent-classifier" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+          <p>Full code, data, and result manifests are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>
 

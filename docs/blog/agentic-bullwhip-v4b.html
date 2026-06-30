@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Equaliser Effect: Intent Classification in Supply Chain Replenishment | Industrial Mind &amp; Code</title>
   <meta name="description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced statistically identical supply chain outcomes. The Equaliser Effect: discrete labels create a structural ceiling no model can escape." />
-  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4.html" />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4b.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="The Equaliser Effect: Intent Classification in Supply Chain Replenishment | Industrial Mind &amp; Code" />
   <meta property="og:description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced statistically identical supply chain outcomes. The Equaliser Effect: discrete labels create a structural ceiling no model can escape." />
-  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4.html" />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4b.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -179,7 +179,7 @@
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Experiment</span>
-          <span class="post-meta-value">Agentic Bullwhip Effect Version 4 &mdash; WorldEvents Intent Classification</span>
+          <span class="post-meta-value">Agentic Bullwhip Effect Version 4b &mdash; WorldEvents Intent Classification</span>
         </div>
         <div class="post-meta-item">
           <span class="post-meta-label">Design</span>
@@ -199,7 +199,7 @@
       <div class="post-section">
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
-          <p>Version 3b ended with a clear diagnosis: LLMs cannot invent precise multipliers. The proposed fix was to remove the invented number entirely &mdash; replace it with a pre-approved text label, and let a hard-coded lookup table do the arithmetic. <strong>This is V4.</strong></p>
+          <p>Version 3b ended with a clear diagnosis: LLMs cannot invent precise multipliers. The proposed fix was to remove the invented number entirely &mdash; replace it with a pre-approved text label, and let a hard-coded lookup table do the arithmetic. <strong>This is V4b.</strong></p>
           <p>The fix worked as a guardrail. OVAR dropped from the 2.3&ndash;3.1 range of V3b to a tight 1.73&ndash;1.78 across all four models and all three information conditions. No configuration caused catastrophic amplification. The fix did not work as an improvement. A 120-billion-parameter reasoning model and a lightweight fast model produced outcomes within 0.05 OVAR units of each other. Context doubled classification accuracy and barely moved the supply chain outcome. <strong>The Equaliser Effect: a discrete-label architecture creates a structural ceiling that no amount of intelligence, context, or prompt engineering can escape.</strong></p>
         </div>
       </div>
@@ -312,14 +312,14 @@
           <p>The AI controls one variable: the safety stock multiplier, ranging from 0.80 to 1.30. Order amplification in this simulation is primarily driven by stochastic lead times and fill rates &mdash; randomness in when stock arrives and how much of an order gets fulfilled. These are physical supply chain properties, not features of the AI&rsquo;s decision. Even perfect classification would still produce OVAR near 1.77, because the Order-Up-To formula&rsquo;s response to arrival randomness dominates.</p>
           <p>Restricting the output to five labels successfully eliminated the calibration problem from V3b. It simultaneously eliminated any possibility of improvement, because the AI can no longer make the fine-grained adjustments that would close the gap to exponential smoothing. <strong>The discrete architecture trades runaway amplification for a hard ceiling.</strong></p>
           <p>One result from this experiment is easy to miss. Without context, every blind model defaults to classifying STRONG_INCREASE between 75% and 95% of all periods &mdash; even though only 25&ndash;33% of periods actually warrant an increase. This is catastrophically wrong. With a calendar and persona, models use all five labels accurately, with direction accuracy near 0.80. The discrimination is real. The control is not. An AI that correctly identifies the direction of demand and then outputs the same order as one that is completely wrong has been made intelligent in the wrong place.</p>
-          <p>V4 leaves open two interpretations of this ceiling: (a) a better model would classify more accurately, and more accurate classification would eventually move OVAR; or (b) the ceiling is architectural &mdash; even perfect labels cannot close the gap. V5 tested this directly by removing the LLM entirely and replacing it with oracle ground-truth labels.</p>
+          <p>V4b leaves open two interpretations of this ceiling: (a) a better model would classify more accurately, and more accurate classification would eventually move OVAR; or (b) the ceiling is architectural &mdash; even perfect labels cannot close the gap. V5 tested this directly by removing the LLM entirely and replacing it with oracle ground-truth labels.</p>
         </div>
       </div>
 
       <div class="post-section">
         <div class="method-callout">
           <p class="method-callout-label">Full code and results on GitHub</p>
-          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4-world-events" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+          <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>
 

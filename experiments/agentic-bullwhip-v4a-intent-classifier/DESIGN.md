@@ -1,6 +1,6 @@
-# V4 Design — Intent Classifier Hybrid Architecture
+# V4a Design — Intent Classifier Hybrid Architecture
 
-**Experiment:** `agentic-bullwhip-v4-intent-classifier`
+**Experiment:** `agentic-bullwhip-v4a-intent-classifier`
 **Date:** April 2026
 **Status:** Complete — run with gpt-4.1-mini on Azure at n=20 across the three intent-classification conditions plus the deterministic baselines. See `FINDINGS.md` for results.
 **Lineage:** V1 → V2 → V2a → V3b (HybridArch) → **V4 (IntentClassifier)**
@@ -564,7 +564,7 @@ value triggers the fallback. Parse failure rate is expected to be near zero beca
 ### Phase 1: Code implementation
 
 ```bash
-cd experiments/agentic-bullwhip-v4-intent-classifier/code/
+cd experiments/agentic-bullwhip-v4a-intent-classifier/code/
 ```
 
 Priority order:
