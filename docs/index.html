@@ -272,18 +272,34 @@
 
     /* ─── Featured result ─── */
     .featured-block {
+      position: relative;
       background: var(--accent-dark);
-      border-radius: 8px;
-      padding: 2.5rem 2.5rem;
+      border-radius: 10px;
+      padding: 2.75rem 2.75rem;
       max-width: 700px;
+      box-shadow: 0 12px 32px -10px rgba(31, 54, 96, 0.35);
+      overflow: hidden;
+    }
+    .featured-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-mid), #6f93cf);
     }
     .featured-label {
+      display: inline-block;
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.14em;
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 4px 11px;
+      border-radius: 20px;
+      margin-bottom: 1.75rem;
     }
     .featured-block p {
       font-size: 16px;
@@ -293,13 +309,18 @@
       margin-bottom: 1.2rem;
     }
     .featured-block p:last-child { margin-bottom: 0; }
+    .featured-block .featured-takeaway {
+      margin-top: 1.6rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
     .featured-block strong {
       font-weight: 500;
       color: #ffffff;
     }
-    @media (max-width: 560px) { .featured-block { padding: 1.75rem 1.5rem; } }
+    @media (max-width: 560px) { .featured-block { padding: 2rem 1.5rem; } }
 
-    /* ─── Sharp findings ─── */
+    /* ─── Sharp findings (quote cards) ─── */
     .findings-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -307,17 +328,33 @@
     }
     @media (max-width: 620px) { .findings-grid { grid-template-columns: 1fr; } }
     .finding-card {
+      position: relative;
       background: #fff;
       border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
       border-radius: 6px;
-      padding: 1.5rem 1.6rem;
+      padding: 1.5rem 1.6rem 1.4rem;
+      overflow: hidden;
+    }
+    .finding-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 0.15rem;
+      right: 0.9rem;
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      line-height: 1;
+      color: var(--accent-light);
+      pointer-events: none;
     }
     .finding-card h3 {
+      position: relative;
       font-family: var(--font-serif);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 500;
+      font-style: italic;
       color: var(--text-primary);
-      line-height: 1.3;
+      line-height: 1.35;
       margin-bottom: 0.6rem;
     }
     .finding-card p {
@@ -355,11 +392,21 @@
       max-width: 640px;
       margin-top: 1rem;
     }
-    .track-tags {
+    .track-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 1.5rem;
+      gap: 8px;
+      margin-bottom: 1.75rem;
+    }
+    .track-chip {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--accent-light);
+      border: 1px solid #d4e0f1;
+      padding: 5px 12px;
+      border-radius: 5px;
+      letter-spacing: 0.01em;
     }
 
     /* ─── Experiment cards ─── */
@@ -677,7 +724,6 @@
   <!-- 2. Emerging Thesis -->
   <section id="thesis">
     <div class="container">
-      <p class="section-label">Emerging Thesis</p>
       <h2 class="section-title">Emerging Thesis</h2>
       <div class="about-body">
         <p>
@@ -720,7 +766,6 @@
   <!-- 3. Featured Result -->
   <section id="featured">
     <div class="container">
-      <p class="section-label">Featured Result</p>
       <h2 class="section-title">Featured Result</h2>
       <div class="featured-block">
         <p class="featured-label">Featured Finding</p>
@@ -733,7 +778,7 @@
         <p>
           Later experiments showed that when AI was moved away from direct order control and instead asked to select the smoothing parameter inside a deterministic control loop, every AI condition produced OVAR below 1.0. The best result marginally beat the fixed &alpha; = 0.3 baseline.
         </p>
-        <p>
+        <p class="featured-takeaway">
           <strong>The lesson: AI performance in industrial systems depends less on model intelligence alone and more on where the model is placed in the architecture.</strong>
         </p>
       </div>
@@ -743,7 +788,6 @@
   <!-- 4. Sharp Findings -->
   <section id="findings">
     <div class="container">
-      <p class="section-label">Sharp Findings</p>
       <h2 class="section-title">Sharp Findings</h2>
       <div class="findings-grid">
         <div class="finding-card">
@@ -782,12 +826,12 @@
         <p class="track-desc">
           Experiments testing whether LLM agents amplify or reduce instability in supply-chain replenishment systems.
         </p>
-        <div class="track-tags">
-          <span class="stack-tag">LLM agents vs heuristic baselines</span>
-          <span class="stack-tag">context-window experiments</span>
-          <span class="stack-tag">reasoning-model experiments</span>
-          <span class="stack-tag">oracle label / intent classification</span>
-          <span class="stack-tag">AI-in-the-loop smoothing parameters</span>
+        <div class="track-chips">
+          <span class="track-chip">LLM agents vs heuristic baselines</span>
+          <span class="track-chip">Context-window experiments</span>
+          <span class="track-chip">Reasoning-model experiments</span>
+          <span class="track-chip">Oracle label / intent classification</span>
+          <span class="track-chip">AI-in-the-loop smoothing parameters</span>
         </div>
         <div class="experiment-list">
 
@@ -1011,11 +1055,11 @@
         <p class="track-desc">
           Experiments testing local and edge-deployable AI for maintenance, TPM workflows, sensor interpretation, and vernacular industrial data.
         </p>
-        <div class="track-tags">
-          <span class="stack-tag">FailureSensorIQ</span>
-          <span class="stack-tag">TPM / maintenance intelligence</span>
-          <span class="stack-tag">local model behaviour</span>
-          <span class="stack-tag">vernacular normalisation</span>
+        <div class="track-chips">
+          <span class="track-chip">FailureSensorIQ</span>
+          <span class="track-chip">TPM / maintenance intelligence</span>
+          <span class="track-chip">Local model behaviour</span>
+          <span class="track-chip">Vernacular normalisation</span>
         </div>
         <div class="experiment-list">
 
@@ -1071,11 +1115,11 @@
         <p class="track-desc">
           Experiments and essays focused on where AI should sit in industrial control loops and enterprise architectures.
         </p>
-        <div class="track-tags">
-          <span class="stack-tag">hybrid deterministic/probabilistic systems</span>
-          <span class="stack-tag">semantic layers</span>
-          <span class="stack-tag">control-loop placement</span>
-          <span class="stack-tag">governance and observability implications</span>
+        <div class="track-chips">
+          <span class="track-chip">Hybrid deterministic/probabilistic systems</span>
+          <span class="track-chip">Semantic layers</span>
+          <span class="track-chip">Control-loop placement</span>
+          <span class="track-chip">Governance and observability implications</span>
         </div>
         <p class="track-note">
           Essays and cross-experiment synthesis in development. The architecture evidence so far comes from the control-loop experiments in Track 1 &mdash; hybrid safety-stock control, the oracle-label ablation, and adaptive smoothing.
