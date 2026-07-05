@@ -597,10 +597,13 @@
           <p class="hero-tagline">Placing probabilistic intelligence inside deterministic industrial systems.</p>
           <div class="hero-body">
             <p>
-              Industrial Mind &amp; Code is an independent applied research program testing LLM agents inside industrial engineering decision environments &mdash; supply chains, maintenance systems, production planning, manufacturing workflows, and product-lifecycle systems.
+              Industrial Mind &amp; Code is an independent applied research program testing LLMs and agents inside industrial engineering decision environments &mdash; supply chains, maintenance systems, production planning, manufacturing workflows, and product-lifecycle systems.
             </p>
             <p>
-              The early result is not &ldquo;AI beats everything.&rdquo; It is more interesting: LLM agents often fail when placed directly in control of operational decisions, but become useful when constrained inside the right architecture.
+              The early result is not &ldquo;AI beats everything.&rdquo; It is more interesting: models often fail when placed directly in control of operational decisions, but become useful when constrained inside the right architecture.
+            </p>
+            <p>
+              I separate a <em>bare LLM</em> (the model on its own) from an <em>agent</em> (an LLM paired with tools and a control loop), and ask where each can sit inside a deterministic industrial system &mdash; and where it should be constrained by one.
             </p>
           </div>
         </div>
@@ -968,6 +971,7 @@
         <li>Test model placement inside the architecture.</li>
         <li>Separate model capability from control-loop design.</li>
         <li>Prefer repeatable simulations and transparent assumptions.</li>
+        <li>Vet every claim before treating it as a finding.</li>
       </ol>
       <p class="method-note">
         Simulation parameters are synthetic but calibrated against published literature. All scenarios are fictional and no proprietary data is used. Baselines are the deterministic methods that already exist for each problem &mdash; exponential smoothing, order-up-to policies, SPC rules &mdash; and model tier, context treatment, and inference backend are treated as experimental factors, not background conditions.
