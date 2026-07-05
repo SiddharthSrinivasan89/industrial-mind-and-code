@@ -98,6 +98,23 @@
       transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--text-primary); }
+    .nav-toggle { display: none; }
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+    }
+    .nav-burger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: transform 0.2s, opacity 0.2s;
+    }
 
     /* ─── Section headers ─── */
     .section-label {
@@ -460,14 +477,6 @@
       font-size: 11px;
       color: var(--accent);
     }
-    .method-note {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 680px;
-      margin-top: 1.75rem;
-    }
     .stack-row {
       margin-top: 2.25rem;
       padding-top: 2.25rem;
@@ -507,20 +516,13 @@
       border-radius: 3px;
     }
 
-    /* ─── About ─── */
-    .about-body p {
-      font-size: 16px;
-      font-weight: 300;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-      max-width: 680px;
+    /* ─── Closing band (in hero) ─── */
+    .closing-band {
+      max-width: 760px;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
     }
-    .about-body p:last-child { margin-bottom: 0; }
-    .about-body strong { font-weight: 500; color: var(--text-primary); }
-
-    /* ─── Closing band ─── */
-    .closing-band { max-width: 640px; }
     .closing-band p {
       font-family: var(--font-serif);
       font-size: 1.4rem;
@@ -566,7 +568,26 @@
 
     /* ─── Responsive ─── */
     @media (max-width: 600px) {
-      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 58px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(248, 247, 243, 0.98);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+        padding: 0.25rem 2.5rem 0.75rem;
+        display: none;
+      }
+      .nav-toggle:checked ~ .nav-links { display: flex; }
+      .nav-links li { padding: 0.7rem 0; border-top: 1px solid var(--border); }
+      .nav-links a { font-size: 14px; }
+      .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
+      .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
       #hero { padding: 4rem 0 3.5rem; }
       section { padding: 3.75rem 0; }
     }
@@ -578,11 +599,13 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-brand">industrial-mind-and-code</a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu" />
+      <label for="nav-toggle" class="nav-burger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="#thesis">Thesis</a></li>
         <li><a href="#tracks">Tracks</a></li>
         <li><a href="#experiments">Experiments</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="blog/">Writeups</a></li>
       </ul>
     </div>
   </nav>
@@ -597,13 +620,16 @@
           <p class="hero-tagline">Placing probabilistic intelligence inside deterministic industrial systems.</p>
           <div class="hero-body">
             <p>
-              Industrial Mind &amp; Code is an independent applied research program testing LLMs and agents inside industrial engineering decision environments &mdash; supply chains, maintenance systems, production planning, manufacturing workflows, and product-lifecycle systems.
+              Industrial Mind &amp; Code is an independent applied research program by Siddharth Srinivasan, testing LLMs and agents inside industrial engineering decision environments &mdash; supply chains, maintenance systems, production planning, manufacturing workflows, and product-lifecycle systems.
             </p>
             <p>
               The early result is not &ldquo;AI beats everything.&rdquo; It is more interesting: models often fail when placed directly in control of operational decisions, but become useful when constrained inside the right architecture.
             </p>
             <p>
               I separate a <em>bare LLM</em> (the model on its own) from an <em>agent</em> (an LLM paired with tools and a control loop), and ask where each can sit inside a deterministic industrial system &mdash; and where it should be constrained by one.
+            </p>
+            <p>
+              The bias is practical: compare AI agents against deterministic baselines, measure operational outcomes, and identify where hybrid architectures are more reliable than direct agentic control.
             </p>
           </div>
         </div>
@@ -629,6 +655,10 @@
             <p class="meta-v accent">Where should probabilistic intelligence sit inside deterministic industrial systems?</p>
           </div>
         </div>
+      </div>
+      <div class="closing-band">
+        <p>Industrial Mind &amp; Code is not asking whether AI agents are impressive in isolation. It is asking where they belong inside real industrial systems.</p>
+        <p class="closing-answer">The early answer: not everywhere, not directly, and not without deterministic constraints.</p>
       </div>
     </div>
   </section>
@@ -973,9 +1003,6 @@
         <li>Prefer repeatable simulations and transparent assumptions.</li>
         <li>Vet every claim before treating it as a finding.</li>
       </ol>
-      <p class="method-note">
-        Simulation parameters are synthetic but calibrated against published literature. All scenarios are fictional and no proprietary data is used. Baselines are the deterministic methods that already exist for each problem &mdash; exponential smoothing, order-up-to policies, SPC rules &mdash; and model tier, context treatment, and inference backend are treated as experimental factors, not background conditions.
-      </p>
 
       <div class="stack-row">
         <p class="stack-label">Infrastructure</p>
@@ -1007,34 +1034,6 @@
     </div>
   </section>
 
-  <!-- 8. About -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">About Industrial Mind &amp; Code</h2>
-      <div class="about-body">
-        <p>
-          Industrial Mind &amp; Code is an independent applied research program by Siddharth Srinivasan, focused on where AI agents work &mdash; and fail &mdash; inside industrial engineering systems.
-        </p>
-        <p>
-          The work explores how LLM agents behave inside constrained industrial environments, including supply chains, maintenance systems, product lifecycle workflows, manufacturing operations, and edge deployments.
-        </p>
-        <p>
-          The bias is practical: compare AI agents against deterministic baselines, measure operational outcomes, and identify where hybrid architectures are more reliable than direct agentic control.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Closing statement -->
-  <section id="message">
-    <div class="container">
-      <div class="closing-band">
-        <p>Industrial Mind &amp; Code is not asking whether AI agents are impressive in isolation. It is asking where they belong inside real industrial systems.</p>
-        <p class="closing-answer">The early answer: not everywhere, not directly, and not without deterministic constraints.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact -->
   <section id="contact">
     <div class="container">
@@ -1051,7 +1050,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>personal research &middot; not affiliated with any employer</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>personal research &middot; not affiliated with any employer &middot; scenarios are fictional, no proprietary data is used</span>
       <ul class="footer-links">
         <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
