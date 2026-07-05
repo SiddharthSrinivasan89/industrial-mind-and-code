@@ -26,9 +26,6 @@
       --accent: #33566e;
       --accent-mid: #3f6787;
       --accent-soft: #eaeef2;
-      --panel: #1a1a19;
-      --panel-2: #232321;
-      --panel-text: #f4f2ec;
       --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'DM Sans', system-ui, sans-serif;
       --font-mono: 'DM Mono', 'Courier New', monospace;
@@ -202,65 +199,6 @@
     }
     .meta-v.accent { color: var(--accent); font-family: var(--font-serif); font-style: italic; font-size: 15px; }
 
-    /* ─── Featured result (dark panel) ─── */
-    .featured-block {
-      position: relative;
-      background: var(--panel);
-      border-radius: 12px;
-      padding: 3rem 3rem;
-      box-shadow: 0 18px 40px -18px rgba(26, 26, 25, 0.5);
-      overflow: hidden;
-    }
-    @media (max-width: 560px) { .featured-block { padding: 2rem 1.5rem; } }
-    .featured-block p {
-      font-size: 16px;
-      font-weight: 300;
-      color: rgba(244, 242, 236, 0.82);
-      line-height: 1.75;
-      margin-bottom: 1.15rem;
-      max-width: 680px;
-    }
-    .featured-block strong { font-weight: 500; color: #ffffff; }
-    .metric-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 1.9rem 0;
-    }
-    @media (max-width: 520px) { .metric-row { grid-template-columns: 1fr; } }
-    .metric {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 9px;
-      background: rgba(255, 255, 255, 0.035);
-      padding: 1.2rem 1.35rem;
-    }
-    .metric-tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(244, 242, 236, 0.55);
-      margin-bottom: 0.7rem;
-    }
-    .metric-value {
-      font-family: var(--font-serif);
-      font-size: 1.85rem;
-      font-weight: 500;
-      color: #ffffff;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-    }
-    .metric-sub {
-      font-size: 12.5px;
-      color: rgba(244, 242, 236, 0.7);
-      margin-top: 0.35rem;
-    }
-    .featured-takeaway {
-      margin-top: 1.7rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
     /* ─── Sharp findings (insight cards) ─── */
     .findings-grid {
       display: grid;
@@ -300,61 +238,14 @@
       line-height: 1.65;
     }
 
-    /* ─── Emerging thesis ─── */
-    .thesis-intro { margin-bottom: 2.25rem; }
-    .thesis-intro p {
-      font-size: 16px;
-      font-weight: 300;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      max-width: 680px;
-    }
-    .thesis-grid {
-      list-style: none;
-      counter-reset: thesis;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.75rem 2.5rem;
-    }
-    @media (max-width: 700px) { .thesis-grid { grid-template-columns: 1fr; } }
-    .thesis-grid li {
-      counter-increment: thesis;
-      position: relative;
-      padding-left: 2.6rem;
-    }
-    .thesis-grid li::before {
-      content: counter(thesis, decimal-leading-zero);
-      position: absolute;
-      left: 0;
-      top: 1px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-    }
-    .thesis-grid strong {
-      display: block;
-      font-weight: 500;
-      font-size: 15.5px;
-      color: var(--text-primary);
-      line-height: 1.4;
-      margin-bottom: 0.35rem;
-    }
-    .thesis-grid span {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-    .thesis-close {
+    /* ─── Findings synthesis ─── */
+    .findings-synthesis {
       margin-top: 2.5rem;
       padding-top: 1.75rem;
       border-top: 1px solid var(--border);
-      max-width: 720px;
-    }
-    .thesis-close p {
+      max-width: 760px;
       font-family: var(--font-serif);
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-style: italic;
       color: var(--text-primary);
       line-height: 1.55;
@@ -688,8 +579,7 @@
     <div class="nav-inner">
       <a href="#" class="nav-brand">industrial-mind-and-code</a>
       <ul class="nav-links">
-        <li><a href="#featured">Result</a></li>
-        <li><a href="#thesis">Thesis</a></li>
+        <li><a href="#findings">Findings</a></li>
         <li><a href="#tracks">Tracks</a></li>
         <li><a href="#experiments">Experiments</a></li>
         <li><a href="#about">About</a></li>
@@ -740,40 +630,7 @@
     </div>
   </section>
 
-  <!-- 2. Featured Result (dark panel) -->
-  <section id="featured">
-    <div class="container">
-      <h2 class="section-title">Featured Result</h2>
-      <div class="featured-block">
-        <p>
-          In the first supply-chain replenishment study, every heuristic baseline outperformed every LLM configuration on both order variance and stockouts.
-        </p>
-        <div class="metric-row">
-          <div class="metric">
-            <p class="metric-tag">Exponential smoothing &middot; baseline</p>
-            <p class="metric-value">OVAR 0.54</p>
-            <p class="metric-sub">5 stockouts</p>
-          </div>
-          <div class="metric">
-            <p class="metric-tag">Best LLM &middot; direct control</p>
-            <p class="metric-value">OVAR 4.33</p>
-            <p class="metric-sub">41 stockouts</p>
-          </div>
-        </div>
-        <p>
-          But the conclusion was not &ldquo;LLMs are useless.&rdquo;
-        </p>
-        <p>
-          Later experiments showed that when AI was moved away from direct order control and instead asked to select the smoothing parameter inside a deterministic control loop, every AI condition produced OVAR below 1.0. The best result marginally beat the fixed &alpha; = 0.3 baseline.
-        </p>
-        <p class="featured-takeaway">
-          <strong>The lesson: AI performance in industrial systems depends less on model intelligence alone and more on where the model is placed in the architecture.</strong>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. Sharp Findings -->
+  <!-- 2. Sharp Findings -->
   <section id="findings">
     <div class="container">
       <h2 class="section-title">Sharp Findings</h2>
@@ -804,49 +661,11 @@
           <p>The strongest results appear when AI is bounded inside a hybrid architecture rather than given direct operational control.</p>
         </div>
       </div>
+      <p class="findings-synthesis">The practical design question is therefore not whether AI should replace established industrial methods. It is where probabilistic reasoning can safely improve deterministic systems &mdash; and where it should be constrained by them.</p>
     </div>
   </section>
 
-  <!-- 4. Emerging Thesis -->
-  <section id="thesis">
-    <div class="container">
-      <h2 class="section-title">Emerging Thesis</h2>
-      <div class="thesis-intro">
-        <p>
-          Industrial AI agents should not be evaluated as generic chatbots or benchmark performers. They should be evaluated as decision-making components inside constrained industrial systems. Across these experiments, a pattern is emerging.
-        </p>
-      </div>
-      <ol class="thesis-grid">
-        <li>
-          <strong>Better models do not automatically produce better industrial decisions.</strong>
-          <span>Reasoning-tier and larger models can still amplify instability when placed in the wrong decision role.</span>
-        </li>
-        <li>
-          <strong>More context can make agents worse.</strong>
-          <span>In several supply-chain experiments, added context increased reactivity rather than improving control.</span>
-        </li>
-        <li>
-          <strong>Deterministic baselines are hard to beat.</strong>
-          <span>Simple methods like exponential smoothing often outperform LLM agents on stability, variance, and stockout performance.</span>
-        </li>
-        <li>
-          <strong>Architecture matters more than intelligence.</strong>
-          <span>Perfect labels, better prompts, and more capable models do not help if the AI is placed in the wrong part of the control loop.</span>
-        </li>
-        <li>
-          <strong>Hybrid systems are the promising path.</strong>
-          <span>LLMs look more useful when they select bounded parameters, classify states, or assist engineers &mdash; not when they directly control operational quantities.</span>
-        </li>
-      </ol>
-      <div class="thesis-close">
-        <p>
-          The practical design question is therefore not whether AI should replace established industrial methods. It is where probabilistic reasoning can safely improve deterministic systems &mdash; and where it should be constrained by them.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Research Tracks -->
+  <!-- 4. Research Tracks -->
   <section id="tracks">
     <div class="container">
       <p class="section-label">Research Agenda</p>
