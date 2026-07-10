@@ -495,6 +495,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -521,6 +522,10 @@
           <span class="post-meta-value">8 model-condition cells &middot; 20 runs &middot; 11,520 LLM calls</span>
         </div>
         <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">gpt-4.1-mini &middot; o4-mini &middot; phi4:14b &middot; GPT OSS 120B</span>
+        </div>
+        <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
           <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
@@ -542,7 +547,7 @@
 
       <!-- Overview -->
       <div class="post-section">
-        <p class="section-label">Overview</p>
+        <p class="section-label">What was tested</p>
         <h2 class="section-title">What this experiment explored</h2>
         <div class="prose">
           <p>Agentic Bullwhip Effect Version 2 asks a harder question than the first experiment in this series, Agentic Bullwhip Effect Version 1: not which AI configuration performs best, but whether any LLM configuration outperforms a simple rule-based heuristic at all. Four models across lightweight and reasoning tiers, frontier and local, were tested against three deterministic heuristic baselines across 20 independent runs per condition.</p>
@@ -552,7 +557,7 @@
 
       <!-- Experiment Setup -->
       <div class="post-section">
-        <p class="section-label">Experiment Setup</p>
+        <p class="section-label">Design and configuration</p>
         <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
@@ -574,26 +579,6 @@
       </div>
 
       <!-- Key Findings -->
-      <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>Every heuristic outperformed every LLM on both OVAR and stockouts simultaneously.</strong> Not a tradeoff. LLMs were strictly dominated on both primary metrics in every configuration tested.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The gap is not marginal.</strong> Exponential smoothing: chain OVAR 0.54, 5 stockouts. Best LLM (local phi4:14b, blind): OVAR 4.33, 41 stockouts. 8x worse on both dimensions at once.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Context had opposite effects by model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 to 4.47, delta 0.23, below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates instability, not a consistent directional effect.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Reasoning models showed no ordering advantage.</strong> The 116B GPT OSS 120B produced results indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens and produced no measurable improvement on either metric. All 7 hypotheses were rejected.</span>
-          </li>
-        </ol>
-      </div>
-
-      <!-- Results -->
       <div class="post-section">
         <p class="section-label">Results</p>
         <h2 class="section-title">Numeric results</h2>
@@ -842,6 +827,26 @@
         </div>
       </div>
 
+      <!-- Results -->
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every heuristic outperformed every LLM on both OVAR and stockouts simultaneously.</strong> Not a tradeoff. LLMs were strictly dominated on both primary metrics in every configuration tested.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The gap is not marginal.</strong> Exponential smoothing: chain OVAR 0.54, 5 stockouts. Best LLM (local phi4:14b, blind): OVAR 4.33, 41 stockouts. 8x worse on both dimensions at once.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context had opposite effects by model and backend.</strong> For frontier gpt-4.1-mini, adding business context reduced OVAR marginally (4.70 to 4.47, delta 0.23, below the MPRD threshold). For local phi4:14b, the same context was dramatically worse: chain OVAR jumped from 4.33 to 6.35, with the Ancillary tier hitting 10.82 &plusmn; 8.14 across 20 runs. The standard deviation of 8.14 indicates instability, not a consistent directional effect.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Reasoning models showed no ordering advantage.</strong> The 116B GPT OSS 120B produced results indistinguishable from gpt-4.1-mini in blind conditions. o4-mini generated over 1 million reasoning tokens and produced no measurable improvement on either metric. All 7 hypotheses were rejected.</span>
+          </li>
+        </ol>
+      </div>
+
       <!-- Discussion -->
       <div class="post-section">
         <p class="section-label">Discussion</p>
@@ -854,7 +859,7 @@
 
       <!-- Industry Implications -->
       <div class="post-section">
-        <p class="section-label">Industry Implications</p>
+        <p class="section-label">Practical implications</p>
         <h2 class="section-title">What this means for practitioners</h2>
         <div class="prose">
           <p>Do not replace your ordering formula with an LLM. The formula was built for this task and it will do it better. This experiment is not a close result: exponential smoothing, a method from the 1950s, produced orders eight times less variable than the best LLM configuration, with fewer stockouts at the same time.</p>
@@ -866,7 +871,7 @@
       <!-- Experiment source -->
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2-context-model-interactions" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>

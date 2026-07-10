@@ -202,6 +202,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -227,6 +228,10 @@
           <span class="post-meta-value">4 models &middot; 3 conditions &middot; 36-month stochastic simulation &middot; world events</span>
         </div>
         <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">gpt-4.1-mini &middot; o4-mini &middot; phi4:14b &middot; nemotron-super 120B</span>
+        </div>
+        <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
           <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
@@ -246,7 +251,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Experiment Setup</p>
+        <p class="section-label">Design and configuration</p>
         <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
@@ -261,28 +266,6 @@
             <tr><td>Primary metric</td><td>Chain OVAR = Var(orders) / Var(demand). Target: exp_smoothing at OVAR 1.185.</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>Every AI condition produced OVAR in a 0.05-unit band, regardless of model or information level.</strong> gpt-4.1-mini: 1.737&ndash;1.771. phi4:14b: 1.726&ndash;1.780. o4-mini: 1.748&ndash;1.774. nemotron 120B: 1.734&ndash;1.775. The entire range across 16 distinct model-condition combinations is narrower than the standard deviation of many individual runs. This is not noise. It is a ceiling.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Context doubled classification accuracy and did not move the supply chain outcome.</strong> Direction accuracy went from 0.41&ndash;0.48 in blind conditions to 0.72&ndash;0.84 with context. A roughly twofold improvement in situational awareness. Chain OVAR moved by 0.01&ndash;0.02. The accuracy gain is real. It is discarded entirely at the lookup table.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>More information made outcomes marginally worse, not better.</strong> In every model, the unstructured condition (live event headlines) produced higher OVAR than the context condition. When shown explicit disruption headlines, models over-committed to extreme labels, adding noise to the formula. gpt-4.1-mini context &rarr; unstructured: 1.737 &rarr; 1.771. phi4 context &rarr; unstructured: 1.726 &rarr; 1.780.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Explicitly instructing the AI to default to inaction produced zero effect on OVAR.</strong> Sub-experiment E4 added a neutral-prior instruction: &ldquo;Default to NEUTRAL unless the signal is strong and unambiguous.&rdquo; Label distributions shifted. OVAR did not. The reason: NEUTRAL maps to multiplier 1.00, which still executes a full Order-Up-To calculation. &ldquo;Do nothing&rdquo; in the prompt is not &ldquo;do nothing&rdquo; in the formula.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Removing world events made OVAR worse, not better.</strong> The ablation (events disabled) produced OVAR 2.08&ndash;2.12, well above the events-on results of 1.73&ndash;1.78. Disruption events create correlated demand and order spikes that partially cancel their own contribution to OVAR. A cleaner seasonal signal exposes the underlying formula amplification without that natural cancellation.</span>
-          </li>
-        </ol>
       </div>
 
       <div class="post-section">
@@ -347,6 +330,28 @@
       </div>
 
       <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every AI condition produced OVAR in a 0.05-unit band, regardless of model or information level.</strong> gpt-4.1-mini: 1.737&ndash;1.771. phi4:14b: 1.726&ndash;1.780. o4-mini: 1.748&ndash;1.774. nemotron 120B: 1.734&ndash;1.775. The entire range across 16 distinct model-condition combinations is narrower than the standard deviation of many individual runs. This is not noise. It is a ceiling.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context doubled classification accuracy and did not move the supply chain outcome.</strong> Direction accuracy went from 0.41&ndash;0.48 in blind conditions to 0.72&ndash;0.84 with context. A roughly twofold improvement in situational awareness. Chain OVAR moved by 0.01&ndash;0.02. The accuracy gain is real. It is discarded entirely at the lookup table.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>More information made outcomes marginally worse, not better.</strong> In every model, the unstructured condition (live event headlines) produced higher OVAR than the context condition. When shown explicit disruption headlines, models over-committed to extreme labels, adding noise to the formula. gpt-4.1-mini context &rarr; unstructured: 1.737 &rarr; 1.771. phi4 context &rarr; unstructured: 1.726 &rarr; 1.780.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Explicitly instructing the AI to default to inaction produced zero effect on OVAR.</strong> Sub-experiment E4 added a neutral-prior instruction: &ldquo;Default to NEUTRAL unless the signal is strong and unambiguous.&rdquo; Label distributions shifted. OVAR did not. The reason: NEUTRAL maps to multiplier 1.00, which still executes a full Order-Up-To calculation. &ldquo;Do nothing&rdquo; in the prompt is not &ldquo;do nothing&rdquo; in the formula.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Removing world events made OVAR worse, not better.</strong> The ablation (events disabled) produced OVAR 2.08&ndash;2.12, well above the events-on results of 1.73&ndash;1.78. Disruption events create correlated demand and order spikes that partially cancel their own contribution to OVAR. A cleaner seasonal signal exposes the underlying formula amplification without that natural cancellation.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="post-section">
         <p class="section-label">Discussion</p>
         <h2 class="section-title">The Equaliser Effect</h2>
         <div class="prose">
@@ -359,7 +364,7 @@
 
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>

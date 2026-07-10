@@ -184,6 +184,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -209,6 +210,10 @@
           <span class="post-meta-value">3 models &middot; 3 conditions + V6b debiased &middot; 10 runs each &middot; 25-month simulation</span>
         </div>
         <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">gpt-4.1-mini &middot; o4-mini &middot; GPT OSS 120B</span>
+        </div>
+        <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
           <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
@@ -228,7 +233,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Experiment Setup</p>
+        <p class="section-label">Design and configuration</p>
         <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
@@ -243,33 +248,6 @@
             <tr><td>Fixed baselines</td><td>exp_smooth_0.1 (OVAR 0.620) &middot; exp_smooth_0.3 (OVAR 0.545) &middot; exp_smooth_0.5 (OVAR 0.729)</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-
-        <div class="callout-positive">
-          <p><strong>For the first time in this research programme, every AI condition produced OVAR below 1.0.</strong> In V1 through V5, every AI-driven configuration amplified order variance by 30% to 1,200% above demand variance. In V6, the worst AI condition reaches OVAR 0.739 &mdash; which is still damping. The architecture change eliminated amplification entirely.</p>
-        </div>
-
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>The best AI condition matches and marginally beats the fixed exponential smoothing baseline.</strong> GPT OSS 120B in blind conditions achieved OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts. The fixed &alpha;=0.3 baseline achieves OVAR 0.545 with 5 stockouts. The difference is within the confidence interval, but represents the first time in six experiments that an AI-driven condition can plausibly match its deterministic counterpart on the primary metric without sacrificing service level.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The context penalty persists &mdash; but the mechanism is now understood and partially correctable.</strong> Adding context increases &alpha; choices. Models given a calendar and seasonal persona consistently choose higher &alpha; values (more reactive smoothing), which increases variance. This is a calibrated over-responsiveness effect, far less severe than the panic buying of V2 or the memory collapse of V3b. The debiased conditions (V6b) close most of the gap: oss120b_ctx_computed reaches OVAR 0.585 vs. oss120b_context at 0.739.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Stateful conditions land in the middle.</strong> Providing recent &alpha; history moderates the context-inflation effect without fully eliminating it. Mini stateful: 0.695. OSS120b stateful: 0.684. o4-mini stateful: 0.705. All three sit between their blind and context counterparts.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The 120B model has a structural advantage in blind conditions.</strong> Without context, GPT OSS 120B naturally converges to &alpha;=0.3 as its dominant choice &mdash; the standard textbook value for exponential smoothing. Smaller models select &alpha;=0.7 more frequently, adding variance. The advantage disappears in context conditions, where all models inflate &alpha; similarly when given seasonal information.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Debiasing shows that context-induced &alpha;-inflation is correctable.</strong> oss120b_ctx_computed (which restricts &alpha; to {0.1, 0.3, 0.5} and has the model derive &alpha; from observable statistics) achieves OVAR 0.585 with 5.6 stockouts &mdash; recovering most of the blind condition&rsquo;s advantage while providing seasonal information. The context penalty is structural but not immovable.</span>
-          </li>
-        </ol>
       </div>
 
       <div class="post-section">
@@ -329,6 +307,33 @@
       </div>
 
       <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+
+        <div class="callout-positive">
+          <p><strong>For the first time in this research programme, every AI condition produced OVAR below 1.0.</strong> In V1 through V5, every AI-driven configuration amplified order variance by 30% to 1,200% above demand variance. In V6, the worst AI condition reaches OVAR 0.739 &mdash; which is still damping. The architecture change eliminated amplification entirely.</p>
+        </div>
+
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>The best AI condition matches and marginally beats the fixed exponential smoothing baseline.</strong> GPT OSS 120B in blind conditions achieved OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts. The fixed &alpha;=0.3 baseline achieves OVAR 0.545 with 5 stockouts. The difference is within the confidence interval, but represents the first time in six experiments that an AI-driven condition can plausibly match its deterministic counterpart on the primary metric without sacrificing service level.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The context penalty persists &mdash; but the mechanism is now understood and partially correctable.</strong> Adding context increases &alpha; choices. Models given a calendar and seasonal persona consistently choose higher &alpha; values (more reactive smoothing), which increases variance. This is a calibrated over-responsiveness effect, far less severe than the panic buying of V2 or the memory collapse of V3b. The debiased conditions (V6b) close most of the gap: oss120b_ctx_computed reaches OVAR 0.585 vs. oss120b_context at 0.739.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Stateful conditions land in the middle.</strong> Providing recent &alpha; history moderates the context-inflation effect without fully eliminating it. Mini stateful: 0.695. OSS120b stateful: 0.684. o4-mini stateful: 0.705. All three sit between their blind and context counterparts.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The 120B model has a structural advantage in blind conditions.</strong> Without context, GPT OSS 120B naturally converges to &alpha;=0.3 as its dominant choice &mdash; the standard textbook value for exponential smoothing. Smaller models select &alpha;=0.7 more frequently, adding variance. The advantage disappears in context conditions, where all models inflate &alpha; similarly when given seasonal information.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Debiasing shows that context-induced &alpha;-inflation is correctable.</strong> oss120b_ctx_computed (which restricts &alpha; to {0.1, 0.3, 0.5} and has the model derive &alpha; from observable statistics) achieves OVAR 0.585 with 5.6 stockouts &mdash; recovering most of the blind condition&rsquo;s advantage while providing seasonal information. The context penalty is structural but not immovable.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="post-section">
         <p class="section-label">Discussion</p>
         <h2 class="section-title">Why this architecture works when the others did not</h2>
         <div class="prose">
@@ -341,7 +346,7 @@
 
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>

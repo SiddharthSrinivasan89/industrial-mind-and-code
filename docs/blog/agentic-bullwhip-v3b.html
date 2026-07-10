@@ -201,6 +201,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -226,6 +227,10 @@
           <span class="post-meta-value">3 models &middot; 3 conditions &middot; 20 runs &middot; 12,960 LLM calls</span>
         </div>
         <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">gpt-4.1-mini &middot; o4-mini &middot; nemotron-super-3:120b</span>
+        </div>
+        <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
           <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
@@ -245,7 +250,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Overview</p>
+        <p class="section-label">What was tested</p>
         <h2 class="section-title">What this experiment explored</h2>
         <div class="prose">
           <p>Prior experiments in this series established that stateless LLM agents cannot outperform simple heuristics when making direct ordering decisions. This experiment tested a different architecture: instead of asking the AI to invent the exact order quantity, a mathematical formula handles that. The AI acts as a planner whose only job is to adjust the <strong>Safety Stock Multiplier</strong>.</p>
@@ -254,7 +259,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Experiment Setup</p>
+        <p class="section-label">Design and configuration</p>
         <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
@@ -270,25 +275,6 @@
             <tr><td>LLM calls</td><td>12,960 total (3 models &times; 3 conditions &times; 20 runs &times; 24 periods &times; 3 tiers)</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>Every AI condition produced higher OVAR than the mathematical baseline.</strong> exp_smoothing achieved chain OVAR 0.5446 with 5.0 stockouts. The best AI result (gpt-4.1-mini, Blind) was 2.3325 with 10.6 stockouts. The worst (o4-mini, Stateful) reached 3.1211. Not a marginal gap.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The AI&rsquo;s active adjustments were worse than doing nothing.</strong> The hybrid_control (fixed 1.0 multiplier, no AI) produced chain OVAR 1.7097. Every single AI condition exceeded this. The models&rsquo; continuous adjustments degraded the base formula rather than improving it.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Context was a penalty, not a benefit.</strong> For nemotron and gpt-4.1-mini, introducing a seasonal calendar increased order variance. They treated more information as a reason to hold more stock rather than a reason to be precise. Giving them a calendar made them panic, not plan.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Memory caused the advanced reasoning model to collapse.</strong> o4-mini in the Stateful condition produced OVAR 3.1211, the highest in the entire experiment. It anchored on past stockouts and violently over-corrected each subsequent period. This is the bullwhip effect, running inside the model&rsquo;s reasoning loop rather than across supply chain tiers.</span>
-          </li>
-        </ol>
       </div>
 
       <div class="post-section">
@@ -452,6 +438,25 @@
       </div>
 
       <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every AI condition produced higher OVAR than the mathematical baseline.</strong> exp_smoothing achieved chain OVAR 0.5446 with 5.0 stockouts. The best AI result (gpt-4.1-mini, Blind) was 2.3325 with 10.6 stockouts. The worst (o4-mini, Stateful) reached 3.1211. Not a marginal gap.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The AI&rsquo;s active adjustments were worse than doing nothing.</strong> The hybrid_control (fixed 1.0 multiplier, no AI) produced chain OVAR 1.7097. Every single AI condition exceeded this. The models&rsquo; continuous adjustments degraded the base formula rather than improving it.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context was a penalty, not a benefit.</strong> For nemotron and gpt-4.1-mini, introducing a seasonal calendar increased order variance. They treated more information as a reason to hold more stock rather than a reason to be precise. Giving them a calendar made them panic, not plan.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Memory caused the advanced reasoning model to collapse.</strong> o4-mini in the Stateful condition produced OVAR 3.1211, the highest in the entire experiment. It anchored on past stockouts and violently over-corrected each subsequent period. This is the bullwhip effect, running inside the model&rsquo;s reasoning loop rather than across supply chain tiers.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="post-section">
         <p class="section-label">Discussion</p>
         <h2 class="section-title">Semantic alignment vs. operational control</h2>
         <div class="prose">
@@ -463,7 +468,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Implications</p>
+        <p class="section-label">Practical implications</p>
         <h2 class="section-title">What this means for system design</h2>
         <div class="prose">
           <p>The hybrid architecture was a reasonable hypothesis. Restricting the AI to a single scalar output while the formula handled execution seemed like a way to leverage AI&rsquo;s qualitative strengths while limiting its quantitative weaknesses. The data shows this is not sufficient. A continuous multiplier that the AI invents still requires numerical precision that the models cannot reliably provide.</p>
@@ -474,7 +479,7 @@
 
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>Full code, data, figures, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v3b-hybrid-architecture" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>

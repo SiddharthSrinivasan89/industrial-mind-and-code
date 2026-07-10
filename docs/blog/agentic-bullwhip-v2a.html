@@ -521,6 +521,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -547,6 +548,10 @@
           <span class="post-meta-value">2 conditions &middot; 10 runs &middot; 1,440 LLM calls</span>
         </div>
         <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">sarvam-30b &middot; GPT OSS 120B (reference)</span>
+        </div>
+        <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
           <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
@@ -571,7 +576,7 @@
 
       <!-- Experiment setup -->
       <div class="post-section">
-        <p class="section-label">Experiment setup</p>
+        <p class="section-label">Design and configuration</p>
         <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
@@ -648,26 +653,6 @@
 
       <!-- Key findings -->
       <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>No practically meaningful difference in task performance was observed in the tested conditions.</strong> sarvam-30b chain OVAR 4.504 &plusmn; 0.044 (E1) and 4.501 &plusmn; 0.093 (E2). GPT OSS 120B achieved 4.52 &plusmn; 0.05 (Agentic Bullwhip Effect Version 2 context reference; not re-run in Version 2a). The difference is 0.02, well within noise and below the MPRD threshold of 0.5. India's sovereign model did not produce different ordering behaviour in the tested context conditions, despite being trained on Indian data and the demand series being calibrated to Indian market seasonality.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Neither model detected Indian seasonal demand patterns.</strong> Pattern scores: sarvam-30b 0.219&ndash;0.232, GPT OSS 120B 0.21. All identical within noise. The demand series contains two Indian festive cycles with documented peak months, a monsoon trough, and wedding season elevation. Agents received the month name plus four numeric state variables in the user prompt. No event labels, no year. Neither model showed seasonal awareness. Cultural training data did not produce measurably different ordering behaviour on this task.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Enabling think=True was associated with eliminating run-level failures without changing supply chain outcomes.</strong> E1 (think=False): 15 of 25 run attempts needed replacement. E2 (think=True): 0 of 10 run attempts needed replacement. Chain OVAR difference between E1 and E2: 0.003. Note: E1 also had a separate API-flag/prompt conflict: the system prompt contained a &ldquo;Think silently&rdquo; instruction that contradicted the think=False flag. The reliability improvement in E2 cannot be fully isolated to the reasoning flag alone. Regardless, think=True produced reliable run completion and is the recommended configuration for local GGUF deployment of sarvam-30b via llama-server.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The structural constraint holds.</strong> LLMs are stateless in this architecture: each agent sees the current period&rsquo;s state and places an order with no memory of prior decisions. Exponential smoothing carries one number forward and partially self-corrects. The LLM agent cannot. The current results are consistent with an architectural bottleneck: stateless agents cannot self-correct across periods regardless of training data. Whether cultural training or model size would change outcomes in a stateful architecture is outside what this experiment can establish.</span>
-          </li>
-        </ol>
-      </div>
-
-      <!-- Results -->
-      <div class="post-section">
         <p class="section-label">Results</p>
         <h2 class="section-title">Numeric results</h2>
 
@@ -742,6 +727,26 @@
         <p class="table-note" style="margin-top:0.35rem;">V2d note: correcting top_p from llama.cpp default (0.95) to documented value (1.0) produced no meaningful change. Documented settings reproduce results faithfully.</p>
       </div>
 
+      <!-- Results -->
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>No practically meaningful difference in task performance was observed in the tested conditions.</strong> sarvam-30b chain OVAR 4.504 &plusmn; 0.044 (E1) and 4.501 &plusmn; 0.093 (E2). GPT OSS 120B achieved 4.52 &plusmn; 0.05 (Agentic Bullwhip Effect Version 2 context reference; not re-run in Version 2a). The difference is 0.02, well within noise and below the MPRD threshold of 0.5. India's sovereign model did not produce different ordering behaviour in the tested context conditions, despite being trained on Indian data and the demand series being calibrated to Indian market seasonality.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Neither model detected Indian seasonal demand patterns.</strong> Pattern scores: sarvam-30b 0.219&ndash;0.232, GPT OSS 120B 0.21. All identical within noise. The demand series contains two Indian festive cycles with documented peak months, a monsoon trough, and wedding season elevation. Agents received the month name plus four numeric state variables in the user prompt. No event labels, no year. Neither model showed seasonal awareness. Cultural training data did not produce measurably different ordering behaviour on this task.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Enabling think=True was associated with eliminating run-level failures without changing supply chain outcomes.</strong> E1 (think=False): 15 of 25 run attempts needed replacement. E2 (think=True): 0 of 10 run attempts needed replacement. Chain OVAR difference between E1 and E2: 0.003. Note: E1 also had a separate API-flag/prompt conflict: the system prompt contained a &ldquo;Think silently&rdquo; instruction that contradicted the think=False flag. The reliability improvement in E2 cannot be fully isolated to the reasoning flag alone. Regardless, think=True produced reliable run completion and is the recommended configuration for local GGUF deployment of sarvam-30b via llama-server.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The structural constraint holds.</strong> LLMs are stateless in this architecture: each agent sees the current period&rsquo;s state and places an order with no memory of prior decisions. Exponential smoothing carries one number forward and partially self-corrects. The LLM agent cannot. The current results are consistent with an architectural bottleneck: stateless agents cannot self-correct across periods regardless of training data. Whether cultural training or model size would change outcomes in a stateful architecture is outside what this experiment can establish.</span>
+          </li>
+        </ol>
+      </div>
+
       <!-- Integration observations -->
       <div class="post-section">
         <p class="section-label">Integration observations</p>
@@ -793,7 +798,7 @@
 
       <!-- Industry Implications -->
       <div class="post-section">
-        <p class="section-label">Industry Implications</p>
+        <p class="section-label">Practical implications</p>
         <h2 class="section-title">What this means for practitioners</h2>
         <div class="prose">
           <p>A model trained on Indian data does not automatically use that knowledge when asked to place a supply chain order. sarvam-30b received an Indian demand series and the current month name but showed no seasonal sensitivity. If seasonal awareness matters for your use case, you need to build it into the prompt or the system design explicitly. You cannot assume a model will apply its training knowledge to an operational task just because the task is in the same domain.</p>
@@ -805,7 +810,7 @@
       <!-- Experiment source -->
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>
             Full report, code, and data are available on GitHub.
             &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:400;">View on GitHub &rarr;</a>

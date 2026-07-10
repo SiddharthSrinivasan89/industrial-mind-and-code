@@ -194,6 +194,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -243,7 +244,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Benchmark</p>
+        <p class="section-label">Design and configuration</p>
         <h2 class="section-title">What was tested</h2>
         <div class="prose">
           <p><a href="https://huggingface.co/datasets/ibm-research/FailureSensorIQ" target="_blank" rel="noopener">FailureSensorIQ</a> is an IBM Research multiple-choice QA benchmark for understanding relationships between industrial sensors and failure modes. I used its single-answer split: 2,667 questions across ten assets including gas turbines, transformers, motors, pumps, compressors, fans, generators, and reciprocating engines.</p>
@@ -330,7 +331,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Findings</p>
+        <p class="section-label">Key findings</p>
         <h2 class="section-title">What mattered in practice</h2>
 
         <ol class="findings-list">
@@ -356,6 +357,16 @@
       </div>
 
       <div class="post-section">
+        <p class="section-label">Practical implications</p>
+        <h2 class="section-title">A practical local assistant, with guardrails</h2>
+        <div class="prose">
+          <p>The baseline settles a design direction: Nemotron-3 Nano 4B is the primary small reasoning model to build around, with Gemma 3 4B at low temperature as a clean non-reasoning fallback. The bare model should not make the maintenance decision; it should surface likely causes for an engineer or a grounded system to confirm.</p>
+          <p>The engineering rules are less glamorous and more important: set the sampling temperature for the task, score reliability separately from accuracy, monitor serving health over long runs, reload the runtime before degradation becomes invisible, and commission the assistant per asset.</p>
+          <p>If the decision is a fixed threshold or a lookup, keep it in plain code. Use the model only for the judgement-shaped parts of diagnosis where language, symptoms, and sensor-failure relationships need to be connected.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
         <p class="section-label">Limitations</p>
         <h2 class="section-title">What this does and does not prove</h2>
         <div class="callout-positive">
@@ -369,17 +380,16 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">What this informs</p>
-        <h2 class="section-title">A practical local assistant, with guardrails</h2>
-        <div class="prose">
-          <p>The baseline settles a design direction: Nemotron-3 Nano 4B is the primary small reasoning model to build around, with Gemma 3 4B at low temperature as a clean non-reasoning fallback. The bare model should not make the maintenance decision; it should surface likely causes for an engineer or a grounded system to confirm.</p>
-          <p>The engineering rules are less glamorous and more important: set the sampling temperature for the task, score reliability separately from accuracy, monitor serving health over long runs, reload the runtime before degradation becomes invisible, and commission the assistant per asset.</p>
-          <p>If the decision is a fixed threshold or a lookup, keep it in plain code. Use the model only for the judgement-shaped parts of diagnosis where language, symptoms, and sensor-failure relationships need to be connected.</p>
-        </div>
-
-        <div class="method-callout" style="margin-top:1.5rem;">
-          <p class="method-callout-label">Sources</p>
+        <div class="method-callout">
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>Dataset: <a href="https://huggingface.co/datasets/ibm-research/FailureSensorIQ" target="_blank" rel="noopener">IBM Research FailureSensorIQ on Hugging Face</a> &middot; <a href="https://github.com/IBM/FailureSensorIQ" target="_blank" rel="noopener">IBM GitHub repository</a> &middot; <a href="https://arxiv.org/abs/2506.03278" target="_blank" rel="noopener">arXiv:2506.03278</a>.</p>
+          <p>Code and scored results: <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/failuresensoriq-v1-reasoning-effect" target="_blank" rel="noopener">View code and results &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <div class="method-callout">
+          <p class="method-callout-label">Disclaimer</p>
           <p>Independent, self-funded personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. The work uses publicly available data or synthetic scenarios; no proprietary employer or customer data is used.</p>
         </div>
       </div>

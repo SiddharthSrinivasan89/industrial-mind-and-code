@@ -495,6 +495,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -521,6 +522,10 @@
           <span class="post-meta-value">2&times;2 Factorial &middot; 5 runs &middot; 720 LLM calls</span>
         </div>
         <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">gpt-4.1-mini &middot; o1</span>
+        </div>
+        <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
           <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
@@ -542,7 +547,7 @@
 
       <!-- Overview -->
       <div class="post-section">
-        <p class="section-label">Overview</p>
+        <p class="section-label">What was tested</p>
         <h2 class="section-title">What this experiment explored</h2>
         <div class="prose">
           <p>The bullwhip effect is a well-known supply chain problem: small shifts in consumer demand turn into larger and larger order swings as you move upstream through the chain. Version 1 put LLM agents in the ordering role across a three-tier supply chain and asked whether giving them business context (company identity, product details, calendar month) changed how much variability they added.</p>
@@ -552,7 +557,7 @@
 
       <!-- Experiment Setup -->
       <div class="post-section">
-        <p class="section-label">Experiment Setup</p>
+        <p class="section-label">Design and configuration</p>
         <h2 class="section-title">Design &amp; configuration</h2>
         <table class="setup-table">
           <tbody>
@@ -575,29 +580,6 @@
       </div>
 
       <!-- Key Findings -->
-      <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>Every configuration amplified demand variability.</strong> OVAR exceeded 1.0 at every tier, in every run, across all four configurations. No configuration reduced variability.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Context made the lightweight model more stable.</strong> context_lightweight chain OVAR 2.929 vs blind_lightweight 3.157, a 7.2% reduction. context_lightweight also showed the highest seasonal responsiveness, raising orders at event months in 83% of cases.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>Context made the reasoning model worse.</strong> context_reasoning chain OVAR 4.412 vs blind_reasoning 3.835. The most capable, fully-informed configuration produced the highest chain variability of all four, 39.7% above the blind lightweight baseline.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>context_reasoning produced an inverted tier pattern.</strong> Standard bullwhip analysis predicts variability increasing upstream: Component noisier than Ancillary, Ancillary noisier than OEM. context_reasoning flipped this entirely. OEM OVAR 6.349, Ancillary 4.191, Component 2.698. The three other configurations followed the expected pattern.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>o1 showed high run-to-run variability.</strong> CV for o1 OVAR: 22&ndash;57%. For gpt-4.1-mini: under 2%. At n=5, o1 means are directional, not reliable point estimates.</span>
-          </li>
-        </ol>
-      </div>
-
-      <!-- Results -->
       <div class="post-section">
         <p class="section-label">Results</p>
         <h2 class="section-title">Numeric results</h2>
@@ -776,6 +758,29 @@
         <p class="table-note">H4 held for the lightweight model (seasonal elevation score of 83%) but reversed for the reasoning model.</p>
       </div>
 
+      <!-- Results -->
+      <div class="post-section">
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>Every configuration amplified demand variability.</strong> OVAR exceeded 1.0 at every tier, in every run, across all four configurations. No configuration reduced variability.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context made the lightweight model more stable.</strong> context_lightweight chain OVAR 2.929 vs blind_lightweight 3.157, a 7.2% reduction. context_lightweight also showed the highest seasonal responsiveness, raising orders at event months in 83% of cases.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>Context made the reasoning model worse.</strong> context_reasoning chain OVAR 4.412 vs blind_reasoning 3.835. The most capable, fully-informed configuration produced the highest chain variability of all four, 39.7% above the blind lightweight baseline.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>context_reasoning produced an inverted tier pattern.</strong> Standard bullwhip analysis predicts variability increasing upstream: Component noisier than Ancillary, Ancillary noisier than OEM. context_reasoning flipped this entirely. OEM OVAR 6.349, Ancillary 4.191, Component 2.698. The three other configurations followed the expected pattern.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>o1 showed high run-to-run variability.</strong> CV for o1 OVAR: 22&ndash;57%. For gpt-4.1-mini: under 2%. At n=5, o1 means are directional, not reliable point estimates.</span>
+          </li>
+        </ol>
+      </div>
+
       <!-- Discussion -->
       <div class="post-section">
         <p class="section-label">Discussion</p>
@@ -788,7 +793,7 @@
 
       <!-- Industry Implications -->
       <div class="post-section">
-        <p class="section-label">Industry Implications</p>
+        <p class="section-label">Practical implications</p>
         <h2 class="section-title">What this means for practitioners</h2>
         <div class="prose">
           <p>More context and a more capable model did not produce better ordering decisions. The assumption that richer input to a more capable model will always improve the result does not hold when each order directly affects the next period's inventory. In a supply chain, a bad order this month makes the situation harder next month, and the model has no memory of what it did.</p>
@@ -799,7 +804,7 @@
       <!-- Experiment source -->
       <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>Full code, data, and raw results are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v1-direct-ordering" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>

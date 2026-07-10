@@ -183,6 +183,7 @@
         <li><a href="../#tracks">Tracks</a></li>
         <li><a href="../#experiments">Experiments</a></li>
         <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -208,6 +209,10 @@
           <span class="post-meta-value">gpt-4.1-mini (Azure) &middot; 3 information conditions &middot; 25-month simulation</span>
         </div>
         <div class="post-meta-item">
+          <span class="post-meta-label">Models</span>
+          <span class="post-meta-value">gpt-4.1-mini</span>
+        </div>
+        <div class="post-meta-item">
           <span class="post-meta-label">Author</span>
           <span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span>
         </div>
@@ -219,7 +224,7 @@
     <div class="container">
 
       <div class="post-section">
-        <p class="section-label">What this experiment is</p>
+        <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>This experiment tests a specific idea: do not ask the AI to produce a number. Ask it to pick one of five plain labels for the month ahead, then let a fixed lookup table and a simple ordering formula do the rest.</p>
           <p>Each month, at each tier of a fictional automotive supply chain, gpt-4.1-mini chooses one of {STRONG_INCREASE, MODERATE_INCREASE, NEUTRAL, MODERATE_DECREASE, STRONG_DECREASE}. A fixed table turns that label into a buffer multiplier, and an Order-Up-To formula computes the actual order. The model never produces a number; it only classifies the situation. <strong>The label interface was completely reliable &mdash; and every condition still amplified the bullwhip well above the baseline.</strong></p>
@@ -227,7 +232,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Reader context</p>
+        <p class="section-label">What was tested</p>
         <h2 class="section-title">The problem is not ordering once. It is ordering repeatedly.</h2>
         <div class="prose">
           <p>The bullwhip effect is what happens when small changes in customer demand become larger and larger order swings as they travel upstream through a supply chain. A retailer sees a bump in demand, the manufacturer orders extra to avoid a shortage, the component supplier sees that larger order and reacts again. By the time the signal reaches the top of the chain, a modest demand change can look like a crisis.</p>
@@ -237,7 +242,7 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Experiment Setup</p>
+        <p class="section-label">Design and configuration</p>
         <table class="setup-table">
           <tbody>
             <tr><td>What the AI does</td><td>Each month, at each tier, the AI picks one of five labels describing the demand direction for the month ahead. It does not place the order or produce any number. A fixed lookup table converts the label to a buffer multiplier, and an Order-Up-To formula produces the order.</td></tr>
@@ -249,27 +254,6 @@
             <tr><td>Benchmarks</td><td>Pure algorithmic baselines with no AI: exponential smoothing (a standard demand-forecasting heuristic) and a hybrid control (the same order formula with the buffer fixed at its base level).</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="post-section">
-        <p class="section-label">Key findings</p>
-        <h2 class="section-title">What I found</h2>
-
-        <div class="callout-positive">
-          <p><strong>The label interface was rock-solid.</strong> Intent compliance was perfect &mdash; 1.000 across every condition and every one of the runs, with zero fallbacks. The model returned one of the five valid labels in clean form every single time, so the system never had to fall back to a default. That was the main design bet, and it held.</p>
-        </div>
-
-        <ol class="findings-list">
-          <li>
-            <span class="finding-text"><strong>But the AI amplified the bullwhip far more than the plain formula.</strong> Every AI condition landed at a chain OVAR between 3.268 &plusmn; 0.062 and 3.843 &plusmn; 0.129, against the exponential-smoothing baseline of 0.545 &mdash; roughly 6 to 7&times; more order-swing. IC-Blind is about 7&times; worse; IC-Context, the steadiest AI condition, is about 6&times; worse. The simple deterministic formula also held fewer stockouts. On the operational metric that matters, exponential smoothing clearly beat the language model here.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The three information conditions barely moved &mdash; the Equaliser Effect.</strong> Giving the model the calendar (IC-Context) or its own history (IC-Stateful) changed the OVAR only a little, and not in a way that rescued it. Once you force the decision into a small fixed set of labels mapped to fixed multipliers, you put a ceiling and a floor on how far the outcome can move. The label set, not the model&rsquo;s cleverness or the information it sees, dominates the result.</span>
-          </li>
-          <li>
-            <span class="finding-text"><strong>The result is robust, not a small-sample fluke.</strong> I first ran 10 repetitions per condition, then doubled it to 20. Across every headline metric &mdash; chain OVAR, the per-tier OVAR, stockouts, and compliance &mdash; every average moved by less than one standard deviation when I doubled the sample. The n=20 set is the result of record; the n=10 set is kept only so this stability check can be reproduced.</span>
-          </li>
-        </ol>
       </div>
 
       <div class="post-section">
@@ -297,7 +281,28 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Mechanism</p>
+        <p class="section-label">Key findings</p>
+        <h2 class="section-title">What I found</h2>
+
+        <div class="callout-positive">
+          <p><strong>The label interface was rock-solid.</strong> Intent compliance was perfect &mdash; 1.000 across every condition and every one of the runs, with zero fallbacks. The model returned one of the five valid labels in clean form every single time, so the system never had to fall back to a default. That was the main design bet, and it held.</p>
+        </div>
+
+        <ol class="findings-list">
+          <li>
+            <span class="finding-text"><strong>But the AI amplified the bullwhip far more than the plain formula.</strong> Every AI condition landed at a chain OVAR between 3.268 &plusmn; 0.062 and 3.843 &plusmn; 0.129, against the exponential-smoothing baseline of 0.545 &mdash; roughly 6 to 7&times; more order-swing. IC-Blind is about 7&times; worse; IC-Context, the steadiest AI condition, is about 6&times; worse. The simple deterministic formula also held fewer stockouts. On the operational metric that matters, exponential smoothing clearly beat the language model here.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The three information conditions barely moved &mdash; the Equaliser Effect.</strong> Giving the model the calendar (IC-Context) or its own history (IC-Stateful) changed the OVAR only a little, and not in a way that rescued it. Once you force the decision into a small fixed set of labels mapped to fixed multipliers, you put a ceiling and a floor on how far the outcome can move. The label set, not the model&rsquo;s cleverness or the information it sees, dominates the result.</span>
+          </li>
+          <li>
+            <span class="finding-text"><strong>The result is robust, not a small-sample fluke.</strong> I first ran 10 repetitions per condition, then doubled it to 20. Across every headline metric &mdash; chain OVAR, the per-tier OVAR, stockouts, and compliance &mdash; every average moved by less than one standard deviation when I doubled the sample. The n=20 set is the result of record; the n=10 set is kept only so this stability check can be reproduced.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Discussion</p>
         <h2 class="section-title">Why the labels could not save the orders</h2>
         <div class="prose">
           <p>The design fixed the right problem and exposed a different one. Removing the number from the model&rsquo;s output did exactly what it was meant to: compliance went to a perfect 1.000 with no fallbacks. Confining a language model to a small, fixed set of labels is a dependable way to get structured output. That part of the bet paid off.</p>
@@ -307,18 +312,24 @@
       </div>
 
       <div class="post-section">
-        <p class="section-label">Implications</p>
+        <p class="section-label">Practical implications</p>
         <h2 class="section-title">What this does and does not show</h2>
         <div class="prose">
           <p>For this setup, the discrete-label interface is a dependable way to get structured output from a language model, but it did not beat a standard forecasting heuristic at keeping orders steady. The AI amplified the bullwhip about 6 to 7&times; more than exponential smoothing, and adding context or memory did not close that gap. These are useful, checkable facts about one model and one simulated chain.</p>
-          <p>The limits are worth stating plainly. I tested a single model (gpt-4.1-mini), a single 25-month synthetic demand series calibrated to Indian automotive seasonality, and a single simplified three-tier chain with a one-month lead time and no demand shocks. The intent-to-multiplier lookup values come from domain logic and are not guaranteed to be optimal. I would not generalise these numbers to other models, other markets, or more complex chains without testing them there.</p>
           <p>This closes the V4a intent-classification line. The architecture it established &mdash; classification by the model, arithmetic by the formula &mdash; is carried forward into the V4b WorldEvents experiment, which tests the same design under stochastic lead times and world events and is the primary V4 result.</p>
         </div>
       </div>
 
       <div class="post-section">
+        <p class="section-label">Limitations</p>
+        <div class="prose">
+          <p>The limits are worth stating plainly. I tested a single model (gpt-4.1-mini), a single 25-month synthetic demand series calibrated to Indian automotive seasonality, and a single simplified three-tier chain with a one-month lead time and no demand shocks. The intent-to-multiplier lookup values come from domain logic and are not guaranteed to be optimal. I would not generalise these numbers to other models, other markets, or more complex chains without testing them there.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
         <div class="method-callout">
-          <p class="method-callout-label">Full code and results on GitHub</p>
+          <p class="method-callout-label">Code, data, and sources</p>
           <p>Full code, data, and result manifests are available on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
         </div>
       </div>
