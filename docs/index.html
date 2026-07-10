@@ -387,24 +387,63 @@
     }
     .status-published { background: #e8f1ea; color: #2a6b45; }
     .status-active { background: #f6efdf; color: #8a5a00; }
-    .exp-qrw { margin-bottom: 1rem; }
-    .exp-qrw p {
+    .index-intro {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 660px;
+      margin: -1.75rem 0 2.5rem;
+    }
+    .exp-oneline {
+      font-size: 13.5px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.1rem;
+    }
+    .exp-block { margin-bottom: 1.05rem; }
+    .exp-block-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .exp-text {
       font-size: 13.5px;
       font-weight: 300;
       color: var(--text-secondary);
       line-height: 1.6;
-      margin-bottom: 0.55rem;
     }
-    .exp-qrw p:last-child { margin-bottom: 0; }
-    .exp-qrw strong { font-weight: 500; color: var(--text-primary); }
-    .exp-key {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-right: 0.45rem;
+    .exp-text strong { font-weight: 500; color: var(--text-primary); }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
     }
+    .exp-bullets li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      padding-left: 0.95rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .exp-bullets strong { font-weight: 500; color: var(--text-primary); }
     .experiment-links {
       display: flex;
       gap: 1.1rem;
@@ -749,99 +788,12 @@
   <!-- 6. Experiment Index -->
   <section id="experiments">
     <div class="container">
-      <p class="section-label">Track 1 &amp; Track 2</p>
-      <h2 class="section-title">Experiment index</h2>
+      <h2 class="section-title">Experiment Index</h2>
+      <p class="index-intro">
+        Published and active research across supply-chain agents, industrial maintenance, edge inference, and hybrid AI architectures. Each card states the question, the setup, and the measured result &mdash; the writeups carry the full detail.
+      </p>
       <div class="exp-grid">
 
-        <!-- V6 -->
-        <div class="experiment-card">
-          <div class="exp-tags">
-            <span class="exp-tag">Supply chain</span>
-            <span class="exp-tag">Control loop</span>
-            <span class="exp-tag">LLM agents</span>
-          </div>
-          <div class="experiment-header">
-            <span class="experiment-name">The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment</span>
-            <span class="status-badge status-published">Published</span>
-          </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Does AI perform better when it directly controls operational quantities, or when it selects the smoothing parameter inside a deterministic control loop?</p>
-            <p><span class="exp-key">Result</span> <strong>The first architecture in this program where every AI condition damped order variance (OVAR below 1.0), with the best condition matching and marginally beating the fixed &alpha; = 0.3 baseline.</strong></p>
-            <p><span class="exp-key">Why it matters</span> Hybrid control architectures may be more promising than fully agentic operational control.</p>
-          </div>
-          <div class="experiment-links">
-            <a class="exp-link" href="blog/agentic-bullwhip-v6.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-          </div>
-        </div>
-
-        <!-- V5 -->
-        <div class="experiment-card">
-          <div class="exp-tags">
-            <span class="exp-tag">Supply chain</span>
-            <span class="exp-tag">Control loop</span>
-            <span class="exp-tag">Deterministic baseline</span>
-          </div>
-          <div class="experiment-header">
-            <span class="experiment-name">The Ceiling Is in the Formula: Oracle Labels and Structural Incompatibility</span>
-            <span class="status-badge status-published">Published</span>
-          </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> If the replenishment formula is handed perfect, ground-truth labels &mdash; no LLM at all &mdash; can it finally beat exponential smoothing?</p>
-            <p><span class="exp-key">Result</span> <strong>No. Oracle labels produced OVAR 1.776, worse than the formula with no AI at 1.753 &mdash; and the gap to exponential smoothing is invariant to label quality.</strong></p>
-            <p><span class="exp-key">Why it matters</span> Perfect intelligence in the wrong position is worse than no intelligence; the ceiling is architectural, not a model-quality problem.</p>
-          </div>
-          <div class="experiment-links">
-            <a class="exp-link" href="blog/agentic-bullwhip-v5.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-          </div>
-        </div>
-
-        <!-- V4a -->
-        <div class="experiment-card">
-          <div class="exp-tags">
-            <span class="exp-tag">Supply chain</span>
-            <span class="exp-tag">LLM agents</span>
-            <span class="exp-tag">Intent classification</span>
-          </div>
-          <div class="experiment-header">
-            <span class="experiment-name">Perfect Compliance, Wider Swings: The Five-Label Intent Classifier</span>
-            <span class="status-badge status-published">Published</span>
-          </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Does confining the AI to a clean five-label classification task keep orders steadier than a standard forecasting formula?</p>
-            <p><span class="exp-key">Result</span> <strong>No. Every AI condition amplified order swings roughly 6&ndash;7&times; above exponential smoothing &mdash; even with perfect label compliance across every run.</strong></p>
-            <p><span class="exp-key">Why it matters</span> A reliable interface is not a safe architecture; the fixed label&rarr;multiplier table capped what any condition could do.</p>
-          </div>
-          <div class="experiment-links">
-            <a class="exp-link" href="blog/agentic-bullwhip-v4a-intent.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-          </div>
-        </div>
-
-        <!-- V4b -->
-        <div class="experiment-card">
-          <div class="exp-tags">
-            <span class="exp-tag">Supply chain</span>
-            <span class="exp-tag">LLM agents</span>
-            <span class="exp-tag">Intent classification</span>
-          </div>
-          <div class="experiment-header">
-            <span class="experiment-name">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</span>
-            <span class="status-badge status-published">Published</span>
-          </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Does giving the AI a clean five-label intent classification, instead of a raw number, let it lower order variance?</p>
-            <p><span class="exp-key">Result</span> <strong>No. Four models from 14B to 120B produced OVAR within a 0.05-unit band, clustering on the formula baseline regardless of size, reasoning capability, or information level.</strong></p>
-            <p><span class="exp-key">Why it matters</span> You cannot prompt your way out of the bullwhip effect &mdash; model capability and context were discarded at the lookup table.</p>
-          </div>
-          <div class="experiment-links">
-            <a class="exp-link" href="blog/agentic-bullwhip-v4b.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-          </div>
-        </div>
-
-        <!-- V3b -->
         <div class="experiment-card">
           <div class="exp-tags">
             <span class="exp-tag">Supply chain</span>
@@ -849,13 +801,209 @@
             <span class="exp-tag">Hybrid architecture</span>
           </div>
           <div class="experiment-header">
+            <span class="experiment-name">The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="exp-oneline">Tests whether AI performs better selecting a bounded smoothing parameter than directly controlling orders or safety stock.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Can a model improve supply-chain stability when it selects the exponential-smoothing parameter &alpha; while the deterministic formula calculates the order?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Three-tier serial supply-chain simulation; 25-month synthetic demand, deterministic lead times</li>
+              <li>The AI selects &alpha; from {0.1, 0.3, 0.5, 0.7} each period; the formula places the order</li>
+              <li>Models: gpt-4.1-mini &middot; o4-mini &middot; GPT OSS 120B, across blind, context, and stateful conditions (plus four debiased V6b conditions)</li>
+              <li>Compared against a fixed &alpha; = 0.3 exponential-smoothing baseline</li>
+              <li>10 runs per AI condition</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>Every AI condition produced chain OVAR below 1.0</strong> &mdash; damping variance, not amplifying it.</li>
+              <li>Best condition: GPT OSS 120B blind at OVAR 0.535 &plusmn; 0.048 with 4.4 stockouts.</li>
+              <li>The fixed &alpha; = 0.3 baseline reached OVAR 0.545 with 5 stockouts.</li>
+              <li>The margin is small &mdash; evidence of matching the baseline, not of broad superiority.</li>
+              <li>Context still hurt: models given context chose more reactive smoothing (&alpha;-inflation).</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">This supports a bounded role for AI inside industrial control loops: the model adapts one parameter while the deterministic method keeps execution discipline. It is the first positive result in the replenishment programme.</p>
+          </div>
+          <div class="experiment-links">
+            <a class="exp-link" href="blog/agentic-bullwhip-v6.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="exp-tags">
+            <span class="exp-tag">Supply chain</span>
+            <span class="exp-tag">Control loop</span>
+            <span class="exp-tag">Oracle ablation</span>
+          </div>
+          <div class="experiment-header">
+            <span class="experiment-name">The Ceiling Is in the Formula: Oracle Labels and Structural Incompatibility</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="exp-oneline">Removes the LLM entirely and feeds the replenishment formula perfect labels, to locate the real performance ceiling.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">If the Order-Up-To formula is handed perfect, ground-truth demand labels &mdash; no LLM at all &mdash; can it finally beat exponential smoothing?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Same three-tier replenishment simulation as the intent-classification studies</li>
+              <li>Oracle (ground-truth) labels and causal rule-based classifiers &mdash; no LLM calls</li>
+              <li>Fourteen architectural variants: multiplier maps, NEUTRAL redefinitions, order dampening, forecast oracle</li>
+              <li>Compared against exponential smoothing (OVAR 1.193 in this setup) and the formula running alone</li>
+              <li>20 replications per variant</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>Oracle labels produced OVAR 1.776 &mdash; worse than the formula with no AI at 1.753.</strong></li>
+              <li>The 0.540-unit gap to exponential smoothing held across every variant, regardless of label quality.</li>
+              <li>The ceiling is a structural property of the safety-stock formula, not a model-quality problem.</li>
+              <li>The result applies to this Order-Up-To architecture; it says nothing about other control levers.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">Perfect intelligence in the wrong position is worse than no intelligence. This closed the intent-classification line (V1&ndash;V5) and motivated moving the AI to a different control lever in V6.</p>
+          </div>
+          <div class="experiment-links">
+            <a class="exp-link" href="blog/agentic-bullwhip-v5.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="exp-tags">
+            <span class="exp-tag">Supply chain</span>
+            <span class="exp-tag">Intent classification</span>
+          </div>
+          <div class="experiment-header">
+            <span class="experiment-name">Perfect Compliance, Wider Swings: The Five-Label Intent Classifier</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="exp-oneline">Confines the AI to a five-label classification while a fixed lookup table and formula do all the arithmetic.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Does confining the AI to a clean five-label classification task keep orders steadier than a standard forecasting formula?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Three-tier chain; 25-month no-disruption Indian automotive demand series, one-month lead times</li>
+              <li>gpt-4.1-mini (Azure) picks one of five labels; a fixed label&rarr;multiplier table and an Order-Up-To formula compute the order</li>
+              <li>Three information conditions: blind, context, stateful</li>
+              <li>Compared against exponential smoothing at OVAR 0.545</li>
+              <li>20 replications per condition</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>Every condition amplified order swings: chain OVAR 3.268 &plusmn; 0.062 to 3.843 &plusmn; 0.129 &mdash; roughly 6&ndash;7&times; the baseline.</strong></li>
+              <li>Label compliance was perfect: 1.000, zero fallbacks across every run.</li>
+              <li>The three information conditions barely separated &mdash; the fixed lookup table capped what any condition could do.</li>
+              <li>Single model and single synthetic series; the numbers do not generalise beyond this setup.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">A reliable interface is not a safe architecture. Structured output solved the format problem and left the control problem untouched.</p>
+          </div>
+          <div class="experiment-links">
+            <a class="exp-link" href="blog/agentic-bullwhip-v4a-intent.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="exp-tags">
+            <span class="exp-tag">Supply chain</span>
+            <span class="exp-tag">Intent classification</span>
+          </div>
+          <div class="experiment-header">
+            <span class="experiment-name">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="exp-oneline">Tests whether model size, reasoning, or information level still matters once the AI&rsquo;s output passes through a fixed lookup table.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Does giving the AI a clean five-label intent classification, instead of a raw number, let it lower order variance?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>36-month simulation with stochastic lead times and world events</li>
+              <li>Four models from 14B to 120B: gpt-4.1-mini &middot; o4-mini &middot; phi4:14b &middot; nemotron-super 120B</li>
+              <li>Blind, context, and unstructured conditions; a hard-coded multiplier lookup replaces the AI&rsquo;s continuous output</li>
+              <li>Compared against the Order-Up-To formula baseline</li>
+              <li>20&ndash;100 replications per cell</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>All four models produced OVAR within a 0.05-unit band (1.726&ndash;1.780)</strong>, clustering on the formula baseline.</li>
+              <li>Context roughly doubled direction accuracy (0.41&ndash;0.48 &rarr; 0.72&ndash;0.84) without materially moving OVAR.</li>
+              <li>A neutral-prior prompt instruction had zero effect on OVAR across all three models tested.</li>
+              <li>The equalisation is a property of this lookup-table architecture, not a general law.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">Model capability and better information were discarded at the lookup table. You cannot prompt your way out of the bullwhip effect when the architecture caps what any answer can do.</p>
+          </div>
+          <div class="experiment-links">
+            <a class="exp-link" href="blog/agentic-bullwhip-v4b.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="exp-tags">
+            <span class="exp-tag">Supply chain</span>
+            <span class="exp-tag">Hybrid architecture</span>
+          </div>
+          <div class="experiment-header">
             <span class="experiment-name">Hybrid AI Safety Stock Control in Supply Chain Replenishment</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> If a deterministic formula executes the orders and the AI only sets the safety-stock multiplier, does the hybrid beat the baseline?</p>
-            <p><span class="exp-key">Result</span> <strong>No. All four hypotheses rejected &mdash; the best AI condition produced roughly four times the baseline&rsquo;s order variance, and context made two of three models worse.</strong></p>
-            <p><span class="exp-key">Why it matters</span> A bounded role is not enough on its own; the AI was still placed on the wrong control surface.</p>
+          <p class="exp-oneline">A deterministic formula executes every order while the AI only sets the safety-stock multiplier on top of it.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">If the formula executes the orders and the AI only adjusts the safety-stock buffer, does the hybrid beat the baseline?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Three-tier serial chain; blind, context, and stateful conditions</li>
+              <li>Models: gpt-4.1-mini &middot; o4-mini &middot; nemotron-super-3:120b</li>
+              <li>Compared against exponential smoothing at OVAR 0.5446 with 5 stockouts</li>
+              <li>20 replications per condition; 12,960 LLM calls</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>All four hypotheses rejected.</strong> Best AI condition (gpt-4.1-mini, blind): OVAR 2.3325 with 10.6 stockouts.</li>
+              <li>Worst condition (o4-mini, stateful): OVAR 3.1211 &mdash; memory of past stockouts triggered violent over-correction.</li>
+              <li>Context increased order variance for two of three models.</li>
+              <li>A bounded role was not enough on its own: the safety-stock buffer was still the wrong control surface.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">Hybrid is not safe by default. Which variable the model controls matters more than the fact that a formula executes the orders.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v3b.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -863,21 +1011,41 @@
           </div>
         </div>
 
-        <!-- V2 -->
         <div class="experiment-card">
           <div class="exp-tags">
             <span class="exp-tag">Supply chain</span>
-            <span class="exp-tag">LLM agents</span>
             <span class="exp-tag">Deterministic baseline</span>
           </div>
           <div class="experiment-header">
             <span class="experiment-name">LLM Agents Against Heuristic Baselines in Supply Chain Replenishment</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Can any LLM configuration beat simple heuristic ordering rules in a serial supply chain?</p>
-            <p><span class="exp-key">Result</span> <strong>No. Every heuristic outperformed every LLM configuration on both order variance and stockouts.</strong></p>
-            <p><span class="exp-key">Why it matters</span> This challenges the assumption that more capable models can be dropped directly into operational decision loops.</p>
+          <p class="exp-oneline">The programme&rsquo;s baseline study: can any LLM configuration beat simple replenishment rules?</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Can any LLM configuration &mdash; frontier or local, lightweight or reasoning &mdash; beat simple heuristic ordering rules in a serial supply chain?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Three-tier serial supply-chain simulation</li>
+              <li>Four LLM configurations across cloud and local inference: gpt-4.1-mini &middot; o4-mini &middot; phi4:14b &middot; GPT OSS 120B</li>
+              <li>Compared against three deterministic heuristic baselines, including exponential smoothing</li>
+              <li>20 replications per cell across eight model-condition cells; 11,520 LLM calls</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li>Exponential smoothing: <strong>chain OVAR 0.54 with 5 stockouts</strong>. Best LLM configuration: <strong>OVAR 4.33 with 41 stockouts</strong>.</li>
+              <li>Every heuristic outperformed every LLM configuration on both metrics simultaneously; all seven hypotheses rejected.</li>
+              <li>Reasoning-tier models generated over 1,000,000 reasoning tokens with no measurable improvement in ordering performance.</li>
+              <li>The result applies to this controlled serial-chain setup; it is not a universal claim about LLMs.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">More capable models cannot simply be dropped into operational decision loops and expected to beat the established method. This result anchors the whole programme.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v2.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -885,21 +1053,42 @@
           </div>
         </div>
 
-        <!-- V2a -->
         <div class="experiment-card">
           <div class="exp-tags">
             <span class="exp-tag">Supply chain</span>
-            <span class="exp-tag">LLM agents</span>
+            <span class="exp-tag">Local inference</span>
             <span class="exp-tag">Sovereign models</span>
           </div>
           <div class="experiment-header">
             <span class="experiment-name">sarvam-30b in Supply Chain Ordering: A Comparison with GPT OSS 120B</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Does a model trained on Indian data read Indian seasonal demand better than a frontier reference &mdash; and can either beat the formula?</p>
-            <p><span class="exp-key">Result</span> <strong>No measurable difference between the models &mdash; and exponential smoothing beat both by 8&times; on order variance.</strong></p>
-            <p><span class="exp-key">Why it matters</span> Model provenance did not change operational behaviour; the deterministic baseline advantage persisted.</p>
+          <p class="exp-oneline">Tests whether a model trained on Indian data reads Indian seasonal demand better than a frontier reference.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Does a model trained on Indian data read Indian seasonal demand better than a frontier reference &mdash; and can either beat the formula?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Synthetic Indian automotive demand series: monsoon slump, Diwali peak, financial year-end surge</li>
+              <li>sarvam-30b (30B total / 2.4B active) vs a GPT OSS 120B reference from the baseline study (not co-run)</li>
+              <li>Two conditions, 10 replications each; 1,440 LLM calls</li>
+              <li>Compared against exponential smoothing</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>No measurable difference: sarvam-30b chain OVAR 4.504 vs GPT OSS 120B 4.52</strong> &mdash; within noise.</li>
+              <li>Neither model detected the Indian seasonal demand patterns.</li>
+              <li>Exponential smoothing reached OVAR 0.54 &mdash; roughly 8&times; better than both models.</li>
+              <li>The GPT OSS figure is a context reference from the earlier run, not a co-run comparison.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">Model provenance did not change operational behaviour. Training-data locality is not a substitute for the right control architecture.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v2a.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -907,20 +1096,40 @@
           </div>
         </div>
 
-        <!-- V1 -->
         <div class="experiment-card">
           <div class="exp-tags">
             <span class="exp-tag">Supply chain</span>
-            <span class="exp-tag">LLM agents</span>
+            <span class="exp-tag">Direct ordering</span>
           </div>
           <div class="experiment-header">
             <span class="experiment-name">Context and Model Capability in AI-Driven Supply Chain Ordering</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Does more domain context, or more reasoning capability, reduce how much an LLM amplifies demand swings?</p>
-            <p><span class="exp-key">Result</span> <strong>Neither reliably helped. Context reduced order variance for the lightweight model and increased it for the reasoning model; every configuration amplified demand swings (directional, n = 5).</strong></p>
-            <p><span class="exp-key">Why it matters</span> The first evidence in this program that context interacts with the decision role instead of simply improving it.</p>
+          <p class="exp-oneline">The exploratory first study: does context or reasoning capability reduce bullwhip amplification?</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Does more domain context, or more reasoning capability, reduce how much an LLM amplifies demand swings?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Three-tier serial chain; the LLM places orders directly</li>
+              <li>2&times;2 design: gpt-4.1-mini &times; o1, blind &times; context</li>
+              <li>5 replications per condition; 720 LLM calls</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>Every configuration amplified demand swings.</strong></li>
+              <li>Context reduced chain OVAR for the lightweight model (&minus;7.2%) and increased it for the reasoning model (+15.0%).</li>
+              <li>The context + reasoning condition fully inverted the tier pattern (OEM OVAR 6.349, Component 2.698).</li>
+              <li>Directional only (n = 5); this motivated the expanded baseline study.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">The first evidence in this programme that context interacts with the decision role instead of simply improving it.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v1.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -928,20 +1137,43 @@
           </div>
         </div>
 
-        <!-- FailureSensorIQ -->
         <div class="experiment-card">
           <div class="exp-tags">
-            <span class="exp-tag">Edge AI</span>
+            <span class="exp-tag">Maintenance</span>
             <span class="exp-tag">Fault diagnosis</span>
+            <span class="exp-tag">Edge AI</span>
           </div>
           <div class="experiment-header">
             <span class="experiment-name">A Capable Assistant, Not a Decision-Maker: Small Language Models on IBM&rsquo;s FailureSensorIQ</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Can a model small enough to run locally &mdash; on a box beside the machines, no cloud &mdash; do real fault diagnosis, and what decides whether its output is usable?</p>
-            <p><span class="exp-key">Result</span> <strong>The best 4B-class model scored 51.8% on 2,667 benchmark questions &mdash; above blind guessing, below the human-expert mean: a capable assistant, not a decision-maker.</strong></p>
-            <p><span class="exp-key">Why it matters</span> On the edge, the integration &mdash; sampling settings and serving runtime &mdash; decides usability as much as the model weights do.</p>
+          <p class="exp-oneline">Evaluates whether 4B-class models served locally can do real industrial fault diagnosis.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Can a model small enough to run locally &mdash; on a box beside the machines, no cloud &mdash; do real fault diagnosis, and what decides whether its output is usable?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>IBM&rsquo;s public FailureSensorIQ benchmark: 2,667 multiple-choice fault-diagnosis questions</li>
+              <li>Four 4B-class local models: Nemotron-3 Nano, Gemma 3 4B, and Phi-4-mini (standard and reasoning)</li>
+              <li>Local inference on workstation hardware &mdash; footprint evidence, not constrained-edge validation</li>
+              <li>Reference points: ~27.5% blind-guessing floor, ~60.2% human-expert mean</li>
+              <li>Scored for accuracy and output reliability separately</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li>Best clean full-set result: <strong>Nemotron-3 Nano 4B at 51.8%</strong> with structured output on all 2,667 calls.</li>
+              <li>Above the guessing floor, below the human-expert mean &mdash; assistance, not autonomy.</li>
+              <li>Sampling temperature moved Phi-4-mini from 30.7% to 36.6% (0.8 &rarr; 0.3) on the same weights &mdash; a single-model contrast.</li>
+              <li>One run degraded from serving-runtime state, not model weights, and was excluded pending a re-run.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">On the edge, the integration decides usability as much as the model: sampling settings, output format, and serving health. The evidence supports decision assistance with human oversight, not autonomous diagnosis.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/small-language-models-fault-diagnosis.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -949,7 +1181,6 @@
           </div>
         </div>
 
-        <!-- V7 ChainVision (in progress) -->
         <div class="experiment-card">
           <div class="exp-tags">
             <span class="exp-tag">Supply chain</span>
@@ -959,34 +1190,42 @@
             <span class="experiment-name">Cross-Tier Visibility and the Context Penalty: Adaptive Smoothing with Downstream Demand Access</span>
             <span class="status-badge status-active">In Progress</span>
           </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Does giving each tier visibility into downstream demand eliminate the &alpha;-inflation context penalty found in the adaptive-smoothing study?</p>
-            <p><span class="exp-key">Status</span> In progress &mdash; results not yet reported.</p>
+          <p class="exp-oneline">Extends the adaptive-smoothing architecture by giving each tier visibility into downstream demand.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Does giving each tier visibility into downstream demand eliminate the &alpha;-inflation context penalty found in the adaptive-smoothing study?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Status</p>
+            <p class="exp-text">In progress &mdash; results not yet reported.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/issues" target="_blank" rel="noopener">Request early access<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
-        <!-- TPM (in progress) -->
         <div class="experiment-card">
           <div class="exp-tags">
+            <span class="exp-tag">Maintenance</span>
             <span class="exp-tag">TPM</span>
-            <span class="exp-tag">Edge AI</span>
           </div>
           <div class="experiment-header">
             <span class="experiment-name">Understanding LLM Agentic Capabilities in Total Productive Maintenance (TPM)</span>
             <span class="status-badge status-active">In Progress</span>
           </div>
-          <div class="exp-qrw">
-            <p><span class="exp-key">Question</span> Can an LLM do Total Productive Maintenance decision support over fragmented, multilingual shop-floor maintenance records &mdash; and does a vernacular-normalisation layer help?</p>
-            <p><span class="exp-key">Status</span> In progress &mdash; results not yet reported.</p>
+          <p class="exp-oneline">Tests LLM decision support over fragmented, multilingual shop-floor maintenance records.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Can an LLM do Total Productive Maintenance decision support over fragmented, multilingual shop-floor maintenance records &mdash; and does a vernacular-normalisation layer help?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Status</p>
+            <p class="exp-text">In progress &mdash; results not yet reported.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/issues" target="_blank" rel="noopener">Request early access<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1054,7 +1293,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Personal research &middot; not affiliated with any employer &middot; no proprietary data is used</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Personal, self-funded research &middot; not affiliated with any employer, platform or model provider &middot; public or synthetic data only &middot; no proprietary data is used &middot; findings are limited to the tested scope</span>
       <ul class="footer-links">
         <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
