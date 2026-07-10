@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment | Industrial Mind &amp; Code</title>
-  <meta name="description" content="For the first time in this research program, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
+  <meta name="description" content="For the first time in this research programme, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v6.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="The Architecture That Finally Worked: Adaptive Smoothing in Supply Chain Replenishment | Industrial Mind &amp; Code" />
-  <meta property="og:description" content="For the first time in this research program, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
+  <meta property="og:description" content="For the first time in this research programme, every AI condition produced OVAR below 1.0. The AI was damping variance, not amplifying it. The key: control the smoothing parameter inside the formula, not safety stock on top of it." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v6.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -193,7 +193,7 @@
       <p class="post-eyebrow">Supply Chain &middot; Adaptive Smoothing &middot; Experiment Writeup</p>
       <h1 class="post-title">The Architecture That Finally Worked</h1>
       <p class="post-summary">
-        Five versions of failing taught me what the wrong lever looks like. V6 changes the lever. The AI now controls the smoothing parameter &alpha; inside exponential smoothing itself. Every AI condition produced OVAR below 1.0. The best result marginally beats the fixed &alpha;=0.3 baseline. First positive result in this research program.
+        Five versions of failing taught me what the wrong lever looks like. V6 changes the lever. The AI now controls the smoothing parameter &alpha; inside exponential smoothing itself. Every AI condition produced OVAR below 1.0. The best result marginally beats the fixed &alpha;=0.3 baseline. First positive result in this research programme.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -223,7 +223,7 @@
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>V5 proved that the Order-Up-To formula with a discrete intent-classification interface cannot beat exponential smoothing &mdash; and that the gap is architectural, not a model quality problem. Its closing note identified the only plausible next step: give the AI control of the EMA smoothing parameter &alpha; instead of a safety stock multiplier. <strong>That is what V6 tests.</strong></p>
-          <p>The AI is no longer &ldquo;outside&rdquo; the formula adjusting a buffer on top of it. It is now &ldquo;inside&rdquo; the formula, selecting the coefficient that determines how responsive the exponential smoother is to recent demand. It picks one of {0.1, 0.3, 0.5, 0.7} per period, per tier. Every AI condition produced OVAR below 1.0. <strong>This is the first time in this research program that any AI-driven configuration has achieved consistent dampening rather than amplification.</strong> The best result &mdash; GPT OSS 120B, blind conditions &mdash; reached OVAR 0.535, matching and marginally beating the fixed &alpha;=0.3 baseline at 0.545.</p>
+          <p>The AI is no longer &ldquo;outside&rdquo; the formula adjusting a buffer on top of it. It is now &ldquo;inside&rdquo; the formula, selecting the coefficient that determines how responsive the exponential smoother is to recent demand. It picks one of {0.1, 0.3, 0.5, 0.7} per period, per tier. Every AI condition produced OVAR below 1.0. <strong>This is the first time in this research programme that any AI-driven configuration has achieved consistent dampening rather than amplification.</strong> The best result &mdash; GPT OSS 120B, blind conditions &mdash; reached OVAR 0.535, matching and marginally beating the fixed &alpha;=0.3 baseline at 0.545.</p>
         </div>
       </div>
 
@@ -250,7 +250,7 @@
         <h2 class="section-title">What I found</h2>
 
         <div class="callout-positive">
-          <p><strong>For the first time in this research program, every AI condition produced OVAR below 1.0.</strong> In V1 through V5, every AI-driven configuration amplified order variance by 30% to 1,200% above demand variance. In V6, the worst AI condition reaches OVAR 0.739 &mdash; which is still damping. The architecture change eliminated amplification entirely.</p>
+          <p><strong>For the first time in this research programme, every AI condition produced OVAR below 1.0.</strong> In V1 through V5, every AI-driven configuration amplified order variance by 30% to 1,200% above demand variance. In V6, the worst AI condition reaches OVAR 0.739 &mdash; which is still damping. The architecture change eliminated amplification entirely.</p>
         </div>
 
         <ol class="findings-list">
@@ -354,6 +354,11 @@
         </div>
       </div>
 
+      <div class="method-callout">
+        <p class="method-callout-label">Disclaimer</p>
+        <p>Independent, self-funded personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. The work uses publicly available data or synthetic scenarios; no proprietary employer or customer data is used.</p>
+      </div>
+
       <a class="back-link" href="./">
         <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
         Back to Experiments
@@ -364,7 +369,7 @@
 
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>personal research &middot; not affiliated with any employer &middot; scenarios are fictional, no proprietary data is used</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Personal research &middot; not affiliated with any employer &middot; no proprietary data is used</span>
       <ul class="footer-links">
         <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experiments | Industrial Mind &amp; Code</title>
+  <title>Experiment Writeups | Industrial Mind &amp; Code</title>
   <meta name="description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Experiments | Industrial Mind &amp; Code" />
+  <meta property="og:title" content="Experiment Writeups | Industrial Mind &amp; Code" />
   <meta property="og:description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -294,6 +294,15 @@
       transition: color 0.15s;
     }
     .footer-links a:hover { color: var(--text-primary); }
+    .footer-disclaimer {
+      flex-basis: 100%;
+      font-size: 11.5px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 720px;
+      margin-top: 0.75rem;
+    }
 
     /* ─── Responsive ─── */
     @media (max-width: 600px) {
@@ -344,7 +353,7 @@
   <section id="hero">
     <div class="container">
       <p class="hero-eyebrow">Research</p>
-      <h1 class="hero-title">Experiments</h1>
+      <h1 class="hero-title">Experiment Writeups</h1>
       <p class="hero-sub">
         Experimental research on LLM agent performance in industrial engineering decision environments.
       </p>
@@ -354,13 +363,8 @@
   <!-- Post listing -->
   <section id="posts">
     <div class="container">
-      <a class="back-link" href="../">
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H1M1 5L5 1M1 5l4 4"/></svg>
-        Back to homepage
-      </a>
-
       <p class="section-label">Published</p>
-      <h2 class="section-title">Published Experiments</h2>
+      <h2 class="section-title">Published Writeups</h2>
 
       <div class="post-list">
 
@@ -378,11 +382,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="small-language-models-fault-diagnosis.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/failuresensoriq-v1-reasoning-effect" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -396,15 +400,15 @@
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            For the first time in this research program, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: GPT OSS 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
+            For the first time in this research programme, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: GPT OSS 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v6.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -422,11 +426,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v5.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -444,11 +448,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v4a-intent.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -466,11 +470,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v4b.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -488,11 +492,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v3b.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v3b-hybrid-architecture" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -510,11 +514,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v2a.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -532,11 +536,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v2.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2-context-model-interactions" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -554,11 +558,11 @@
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v1.html">
-              Read
+              Read the writeup
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
             <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v1-direct-ordering" target="_blank" rel="noopener">
-              GitHub
+              View on GitHub
               <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
             </a>
           </div>
@@ -592,7 +596,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>personal research &middot; not affiliated with any employer &middot; scenarios are fictional, no proprietary data is used</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Personal research &middot; not affiliated with any employer &middot; no proprietary data is used</span>
       <ul class="footer-links">
         <li>
           <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
@@ -601,6 +605,7 @@
           <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
         </li>
       </ul>
+      <p class="footer-disclaimer">Independent, self-funded personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. The work uses publicly available data or synthetic scenarios; no proprietary employer or customer data is used.</p>
     </div>
   </footer>
 

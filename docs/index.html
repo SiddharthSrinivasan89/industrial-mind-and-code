@@ -556,6 +556,15 @@
       gap: 1rem;
     }
     .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .footer-disclaimer {
+      flex-basis: 100%;
+      font-size: 11.5px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 720px;
+      margin-top: 0.75rem;
+    }
     .footer-links { display: flex; gap: 1.5rem; list-style: none; }
     .footer-links a {
       font-size: 13px;
@@ -602,6 +611,7 @@
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu" />
       <label for="nav-toggle" class="nav-burger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
+        <li><a href="#">Home</a></li>
         <li><a href="#thesis">Thesis</a></li>
         <li><a href="#tracks">Tracks</a></li>
         <li><a href="#experiments">Experiments</a></li>
@@ -620,7 +630,7 @@
           <p class="hero-tagline">Placing probabilistic intelligence inside deterministic industrial systems.</p>
           <div class="hero-body">
             <p>
-              Industrial Mind &amp; Code is an independent applied research program by Siddharth Srinivasan, testing LLMs and agents inside industrial engineering decision environments &mdash; supply chains, maintenance systems, production planning, manufacturing workflows, and product-lifecycle systems.
+              Industrial Mind &amp; Code is an independent applied research programme by Siddharth Srinivasan, testing LLMs and agents inside industrial engineering decision environments &mdash; supply chains, maintenance systems, production planning, manufacturing workflows, and product-lifecycle systems.
             </p>
             <p>
               The early result is not &ldquo;AI beats everything.&rdquo; It is more interesting: models often fail when placed directly in control of operational decisions, but become useful when constrained inside the right architecture.
@@ -671,27 +681,27 @@
         <div class="finding-card">
           <p class="finding-num">01</p>
           <h3>You cannot prompt your way out of the bullwhip effect.</h3>
-          <p>Prompting helped structure behaviour, but it did not make LLM agents outperform simple deterministic replenishment rules.</p>
+          <p>Prompting helped structure behaviour, but it did not make LLM agents outperform simple deterministic replenishment rules. In the intent-classification experiments, a neutral-prompt instruction had zero effect on order variance.</p>
         </div>
         <div class="finding-card">
           <p class="finding-num">02</p>
           <h3>More context can make an industrial agent worse.</h3>
-          <p>Additional context can increase reactivity and instability if the agent is placed in the wrong control role.</p>
+          <p>Additional context can increase reactivity and instability if the agent is placed in the wrong control role. In the hybrid safety-stock experiment, added context increased order variance for two of three models.</p>
         </div>
         <div class="finding-card">
           <p class="finding-num">03</p>
           <h3>Perfect intelligence in the wrong position is worse than no intelligence.</h3>
-          <p>Better labels, cleaner intent, or more model capability do not fix a poor control architecture.</p>
+          <p>Better labels, cleaner intent, or more model capability do not fix a poor control architecture. In the oracle-label study, perfect ground-truth labels produced worse order variance than the formula running alone.</p>
         </div>
         <div class="finding-card">
           <p class="finding-num">04</p>
           <h3>Reasoning tokens are not operational intelligence.</h3>
-          <p>More deliberate model reasoning does not automatically translate into better industrial system performance.</p>
+          <p>More deliberate model reasoning does not automatically translate into better industrial system performance. In the baseline replenishment study, reasoning models generated over 1,000,000 reasoning tokens with no measurable improvement in ordering performance.</p>
         </div>
         <div class="finding-card">
           <p class="finding-num">05</p>
           <h3>The question is not whether to use AI, but where to place it.</h3>
-          <p>The strongest results appear when AI is bounded inside a hybrid architecture rather than given direct operational control.</p>
+          <p>The strongest results appear when AI is bounded inside a hybrid architecture rather than given direct operational control. In the replenishment experiments, order variance fell below 1.0 only once the AI selected the smoothing parameter and the deterministic formula still placed the order.</p>
         </div>
       </div>
       <p class="findings-synthesis">The practical design question is therefore not whether AI should replace established industrial methods. It is where probabilistic reasoning can safely improve deterministic systems &mdash; and where it should be constrained by them.</p>
@@ -767,7 +777,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v6.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v6-stateless-swing" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -789,7 +799,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v5.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v5-control-architecture" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -811,7 +821,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v4a-intent.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4a-intent-classifier" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -833,7 +843,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v4b.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v4b-world-events" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -855,7 +865,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v3b.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v3b-hybrid-architecture" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v3b-hybrid-architecture" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -877,7 +887,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v2.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2-context-model-interactions" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2-context-model-interactions" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -899,7 +909,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v2a.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v2a-sarvam-evaluation" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -920,7 +930,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v1.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v1-direct-ordering" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/agentic-bullwhip-v1-direct-ordering" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -941,7 +951,7 @@
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/small-language-models-fault-diagnosis.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
-            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/failuresensoriq-v1-reasoning-effect" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/failuresensoriq-v1-reasoning-effect" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
           </div>
         </div>
 
@@ -1050,11 +1060,12 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>personal research &middot; not affiliated with any employer &middot; scenarios are fictional, no proprietary data is used</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Personal research &middot; not affiliated with any employer &middot; no proprietary data is used</span>
       <ul class="footer-links">
         <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
+      <p class="footer-disclaimer">Independent, self-funded personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. The work uses publicly available data or synthetic scenarios; no proprietary employer or customer data is used.</p>
     </div>
   </footer>
 
