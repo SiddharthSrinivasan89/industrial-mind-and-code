@@ -2,7 +2,7 @@
 
 *By Siddharth Srinivasan, industrialmindandcode.ai.*
 
-*Disclaimer: This is self-funded, independent research. The dataset used is the Microsoft Azure Predictive Maintenance sample dataset, obtained under the MIT license. I am not affiliated with Microsoft.*
+*Disclaimer: This is self-funded, independent research for academic purposes. The dataset used is the Microsoft Azure Predictive Maintenance sample dataset, obtained under the MIT license.*
 
 ## TL;DR
 
