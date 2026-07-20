@@ -1,74 +1,93 @@
 # Industrial Mind & Code
 
-Industrial Mind & Code is an independent research repository for testing LLM agents inside industrial engineering decision environments. The current published program focuses on the Agentic Bullwhip Effect: a controlled supply-chain simulation series that asks whether language-model agents can make replenishment decisions without amplifying demand variance.
+Industrial Mind & Code is an independent research repository for testing AI — large language
+models and small local models — inside industrial engineering decision environments. The core
+question is practical rather than benchmark-oriented:
 
-The public site is hosted through GitHub Pages at `industrialmindandcode.ai`. GitHub Pages deploys from `docs/`: the homepage is `docs/index.html`, and experiment writeups live under `docs/blog/`.
+**Can probabilistic AI operate inside deterministic industrial systems without degrading the
+system it is placed into — and where exactly does it belong?**
 
-## Research Frame
+Each experiment places models in a controlled setting, compares them against deterministic and
+classical baselines, and reports operational outcomes (variance ratios, stockouts, diagnostic
+accuracy, output reliability) rather than text quality. The studies use public, synthetic, or
+simulated data; no proprietary data is used. Findings are limited to the tested scope.
 
-The core question is practical rather than benchmark-oriented:
+The public site is hosted through GitHub Pages at `industrialmindandcode.ai`. GitHub Pages
+deploys from `docs/`: the homepage is `docs/index.html`, and experiment writeups live under
+`docs/blog/`.
 
-Can probabilistic AI agents operate inside deterministic industrial control problems without degrading the system they are placed into?
+## Research tracks
 
-Each experiment places one or more LLM agents in a controlled simulation, compares their behavior against deterministic analytical baselines, and reports operational metrics such as order variance ratio (OVAR), stockouts, and run reliability. The supply-chain studies use fictional companies and synthetic demand series calibrated to industrial patterns; no proprietary data is used.
+**1. Supply-chain agents (Agentic Bullwhip series).** Can LLM agents make replenishment
+decisions without amplifying demand variance? Eight published experiments traced a full arc:
+direct ordering, safety-stock control, and intent classification all amplified variance
+regardless of model quality; the first positive result came from changing the interface — the
+model selects a bounded smoothing parameter inside an exponential-smoothing formula, and the
+formula executes the order.
 
-## Experiment Lineage
+**2. Maintenance and fault diagnosis.** Can models read industrial evidence — sensor summaries,
+error logs, replacement records, engineering questions — and support diagnosis? Two published
+experiments so far: a four-model baseline of 4B-class local models on IBM's FailureSensorIQ
+benchmark (assistance-level capability; integration settings decide usability), and a
+component-attribution study on simulated maintenance telemetry where a trained classifier and a
+one-line rule beat every LLM tested.
 
-The first five supply-chain experiments tested increasingly structured ways to put LLMs into replenishment decisions. V5 closed that intent-classification line: perfect oracle labels still could not overcome the structural variance introduced by the Order-Up-To formula plus safety-stock multiplier interface. That result did not end the research program. It changed the trajectory.
+## Published experiments
 
-V6 starts the new line by moving the AI inside an exponential-smoothing control loop. Instead of choosing an intent label or a safety-stock multiplier, the agent selects the smoothing parameter `alpha`. This architecture produced the first positive result in the program: every AI condition dampened variance below OVAR 1.0, and the best gpt-oss 120B blind condition matched the fixed `alpha=0.3` baseline within uncertainty.
-
-Published supply-chain sequence:
-
-| Version | Focus | Main result |
+| Experiment | Track | Main result |
 |---|---|---|
-| V1 | Direct ordering by LLM agents | All configurations amplified demand variance; context interacted with model capability in unexpected ways. |
-| V2 | LLM agents versus heuristic baselines | Every heuristic beat every LLM condition on OVAR and stockouts. |
-| V2a | sarvam-30b sovereign model evaluation | No meaningful difference from gpt-oss 120B in the tested context conditions. |
-| V3b | Hybrid safety-stock multiplier control | Formula execution helped, but AI-controlled multipliers still amplified variance. |
-| V4a / V4b | Discrete intent-classification interface (V4a intent-classifier, V4b world-events) | Better label accuracy did not translate into lower OVAR; the Equaliser Effect appeared. |
-| V5 | Oracle labels and control-architecture ablations | Perfect labels failed; the V1-V5 intent-classification lineage closed. |
-| V6 | Adaptive exponential-smoothing parameter control | New trajectory; all AI conditions dampened variance below OVAR 1.0. |
+| `agentic-bullwhip-v1-direct-ordering` | Supply chain | All LLM configurations amplified demand variance. |
+| `agentic-bullwhip-v2-context-model-interactions` | Supply chain | Every heuristic beat every LLM condition on OVAR and stockouts. |
+| `agentic-bullwhip-v2a-sarvam-evaluation` | Supply chain | sarvam-30b showed no meaningful difference from gpt-oss 120B in the tested conditions. |
+| `agentic-bullwhip-v3-world-events` / `v3b-hybrid-architecture` | Supply chain | Formula execution helped, but AI-controlled multipliers still amplified variance. |
+| `agentic-bullwhip-v4a-intent-classifier` / `v4b-world-events` | Supply chain | Better label accuracy did not lower OVAR; the Equaliser Effect appeared. |
+| `agentic-bullwhip-v5-control-architecture` | Supply chain | Perfect oracle labels still failed; the intent-classification lineage closed. |
+| `agentic-bullwhip-v6-stateless-swing` | Supply chain | First positive result: every AI condition dampened variance below OVAR 1.0; best condition matched the fixed α=0.3 baseline within uncertainty. |
+| `failuresensoriq-v1-reasoning-effect` | Diagnosis | Best 4B local model reached 51.8% on 2,667 questions — assistance, not autonomy; sampling settings and serving health moved results as much as model choice. |
+| `pdm-component-attribution-v1-azure` | Diagnosis | On simulated maintenance telemetry, a trained classifier (0.995 macro-F1) and a one-line recent-error rule (0.923) beat every LLM; models reached 0.86–0.91 only when given the training-period history, and never exceeded the rule. |
 
-## Repository Layout
+## Repository layout
 
 ```text
 .
-├── docs/                      # GitHub Pages site source
-├── experiments/               # Reproducible experiment source, data, reports, and results
-└── README.md                  # Technical overview for repository readers
+├── docs/          # GitHub Pages site source (homepage + blog writeups)
+├── experiments/   # Reproducible experiment source, data pointers, reports, and results
+└── README.md
 ```
 
-The `experiments/` directory is the source of research truth. Each experiment folder contains some combination of `README.md`, design notes, analysis reports, code, synthetic data, and result summaries. The `docs/blog/` HTML files are hand-authored public writeups derived from those experiment artifacts, not generated automatically by a build system.
+The `experiments/` directory is the source of research truth. Each experiment folder contains
+some combination of `README.md`, a design document, a consolidated `FINDINGS.md`, code, data
+provenance (raw datasets are linked to their sources, not republished), and result summaries.
+The `docs/blog/` HTML files are hand-authored public writeups derived from those artifacts.
 
-## Publishing Model
+## Reproduction entry points
 
-The repository has a single published site source:
+Start with the experiment README for the study you want to inspect — each states
+prerequisites, data fetch, run commands, and where results land. Most folders include a
+`code/` directory with a runnable entry point; result summaries are stored as JSON under each
+experiment's `results/` tree.
 
-- GitHub Pages source: `docs/index.html`, `docs/blog/`, `docs/CNAME`, and `docs/.nojekyll`.
+## Method, in brief
 
-When a public writeup changes, update the `docs/` copy directly. The repository root is reserved for project documentation and experiment source, which avoids maintaining duplicate HTML trees.
+1. Compare against deterministic and classical baselines — a model result means little without
+   the floor it must beat.
+2. Measure operational outcomes, not textual quality.
+3. Test model placement inside the architecture, separating model capability from control-loop
+   or integration design.
+4. Prefer repeatable setups, transparent assumptions, and preserved negative results.
+5. Verify every claim against the underlying records before it is published.
 
-## Reproduction Entry Points
+## Current technical takeaway
 
-Start with the experiment README for the version you want to inspect:
+The program's strongest finding is architectural. Across both tracks, model quality alone did
+not decide outcomes: in replenishment, variance amplification persisted until the interface
+changed; in diagnosis, a language model only became competitive once handed the site's
+historical statistics — and still did not exceed a simple rule those statistics imply. The
+productive question is not "which model is smartest" but "which control surfaces and evidence
+inputs let probabilistic reasoning help without destabilizing — or underperforming — the
+deterministic system around it."
 
-- `experiments/agentic-bullwhip-v1-direct-ordering/README.md`
-- `experiments/agentic-bullwhip-v2-context-model-interactions/README.md`
-- `experiments/agentic-bullwhip-v2a-sarvam-evaluation/README.md`
-- `experiments/agentic-bullwhip-v3b-hybrid-architecture/README.md`
-- `experiments/agentic-bullwhip-v4a-intent-classifier/README.md`
-- `experiments/agentic-bullwhip-v4b-world-events/README.md`
-- `experiments/agentic-bullwhip-v5-control-architecture/README.md`
-- `experiments/agentic-bullwhip-v6-stateless-swing/README.md`
-- `experiments/failuresensoriq-v1-reasoning-effect/README.md`
+---
 
-Most experiment folders include a `code/` directory with a `run_experiment.py` entry point and a `requirements.txt`. Some earlier experiments use `src/` instead. Result summaries are stored as JSON under each experiment's `results/` tree.
-
-Beyond the supply-chain series, the program now also covers **small language models for industrial fault diagnosis** — see [`experiments/failuresensoriq-v1-reasoning-effect/`](experiments/failuresensoriq-v1-reasoning-effect/), a baseline of four 4B-class models on IBM's FailureSensorIQ benchmark, with its own README, consolidated FINDINGS, and run-it-yourself instructions.
-
-## Current Technical Takeaway
-
-The program's strongest finding so far is architectural. LLM quality, context quantity, and label accuracy did not fix variance amplification when the model controlled ordering through direct orders, safety-stock multipliers, or discrete intent labels. The first robust positive movement came from changing the interface: let the model choose a control parameter inside a variance-dampening formula, then let the formula execute the order.
-
-That is the research trajectory after V5: less emphasis on making a classifier smarter, more emphasis on finding control surfaces where probabilistic reasoning can help without destabilizing the system.
+*Independent, self-funded personal research by Siddharth Srinivasan. Views are my own and do
+not represent my employer, any model or service provider, or any third party.*
