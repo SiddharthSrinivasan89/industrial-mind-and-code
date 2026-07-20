@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Which part broke? LLMs vs a one-line rule on simulated sensor data | Industrial Mind &amp; Code</title>
+  <meta name="description" content="On a simulated predictive-maintenance dataset, a trained classifier (0.995 macro-F1) and a one-line error rule (0.923) beat every LLM at naming the failed component. LLMs only competed once given the plant history, and still did not exceed the rule." />
+  <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/pdm-component-attribution-v1-azure.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Which part broke? LLMs vs a one-line rule on simulated sensor data | Industrial Mind &amp; Code" />
+  <meta property="og:description" content="A trained classifier and a one-line error rule beat LLMs at component attribution on simulated maintenance telemetry." />
+  <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/pdm-component-attribution-v1-azure.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f7f3;
+      --surface: #f1efe8;
+      --border: #e4e0d7;
+      --text-primary: #1d1d1f;
+      --text-secondary: #5b5952;
+      --text-muted: #8f8c84;
+      --accent: #33566e;
+      --accent-light: #eaeef2;
+      --accent-mid: #3f6787;
+      --verdict-rejected-bg: #fdf0f0;
+      --verdict-rejected: #8a2a2a;
+      --verdict-supported-bg: #e6f4ed;
+      --verdict-supported: #1d7a4a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font-sans); font-size: 16px; line-height: 1.7; font-weight: 300; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+    nav { position: sticky; top: 0; background: rgba(248, 247, 243, 0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+    .nav-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-brand { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+        .nav-links a:hover { color: var(--text-primary); }
+    .nav-toggle { display: none; }
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+    }
+    .nav-burger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+
+    .post-header { padding: 7rem 0 4rem; border-bottom: 1px solid var(--border); }
+    .post-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.25rem; }
+    .post-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .post-summary { font-size: 17px; font-weight: 300; color: var(--text-secondary); max-width: 580px; line-height: 1.75; margin-bottom: 2rem; }
+    .post-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .post-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .post-meta-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; }
+    .post-meta-value { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+
+    .post-body { padding: 4rem 0; }
+    .post-section { margin-bottom: 3.5rem; }
+    .post-section:last-child { margin-bottom: 0; }
+    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.25; }
+
+    .abstract-block { padding: 1.5rem 1.75rem; border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 4px 4px 0; }
+    .abstract-block p { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.75rem; }
+    .abstract-block p:last-child { margin-bottom: 0; }
+    .abstract-block strong { font-weight: 500; color: var(--text-primary); }
+
+    .setup-table { width: 100%; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; border-collapse: collapse; }
+    .setup-table tr { border-bottom: 1px solid var(--border); }
+    .setup-table tr:last-child { border-bottom: none; }
+    .setup-table tr:nth-child(odd) { background: var(--surface); }
+    .setup-table tr:nth-child(even) { background: #fff; }
+    .setup-table td { padding: 0.75rem 1.25rem; font-size: 14px; vertical-align: top; }
+    .setup-table td:first-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; width: 180px; }
+    .setup-table td:last-child { font-weight: 400; color: var(--text-primary); }
+
+    .findings-list { list-style: none; counter-reset: finding; display: flex; flex-direction: column; gap: 1.1rem; }
+    .findings-list li { counter-increment: finding; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .findings-list li::before { content: counter(finding, decimal-leading-zero); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; flex-shrink: 0; margin-top: 4px; min-width: 24px; }
+    .finding-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .finding-text strong { font-weight: 500; color: var(--text-primary); }
+
+    .results-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1.5rem; }
+    .results-table-wrap:last-child { margin-bottom: 0; }
+    .results-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .results-table thead tr { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .results-table thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; padding: 0.65rem 1.25rem; text-align: left; white-space: nowrap; }
+    .results-table tbody tr { border-bottom: 1px solid var(--border); background: #fff; }
+    .results-table tbody tr:last-child { border-bottom: none; }
+    .results-table tbody tr:nth-child(even) { background: var(--surface); }
+    .results-table tbody td { padding: 0.65rem 1.25rem; color: var(--text-primary); font-weight: 300; vertical-align: middle; }
+    .results-table tbody td:first-child { font-weight: 400; }
+    .value-cell { font-family: var(--font-mono); font-size: 13px; font-weight: 500 !important; }
+    .tag-cell { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    .best { color: var(--verdict-supported) !important; }
+    .highlight-row { background: var(--accent-light) !important; }
+
+    .prose p { font-size: 15.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; max-width: 640px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 500; color: var(--text-primary); }
+
+    .table-note { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5; }
+
+    .callout-positive { padding: 1.25rem 1.5rem; border: 1px solid var(--verdict-supported); border-radius: 6px; background: var(--verdict-supported-bg); margin-bottom: 1.5rem; }
+    .callout-positive p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .callout-positive strong { font-weight: 500; color: var(--text-primary); }
+
+    .method-callout { padding: 1.25rem 1.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+    .method-callout-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .method-callout p { font-size: 13.5px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+    .method-callout p + p { margin-top: 0.75rem; }
+    .method-callout a { color: var(--accent); text-decoration: none; font-weight: 400; }
+    .method-callout a:hover { color: var(--accent-mid); }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; margin-top: 3rem; transition: color 0.15s; }
+    .back-link:hover { color: var(--text-primary); }
+    .back-link svg { width: 10px; height: 10px; }
+
+    .post-highlight-image { width: 100%; border-bottom: 1px solid var(--border); }
+    .post-highlight-image img { display: block; width: 100%; max-height: 480px; object-fit: cover; object-position: center; }
+
+    footer { padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
+    .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 13px; font-weight: 400; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    @media (max-width: 600px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(248, 247, 243, 0.98);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+        padding: 0.25rem 2rem 0.75rem;
+        display: none;
+      }
+      .nav-toggle:checked ~ .nav-links { display: flex; }
+      .nav-links li { padding: 0.7rem 0; border-top: 1px solid var(--border); }
+      .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
+      .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+      .post-header { padding: 4rem 0 3rem; }
+      .post-meta { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">industrial-mind-and-code</a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu" />
+      <label for="nav-toggle" class="nav-burger" aria-hidden="true"><span></span><span></span><span></span></label>
+      <ul class="nav-links">
+        <li><a href="../">Home</a></li>
+        <li><a href="../#thesis">Thesis</a></li>
+        <li><a href="../#tracks">Tracks</a></li>
+        <li><a href="../#experiments">Experiments</a></li>
+        <li><a href="./" class="active">Writeups</a></li>
+        <li><a href="../#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <p class="post-eyebrow">Predictive Maintenance &middot; Component Attribution &middot; Experiment Writeup</p>
+      <h1 class="post-title">Finding out which part broke</h1>
+      <p class="post-summary">
+        When a machine goes down, the first question is which part failed. I tested whether a
+        language model can answer that from the evidence available just before the breakdown, and
+        how it compares to the classical tools that do this job today. On a simulated fleet
+        dataset, a trained classifier and even a one-line rule beat every model I tried.
+      </p>
+      <div class="post-meta">
+        <div class="post-meta-item"><span class="post-meta-label">Date</span><span class="post-meta-value">July 2026</span></div>
+        <div class="post-meta-item"><span class="post-meta-label">Experiment</span><span class="post-meta-value">pdm-component-attribution-v1-azure</span></div>
+        <div class="post-meta-item"><span class="post-meta-label">Design</span><span class="post-meta-value">3 LLMs &middot; 3 conditions &middot; 5 baselines &middot; 213-event eval &middot; machine-cluster bootstrap</span></div>
+        <div class="post-meta-item"><span class="post-meta-label">Models</span><span class="post-meta-value">gpt-5.4 &middot; gpt-oss:120b &middot; nemotron-3-super:120b</span></div>
+        <div class="post-meta-item"><span class="post-meta-label">Author</span><span class="post-meta-value">Siddharth Srinivasan &middot; industrialmindandcode.ai</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="post-body">
+    <div class="container">
+
+      <div class="post-section">
+        <p class="section-label">TL;DR</p>
+        <div class="abstract-block">
+          <p>On Microsoft's simulated predictive-maintenance dataset (100 machines, one year, 213 test breakdowns), the task was to name which of four components failed using only pre-failure evidence. A trained logistic-regression classifier scored <strong>0.995</strong> macro-F1 &mdash; a score that averages performance across all four components, so it cannot be inflated by always guessing the most common one. A one-line rule mapping the most recent error code to a component scored <strong>0.923</strong>. The three language models scored <strong>0.36&ndash;0.44</strong> with no context, no better than guessing the most-worn part. Giving each model a one-page summary of the plant's history lifted them to <strong>0.86&ndash;0.91</strong>, but none exceeded the one-line rule. A label-disguising probe found no contamination signal for two of the three models. For this shape of tabular sensor diagnosis, classical machine learning is the stronger approach.</p>
+        </div>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">The data and task</p>
+        <h2 class="section-title">Setup</h2>
+        <p>The Microsoft Azure Predictive Maintenance sample is a simulated dataset: 100 machines logged hourly for 2015, with four sensor channels (voltage, rotation, pressure, vibration), coded error events, component-replacement records, and breakdown records naming which of four components failed. Because it is simulated, every result here describes method behaviour on this simulator, not real-plant capability &mdash; the &ldquo;ground truth&rdquo; is the simulator&rsquo;s own labels. After collapsing to single-component events I had 677 breakdowns over 98 machines, split by time into 464 for training and 213 for evaluation.</p>
+        <p>For each of the 213 evaluation breakdowns, the model is told a failure occurred and is shown the evidence strictly before it: the machine&rsquo;s model and age, three days of telemetry summaries, a week of error codes, and each component&rsquo;s time since last replacement. It must name the failed component. Scoring is exact match on the four options; there is no model acting as judge. I ran each language model in three conditions &mdash; <strong>zero-shot</strong> (evidence only), <strong>with-history</strong> (evidence plus a frozen summary of the training period&rsquo;s statistics), and a <strong>disguised-names</strong> probe on 51 events that renames the components and error codes to test for reliance on memorised labels. Five non-model baselines set the floor and ceiling: prior-weighted random, majority class, oldest component, a train-fitted recent-error rule, and a trained logistic-regression classifier.</p>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numeric results</h2>
+        <div class="table-wrap">
+          <table class="results-table">
+            <thead><tr><th>Method</th><th>Macro-F1 [95% CI]</th><th>Accuracy</th></tr></thead>
+            <tbody>
+              <tr><td>Majority class</td><td>0.140 [0.125, 0.155]</td><td>0.390</td></tr>
+              <tr><td>Oldest component</td><td>0.467 [0.395, 0.534]</td><td>0.474</td></tr>
+              <tr><td>Recent-error rule</td><td>0.923 [0.881, 0.959]</td><td>0.930</td></tr>
+              <tr><td class="best">Trained classifier (logreg)</td><td class="best">0.995 [0.983, 1.000]</td><td>0.995</td></tr>
+              <tr><td>gpt-5.4 &middot; zero-shot</td><td>0.440 [0.369, 0.508]</td><td>0.498</td></tr>
+              <tr><td>gpt-5.4 &middot; with-history</td><td>0.908 [0.863, 0.947]</td><td>0.920</td></tr>
+              <tr><td>gpt-oss:120b &middot; zero-shot</td><td>0.366 [0.300, 0.427]</td><td>0.408</td></tr>
+              <tr><td>gpt-oss:120b &middot; with-history</td><td>0.883 [0.827, 0.929]</td><td>0.897</td></tr>
+              <tr><td>nemotron-3-super:120b &middot; zero-shot</td><td>0.355 [0.297, 0.414]</td><td>0.380</td></tr>
+              <tr><td>nemotron-3-super:120b &middot; with-history</td><td>0.855 [0.800, 0.902]</td><td>0.859</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Macro-F1 with 95&percnt; confidence intervals from a machine-cluster bootstrap (10,000 replicates, clustered by machine, 213 events). The disguised-names probe (51 events) is omitted from this table; it showed no contamination signal for gpt-5.4 and nemotron-3-super and a small effect for gpt-oss:120b.</p>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">What I found</p>
+        <h2 class="section-title">Findings</h2>
+        <ol class="findings-list">
+          <li><strong>Zero-shot, the models did not outperform the deterministic baselines.</strong> All three beat the majority baseline but did not reliably exceed the oldest-component heuristic, and trailed the recent-error rule by a wide margin. My hypothesis that a zero-shot model would clear the baselines was not supported.</li>
+          <li><strong>The trained classifier outperformed every model, even with history.</strong> At 0.995 it sits above every language-model condition with non-overlapping confidence intervals (0.995 vs 0.908 / 0.883 / 0.855).</li>
+          <li><strong>Historical context accounted for the improvement.</strong> Supplying the training-period statistics added 0.47 to 0.52 macro-F1 across the models. This is consistent with the zero-shot gap being missing priors rather than missing reasoning &mdash; though this experiment does not isolate reasoning, so that reading is a hypothesis.</li>
+          <li><strong>No configuration exceeded the one-line rule.</strong> The best result, gpt-5.4 with history at 0.908, falls inside the recent-error rule&rsquo;s confidence interval. I ran no equivalence test, so the precise statement is that the models did not exceed it.</li>
+          <li><strong>The result was not specific to one model.</strong> Two open-weight 120B models and a frontier model all landed in the same 0.86&ndash;0.91 band with history, and all trailed the baselines cold.</li>
+        </ol>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Why</p>
+        <h2 class="section-title">Reading the result</h2>
+        <p>This simulator builds a near-deterministic link between recent error codes and the failing component, which is why a logistic regression recovers it almost perfectly and a one-line rule captures most of it. A model reading the raw evidence cold has no access to that plant-specific mapping and performs near chance. The one-page statistics block closes most of the gap because it hands the model exactly the priors the classical methods learned &mdash; but it does not make the model better than the rule those priors imply. The disguised-names probe matters because this dataset appears in many public tutorials; renaming everything left gpt-5.4 unchanged and nemotron slightly better, with only gpt-oss showing a small drop, so the with-history performance is largely genuine evidence-reading rather than recall. The practical takeaway: for tabular sensor diagnosis of this shape, a cheap classical model is the right tool, and a language model should be measured against the simple rule the data implies rather than assumed to beat it.</p>
+      </div>
+
+      <div class="post-section">
+        <p class="section-label">Code and data</p>
+        <p>Full design, frozen protocol, code, and scored results are on GitHub. &nbsp;<a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/pdm-component-attribution-v1-azure" target="_blank" rel="noopener">View on GitHub &rarr;</a></p>
+      </div>
+
+      <div class="post-section">
+        <p class="methodology-note"><em>Methodology note: the dataset is Microsoft-simulated &mdash; the &ldquo;ground truth&rdquo; is the simulator&rsquo;s labels, so these results describe method behaviour on this simulator, not real-plant capability, and do not generalise beyond this one simulated, same-fleet task. The task is attribution conditional on a known failure, not failure detection or causal root-cause analysis. The disguised-names probe (n=51) bounds the contamination check to gross effects only. nemotron-3-super was added as a third model after its results were seen, a documented post-hoc choice that reinforces rather than changes the conclusions. Hypotheses were stated before analysis but not formally pre-registered.</em></p>
+      </div>
+
+      <div class="post-section">
+        <p class="disclaimer-note"><em>This is independent, self-funded research by Siddharth Srinivasan (industrialmindandcode.ai). It is not affiliated with or endorsed by Microsoft; the dataset is used under its MIT license.</em></p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Personal, self-funded research &middot; not affiliated with any employer, platform or model provider &middot; public or synthetic data only &middot; no proprietary data is used &middot; findings are limited to the tested scope</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

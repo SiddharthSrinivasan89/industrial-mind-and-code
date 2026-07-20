@@ -372,6 +372,26 @@
         <!-- FailureSensorIQ: Small local fault-diagnosis models -->
         <div class="post-card">
           <div class="post-card-header">
+            <span class="post-title">Finding Out Which Part Broke: LLMs vs a One-Line Rule on Simulated Sensor Data</span>
+            <span class="post-date">July 2026</span>
+          </div>
+          <p class="post-domain">PREDICTIVE MAINTENANCE &middot; COMPONENT ATTRIBUTION &middot; EXPERIMENT WRITEUP</p>
+          <p class="post-description">
+            On a Microsoft-simulated maintenance dataset, I tested whether a language model can name which of four components failed from pre-failure evidence. A trained classifier scored 0.995 macro-F1 and a one-line recent-error rule scored 0.923; zero-shot LLMs trailed at 0.36&ndash;0.44. Giving the models the plant&rsquo;s training-period history lifted them to 0.86&ndash;0.91, but none exceeded the one-line rule. For this tabular sensor task, classical machine learning was the stronger approach.
+          </p>
+          <div class="post-links">
+            <a class="post-link" href="pdm-component-attribution-v1-azure.html">
+              Read the writeup
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+            <a class="post-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/pdm-component-attribution-v1-azure" target="_blank" rel="noopener">
+              View on GitHub
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-card-header">
             <span class="post-title">Small Language Models for Industrial Fault Diagnosis: A Baseline on IBM FailureSensorIQ</span>
             <span class="post-date">June 2026</span>
           </div>

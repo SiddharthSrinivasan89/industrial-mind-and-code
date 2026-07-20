@@ -1,0 +1,218 @@
+{
+  "metrics": {
+    "gpt-5.4_armA": {
+      "n": 213,
+      "machines": 91,
+      "accuracy": 0.49765258215962443,
+      "macro_f1": 0.4400135007110966,
+      "macro_f1_ci95": [
+        0.3694878899793727,
+        0.5076496404167237
+      ]
+    },
+    "gpt-5.4_armB": {
+      "n": 213,
+      "machines": 91,
+      "accuracy": 0.92018779342723,
+      "macro_f1": 0.9077256439973137,
+      "macro_f1_ci95": [
+        0.8626736105832529,
+        0.9473238872884235
+      ]
+    },
+    "gpt-5.4_armC": {
+      "n": 51,
+      "machines": 22,
+      "accuracy": 0.8823529411764706,
+      "macro_f1": 0.8584489966555183,
+      "macro_f1_ci95": [
+        0.6815704352393132,
+        0.9810281517747859
+      ]
+    },
+    "gpt-oss_120b_armA": {
+      "n": 213,
+      "machines": 91,
+      "accuracy": 0.4084507042253521,
+      "macro_f1": 0.36550161385394975,
+      "macro_f1_ci95": [
+        0.299974305393985,
+        0.42718260251323414
+      ]
+    },
+    "gpt-oss_120b_armB": {
+      "n": 213,
+      "machines": 91,
+      "accuracy": 0.8967136150234741,
+      "macro_f1": 0.8829665788131141,
+      "macro_f1_ci95": [
+        0.8265466605313502,
+        0.928862781243652
+      ]
+    },
+    "gpt-oss_120b_armC": {
+      "n": 51,
+      "machines": 22,
+      "accuracy": 0.8431372549019608,
+      "macro_f1": 0.8288858939802337,
+      "macro_f1_ci95": [
+        0.6914701131341998,
+        0.9307734732311003
+      ]
+    },
+    "nemotron-3-super_120b_armA": {
+      "n": 213,
+      "machines": 91,
+      "accuracy": 0.38028169014084506,
+      "macro_f1": 0.3548202245782891,
+      "macro_f1_ci95": [
+        0.2967492844804464,
+        0.4144898706823719
+      ]
+    },
+    "nemotron-3-super_120b_armB": {
+      "n": 213,
+      "machines": 91,
+      "accuracy": 0.8591549295774648,
+      "macro_f1": 0.8551210136055486,
+      "macro_f1_ci95": [
+        0.799970503028522,
+        0.9024327751799999
+      ]
+    },
+    "nemotron-3-super_120b_armC": {
+      "n": 51,
+      "machines": 22,
+      "accuracy": 0.8431372549019608,
+      "macro_f1": 0.8322115384615385,
+      "macro_f1_ci95": [
+        0.6695152697137086,
+        0.9479287306685562
+      ]
+    },
+    "baseline_b2_no_evidence": {
+      "n": 213,
+      "accuracy": 0.38967136150234744,
+      "macro_f1": 0.14020270270270271,
+      "macro_f1_ci95": [
+        0.1254180602006689,
+        0.15463917525773196
+      ]
+    },
+    "baseline_b3_oldest": {
+      "n": 213,
+      "accuracy": 0.47417840375586856,
+      "macro_f1": 0.4670347514319146,
+      "macro_f1_ci95": [
+        0.395306105914624,
+        0.5337724571422635
+      ]
+    },
+    "baseline_b4_recent_error": {
+      "n": 213,
+      "accuracy": 0.9295774647887324,
+      "macro_f1": 0.9225260725960613,
+      "macro_f1_ci95": [
+        0.8805057236784296,
+        0.9589873785081433
+      ]
+    },
+    "baseline_champion": {
+      "n": 213,
+      "accuracy": 0.9953051643192489,
+      "macro_f1": 0.9950601909506019,
+      "macro_f1_ci95": [
+        0.9829930657694566,
+        1.0
+      ]
+    }
+  },
+  "H1": {
+    "gpt-5.4": {
+      "per_baseline_p": {
+        "b2_no_evidence": 9.999000099990002e-05,
+        "b3_oldest": 0.7528247175282472,
+        "b4_recent_error": 1.0
+      },
+      "subject_IUT_p": 1.0
+    },
+    "gpt-oss_120b": {
+      "per_baseline_p": {
+        "b2_no_evidence": 9.999000099990002e-05,
+        "b3_oldest": 0.9942005799420058,
+        "b4_recent_error": 1.0
+      },
+      "subject_IUT_p": 1.0
+    },
+    "nemotron-3-super_120b": {
+      "per_baseline_p": {
+        "b2_no_evidence": 9.999000099990002e-05,
+        "b3_oldest": 0.999000099990001,
+        "b4_recent_error": 1.0
+      },
+      "subject_IUT_p": 1.0
+    },
+    "holm_adjusted": {
+      "gpt-5.4": 1.0,
+      "gpt-oss_120b": 1.0,
+      "nemotron-3-super_120b": 1.0
+    },
+    "supported_subjects": [],
+    "verdict": "not supported"
+  },
+  "H2": {
+    "raw_p": {
+      "gpt-5.4": 9.999000099990002e-05,
+      "gpt-oss_120b": 9.999000099990002e-05,
+      "nemotron-3-super_120b": 9.999000099990002e-05
+    },
+    "verdict": "supported"
+  },
+  "H2b": {
+    "gpt-5.4": {
+      "n_probe": 51,
+      "armB_acc": 0.8823529411764706,
+      "armC_acc": 0.8823529411764706,
+      "gap": 0.0,
+      "ci90": [
+        -0.0625,
+        0.0625
+      ],
+      "cap_triggered": false
+    },
+    "gpt-oss_120b": {
+      "n_probe": 51,
+      "armB_acc": 0.9019607843137255,
+      "armC_acc": 0.8431372549019608,
+      "gap": 0.05882352941176472,
+      "ci90": [
+        0.016949152542372947,
+        0.12
+      ],
+      "cap_triggered": false
+    },
+    "nemotron-3-super_120b": {
+      "n_probe": 51,
+      "armB_acc": 0.803921568627451,
+      "armC_acc": 0.8431372549019608,
+      "gap": -0.039215686274509776,
+      "ci90": [
+        -0.10416666666666663,
+        0.02083333333333326
+      ],
+      "cap_triggered": false
+    }
+  },
+  "notes": {},
+  "diagnostics": {
+    "bootstrap_B": 10000,
+    "gpt54_repeat_stability": "20/30 events identical across 3 repeats (diagnostics only, results/gpt-5.4_armA/repeats.jsonl)",
+    "gpt54_tokens": {
+      "calls": 587,
+      "input": 448963,
+      "output": 5871,
+      "note": "\u2248$1.21 at standard gpt-5.4 rates ($2.50/M input, $15/M output); Azure SKU rate may differ; 587 calls span arms A/B/C + repeats + preflight"
+    },
+    "armB_vs_B4": "no equivalence test performed; point estimates + overlapping CIs only"
+  }
+}

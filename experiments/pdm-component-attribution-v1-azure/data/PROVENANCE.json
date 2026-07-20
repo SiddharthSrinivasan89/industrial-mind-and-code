@@ -1,0 +1,41 @@
+{
+  "dataset": "Microsoft Azure Predictive Maintenance sample dataset (Predictive Maintenance Modelling Guide)",
+  "acquired": "2026-07-18",
+  "acquired_by": "Claude session (design + fetch), fetch authorized by Sid's override; License Gate ruling deferred",
+  "source_repo": "https://github.com/microsoft/sqlworkshops",
+  "pinned_commit": "e836f4e866028db7fd7d1a66b88f79664a1f4eac",
+  "source_path": "SQLServerAndAzureMachineLearning/ML Services for SQL Server/data/",
+  "license": "MIT (repo LICENSE, verified 2026-07-18); original Azure AI Gallery terms unrecoverable (gallery retired)",
+  "attribution": "Microsoft Azure Predictive Maintenance sample dataset (Predictive Maintenance Modelling Guide), (c) Microsoft Corporation, MIT License, obtained from github.com/microsoft/sqlworkshops",
+  "files": {
+    "PdM_telemetry.csv": {
+      "sha256": "d957f3c45bb83416b716600da8cffd72f4b6961db89867d9696ad19f7cb1bd4e",
+      "bytes": 80142329
+    },
+    "PdM_errors.csv": {
+      "sha256": "9c2a2a010ad77227e2bb0c94e7971bca78810790ddd1f28a8bee4f12c2f62370",
+      "bytes": 129077
+    },
+    "PdM_maint.csv": {
+      "sha256": "481ed4e155f609e6ca6130754d2c035453093902a507cce5b3f3e235995f1db6",
+      "bytes": 104903
+    },
+    "PdM_machines.csv": {
+      "sha256": "5e8e1571c4999bf88abb7cae3925964c218d946fe851a9a100bb3d19330652bc",
+      "bytes": 1582
+    },
+    "PdM_failures.csv": {
+      "sha256": "0c6c31a4fd52ef2df95ad7c44e8b0c8c32917bcef29ba5a1ba3ba45531ded3b7",
+      "bytes": 24336
+    }
+  },
+  "local_path": "experiments/pdm-component-attribution-v1-azure/data/raw/ (gitignored, never committed)",
+  "license_ruling": {
+    "gate": "\u00a70 RULED PASSED",
+    "by": "Sid",
+    "date": "2026-07-20",
+    "basis": "inheritance assumption \u2014 microsoft/sqlworkshops repo is MIT, data inherited MIT",
+    "residual_risk": "original Azure AI Gallery terms unrecoverable; MIT inferred from distributing repo, accepted by Sid",
+    "permits": "research use, public writeups, derived artifacts, excerpts, redistribution with attribution"
+  }
+}

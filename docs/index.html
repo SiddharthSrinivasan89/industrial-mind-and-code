@@ -796,6 +796,50 @@
 
         <div class="experiment-card">
           <div class="exp-tags">
+            <span class="exp-tag">Maintenance</span>
+            <span class="exp-tag">Fault diagnosis</span>
+            <span class="exp-tag">LLM vs classical</span>
+          </div>
+          <div class="experiment-header">
+            <span class="experiment-name">Finding Out Which Part Broke: LLMs vs a One-Line Rule on Simulated Sensor Data</span>
+            <span class="status-badge status-published">Published</span>
+          </div>
+          <p class="exp-oneline">Tests whether a language model can attribute a machine breakdown to the failed component better than deterministic baselines and a trained classifier.</p>
+          <div class="exp-block">
+            <p class="exp-block-label">Research question</p>
+            <p class="exp-text">Given the sensor and error evidence just before a known breakdown, can an LLM name which of four components failed, and does it beat the classical tools used for this today?</p>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Design &amp; configuration</p>
+            <ul class="exp-bullets">
+              <li>Microsoft-simulated Azure Predictive Maintenance dataset; 213 held-out breakdowns, time-based split</li>
+              <li>Three conditions per model: zero-shot, with train-period history, and a disguised-names contamination probe</li>
+              <li>Models: gpt-5.4 &middot; gpt-oss:120b &middot; nemotron-3-super:120b</li>
+              <li>Five baselines including a recent-error rule and a trained logistic-regression classifier</li>
+              <li>Macro-F1 with 95&percnt; machine-cluster bootstrap confidence intervals</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Key findings</p>
+            <ul class="exp-bullets">
+              <li><strong>The trained classifier (0.995) and a one-line error rule (0.923) beat every model.</strong></li>
+              <li>Zero-shot LLMs trailed at 0.36&ndash;0.44 macro-F1 &mdash; near the trivial floors.</li>
+              <li>A page of plant history lifted them to 0.86&ndash;0.91, but none exceeded the one-line rule.</li>
+              <li>The disguised-names probe found no contamination signal for two of the three models.</li>
+            </ul>
+          </div>
+          <div class="exp-block">
+            <p class="exp-block-label">Why it matters</p>
+            <p class="exp-text">For tabular sensor diagnosis of this shape, a cheap classical model is the right tool. A language model becomes competitive only once given the site&rsquo;s own history, and even then should be measured against the simple rule that history implies. Result scoped to this simulated, same-fleet task.</p>
+          </div>
+          <div class="experiment-links">
+            <a class="exp-link" href="blog/pdm-component-attribution-v1-azure.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+            <a class="exp-link" href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code/tree/main/experiments/pdm-component-attribution-v1-azure" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="exp-tags">
             <span class="exp-tag">Supply chain</span>
             <span class="exp-tag">Control loop</span>
             <span class="exp-tag">Hybrid architecture</span>
