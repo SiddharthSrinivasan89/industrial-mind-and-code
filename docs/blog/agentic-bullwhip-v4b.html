@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Equaliser Effect: Intent Classification in Supply Chain Replenishment | Industrial Mind &amp; Code</title>
-  <meta name="description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced statistically identical supply chain outcomes. The Equaliser Effect: discrete labels create a structural ceiling no model can escape." />
+  <meta name="description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced supply chain outcomes separated by less than one within-cell standard deviation. The Equaliser Effect: discrete labels create a structural bottleneck that none of the four tested models escaped." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4b.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="The Equaliser Effect: Intent Classification in Supply Chain Replenishment | Industrial Mind &amp; Code" />
-  <meta property="og:description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced statistically identical supply chain outcomes. The Equaliser Effect: discrete labels create a structural ceiling no model can escape." />
+  <meta property="og:description" content="Four AI models, from a lightweight fast model to a 120-billion-parameter reasoning behemoth, produced supply chain outcomes separated by less than one within-cell standard deviation. The Equaliser Effect: discrete labels create a structural bottleneck that none of the four tested models escaped." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/agentic-bullwhip-v4b.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -212,7 +212,7 @@
       <p class="post-eyebrow">Supply Chain &middot; Intent Classification &middot; Experiment Writeup</p>
       <h1 class="post-title">The Equaliser Effect: Intent Classification in Supply Chain Replenishment</h1>
       <p class="post-summary">
-        Four AI models produced statistically identical supply chain outcomes, regardless of size, reasoning capability, or information level. Replacing the AI&rsquo;s float output with discrete labels fixed the calibration problem. It created a new ceiling instead.
+        Four AI models produced supply chain outcomes separated by less than one within-cell standard deviation, regardless of size, reasoning capability, or information level. Replacing the AI&rsquo;s float output with discrete labels fixed the calibration problem. It created a new ceiling instead.
       </p>
       <div class="post-meta">
         <div class="post-meta-item">
@@ -246,7 +246,7 @@
         <p class="section-label">TL;DR</p>
         <div class="abstract-block">
           <p>Version 3b ended with a clear diagnosis: LLMs cannot invent precise multipliers. The proposed fix was to remove the invented number entirely &mdash; replace it with a pre-approved text label, and let a hard-coded lookup table do the arithmetic. <strong>This is V4b.</strong></p>
-          <p>The fix worked as a guardrail. OVAR dropped from the 2.3&ndash;3.1 range of V3b to a tight 1.73&ndash;1.78 across all four models and all three information conditions. No configuration caused catastrophic amplification. The fix did not work as an improvement. A 120-billion-parameter reasoning model and a lightweight fast model produced outcomes within 0.05 OVAR units of each other. Context doubled classification accuracy and barely moved the supply chain outcome. <strong>The Equaliser Effect: a discrete-label architecture creates a structural ceiling that no amount of intelligence, context, or prompt engineering can escape.</strong></p>
+          <p>The fix worked as a guardrail. OVAR dropped from the 2.3&ndash;3.1 range of V3b to a tight 1.73&ndash;1.78 across all four models and all three information conditions. No configuration caused catastrophic amplification. The fix did not work as an improvement. A 120-billion-parameter reasoning model and a lightweight fast model produced outcomes within 0.05 OVAR units of each other. Context doubled classification accuracy and barely moved the supply chain outcome. <strong>The Equaliser Effect: a discrete-label architecture creates a structural bottleneck that no tested level of intelligence, context, or prompt engineering can escape.</strong></p>
         </div>
       </div>
 
@@ -334,7 +334,7 @@
         <h2 class="section-title">What I found</h2>
         <ol class="findings-list">
           <li>
-            <span class="finding-text"><strong>Every AI condition produced OVAR in a 0.05-unit band, regardless of model or information level.</strong> gpt-4.1-mini: 1.737&ndash;1.771. phi4:14b: 1.726&ndash;1.780. o4-mini: 1.748&ndash;1.774. nemotron 120B: 1.734&ndash;1.775. The entire range across 16 distinct model-condition combinations is narrower than the standard deviation of many individual runs. This is not noise. It is a ceiling.</span>
+            <span class="finding-text"><strong>Every AI condition produced OVAR in a 0.05-unit band, regardless of model or information level.</strong> gpt-4.1-mini: 1.737&ndash;1.771. phi4:14b: 1.726&ndash;1.780. o4-mini: 1.748&ndash;1.774. nemotron 120B: 1.734&ndash;1.775. The entire range across the 12 model-condition cells is 0.054 OVAR &mdash; smaller than the within-cell standard deviation of every cell (0.088&ndash;0.133). That spread is consistent with the fixed lookup table capping what any model can do, though I did not run a formal equivalence test.</span>
           </li>
           <li>
             <span class="finding-text"><strong>Context doubled classification accuracy and did not move the supply chain outcome.</strong> Direction accuracy went from 0.41&ndash;0.48 in blind conditions to 0.72&ndash;0.84 with context. A roughly twofold improvement in situational awareness. Chain OVAR moved by 0.01&ndash;0.02. The accuracy gain is real. It is discarded entirely at the lookup table.</span>
@@ -343,7 +343,7 @@
             <span class="finding-text"><strong>More information made outcomes marginally worse, not better.</strong> In every model, the unstructured condition (live event headlines) produced higher OVAR than the context condition. When shown explicit disruption headlines, models over-committed to extreme labels, adding noise to the formula. gpt-4.1-mini context &rarr; unstructured: 1.737 &rarr; 1.771. phi4 context &rarr; unstructured: 1.726 &rarr; 1.780.</span>
           </li>
           <li>
-            <span class="finding-text"><strong>Explicitly instructing the AI to default to inaction produced zero effect on OVAR.</strong> Sub-experiment E4 added a neutral-prior instruction: &ldquo;Default to NEUTRAL unless the signal is strong and unambiguous.&rdquo; Label distributions shifted. OVAR did not. The reason: NEUTRAL maps to multiplier 1.00, which still executes a full Order-Up-To calculation. &ldquo;Do nothing&rdquo; in the prompt is not &ldquo;do nothing&rdquo; in the formula.</span>
+            <span class="finding-text"><strong>Explicitly instructing the AI to default to inaction moved mean OVAR by &minus;0.015 to +0.005 across the six matched cells &mdash; not zero, though small against the 0.088&ndash;0.133 within-cell SDs.</strong> Sub-experiment E4 added a neutral-prior instruction: &ldquo;Default to NEUTRAL unless the signal is strong and unambiguous.&rdquo; Label distributions shifted. OVAR did not. The reason: NEUTRAL maps to multiplier 1.00, which still executes a full Order-Up-To calculation. &ldquo;Do nothing&rdquo; in the prompt is not &ldquo;do nothing&rdquo; in the formula.</span>
           </li>
           <li>
             <span class="finding-text"><strong>Removing world events made OVAR worse, not better.</strong> The ablation (events disabled) produced OVAR 2.08&ndash;2.12, well above the events-on results of 1.73&ndash;1.78. Disruption events create correlated demand and order spikes that partially cancel their own contribution to OVAR. A cleaner seasonal signal exposes the underlying formula amplification without that natural cancellation.</span>
@@ -379,7 +379,7 @@
 
       <div class="method-callout">
         <p class="method-callout-label">Disclaimer</p>
-        <p>Independent, self-funded personal research by Siddharth Srinivasan. Views are my own and do not represent my employer, any model or service provider, or any third party. The work uses publicly available data or synthetic scenarios; no proprietary employer or customer data is used.</p>
+        <p>This is my independent, self-funded personal research.</p>
       </div>
 
       <a class="back-link" href="./">
@@ -392,7 +392,7 @@
 
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Independent personal research blog. Not affiliated with or endorsed by any employer, platform or model provider. Views are personal. Public or synthetic data only &middot; findings are limited to the tested scope.</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Independent personal research blog. Not affiliated with or endorsed by any employer, platform or model provider. Views are my own. Public or synthetic data only &middot; findings are limited to the tested scope.</span>
       <ul class="footer-links">
         <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>

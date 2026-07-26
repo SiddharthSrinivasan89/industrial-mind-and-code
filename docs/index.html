@@ -656,27 +656,17 @@
           <p class="hero-tagline">Placing probabilistic intelligence inside deterministic industrial systems.</p>
           <div class="hero-body">
             <p>
-              Industrial Mind &amp; Code is an independent applied research blog by Siddharth Srinivasan, testing LLMs and agents inside industrial engineering decision environments &mdash; supply chains, maintenance systems, production planning, manufacturing workflows, and product-lifecycle systems.
+              I&rsquo;m Siddharth Srinivasan, and this is my independent applied research blog. I test LLMs and agents inside industrial engineering decisions &mdash; supply chains, maintenance, production planning, manufacturing workflows, and product-lifecycle systems. My background is in industrial engineering and I work in digital engineering software, so I write about the domains I know first-hand.
             </p>
             <p>
-              My background is in industrial engineering, and I work in digital engineering software &mdash; where AI tools meet the operational realities of industrial organisations. The experiments test the domains I know first-hand: manufacturing, supply chains, maintenance, and production planning.
+              The early result is not that AI beats everything. Models often fail when they are put directly in control of an operational decision, and become useful when they are constrained inside the right architecture. So I separate a <em>bare LLM</em> (the model on its own) from an <em>agent</em> (a model paired with tools and a control loop), and ask where each one belongs.
             </p>
             <p>
-              The early result is not &ldquo;AI beats everything.&rdquo; It is more interesting: models often fail when placed directly in control of operational decisions, but become useful when constrained inside the right architecture.
-            </p>
-            <p>
-              I separate a <em>bare LLM</em> (the model on its own) from an <em>agent</em> (an LLM paired with tools and a control loop), and ask where each can sit inside a deterministic industrial system &mdash; and where it should be constrained by one.
-            </p>
-            <p>
-              The bias is practical: compare AI agents against deterministic baselines, measure operational outcomes, and identify where hybrid architectures are more reliable than direct agentic control.
+              The bias is practical: compare against deterministic baselines, measure operational outcomes, and find the places where a hybrid design beats direct agentic control.
             </p>
           </div>
         </div>
         <div class="meta-panel">
-          <div class="meta-row">
-            <p class="meta-k">Researcher</p>
-            <p class="meta-v">Siddharth Srinivasan</p>
-          </div>
           <div class="meta-row">
             <p class="meta-k">Background</p>
             <p class="meta-v">Industrial engineering &middot; digital engineering software</p>
@@ -693,14 +683,10 @@
             <p class="meta-k">Mode</p>
             <p class="meta-v">Independent applied research blog &middot; self-funded personal research</p>
           </div>
-          <div class="meta-row">
-            <p class="meta-k">Core question</p>
-            <p class="meta-v accent">Where should probabilistic intelligence sit inside deterministic industrial systems?</p>
-          </div>
         </div>
       </div>
       <div class="closing-band">
-        <p>Industrial Mind &amp; Code is not asking whether AI agents are impressive in isolation. It is asking where they belong inside real industrial systems.</p>
+        <p>I am not asking whether AI agents are impressive in isolation. I am asking where they belong inside real industrial systems.</p>
         <p class="closing-answer">The early answer: not everywhere, not directly, and not without deterministic constraints.</p>
       </div>
     </div>
@@ -714,7 +700,7 @@
         <div class="finding-card">
           <p class="finding-num">01</p>
           <h3>You cannot prompt your way out of the bullwhip effect.</h3>
-          <p>Prompting helped structure behaviour, but it did not make LLM agents outperform simple deterministic replenishment rules. In the intent-classification experiments, a neutral-prompt instruction had zero effect on order variance.</p>
+          <p>Prompting helped structure behaviour, but it did not make LLM agents outperform simple deterministic replenishment rules. In the intent-classification experiments, a neutral-prompt instruction moved order variance by less than a fifth of the within-cell spread.</p>
         </div>
         <div class="finding-card">
           <p class="finding-num">02</p>
@@ -772,12 +758,12 @@
         <div class="track-card">
           <p class="track-card-eyebrow">Track 3</p>
           <h3>Industrial AI Architecture Patterns</h3>
-          <p class="track-desc">Experiments and essays focused on where AI should sit in industrial control loops and enterprise architectures.</p>
+          <p class="track-desc">Experiments and essays on where AI belongs in industrial control and software systems.</p>
           <ul class="track-topics">
-            <li>Hybrid deterministic/probabilistic systems</li>
-            <li>Semantic layers</li>
-            <li>Control-loop placement</li>
-            <li>Governance and observability implications</li>
+            <li>Hybrid deterministic and probabilistic systems</li>
+            <li>Data and context passed to models</li>
+            <li>Where models enter the control loop</li>
+            <li>Monitoring, limits and audit trails</li>
           </ul>
         </div>
       </div>
@@ -859,7 +845,7 @@
               <li>The AI selects &alpha; from {0.1, 0.3, 0.5, 0.7} each period; the formula places the order</li>
               <li>Models: gpt-4.1-mini &middot; o4-mini &middot; GPT OSS 120B, across blind, context, and stateful conditions (plus four debiased V6b conditions)</li>
               <li>Compared against a fixed &alpha; = 0.3 exponential-smoothing baseline</li>
-              <li>10 runs per AI condition</li>
+              <li>10 runs per primary condition; 5 per V6b debiasing condition</li>
             </ul>
           </div>
           <div class="exp-block">
@@ -874,7 +860,7 @@
           </div>
           <div class="exp-block">
             <p class="exp-block-label">Why it matters</p>
-            <p class="exp-text">This supports a bounded role for AI inside industrial control loops: the model adapts one parameter while the deterministic method keeps execution discipline. It is the first positive result in the replenishment programme.</p>
+            <p class="exp-text">This supports a bounded role for AI inside industrial control loops: the model adapts one parameter while the deterministic method keeps execution discipline. It is the first positive result in my replenishment experiments.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v6.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -911,7 +897,7 @@
             <p class="exp-block-label">Key findings</p>
             <ul class="exp-bullets">
               <li><strong>Oracle labels produced OVAR 1.776 &mdash; worse than the formula with no AI at 1.753.</strong></li>
-              <li>The 0.540-unit gap to exponential smoothing held across every variant, regardless of label quality.</li>
+              <li>The best of the fourteen variants still sat 0.540 OVAR above exponential smoothing; the rest ran from 0.556 to 1.120 above it. Perfect labels did not close the gap.</li>
               <li>The ceiling is a structural property of the safety-stock formula, not a model-quality problem.</li>
               <li>The result applies to this Order-Up-To architecture; it says nothing about other control levers.</li>
             </ul>
@@ -990,15 +976,15 @@
               <li>Four models from 14B to 120B: gpt-4.1-mini &middot; o4-mini &middot; phi4:14b &middot; nemotron-super 120B</li>
               <li>Blind, context, and unstructured conditions; a hard-coded multiplier lookup replaces the AI&rsquo;s continuous output</li>
               <li>Compared against the Order-Up-To formula baseline</li>
-              <li>20&ndash;100 replications per cell</li>
+              <li>10 runs per local-model cell, 20 per frontier-model cell, 100 per baseline</li>
             </ul>
           </div>
           <div class="exp-block">
             <p class="exp-block-label">Key findings</p>
             <ul class="exp-bullets">
-              <li><strong>All four models produced OVAR within a 0.05-unit band (1.726&ndash;1.780)</strong>, clustering on the formula baseline.</li>
+              <li><strong>All four models produced OVAR within a 0.054-unit band (1.726&ndash;1.780) across 12 model-condition cells</strong>, clustering on the formula baseline.</li>
               <li>Context roughly doubled direction accuracy (0.41&ndash;0.48 &rarr; 0.72&ndash;0.84) without materially moving OVAR.</li>
-              <li>A neutral-prior prompt instruction had zero effect on OVAR across all three models tested.</li>
+              <li>A neutral-prior prompt moved mean OVAR by only &minus;0.015 to +0.005 across six matched cells &mdash; small against within-cell SDs of 0.088&ndash;0.133, but not zero, and I ran no equivalence test.</li>
               <li>The equalisation is a property of this lookup-table architecture, not a general law.</li>
             </ul>
           </div>
@@ -1063,7 +1049,7 @@
             <span class="experiment-name">LLM Agents Against Heuristic Baselines in Supply Chain Replenishment</span>
             <span class="status-badge status-published">Published</span>
           </div>
-          <p class="exp-oneline">The programme&rsquo;s baseline study: can any LLM configuration beat simple replenishment rules?</p>
+          <p class="exp-oneline">My baseline study: can any LLM configuration beat simple replenishment rules?</p>
           <div class="exp-block">
             <p class="exp-block-label">Research question</p>
             <p class="exp-text">Can any LLM configuration &mdash; frontier or local, lightweight or reasoning &mdash; beat simple heuristic ordering rules in a serial supply chain?</p>
@@ -1080,7 +1066,7 @@
           <div class="exp-block">
             <p class="exp-block-label">Key findings</p>
             <ul class="exp-bullets">
-              <li>Exponential smoothing: <strong>chain OVAR 0.54 with 5 stockouts</strong>. Best LLM configuration: <strong>OVAR 4.33 with 41 stockouts</strong>.</li>
+              <li>Exponential smoothing: <strong>chain OVAR 0.545 with 5 stockouts</strong>. Best LLM configuration: <strong>OVAR 4.33 with 41 stockouts</strong>.</li>
               <li>Every heuristic outperformed every LLM configuration on both metrics simultaneously; all seven hypotheses rejected.</li>
               <li>Reasoning-tier models generated over 1,000,000 reasoning tokens with no measurable improvement in ordering performance.</li>
               <li>The result applies to this controlled serial-chain setup; it is not a universal claim about LLMs.</li>
@@ -1088,7 +1074,7 @@
           </div>
           <div class="exp-block">
             <p class="exp-block-label">Why it matters</p>
-            <p class="exp-text">More capable models cannot simply be dropped into operational decision loops and expected to beat the established method. This result anchors the whole programme.</p>
+            <p class="exp-text">More capable models cannot simply be dropped into operational decision loops and expected to beat the established method. This result anchors everything I have run since.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v2.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -1125,7 +1111,7 @@
             <ul class="exp-bullets">
               <li><strong>No measurable difference: sarvam-30b chain OVAR 4.504 vs GPT OSS 120B 4.52</strong> &mdash; within noise.</li>
               <li>Neither model detected the Indian seasonal demand patterns.</li>
-              <li>Exponential smoothing reached OVAR 0.54 &mdash; roughly 8&times; better than both models.</li>
+              <li>Exponential smoothing reached OVAR 0.545 &mdash; roughly 8&times; better than both models.</li>
               <li>The GPT OSS figure is a context reference from the earlier run, not a co-run comparison.</li>
             </ul>
           </div>
@@ -1165,14 +1151,14 @@
             <p class="exp-block-label">Key findings</p>
             <ul class="exp-bullets">
               <li><strong>Every configuration amplified demand swings.</strong></li>
-              <li>Context reduced chain OVAR for the lightweight model (&minus;7.2%) and increased it for the reasoning model (+15.0%).</li>
+              <li>Context reduced chain OVAR for the lightweight model by 7.5&percnt; (3.149 &rarr; 2.914, four runs) and increased it for the reasoning model by 15.0&percnt; (3.835 &rarr; 4.412).</li>
               <li>The context + reasoning condition fully inverted the tier pattern (OEM OVAR 6.349, Component 2.698).</li>
               <li>Directional only (n = 5); this motivated the expanded baseline study.</li>
             </ul>
           </div>
           <div class="exp-block">
             <p class="exp-block-label">Why it matters</p>
-            <p class="exp-text">The first evidence in this programme that context interacts with the decision role instead of simply improving it.</p>
+            <p class="exp-text">My first evidence that context interacts with the decision role instead of simply improving it.</p>
           </div>
           <div class="experiment-links">
             <a class="exp-link" href="blog/agentic-bullwhip-v1.html">Read the writeup<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1v6"/></svg></a>
@@ -1211,7 +1197,7 @@
               <li>Best clean full-set result: <strong>Nemotron-3 Nano 4B at 51.8%</strong> with structured output on all 2,667 calls.</li>
               <li>Above the guessing floor, below the human-expert mean &mdash; assistance, not autonomy.</li>
               <li>Sampling temperature moved Phi-4-mini from 30.7% to 36.6% (0.8 &rarr; 0.3) on the same weights &mdash; a single-model contrast.</li>
-              <li>One run degraded from serving-runtime state, not model weights, and was excluded pending a re-run.</li>
+              <li>One run degraded because of serving-runtime state, not model weights, and was excluded from the model comparison.</li>
             </ul>
           </div>
           <div class="exp-block">
@@ -1234,7 +1220,7 @@
       <p class="section-label">Protocol</p>
       <h2 class="section-title">Methodology</h2>
       <p class="protocol-intro">
-        Industrial Mind &amp; Code evaluates AI agents as components inside operational systems, not as isolated chat interfaces.
+        I evaluate AI agents as components inside operational systems, not as isolated chat interfaces.
       </p>
       <ol class="protocol-list">
         <li>Compare against deterministic baselines.</li>
@@ -1242,7 +1228,6 @@
         <li>Test model placement inside the architecture.</li>
         <li>Separate model capability from control-loop design.</li>
         <li>Prefer repeatable simulations and transparent assumptions.</li>
-        <li>Vet every claim before treating it as a finding.</li>
       </ol>
 
       <div class="stack-row">
@@ -1291,12 +1276,12 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Independent personal research blog. Not affiliated with or endorsed by any employer, platform or model provider. Views are personal.</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems</span>
       <ul class="footer-links">
         <li><a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
-      <p class="footer-disclaimer">Industrial Mind &amp; Code is Siddharth Srinivasan&rsquo;s independent, self-funded personal research blog. It publishes experiments, technical articles, research reports, model evaluations and practical guides relating to artificial intelligence and industrial engineering.<br /><br />The blog is not affiliated with, endorsed by, or operated on behalf of Siddharth&rsquo;s employer or any technology platform, model provider or third party. All views expressed are personal. No consulting, advisory or professional services are offered through this website. Public or synthetic data is used unless otherwise explicitly stated. Findings are limited to the tested scope.</p>
+      <p class="footer-disclaimer">Industrial Mind &amp; Code is my independent, self-funded personal research blog. I publish experiments, technical articles, research reports, model evaluations and practical guides on artificial intelligence and industrial engineering. It is not affiliated with, endorsed by, or run on behalf of my employer or any technology platform, model provider or third party, and the views here are my own. I offer no consulting, advisory or professional services through this site. I use public or synthetic data unless I say otherwise, and every finding is limited to what I actually tested.</p>
     </div>
   </footer>
 

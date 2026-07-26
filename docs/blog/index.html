@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Experiment Writeups | Industrial Mind &amp; Code</title>
-  <meta name="description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
+  <meta name="description" content="Experimental research on LLM agent performance in industrial engineering decisions: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
   <link rel="canonical" href="https://www.industrialmindandcode.ai/blog/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Experiment Writeups | Industrial Mind &amp; Code" />
-  <meta property="og:description" content="Experimental research on LLM agent performance in industrial engineering decision environments: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
+  <meta property="og:description" content="Experimental research on LLM agent performance in industrial engineering decisions: supply chain, maintenance, and production planning, evaluated against deterministic analytical baselines." />
   <meta property="og:url" content="https://www.industrialmindandcode.ai/blog/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -356,7 +356,7 @@
       <p class="hero-eyebrow">Research</p>
       <h1 class="hero-title">Experiment Writeups</h1>
       <p class="hero-sub">
-        Experimental research on LLM agent performance in industrial engineering decision environments.
+        Experimental research on LLM agent performance in industrial engineering decisions.
       </p>
     </div>
   </section>
@@ -399,7 +399,7 @@
           <p class="post-description">
             <strong>The question:</strong> can a model small enough to run locally &mdash; on a box beside the machines, no cloud &mdash; do real fault diagnosis, and what decides whether its output is usable?<br /><br />
             <strong>Models tested:</strong> four 4B-class local models &mdash; Nemotron-3 Nano, Gemma 3 4B, and Phi-4-mini (standard and reasoning) &mdash; on IBM&rsquo;s 2,667-question FailureSensorIQ benchmark.<br /><br />
-            <strong>The answer:</strong> a capable assistant, not a decision-maker. The strongest, a 2.8 GB model, scored 51.8% with perfectly clean output &mdash; useful, but short of the human-expert mark. And usability hinged less on the model than on its setup: one temperature change moved another model six points, and a serving-runtime fault quietly reduced a third to garbage.
+            <strong>The answer:</strong> a capable assistant, not a decision-maker. The best clean full-set run was Nemotron-3 Nano 4B at 51.8%, with structured output on all 2,667 calls &mdash; above the guessing floor, below the 60.2% human-expert mean. Usability hinged less on the model than on its setup: one temperature change moved Phi-4-mini by about six points, and a separate run was excluded after the serving runtime degraded mid-run.
           </p>
           <div class="post-links">
             <a class="post-link" href="small-language-models-fault-diagnosis.html">
@@ -421,7 +421,7 @@
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; ADAPTIVE SMOOTHING &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            For the first time in this research programme, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: GPT OSS 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
+            For the first time in my replenishment experiments, every AI condition produced OVAR below 1.0 &mdash; the AI was damping variance, not amplifying it. The key architectural change: the AI now controls the EMA smoothing parameter &alpha; inside the formula rather than a safety stock buffer on top of it. Best result: GPT OSS 120B blind, OVAR 0.535, marginally beating the fixed &alpha;=0.3 baseline at 0.545.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v6.html">
@@ -443,7 +443,7 @@
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; ORACLE ABLATION &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. Fourteen architectural variants tested. None passed the gate. The 0.540-unit gap to exponential smoothing is preserved exactly regardless of label quality, multiplier range, or formula variant. V5 closes the intent-classification line; V6 changes the control lever.
+            Perfect ground-truth labels, fed directly to the architecture with no LLM at all, produced worse OVAR than the Order-Up-To formula running alone. Fourteen architectural variants tested. None passed the gate. The best variant remained 0.540 OVAR above exponential smoothing &mdash; the same best-case gap as V4, unchanged by label quality, multiplier range, or formula variant. V5 closes the intent-classification line; V6 changes the control lever.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v5.html">
@@ -487,7 +487,7 @@
           </div>
           <p class="post-domain">SUPPLY CHAIN &middot; INTENT CLASSIFICATION &middot; EXPERIMENT WRITEUP</p>
           <p class="post-description">
-            Four AI models &mdash; from a lightweight fast model to a 120-billion-parameter reasoning behemoth &mdash; produced statistically identical supply chain outcomes across three information conditions. Replacing the AI&rsquo;s float output with five discrete text labels fixed the calibration problem from V3b. It simultaneously created a structural ceiling no model or prompt can escape.
+            Four AI models &mdash; from a lightweight fast model to a 120-billion-parameter reasoning behemoth &mdash; produced supply chain outcomes that differed by less than one within-cell standard deviation across three information conditions. Replacing the AI&rsquo;s float output with five discrete text labels fixed the calibration problem from V3b. It simultaneously created a structural bottleneck that none of the four tested models or prompt variants escaped.
           </p>
           <div class="post-links">
             <a class="post-link" href="agentic-bullwhip-v4b.html">
@@ -597,7 +597,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems<br>Independent personal research blog. Not affiliated with or endorsed by any employer, platform or model provider. Views are personal.</span>
+      <span class="footer-brand">Industrial Mind &amp; Code &middot; Placing probabilistic intelligence inside deterministic industrial systems</span>
       <ul class="footer-links">
         <li>
           <a href="https://github.com/SiddharthSrinivasan89/industrial-mind-and-code" target="_blank" rel="noopener">GitHub</a>
@@ -606,7 +606,7 @@
           <a href="https://www.linkedin.com/in/siddharthsrinivasan89" target="_blank" rel="noopener">LinkedIn</a>
         </li>
       </ul>
-      <p class="footer-disclaimer">Industrial Mind &amp; Code is Siddharth Srinivasan&rsquo;s independent, self-funded personal research blog. It publishes experiments, technical articles, research reports, model evaluations and practical guides relating to artificial intelligence and industrial engineering.<br /><br />The blog is not affiliated with, endorsed by, or operated on behalf of Siddharth&rsquo;s employer or any technology platform, model provider or third party. All views expressed are personal. No consulting, advisory or professional services are offered through this website. Public or synthetic data is used unless otherwise explicitly stated. Findings are limited to the tested scope.</p>
+      <p class="footer-disclaimer">Industrial Mind &amp; Code is my independent, self-funded personal research blog. I publish experiments, technical articles, research reports, model evaluations and practical guides on artificial intelligence and industrial engineering. It is not affiliated with, endorsed by, or run on behalf of my employer or any technology platform, model provider or third party, and the views here are my own. I offer no consulting, advisory or professional services through this site. I use public or synthetic data unless I say otherwise, and every finding is limited to what I actually tested.</p>
     </div>
   </footer>
 
