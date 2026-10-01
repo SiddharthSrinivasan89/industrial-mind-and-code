@@ -1,0 +1,147 @@
+{
+  "astra_cost_plan": {
+    "basis": "five times measured EXP003 Astra token usage for the identical prompts/task structure",
+    "conservative_cost_usd": 316.4997,
+    "conservative_input_token_upper_bound": 15061170,
+    "conservative_output_token_upper_bound": 3317760,
+    "note": "No spending ceiling is invented. Sid receives this estimate and authorizes paid production separately after CHECK_GO. Actual usage is retained.",
+    "projected_cost_usd": 43.1367,
+    "projected_input_tokens": 3278245,
+    "projected_output_tokens": 207085,
+    "spending_ceiling": null
+  },
+  "baseline_binding": "data/exp003-baseline-binding.json",
+  "call_plan": {
+    "astra_paid_logical_calls": 1620,
+    "logical_calls_per_model": 1620,
+    "logical_calls_per_run": 324,
+    "panel_logical_calls": 4860
+  },
+  "evaluation": {
+    "calls_per_record": [
+      "A_detailed",
+      "B_broad",
+      "C_detailed_reworded"
+    ],
+    "records": 108,
+    "sampling": "exact_full_EXP003_evaluation_census_by_hash"
+  },
+  "experiment": "IMC-EXP-004",
+  "expert_analysis_plan": {
+    "confirmatory_claims": false,
+    "context_sufficiency": "descriptive_only_because_sufficient_has_one_joinable_record",
+    "other_qualitative_themes": "descriptive_only_because_each_present_group_has_fewer_than_five_joinable_records",
+    "quantitative_exploratory_binary_comparisons": [
+      "operational_consequence_high_vs_not_high",
+      "specificity_required_high_vs_medium",
+      "missing_machine_identity_present_vs_absent"
+    ],
+    "status": "frozen_without_model_outcomes"
+  },
+  "expert_annotation": {
+    "final_ledger": "expert/expert-annotations-final.jsonl",
+    "final_ledger_sha256": "01ce3e5045c22e093d0da1d85b324ed0bb36687a8ed6a585ce7a4164e70e630a",
+    "final_lock": "expert/expert-annotations-final.lock.json",
+    "joinable_records": 15,
+    "missing_excluded_records": 1,
+    "outcome_join_scope": "annotation sequences 1-15 only",
+    "qualitative_only_records": 34
+  },
+  "inference_authorized": false,
+  "models": {
+    "azure_astra": {
+      "account": "redacted_public_release",
+      "deployed_model_version": "2026-09-03",
+      "deployment": "gpt-6-astra",
+      "endpoint": "redacted_public_release",
+      "max_output_tokens": 2048,
+      "price_checked": "2026-09-12",
+      "price_source": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+      "price_usd_per_million": {
+        "input": 10.0,
+        "output": 50.0
+      },
+      "provider": "azure_openai_responses",
+      "reasoning_effort": "medium",
+      "resource_group": "redacted_public_release",
+      "seed": null,
+      "sku": "GlobalStandard",
+      "temperature": null,
+      "token_resource": "https://ai.azure.com"
+    },
+    "ollama_gemma": {
+      "concurrency": 1,
+      "digest": "6316f0629137b426c9d9b853ffc4c8209589f30ee39aebede6285096c0ff47e7",
+      "endpoint": "redacted_public_release",
+      "format": "json",
+      "keep_alive": "10m",
+      "model": "gemma4:31b",
+      "ollama_version": "0.32.5",
+      "options": {
+        "num_ctx": 32768,
+        "num_predict": 2048,
+        "seed": null,
+        "temperature": 0.2
+      },
+      "parameter_size": "31.3B",
+      "provider": "ollama_generate",
+      "quantization": "Q4_K_M",
+      "think": false
+    },
+    "ollama_qwen": {
+      "concurrency": 1,
+      "digest": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37",
+      "endpoint": "redacted_public_release",
+      "format": null,
+      "keep_alive": "10m",
+      "model": "qwen3.5:122b",
+      "ollama_version": "0.32.5",
+      "options": {
+        "num_ctx": 32768,
+        "num_predict": 2048,
+        "seed": null,
+        "temperature": 0.2
+      },
+      "parameter_size": "125.1B",
+      "provider": "ollama_generate",
+      "quantization": "Q4_K_M",
+      "think": false
+    }
+  },
+  "replicates": {
+    "astra_stochasticity": "provider-managed fresh calls; temperature and seed omitted",
+    "exp003_counts_as_replicate": false,
+    "local_seeds": [
+      4101,
+      4102,
+      4103,
+      4104,
+      4105
+    ],
+    "local_temperature": 0.2,
+    "per_model": 5
+  },
+  "schema_version": 2,
+  "state": "preproduction_candidate_frozen_pending_checker",
+  "uncertainty": {
+    "across_run": {
+      "draws": 10000,
+      "method": "crossed_run_and_record_or_duplicate_group_bootstrap",
+      "seed": 4005
+    },
+    "minimum_evidence": {
+      "items_per_agreement_stratum": 30,
+      "record_groups_per_agreement_stratum": 15
+    },
+    "repeated_question": {
+      "cluster": "record_or_exact_duplicate_group",
+      "draws": 10000,
+      "seed": 4005
+    },
+    "within_run": {
+      "cluster": "record_or_exact_duplicate_group",
+      "draws": 10000,
+      "seed": 4004
+    }
+  }
+}

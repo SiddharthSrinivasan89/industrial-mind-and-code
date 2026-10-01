@@ -26,11 +26,10 @@ model selects a bounded smoothing parameter inside an exponential-smoothing form
 formula executes the order.
 
 **2. Maintenance and fault diagnosis.** Can models read industrial evidence — sensor summaries,
-error logs, replacement records, engineering questions — and support diagnosis? Two published
-experiments so far: a four-model baseline of 4B-class local models on IBM's FailureSensorIQ
-benchmark (assistance-level capability; integration settings decide usability), and a
-component-attribution study on simulated maintenance telemetry where a trained classifier and a
-one-line rule beat every LLM tested.
+error logs, replacement records, engineering questions — and support diagnosis? Published work
+includes a four-model baseline of 4B-class local models on IBM's FailureSensorIQ benchmark, a
+component-attribution study on simulated maintenance telemetry, and a repeated-run MaintIE study
+of whether independently consistent classifications are more likely to be correct.
 
 ## Published experiments
 
@@ -45,6 +44,7 @@ one-line rule beat every LLM tested.
 | `agentic-bullwhip-v6-stateless-swing` | Supply chain | First positive result: every AI condition dampened variance below OVAR 1.0; best condition matched the fixed α=0.3 baseline within uncertainty. |
 | `failuresensoriq-v1-reasoning-effect` | Diagnosis | Best 4B local model reached 51.8% on 2,667 questions — assistance, not autonomy; sampling settings and serving health moved results as much as model choice. |
 | `pdm-component-attribution-v1-azure` | Diagnosis | On simulated maintenance telemetry, a trained classifier (0.995 macro-F1) and a one-line recent-error rule (0.923) beat every LLM; models reached 0.86–0.91 only when given the training-period history, and never exceeded the rule. |
+| `004-maintie-operational-reliability` | Maintenance classification | Cross-level consistency repeatedly marked more accurate subsets across five new runs per model, but consistent mistakes remained common. |
 
 ## Repository layout
 

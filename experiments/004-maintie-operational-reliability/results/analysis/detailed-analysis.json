@@ -1,0 +1,3530 @@
+{
+  "aggregate_sha256": "d1c4f071b1cbc12d28c57b9dc70268471a4b665be1671d641efad4c0251077fe",
+  "all_predefined_theme_descriptives": [
+    {
+      "expert_records": 3,
+      "field": "context_sufficiency",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.6533333333333333,
+          "mean_accuracy_when_inconsistent": 0.9,
+          "mean_consistent_but_wrong_rate": 0.3466666666666667,
+          "mean_cross_level_consistency": 0.8285714285714285,
+          "mean_overall_accuracy": 0.6857142857142857,
+          "mean_repeat_agreement": 0.9714285714285713,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.3333333333333333,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.6666666666666667,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.2857142857142857,
+          "mean_repeat_agreement": 0.8571428571428571,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.42000000000000004,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.58,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.2857142857142857,
+          "mean_repeat_agreement": 0.6857142857142857,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 7.0
+        }
+      },
+      "sparse": true,
+      "value": "insufficient"
+    },
+    {
+      "expert_records": 11,
+      "field": "context_sufficiency",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 180,
+          "mean_accuracy_when_consistent": 0.7612339769055565,
+          "mean_accuracy_when_inconsistent": 0.9214285714285714,
+          "mean_consistent_but_wrong_rate": 0.23876602309444356,
+          "mean_cross_level_consistency": 0.8333333333333334,
+          "mean_overall_accuracy": 0.7833333333333334,
+          "mean_repeat_agreement": 0.9444444444444444,
+          "mean_valid_cross_level_items": 36.0,
+          "mean_valid_repeat_items": 36.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 180,
+          "mean_accuracy_when_consistent": 0.5724137931034482,
+          "mean_accuracy_when_inconsistent": 0.3333333333333333,
+          "mean_consistent_but_wrong_rate": 0.4275862068965518,
+          "mean_cross_level_consistency": 0.90625,
+          "mean_overall_accuracy": 0.48888888888888893,
+          "mean_repeat_agreement": 0.8,
+          "mean_valid_cross_level_items": 32.0,
+          "mean_valid_repeat_items": 32.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 180,
+          "mean_accuracy_when_consistent": 0.6437304724261246,
+          "mean_accuracy_when_inconsistent": 0.2767832167832168,
+          "mean_consistent_but_wrong_rate": 0.3562695275738754,
+          "mean_cross_level_consistency": 0.6468393613554904,
+          "mean_overall_accuracy": 0.4833333333333333,
+          "mean_repeat_agreement": 0.8944444444444445,
+          "mean_valid_cross_level_items": 32.8,
+          "mean_valid_repeat_items": 36.0
+        }
+      },
+      "sparse": false,
+      "value": "partial"
+    },
+    {
+      "expert_records": 1,
+      "field": "context_sufficiency",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "sufficient"
+    },
+    {
+      "expert_records": 6,
+      "field": "operational_consequence",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 85,
+          "mean_accuracy_when_consistent": 0.7400732600732601,
+          "mean_accuracy_when_inconsistent": 0.8333333333333334,
+          "mean_consistent_but_wrong_rate": 0.25992673992673987,
+          "mean_cross_level_consistency": 0.8117647058823529,
+          "mean_overall_accuracy": 0.7529411764705882,
+          "mean_repeat_agreement": 0.9294117647058823,
+          "mean_valid_cross_level_items": 17.0,
+          "mean_valid_repeat_items": 17.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 85,
+          "mean_accuracy_when_consistent": 0.4545454545454545,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5454545454545454,
+          "mean_cross_level_consistency": 0.8461538461538461,
+          "mean_overall_accuracy": 0.29411764705882354,
+          "mean_repeat_agreement": 0.7692307692307693,
+          "mean_valid_cross_level_items": 13.0,
+          "mean_valid_repeat_items": 13.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 85,
+          "mean_accuracy_when_consistent": 0.5890909090909091,
+          "mean_accuracy_when_inconsistent": 0.24,
+          "mean_consistent_but_wrong_rate": 0.41090909090909095,
+          "mean_cross_level_consistency": 0.7089285714285715,
+          "mean_overall_accuracy": 0.4117647058823529,
+          "mean_repeat_agreement": 0.7529411764705882,
+          "mean_valid_cross_level_items": 14.4,
+          "mean_valid_repeat_items": 17.0
+        }
+      },
+      "sparse": false,
+      "value": "high"
+    },
+    {
+      "expert_records": 2,
+      "field": "operational_consequence",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 40,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.875,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 8.0,
+          "mean_valid_repeat_items": 8.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 40,
+          "mean_accuracy_when_consistent": 0.9428571428571428,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.05714285714285716,
+          "mean_cross_level_consistency": 0.875,
+          "mean_overall_accuracy": 0.95,
+          "mean_repeat_agreement": 0.95,
+          "mean_valid_cross_level_items": 8.0,
+          "mean_valid_repeat_items": 8.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 40,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 0.5,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.7357142857142858,
+          "mean_overall_accuracy": 0.825,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 7.6,
+          "mean_valid_repeat_items": 8.0
+        }
+      },
+      "sparse": true,
+      "value": "low"
+    },
+    {
+      "expert_records": 7,
+      "field": "operational_consequence",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 115,
+          "mean_accuracy_when_consistent": 0.720701754385965,
+          "mean_accuracy_when_inconsistent": 0.95,
+          "mean_consistent_but_wrong_rate": 0.2792982456140351,
+          "mean_cross_level_consistency": 0.8695652173913043,
+          "mean_overall_accuracy": 0.7478260869565216,
+          "mean_repeat_agreement": 0.9565217391304348,
+          "mean_valid_cross_level_items": 23.0,
+          "mean_valid_repeat_items": 23.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 115,
+          "mean_accuracy_when_consistent": 0.5238095238095238,
+          "mean_accuracy_when_inconsistent": 0.5,
+          "mean_consistent_but_wrong_rate": 0.47619047619047616,
+          "mean_cross_level_consistency": 0.9130434782608695,
+          "mean_overall_accuracy": 0.5217391304347826,
+          "mean_repeat_agreement": 0.826086956521739,
+          "mean_valid_cross_level_items": 23.0,
+          "mean_valid_repeat_items": 23.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 115,
+          "mean_accuracy_when_consistent": 0.5685714285714286,
+          "mean_accuracy_when_inconsistent": 0.2968253968253968,
+          "mean_consistent_but_wrong_rate": 0.4314285714285714,
+          "mean_cross_level_consistency": 0.6513043478260869,
+          "mean_overall_accuracy": 0.4695652173913044,
+          "mean_repeat_agreement": 0.9565217391304348,
+          "mean_valid_cross_level_items": 21.8,
+          "mean_valid_repeat_items": 23.0
+        }
+      },
+      "sparse": false,
+      "value": "medium"
+    },
+    {
+      "expert_records": 10,
+      "field": "specificity_required",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.6430830039525691,
+          "mean_accuracy_when_inconsistent": 0.8800000000000001,
+          "mean_consistent_but_wrong_rate": 0.3569169960474309,
+          "mean_cross_level_consistency": 0.8296296296296296,
+          "mean_overall_accuracy": 0.6814814814814815,
+          "mean_repeat_agreement": 0.9555555555555555,
+          "mean_valid_cross_level_items": 27.0,
+          "mean_valid_repeat_items": 27.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.504,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.496,
+          "mean_cross_level_consistency": 0.9259259259259259,
+          "mean_overall_accuracy": 0.4666666666666666,
+          "mean_repeat_agreement": 0.874074074074074,
+          "mean_valid_cross_level_items": 27.0,
+          "mean_valid_repeat_items": 27.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.5655648926237162,
+          "mean_accuracy_when_inconsistent": 0.20269841269841268,
+          "mean_consistent_but_wrong_rate": 0.4344351073762838,
+          "mean_cross_level_consistency": 0.6720267558528428,
+          "mean_overall_accuracy": 0.4222222222222222,
+          "mean_repeat_agreement": 0.8222222222222222,
+          "mean_valid_cross_level_items": 24.4,
+          "mean_valid_repeat_items": 27.0
+        }
+      },
+      "sparse": false,
+      "value": "high"
+    },
+    {
+      "expert_records": 5,
+      "field": "specificity_required",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 105,
+          "mean_accuracy_when_consistent": 0.935486756105951,
+          "mean_accuracy_when_inconsistent": 0.95,
+          "mean_consistent_but_wrong_rate": 0.06451324389404886,
+          "mean_cross_level_consistency": 0.8761904761904761,
+          "mean_overall_accuracy": 0.9333333333333332,
+          "mean_repeat_agreement": 0.9523809523809523,
+          "mean_valid_cross_level_items": 21.0,
+          "mean_valid_repeat_items": 21.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 105,
+          "mean_accuracy_when_consistent": 0.7142857142857143,
+          "mean_accuracy_when_inconsistent": 0.6666666666666666,
+          "mean_consistent_but_wrong_rate": 0.2857142857142857,
+          "mean_cross_level_consistency": 0.8235294117647058,
+          "mean_overall_accuracy": 0.5714285714285714,
+          "mean_repeat_agreement": 0.7647058823529411,
+          "mean_valid_cross_level_items": 17.0,
+          "mean_valid_repeat_items": 17.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 105,
+          "mean_accuracy_when_consistent": 0.7648351648351649,
+          "mean_accuracy_when_inconsistent": 0.44571428571428573,
+          "mean_consistent_but_wrong_rate": 0.23516483516483513,
+          "mean_cross_level_consistency": 0.7017543859649122,
+          "mean_overall_accuracy": 0.6190476190476191,
+          "mean_repeat_agreement": 0.9428571428571428,
+          "mean_valid_cross_level_items": 19.4,
+          "mean_valid_repeat_items": 21.0
+        }
+      },
+      "sparse": false,
+      "value": "medium"
+    },
+    {
+      "expert_records": 3,
+      "field": "actionability",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 60,
+          "mean_accuracy_when_consistent": 0.8672727272727274,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.1327272727272727,
+          "mean_cross_level_consistency": 0.8666666666666666,
+          "mean_overall_accuracy": 0.8833333333333334,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 12.0,
+          "mean_valid_repeat_items": 12.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 60,
+          "mean_accuracy_when_consistent": 0.42857142857142855,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5714285714285714,
+          "mean_cross_level_consistency": 0.875,
+          "mean_overall_accuracy": 0.25,
+          "mean_repeat_agreement": 0.75,
+          "mean_valid_cross_level_items": 8.0,
+          "mean_valid_repeat_items": 8.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 60,
+          "mean_accuracy_when_consistent": 0.4133333333333333,
+          "mean_accuracy_when_inconsistent": 0.52,
+          "mean_consistent_but_wrong_rate": 0.5866666666666667,
+          "mean_cross_level_consistency": 0.5599999999999999,
+          "mean_overall_accuracy": 0.4,
+          "mean_repeat_agreement": 0.8833333333333334,
+          "mean_valid_cross_level_items": 10.4,
+          "mean_valid_repeat_items": 12.0
+        }
+      },
+      "sparse": true,
+      "value": "actionable_if_machine_identified"
+    },
+    {
+      "expert_records": 1,
+      "field": "actionability",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "actionable_with_current_text"
+    },
+    {
+      "expert_records": 10,
+      "field": "actionability",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.6753623188405797,
+          "mean_accuracy_when_inconsistent": 0.85,
+          "mean_consistent_but_wrong_rate": 0.3246376811594203,
+          "mean_cross_level_consistency": 0.8666666666666666,
+          "mean_overall_accuracy": 0.6962962962962963,
+          "mean_repeat_agreement": 0.9777777777777776,
+          "mean_valid_cross_level_items": 27.0,
+          "mean_valid_repeat_items": 27.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.584,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.41600000000000004,
+          "mean_cross_level_consistency": 0.9259259259259259,
+          "mean_overall_accuracy": 0.5407407407407407,
+          "mean_repeat_agreement": 0.874074074074074,
+          "mean_valid_cross_level_items": 27.0,
+          "mean_valid_repeat_items": 27.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.6738080495356037,
+          "mean_accuracy_when_inconsistent": 0.12023809523809523,
+          "mean_consistent_but_wrong_rate": 0.3261919504643963,
+          "mean_cross_level_consistency": 0.7461939799331103,
+          "mean_overall_accuracy": 0.5037037037037037,
+          "mean_repeat_agreement": 0.8444444444444444,
+          "mean_valid_cross_level_items": 24.4,
+          "mean_valid_repeat_items": 27.0
+        }
+      },
+      "sparse": false,
+      "value": "not_actionable_without_more_context"
+    },
+    {
+      "expert_records": 1,
+      "field": "actionability",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.9333333333333333,
+          "mean_accuracy_when_inconsistent": 0.9333333333333333,
+          "mean_consistent_but_wrong_rate": 0.06666666666666668,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.9,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.3333333333333333,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.6666666666666667,
+          "mean_cross_level_consistency": 0.75,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.5,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.25,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        }
+      },
+      "sparse": true,
+      "value": "partially_actionable"
+    },
+    {
+      "expert_records": 2,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.6,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.65,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.35,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.52,
+          "mean_repeat_agreement": 0.72,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.6,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.4,
+          "mean_cross_level_consistency": 0.5599999999999999,
+          "mean_overall_accuracy": 0.32,
+          "mean_repeat_agreement": 0.76,
+          "mean_valid_cross_level_items": 4.6,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "asset_identity"
+    },
+    {
+      "expert_records": 2,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 45,
+          "mean_accuracy_when_consistent": 0.7928571428571429,
+          "mean_accuracy_when_inconsistent": 0.8,
+          "mean_consistent_but_wrong_rate": 0.20714285714285716,
+          "mean_cross_level_consistency": 0.8444444444444444,
+          "mean_overall_accuracy": 0.7777777777777778,
+          "mean_repeat_agreement": 0.9555555555555555,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 9.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 45,
+          "mean_accuracy_when_consistent": 0.5714285714285714,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.42857142857142866,
+          "mean_cross_level_consistency": 0.7777777777777778,
+          "mean_overall_accuracy": 0.4444444444444445,
+          "mean_repeat_agreement": 0.5555555555555556,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 9.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 45,
+          "mean_accuracy_when_consistent": 0.5285714285714286,
+          "mean_accuracy_when_inconsistent": 0.2,
+          "mean_consistent_but_wrong_rate": 0.4714285714285714,
+          "mean_cross_level_consistency": 0.711111111111111,
+          "mean_overall_accuracy": 0.4444444444444445,
+          "mean_repeat_agreement": 0.9777777777777779,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 9.0
+        }
+      },
+      "sparse": true,
+      "value": "component_identity"
+    },
+    {
+      "expert_records": 4,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 75,
+          "mean_accuracy_when_consistent": 0.8098901098901099,
+          "mean_accuracy_when_inconsistent": 0.8,
+          "mean_consistent_but_wrong_rate": 0.19010989010989013,
+          "mean_cross_level_consistency": 0.9066666666666666,
+          "mean_overall_accuracy": 0.8,
+          "mean_repeat_agreement": 0.9733333333333334,
+          "mean_valid_cross_level_items": 15.0,
+          "mean_valid_repeat_items": 15.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 75,
+          "mean_accuracy_when_consistent": 0.6153846153846154,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.3846153846153846,
+          "mean_cross_level_consistency": 0.8666666666666668,
+          "mean_overall_accuracy": 0.5333333333333333,
+          "mean_repeat_agreement": 0.7333333333333333,
+          "mean_valid_cross_level_items": 15.0,
+          "mean_valid_repeat_items": 15.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 75,
+          "mean_accuracy_when_consistent": 0.6354545454545455,
+          "mean_accuracy_when_inconsistent": 0.2,
+          "mean_consistent_but_wrong_rate": 0.36454545454545456,
+          "mean_cross_level_consistency": 0.7933333333333333,
+          "mean_overall_accuracy": 0.5333333333333333,
+          "mean_repeat_agreement": 0.9866666666666667,
+          "mean_valid_cross_level_items": 14.4,
+          "mean_valid_repeat_items": 15.0
+        }
+      },
+      "sparse": true,
+      "value": "component_location"
+    },
+    {
+      "expert_records": 2,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.8800000000000001,
+          "mean_accuracy_when_inconsistent": 0.8666666666666666,
+          "mean_consistent_but_wrong_rate": 0.11999999999999997,
+          "mean_cross_level_consistency": 0.6571428571428571,
+          "mean_overall_accuracy": 0.8571428571428571,
+          "mean_repeat_agreement": 0.9428571428571428,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.7666666666666667,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.2333333333333333,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.6571428571428571,
+          "mean_repeat_agreement": 0.6571428571428571,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.78,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.21999999999999997,
+          "mean_cross_level_consistency": 0.6952380952380952,
+          "mean_overall_accuracy": 0.5142857142857142,
+          "mean_repeat_agreement": 0.8571428571428571,
+          "mean_valid_cross_level_items": 6.6,
+          "mean_valid_repeat_items": 7.0
+        }
+      },
+      "sparse": true,
+      "value": "failure_cause"
+    },
+    {
+      "expert_records": 8,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 130,
+          "mean_accuracy_when_consistent": 0.6967061923583662,
+          "mean_accuracy_when_inconsistent": 0.9,
+          "mean_consistent_but_wrong_rate": 0.3032938076416337,
+          "mean_cross_level_consistency": 0.8846153846153847,
+          "mean_overall_accuracy": 0.7153846153846153,
+          "mean_repeat_agreement": 0.9384615384615385,
+          "mean_valid_cross_level_items": 26.0,
+          "mean_valid_repeat_items": 26.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 130,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 0.909090909090909,
+          "mean_overall_accuracy": 0.38461538461538464,
+          "mean_repeat_agreement": 0.8181818181818181,
+          "mean_valid_cross_level_items": 22.0,
+          "mean_valid_repeat_items": 22.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 130,
+          "mean_accuracy_when_consistent": 0.5516483516483517,
+          "mean_accuracy_when_inconsistent": 0.3757142857142857,
+          "mean_consistent_but_wrong_rate": 0.44835164835164837,
+          "mean_cross_level_consistency": 0.6302197802197802,
+          "mean_overall_accuracy": 0.45384615384615384,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 23.2,
+          "mean_valid_repeat_items": 26.0
+        }
+      },
+      "sparse": false,
+      "value": "machine_identity"
+    },
+    {
+      "expert_records": 1,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.9333333333333333,
+          "mean_accuracy_when_inconsistent": 0.9333333333333333,
+          "mean_consistent_but_wrong_rate": 0.06666666666666668,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.9,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.3333333333333333,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.6666666666666667,
+          "mean_cross_level_consistency": 0.75,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.5,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.25,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        }
+      },
+      "sparse": true,
+      "value": "other"
+    },
+    {
+      "expert_records": 1,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 10,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 10,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 10,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        }
+      },
+      "sparse": true,
+      "value": "severity"
+    },
+    {
+      "expert_records": 2,
+      "field": "missing_information",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.7333333333333333,
+          "mean_accuracy_when_inconsistent": 0.9,
+          "mean_consistent_but_wrong_rate": 0.2666666666666667,
+          "mean_cross_level_consistency": 0.76,
+          "mean_overall_accuracy": 0.76,
+          "mean_repeat_agreement": 0.96,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.25,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.75,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.2,
+          "mean_repeat_agreement": 0.8,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.3333333333333333,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.6666666666666667,
+          "mean_cross_level_consistency": 0.75,
+          "mean_overall_accuracy": 0.2,
+          "mean_repeat_agreement": 0.5599999999999999,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "task_scope"
+    },
+    {
+      "expert_records": 4,
+      "field": "ambiguity_type",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.7,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.3,
+          "mean_cross_level_consistency": 0.7272727272727273,
+          "mean_overall_accuracy": 0.7818181818181819,
+          "mean_repeat_agreement": 0.9454545454545455,
+          "mean_valid_cross_level_items": 11.0,
+          "mean_valid_repeat_items": 11.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.5599999999999999,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.44000000000000006,
+          "mean_cross_level_consistency": 0.909090909090909,
+          "mean_overall_accuracy": 0.509090909090909,
+          "mean_repeat_agreement": 0.8727272727272727,
+          "mean_valid_cross_level_items": 11.0,
+          "mean_valid_repeat_items": 11.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.52,
+          "mean_accuracy_when_inconsistent": 0.2966666666666667,
+          "mean_consistent_but_wrong_rate": 0.48,
+          "mean_cross_level_consistency": 0.4618181818181818,
+          "mean_overall_accuracy": 0.4,
+          "mean_repeat_agreement": 0.8363636363636363,
+          "mean_valid_cross_level_items": 10.0,
+          "mean_valid_repeat_items": 11.0
+        }
+      },
+      "sparse": true,
+      "value": "asset_ambiguity"
+    },
+    {
+      "expert_records": 2,
+      "field": "ambiguity_type",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 45,
+          "mean_accuracy_when_consistent": 0.7928571428571429,
+          "mean_accuracy_when_inconsistent": 0.8,
+          "mean_consistent_but_wrong_rate": 0.20714285714285716,
+          "mean_cross_level_consistency": 0.8444444444444444,
+          "mean_overall_accuracy": 0.7777777777777778,
+          "mean_repeat_agreement": 0.9555555555555555,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 9.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 45,
+          "mean_accuracy_when_consistent": 0.5714285714285714,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.42857142857142866,
+          "mean_cross_level_consistency": 0.7777777777777778,
+          "mean_overall_accuracy": 0.4444444444444445,
+          "mean_repeat_agreement": 0.5555555555555556,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 9.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 45,
+          "mean_accuracy_when_consistent": 0.5285714285714286,
+          "mean_accuracy_when_inconsistent": 0.2,
+          "mean_consistent_but_wrong_rate": 0.4714285714285714,
+          "mean_cross_level_consistency": 0.711111111111111,
+          "mean_overall_accuracy": 0.4444444444444445,
+          "mean_repeat_agreement": 0.9777777777777779,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 9.0
+        }
+      },
+      "sparse": true,
+      "value": "component_ambiguity"
+    },
+    {
+      "expert_records": 3,
+      "field": "ambiguity_type",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 60,
+          "mean_accuracy_when_consistent": 0.7563636363636365,
+          "mean_accuracy_when_inconsistent": 0.8,
+          "mean_consistent_but_wrong_rate": 0.2436363636363636,
+          "mean_cross_level_consistency": 0.8833333333333334,
+          "mean_overall_accuracy": 0.75,
+          "mean_repeat_agreement": 0.9666666666666666,
+          "mean_valid_cross_level_items": 12.0,
+          "mean_valid_repeat_items": 12.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 60,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 0.8333333333333334,
+          "mean_overall_accuracy": 0.4166666666666667,
+          "mean_repeat_agreement": 0.6666666666666666,
+          "mean_valid_cross_level_items": 12.0,
+          "mean_valid_repeat_items": 12.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 60,
+          "mean_accuracy_when_consistent": 0.5059523809523809,
+          "mean_accuracy_when_inconsistent": 0.2,
+          "mean_consistent_but_wrong_rate": 0.49404761904761907,
+          "mean_cross_level_consistency": 0.7388888888888889,
+          "mean_overall_accuracy": 0.4166666666666667,
+          "mean_repeat_agreement": 0.9833333333333334,
+          "mean_valid_cross_level_items": 11.4,
+          "mean_valid_repeat_items": 12.0
+        }
+      },
+      "sparse": true,
+      "value": "location_ambiguity"
+    },
+    {
+      "expert_records": 1,
+      "field": "ambiguity_type",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 10,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 10,
+          "mean_accuracy_when_consistent": 0.0,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 1.0,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.0,
+          "mean_repeat_agreement": 0.5,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 10,
+          "mean_accuracy_when_consistent": 0.0,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 1.0,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.0,
+          "mean_repeat_agreement": 0.8,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        }
+      },
+      "sparse": true,
+      "value": "person_vs_equipment"
+    },
+    {
+      "expert_records": 1,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.8,
+          "mean_accuracy_when_inconsistent": 0.8,
+          "mean_consistent_but_wrong_rate": 0.2,
+          "mean_cross_level_consistency": 0.65,
+          "mean_overall_accuracy": 0.75,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.6666666666666666,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.33333333333333337,
+          "mean_cross_level_consistency": 0.75,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.5,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.6666666666666666,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.33333333333333337,
+          "mean_cross_level_consistency": 0.75,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.95,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        }
+      },
+      "sparse": true,
+      "value": "chain_derailment"
+    },
+    {
+      "expert_records": 1,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        }
+      },
+      "sparse": true,
+      "value": "electrical_short"
+    },
+    {
+      "expert_records": 1,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.8,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.19999999999999996,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.8,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.4,
+          "mean_repeat_agreement": 0.6,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.4,
+          "mean_accuracy_when_inconsistent": 0.3,
+          "mean_consistent_but_wrong_rate": 0.6,
+          "mean_cross_level_consistency": 0.6799999999999999,
+          "mean_overall_accuracy": 0.4,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "hydraulic_leakage"
+    },
+    {
+      "expert_records": 1,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        }
+      },
+      "sparse": true,
+      "value": "loss_of_power"
+    },
+    {
+      "expert_records": 3,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 70,
+          "mean_accuracy_when_consistent": 0.901048951048951,
+          "mean_accuracy_when_inconsistent": 0.9333333333333333,
+          "mean_consistent_but_wrong_rate": 0.09895104895104898,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.9,
+          "mean_repeat_agreement": 0.9714285714285715,
+          "mean_valid_cross_level_items": 14.0,
+          "mean_valid_repeat_items": 14.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 70,
+          "mean_accuracy_when_consistent": 0.6363636363636364,
+          "mean_accuracy_when_inconsistent": 0.6666666666666666,
+          "mean_consistent_but_wrong_rate": 0.36363636363636365,
+          "mean_cross_level_consistency": 0.7857142857142857,
+          "mean_overall_accuracy": 0.6428571428571429,
+          "mean_repeat_agreement": 0.7142857142857143,
+          "mean_valid_cross_level_items": 14.0,
+          "mean_valid_repeat_items": 14.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 70,
+          "mean_accuracy_when_consistent": 0.6799999999999999,
+          "mean_accuracy_when_inconsistent": 0.34,
+          "mean_consistent_but_wrong_rate": 0.32,
+          "mean_cross_level_consistency": 0.6714285714285715,
+          "mean_overall_accuracy": 0.5714285714285714,
+          "mean_repeat_agreement": 0.9714285714285713,
+          "mean_valid_cross_level_items": 14.0,
+          "mean_valid_repeat_items": 14.0
+        }
+      },
+      "sparse": true,
+      "value": "pressure_loss"
+    },
+    {
+      "expert_records": 2,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.4,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.6,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.4,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.6,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.4,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.6,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.6333333333333333,
+          "mean_accuracy_when_inconsistent": 0.5,
+          "mean_consistent_but_wrong_rate": 0.3666666666666667,
+          "mean_cross_level_consistency": 0.6799999999999999,
+          "mean_overall_accuracy": 0.6,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 4.4,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "structural_failure"
+    },
+    {
+      "expert_records": 2,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.8133333333333332,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.18666666666666662,
+          "mean_cross_level_consistency": 0.9,
+          "mean_overall_accuracy": 0.8333333333333334,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 6.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.16666666666666666,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.9333333333333333,
+          "mean_accuracy_when_inconsistent": 0.4666666666666667,
+          "mean_consistent_but_wrong_rate": 0.06666666666666668,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.7,
+          "mean_valid_cross_level_items": 4.4,
+          "mean_valid_repeat_items": 6.0
+        }
+      },
+      "sparse": true,
+      "value": "thermal_exposure"
+    },
+    {
+      "expert_records": 2,
+      "field": "failure_mechanism",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.7066666666666667,
+          "mean_accuracy_when_inconsistent": 0.7,
+          "mean_consistent_but_wrong_rate": 0.29333333333333333,
+          "mean_cross_level_consistency": 0.7714285714285715,
+          "mean_overall_accuracy": 0.6857142857142857,
+          "mean_repeat_agreement": 0.9142857142857143,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.42857142857142855,
+          "mean_repeat_agreement": 0.7142857142857143,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.6,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.4,
+          "mean_cross_level_consistency": 0.8333333333333334,
+          "mean_overall_accuracy": 0.42857142857142855,
+          "mean_repeat_agreement": 0.7142857142857142,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 7.0
+        }
+      },
+      "sparse": true,
+      "value": "uncontrolled_motion"
+    },
+    {
+      "expert_records": 3,
+      "field": "operational_effect",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.7142857142857143,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.2857142857142857,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.7142857142857143,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.7142857142857143,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.2857142857142857,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.7142857142857143,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.8333333333333334,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.16666666666666663,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.7142857142857143,
+          "mean_repeat_agreement": 0.8571428571428571,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        }
+      },
+      "sparse": true,
+      "value": "catastrophic_failure_possible"
+    },
+    {
+      "expert_records": 2,
+      "field": "operational_effect",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.6599999999999999,
+          "mean_accuracy_when_inconsistent": 0.8,
+          "mean_consistent_but_wrong_rate": 0.34,
+          "mean_cross_level_consistency": 0.7666666666666667,
+          "mean_overall_accuracy": 0.6666666666666666,
+          "mean_repeat_agreement": 0.9333333333333333,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 6.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.6,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.4,
+          "mean_cross_level_consistency": 0.8333333333333334,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.6666666666666666,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 6.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.6,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.4,
+          "mean_cross_level_consistency": 0.8333333333333334,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.9666666666666666,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 6.0
+        }
+      },
+      "sparse": true,
+      "value": "equipment_damage"
+    },
+    {
+      "expert_records": 1,
+      "field": "operational_effect",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 0.6333333333333333,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.3666666666666667,
+          "mean_cross_level_consistency": 0.9333333333333333,
+          "mean_overall_accuracy": 0.6,
+          "mean_repeat_agreement": 0.9333333333333333,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 0.3333333333333333,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.6666666666666667,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.3333333333333333,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.3333333333333333,
+          "mean_repeat_agreement": 0.4,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 3.0
+        }
+      },
+      "sparse": true,
+      "value": "loss_of_control"
+    },
+    {
+      "expert_records": 2,
+      "field": "operational_effect",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 50,
+          "mean_accuracy_when_consistent": 0.9,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.09999999999999998,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.9,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 10.0,
+          "mean_valid_repeat_items": 10.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 50,
+          "mean_accuracy_when_consistent": 0.75,
+          "mean_accuracy_when_inconsistent": 0.5,
+          "mean_consistent_but_wrong_rate": 0.25,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.7,
+          "mean_repeat_agreement": 0.8,
+          "mean_valid_cross_level_items": 10.0,
+          "mean_valid_repeat_items": 10.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 50,
+          "mean_accuracy_when_consistent": 0.7285714285714285,
+          "mean_accuracy_when_inconsistent": 0.6,
+          "mean_consistent_but_wrong_rate": 0.27142857142857146,
+          "mean_cross_level_consistency": 0.74,
+          "mean_overall_accuracy": 0.7,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 10.0,
+          "mean_valid_repeat_items": 10.0
+        }
+      },
+      "sparse": true,
+      "value": "loss_of_pressure"
+    },
+    {
+      "expert_records": 2,
+      "field": "operational_effect",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.75,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.25,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.6,
+          "mean_repeat_agreement": 0.8,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.75,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.25,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.6,
+          "mean_repeat_agreement": 0.9199999999999999,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "machine_shutdown"
+    },
+    {
+      "expert_records": 3,
+      "field": "operational_effect",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.9305555555555556,
+          "mean_accuracy_when_inconsistent": 0.9,
+          "mean_consistent_but_wrong_rate": 0.06944444444444446,
+          "mean_cross_level_consistency": 0.7272727272727273,
+          "mean_overall_accuracy": 0.909090909090909,
+          "mean_repeat_agreement": 0.9090909090909092,
+          "mean_valid_cross_level_items": 11.0,
+          "mean_valid_repeat_items": 11.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.7666666666666667,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.2333333333333333,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.41818181818181815,
+          "mean_repeat_agreement": 0.6571428571428571,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.7961904761904762,
+          "mean_accuracy_when_inconsistent": 0.31666666666666665,
+          "mean_consistent_but_wrong_rate": 0.2038095238095238,
+          "mean_cross_level_consistency": 0.6439393939393939,
+          "mean_overall_accuracy": 0.509090909090909,
+          "mean_repeat_agreement": 0.8363636363636363,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 11.0
+        }
+      },
+      "sparse": true,
+      "value": "personnel_injury"
+    },
+    {
+      "expert_records": 2,
+      "field": "operational_effect",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 50,
+          "mean_accuracy_when_consistent": 0.9,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.09999999999999998,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.9,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 10.0,
+          "mean_valid_repeat_items": 10.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 50,
+          "mean_accuracy_when_consistent": 0.75,
+          "mean_accuracy_when_inconsistent": 0.5,
+          "mean_consistent_but_wrong_rate": 0.25,
+          "mean_cross_level_consistency": 0.8,
+          "mean_overall_accuracy": 0.7,
+          "mean_repeat_agreement": 0.8,
+          "mean_valid_cross_level_items": 10.0,
+          "mean_valid_repeat_items": 10.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 50,
+          "mean_accuracy_when_consistent": 0.7285714285714285,
+          "mean_accuracy_when_inconsistent": 0.6,
+          "mean_consistent_but_wrong_rate": 0.27142857142857146,
+          "mean_cross_level_consistency": 0.74,
+          "mean_overall_accuracy": 0.7,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 10.0,
+          "mean_valid_repeat_items": 10.0
+        }
+      },
+      "sparse": true,
+      "value": "reduced_performance"
+    },
+    {
+      "expert_records": 3,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.9305555555555556,
+          "mean_accuracy_when_inconsistent": 0.9,
+          "mean_consistent_but_wrong_rate": 0.06944444444444446,
+          "mean_cross_level_consistency": 0.7272727272727273,
+          "mean_overall_accuracy": 0.909090909090909,
+          "mean_repeat_agreement": 0.9090909090909092,
+          "mean_valid_cross_level_items": 11.0,
+          "mean_valid_repeat_items": 11.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.7666666666666667,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.2333333333333333,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.41818181818181815,
+          "mean_repeat_agreement": 0.6571428571428571,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 55,
+          "mean_accuracy_when_consistent": 0.7961904761904762,
+          "mean_accuracy_when_inconsistent": 0.31666666666666665,
+          "mean_consistent_but_wrong_rate": 0.2038095238095238,
+          "mean_cross_level_consistency": 0.6439393939393939,
+          "mean_overall_accuracy": 0.509090909090909,
+          "mean_repeat_agreement": 0.8363636363636363,
+          "mean_valid_cross_level_items": 9.0,
+          "mean_valid_repeat_items": 11.0
+        }
+      },
+      "sparse": true,
+      "value": "personnel_risk_noted"
+    },
+    {
+      "expert_records": 1,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.8,
+          "mean_accuracy_when_inconsistent": 0.8,
+          "mean_consistent_but_wrong_rate": 0.2,
+          "mean_cross_level_consistency": 0.65,
+          "mean_overall_accuracy": 0.75,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.6666666666666666,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.33333333333333337,
+          "mean_cross_level_consistency": 0.75,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.5,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 20,
+          "mean_accuracy_when_consistent": 0.6666666666666666,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.33333333333333337,
+          "mean_cross_level_consistency": 0.75,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.95,
+          "mean_valid_cross_level_items": 4.0,
+          "mean_valid_repeat_items": 4.0
+        }
+      },
+      "sparse": true,
+      "value": "equipment_damage_risk_noted"
+    },
+    {
+      "expert_records": 2,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.8133333333333332,
+          "mean_accuracy_when_inconsistent": 1.0,
+          "mean_consistent_but_wrong_rate": 0.18666666666666662,
+          "mean_cross_level_consistency": 0.9,
+          "mean_overall_accuracy": 0.8333333333333334,
+          "mean_repeat_agreement": 0.9,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 6.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.16666666666666666,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 2.0,
+          "mean_valid_repeat_items": 2.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 30,
+          "mean_accuracy_when_consistent": 0.9333333333333333,
+          "mean_accuracy_when_inconsistent": 0.4666666666666667,
+          "mean_consistent_but_wrong_rate": 0.06666666666666668,
+          "mean_cross_level_consistency": 0.5,
+          "mean_overall_accuracy": 0.5,
+          "mean_repeat_agreement": 0.7,
+          "mean_valid_cross_level_items": 4.4,
+          "mean_valid_repeat_items": 6.0
+        }
+      },
+      "sparse": true,
+      "value": "thermal_hazard_noted"
+    },
+    {
+      "expert_records": 4,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 85,
+          "mean_accuracy_when_consistent": 0.8520238095238095,
+          "mean_accuracy_when_inconsistent": 0.8666666666666666,
+          "mean_consistent_but_wrong_rate": 0.14797619047619048,
+          "mean_cross_level_consistency": 0.8705882352941176,
+          "mean_overall_accuracy": 0.8470588235294118,
+          "mean_repeat_agreement": 0.9647058823529411,
+          "mean_valid_cross_level_items": 17.0,
+          "mean_valid_repeat_items": 17.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 85,
+          "mean_accuracy_when_consistent": 0.5714285714285714,
+          "mean_accuracy_when_inconsistent": 0.6666666666666666,
+          "mean_consistent_but_wrong_rate": 0.42857142857142866,
+          "mean_cross_level_consistency": 0.8235294117647058,
+          "mean_overall_accuracy": 0.5882352941176471,
+          "mean_repeat_agreement": 0.7647058823529411,
+          "mean_valid_cross_level_items": 17.0,
+          "mean_valid_repeat_items": 17.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 85,
+          "mean_accuracy_when_consistent": 0.6484848484848484,
+          "mean_accuracy_when_inconsistent": 0.34,
+          "mean_consistent_but_wrong_rate": 0.35151515151515156,
+          "mean_cross_level_consistency": 0.7125,
+          "mean_overall_accuracy": 0.5294117647058824,
+          "mean_repeat_agreement": 0.8705882352941176,
+          "mean_valid_cross_level_items": 16.0,
+          "mean_valid_repeat_items": 17.0
+        }
+      },
+      "sparse": true,
+      "value": "pressure_hazard_noted"
+    },
+    {
+      "expert_records": 2,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.4,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.6,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.4,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.6,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.4,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 0.6,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 5.0,
+          "mean_valid_repeat_items": 5.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 25,
+          "mean_accuracy_when_consistent": 0.6333333333333333,
+          "mean_accuracy_when_inconsistent": 0.5,
+          "mean_consistent_but_wrong_rate": 0.3666666666666667,
+          "mean_cross_level_consistency": 0.6799999999999999,
+          "mean_overall_accuracy": 0.6,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 4.4,
+          "mean_valid_repeat_items": 5.0
+        }
+      },
+      "sparse": true,
+      "value": "structural_hazard_noted"
+    },
+    {
+      "expert_records": 1,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 15,
+          "mean_accuracy_when_consistent": 1.0,
+          "mean_accuracy_when_inconsistent": null,
+          "mean_consistent_but_wrong_rate": 0.0,
+          "mean_cross_level_consistency": 1.0,
+          "mean_overall_accuracy": 1.0,
+          "mean_repeat_agreement": 1.0,
+          "mean_valid_cross_level_items": 3.0,
+          "mean_valid_repeat_items": 3.0
+        }
+      },
+      "sparse": true,
+      "value": "electrical_hazard_noted"
+    },
+    {
+      "expert_records": 2,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.7066666666666667,
+          "mean_accuracy_when_inconsistent": 0.7,
+          "mean_consistent_but_wrong_rate": 0.29333333333333333,
+          "mean_cross_level_consistency": 0.7714285714285715,
+          "mean_overall_accuracy": 0.6857142857142857,
+          "mean_repeat_agreement": 0.9142857142857143,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.5,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.5,
+          "mean_cross_level_consistency": 0.8571428571428571,
+          "mean_overall_accuracy": 0.42857142857142855,
+          "mean_repeat_agreement": 0.7142857142857143,
+          "mean_valid_cross_level_items": 7.0,
+          "mean_valid_repeat_items": 7.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 35,
+          "mean_accuracy_when_consistent": 0.6,
+          "mean_accuracy_when_inconsistent": 0.0,
+          "mean_consistent_but_wrong_rate": 0.4,
+          "mean_cross_level_consistency": 0.8333333333333334,
+          "mean_overall_accuracy": 0.42857142857142855,
+          "mean_repeat_agreement": 0.7142857142857142,
+          "mean_valid_cross_level_items": 6.0,
+          "mean_valid_repeat_items": 7.0
+        }
+      },
+      "sparse": true,
+      "value": "high_energy_motion_noted"
+    },
+    {
+      "expert_records": 8,
+      "field": "boolean_flag",
+      "model_metrics": {
+        "azure_astra": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.8005928853754941,
+          "mean_accuracy_when_inconsistent": 0.96,
+          "mean_consistent_but_wrong_rate": 0.19940711462450592,
+          "mean_cross_level_consistency": 0.8518518518518519,
+          "mean_overall_accuracy": 0.8222222222222222,
+          "mean_repeat_agreement": 0.962962962962963,
+          "mean_valid_cross_level_items": 27.0,
+          "mean_valid_repeat_items": 27.0
+        },
+        "ollama_gemma": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.6086956521739131,
+          "mean_accuracy_when_inconsistent": 0.5,
+          "mean_consistent_but_wrong_rate": 0.3913043478260869,
+          "mean_cross_level_consistency": 0.8518518518518519,
+          "mean_overall_accuracy": 0.5925925925925926,
+          "mean_repeat_agreement": 0.8148148148148147,
+          "mean_valid_cross_level_items": 27.0,
+          "mean_valid_repeat_items": 27.0
+        },
+        "ollama_qwen": {
+          "item_run_observations": 135,
+          "mean_accuracy_when_consistent": 0.6433006535947713,
+          "mean_accuracy_when_inconsistent": 0.355,
+          "mean_consistent_but_wrong_rate": 0.3566993464052287,
+          "mean_cross_level_consistency": 0.6592592592592592,
+          "mean_overall_accuracy": 0.5481481481481482,
+          "mean_repeat_agreement": 0.9481481481481481,
+          "mean_valid_cross_level_items": 26.4,
+          "mean_valid_repeat_items": 27.0
+        }
+      },
+      "sparse": false,
+      "value": "conditional_judgment"
+    }
+  ],
+  "candidate_lock_sha256": "b2fa450f6dfd00b6816006e7c322b9e5060d225d442ab474fb2be3f2b706ef1a",
+  "expert_evidence_limits": {
+    "claim_boundary": "All expert analyses are secondary/exploratory or descriptive; none is confirmatory.",
+    "missing_annotation_sequence": 28,
+    "outcome_joinable_records": 15,
+    "prior_aggregate_result_exposure": true,
+    "qualitative_only_rationales": 34,
+    "transcript_rationale_mismatch_sequence": 45
+  },
+  "expert_subgroups": {
+    "azure_astra": {
+      "machine_identity_not_marked_missing": {
+        "between_run_Delta_AB_sd": 0.11608804136728265,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.23076923076923075,
+            0.14494635798983624
+          ],
+          "draws": 10000,
+          "estimable_draws": 9932,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 110,
+        "eligible_items_per_run": [
+          22,
+          22,
+          22,
+          22,
+          22
+        ],
+        "expert_records": 7,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.04308221534227732,
+        "mean_accuracy_when_consistent": 0.8769177846577227,
+        "mean_accuracy_when_inconsistent": 0.9199999999999999,
+        "mean_consistent_but_wrong_rate": 0.12308221534227726,
+        "mean_cross_level_coverage": 0.8090909090909092,
+        "mean_overall_accuracy": 0.8818181818181818,
+        "mean_repeat_accepted_accuracy": 0.8974025974025974,
+        "mean_repeat_agreement": 0.9727272727272727,
+        "mean_repeat_rejected_accuracy": 0.3333333333333333,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.2666666666666667,
+            0.0
+          ],
+          [
+            -0.3157894736842105,
+            -0.038461538461538436
+          ],
+          [
+            -0.2666666666666667,
+            0.0
+          ],
+          [
+            -0.23529411764705888,
+            0.27083333333333337
+          ],
+          [
+            -0.17647058823529416,
+            0.55
+          ]
+        ]
+      },
+      "missing_machine_identity": {
+        "between_run_Delta_AB_sd": 0.16525814517759055,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.43999999999999995,
+            0.026923076923076918
+          ],
+          "draws": 10000,
+          "estimable_draws": 9774,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 130,
+        "eligible_items_per_run": [
+          26,
+          26,
+          26,
+          26,
+          26
+        ],
+        "expert_records": 8,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.20329380764163374,
+        "mean_accuracy_when_consistent": 0.6967061923583662,
+        "mean_accuracy_when_inconsistent": 0.9,
+        "mean_consistent_but_wrong_rate": 0.3032938076416337,
+        "mean_cross_level_coverage": 0.8846153846153847,
+        "mean_overall_accuracy": 0.7153846153846153,
+        "mean_repeat_accepted_accuracy": 0.7298060200668897,
+        "mean_repeat_agreement": 0.9384615384615385,
+        "mean_repeat_rejected_accuracy": 0.5,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.40909090909090906,
+            0.23809523809523814
+          ],
+          [
+            -0.5,
+            -0.1923076923076923
+          ],
+          [
+            -0.45833333333333337,
+            -0.16666666666666663
+          ],
+          [
+            -0.40909090909090906,
+            0.23809523809523814
+          ],
+          [
+            -0.5,
+            -0.1923076923076923
+          ]
+        ]
+      },
+      "operational_consequence_high": {
+        "between_run_Delta_AB_sd": 0.16752893519965723,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.36363636363636365,
+            0.20075187969924815
+          ],
+          "draws": 10000,
+          "estimable_draws": 9930,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 85,
+        "eligible_items_per_run": [
+          17,
+          17,
+          17,
+          17,
+          17
+        ],
+        "expert_records": 6,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.09326007326007324,
+        "mean_accuracy_when_consistent": 0.7400732600732601,
+        "mean_accuracy_when_inconsistent": 0.8333333333333334,
+        "mean_consistent_but_wrong_rate": 0.2599267399267399,
+        "mean_cross_level_coverage": 0.8117647058823529,
+        "mean_overall_accuracy": 0.7529411764705882,
+        "mean_repeat_accepted_accuracy": 0.7729411764705882,
+        "mean_repeat_agreement": 0.9294117647058823,
+        "mean_repeat_rejected_accuracy": 0.5,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.3846153846153846,
+            0.2857142857142857
+          ],
+          [
+            -0.4285714285714286,
+            -0.10526315789473684
+          ],
+          [
+            -0.4285714285714286,
+            -0.125
+          ],
+          [
+            -0.3846153846153846,
+            0.2857142857142857
+          ],
+          [
+            -0.4,
+            0.75
+          ]
+        ]
+      },
+      "operational_consequence_not_high": {
+        "between_run_Delta_AB_sd": 0.10138700129435124,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.36,
+            -0.0009195402298850741
+          ],
+          "draws": 10000,
+          "estimable_draws": 9750,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 155,
+        "eligible_items_per_run": [
+          31,
+          31,
+          31,
+          31,
+          31
+        ],
+        "expert_records": 9,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.166980056980057,
+        "mean_accuracy_when_consistent": 0.7930199430199429,
+        "mean_accuracy_when_inconsistent": 0.96,
+        "mean_consistent_but_wrong_rate": 0.20698005698005698,
+        "mean_cross_level_coverage": 0.8709677419354838,
+        "mean_overall_accuracy": 0.8129032258064516,
+        "mean_repeat_accepted_accuracy": 0.8268075639599555,
+        "mean_repeat_agreement": 0.967741935483871,
+        "mean_repeat_rejected_accuracy": 0.5,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.34782608695652173,
+            -0.04347826086956519
+          ],
+          [
+            -0.41666666666666663,
+            -0.11538461538461542
+          ],
+          [
+            -0.34782608695652173,
+            -0.04347826086956519
+          ],
+          [
+            -0.31818181818181823,
+            0.20000000000000007
+          ],
+          [
+            -0.3913043478260869,
+            -0.07999999999999996
+          ]
+        ]
+      },
+      "specificity_required_high": {
+        "between_run_Delta_AB_sd": 0.1275800306438832,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.44761904761904764,
+            -0.011904761904761885
+          ],
+          "draws": 10000,
+          "estimable_draws": 9976,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 135,
+        "eligible_items_per_run": [
+          27,
+          27,
+          27,
+          27,
+          27
+        ],
+        "expert_records": 10,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.23691699604743083,
+        "mean_accuracy_when_consistent": 0.6430830039525691,
+        "mean_accuracy_when_inconsistent": 0.8800000000000001,
+        "mean_consistent_but_wrong_rate": 0.3569169960474309,
+        "mean_cross_level_coverage": 0.8296296296296296,
+        "mean_overall_accuracy": 0.6814814814814815,
+        "mean_repeat_accepted_accuracy": 0.7054814814814815,
+        "mean_repeat_agreement": 0.9555555555555555,
+        "mean_repeat_rejected_accuracy": 0.16666666666666666,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.43999999999999995,
+            0.15000000000000002
+          ],
+          [
+            -0.5,
+            -0.2727272727272727
+          ],
+          [
+            -0.46153846153846156,
+            -0.21052631578947367
+          ],
+          [
+            -0.43999999999999995,
+            0.15000000000000002
+          ],
+          [
+            -0.4782608695652174,
+            0.19090909090909092
+          ]
+        ]
+      },
+      "specificity_required_medium": {
+        "between_run_Delta_AB_sd": 0.11665996986284496,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.1428571428571429,
+            0.13333333333333336
+          ],
+          "draws": 10000,
+          "estimable_draws": 9158,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 105,
+        "eligible_items_per_run": [
+          21,
+          21,
+          21,
+          21,
+          21
+        ],
+        "expert_records": 5,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.014513243894048867,
+        "mean_accuracy_when_consistent": 0.935486756105951,
+        "mean_accuracy_when_inconsistent": 0.95,
+        "mean_consistent_but_wrong_rate": 0.06451324389404885,
+        "mean_cross_level_coverage": 0.8761904761904761,
+        "mean_overall_accuracy": 0.9333333333333332,
+        "mean_repeat_accepted_accuracy": 0.940375939849624,
+        "mean_repeat_agreement": 0.9523809523809523,
+        "mean_repeat_rejected_accuracy": 0.8333333333333334,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.1428571428571429,
+            0.0
+          ],
+          [
+            -0.23529411764705888,
+            -0.04761904761904767
+          ],
+          [
+            -0.1428571428571429,
+            0.0
+          ],
+          [
+            -0.10526315789473684,
+            0.33333333333333337
+          ],
+          [
+            -0.1428571428571429,
+            0.0
+          ]
+        ]
+      }
+    },
+    "ollama_gemma": {
+      "machine_identity_not_marked_missing": {
+        "between_run_Delta_AB_sd": 0.02882750302658772,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.48,
+            0.6705882352941177
+          ],
+          "draws": 10000,
+          "estimable_draws": 9818,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 110,
+        "eligible_items_per_run": [
+          22,
+          22,
+          22,
+          22,
+          22
+        ],
+        "expert_records": 7,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.003508771929824528,
+        "mean_accuracy_when_consistent": 0.6631578947368422,
+        "mean_accuracy_when_inconsistent": 0.6666666666666666,
+        "mean_consistent_but_wrong_rate": 0.3368421052631579,
+        "mean_cross_level_coverage": 0.8636363636363636,
+        "mean_overall_accuracy": 0.6636363636363636,
+        "mean_repeat_accepted_accuracy": 0.7847953216374269,
+        "mean_repeat_agreement": 0.8454545454545455,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.4545454545454546,
+            0.7058823529411765
+          ],
+          [
+            -0.4545454545454546,
+            0.7058823529411765
+          ],
+          [
+            -0.5,
+            0.6111111111111112
+          ],
+          [
+            -0.4545454545454546,
+            0.7058823529411765
+          ],
+          [
+            -0.5,
+            0.6111111111111112
+          ]
+        ]
+      },
+      "missing_machine_identity": {
+        "between_run_Delta_AB_sd": 0.0,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            0.40909090909090906,
+            0.6
+          ],
+          "draws": 10000,
+          "estimable_draws": 9079,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 130,
+        "eligible_items_per_run": [
+          26,
+          26,
+          26,
+          26,
+          26
+        ],
+        "expert_records": 8,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.5,
+        "mean_accuracy_when_consistent": 0.5,
+        "mean_accuracy_when_inconsistent": 0.0,
+        "mean_consistent_but_wrong_rate": 0.5,
+        "mean_cross_level_coverage": 0.909090909090909,
+        "mean_overall_accuracy": 0.38461538461538464,
+        "mean_repeat_accepted_accuracy": 0.5555555555555556,
+        "mean_repeat_agreement": 0.8181818181818181,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.4090909090909091,
+            0.6
+          ],
+          [
+            0.4090909090909091,
+            0.6
+          ],
+          [
+            0.4090909090909091,
+            0.6
+          ],
+          [
+            0.4090909090909091,
+            0.6
+          ],
+          [
+            0.4090909090909091,
+            0.6
+          ]
+        ]
+      },
+      "operational_consequence_high": {
+        "between_run_Delta_AB_sd": 6.206335383118183e-17,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            0.2727272727272727,
+            0.5833333333333334
+          ],
+          "draws": 10000,
+          "estimable_draws": 9184,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 85,
+        "eligible_items_per_run": [
+          17,
+          17,
+          17,
+          17,
+          17
+        ],
+        "expert_records": 6,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.4545454545454545,
+        "mean_accuracy_when_consistent": 0.4545454545454545,
+        "mean_accuracy_when_inconsistent": 0.0,
+        "mean_consistent_but_wrong_rate": 0.5454545454545454,
+        "mean_cross_level_coverage": 0.8461538461538461,
+        "mean_overall_accuracy": 0.29411764705882354,
+        "mean_repeat_accepted_accuracy": 0.5,
+        "mean_repeat_agreement": 0.7692307692307693,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.25,
+            0.5833333333333334
+          ],
+          [
+            0.25,
+            0.5833333333333334
+          ],
+          [
+            0.25,
+            0.5833333333333334
+          ],
+          [
+            0.25,
+            0.5833333333333334
+          ],
+          [
+            0.25,
+            0.5833333333333334
+          ]
+        ]
+      },
+      "operational_consequence_not_high": {
+        "between_run_Delta_AB_sd": 0.019561519910898842,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.49629629629629635,
+            0.6370370370370371
+          ],
+          "draws": 10000,
+          "estimable_draws": 9735,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 155,
+        "eligible_items_per_run": [
+          31,
+          31,
+          31,
+          31,
+          31
+        ],
+        "expert_records": 9,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": -0.03809523809523805,
+        "mean_accuracy_when_consistent": 0.6285714285714286,
+        "mean_accuracy_when_inconsistent": 0.6666666666666666,
+        "mean_consistent_but_wrong_rate": 0.37142857142857144,
+        "mean_cross_level_coverage": 0.9032258064516128,
+        "mean_overall_accuracy": 0.632258064516129,
+        "mean_repeat_accepted_accuracy": 0.7367521367521367,
+        "mean_repeat_agreement": 0.8580645161290322,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.5,
+            0.6538461538461539
+          ],
+          [
+            -0.5,
+            0.6538461538461539
+          ],
+          [
+            -0.5185185185185186,
+            0.6
+          ],
+          [
+            -0.5,
+            0.6538461538461539
+          ],
+          [
+            -0.5185185185185186,
+            0.6
+          ]
+        ]
+      },
+      "specificity_required_high": {
+        "between_run_Delta_AB_sd": 0.021908902300206663,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            0.375,
+            0.6384615384615385
+          ],
+          "draws": 10000,
+          "estimable_draws": 8880,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 135,
+        "eligible_items_per_run": [
+          27,
+          27,
+          27,
+          27,
+          27
+        ],
+        "expert_records": 10,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.504,
+        "mean_accuracy_when_consistent": 0.504,
+        "mean_accuracy_when_inconsistent": 0.0,
+        "mean_consistent_but_wrong_rate": 0.496,
+        "mean_cross_level_coverage": 0.9259259259259259,
+        "mean_overall_accuracy": 0.4666666666666666,
+        "mean_repeat_accepted_accuracy": 0.533695652173913,
+        "mean_repeat_agreement": 0.874074074074074,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.375,
+            0.6785714285714286
+          ],
+          [
+            0.375,
+            0.6785714285714286
+          ],
+          [
+            0.37037037037037035,
+            0.5769230769230769
+          ],
+          [
+            0.375,
+            0.6785714285714286
+          ],
+          [
+            0.37037037037037035,
+            0.5769230769230769
+          ]
+        ]
+      },
+      "specificity_required_medium": {
+        "between_run_Delta_AB_sd": 0.0,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.46153846153846156,
+            0.7142857142857143
+          ],
+          "draws": 10000,
+          "estimable_draws": 9951,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 105,
+        "eligible_items_per_run": [
+          21,
+          21,
+          21,
+          21,
+          21
+        ],
+        "expert_records": 5,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.04761904761904767,
+        "mean_accuracy_when_consistent": 0.7142857142857143,
+        "mean_accuracy_when_inconsistent": 0.6666666666666666,
+        "mean_consistent_but_wrong_rate": 0.2857142857142857,
+        "mean_cross_level_coverage": 0.8235294117647058,
+        "mean_overall_accuracy": 0.5714285714285714,
+        "mean_repeat_accepted_accuracy": 0.9230769230769231,
+        "mean_repeat_agreement": 0.7647058823529411,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.46153846153846156,
+            0.7142857142857143
+          ],
+          [
+            -0.46153846153846156,
+            0.7142857142857143
+          ],
+          [
+            -0.46153846153846156,
+            0.7142857142857143
+          ],
+          [
+            -0.46153846153846156,
+            0.7142857142857143
+          ],
+          [
+            -0.46153846153846156,
+            0.7142857142857143
+          ]
+        ]
+      }
+    },
+    "ollama_qwen": {
+      "machine_identity_not_marked_missing": {
+        "between_run_Delta_AB_sd": 0.041833001326703846,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            0.1419047619047619,
+            0.8192307692307693
+          ],
+          "draws": 10000,
+          "estimable_draws": 9989,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 110,
+        "eligible_items_per_run": [
+          22,
+          22,
+          22,
+          22,
+          22
+        ],
+        "expert_records": 7,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.5599999999999999,
+        "mean_accuracy_when_consistent": 0.7533333333333333,
+        "mean_accuracy_when_inconsistent": 0.19333333333333333,
+        "mean_consistent_but_wrong_rate": 0.24666666666666667,
+        "mean_cross_level_coverage": 0.7476190476190476,
+        "mean_overall_accuracy": 0.5727272727272728,
+        "mean_repeat_accepted_accuracy": 0.6833333333333333,
+        "mean_repeat_agreement": 0.8454545454545455,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.3,
+            0.875
+          ],
+          [
+            0.0980392156862745,
+            0.8
+          ],
+          [
+            0.09999999999999998,
+            0.8125
+          ],
+          [
+            0.0980392156862745,
+            0.8
+          ],
+          [
+            0.09999999999999998,
+            0.8125
+          ]
+        ]
+      },
+      "missing_machine_identity": {
+        "between_run_Delta_AB_sd": 0.1668794479585427,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.1290909090909091,
+            0.5032323232323233
+          ],
+          "draws": 10000,
+          "estimable_draws": 10000,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 130,
+        "eligible_items_per_run": [
+          26,
+          26,
+          26,
+          26,
+          26
+        ],
+        "expert_records": 8,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.17593406593406596,
+        "mean_accuracy_when_consistent": 0.5516483516483517,
+        "mean_accuracy_when_inconsistent": 0.3757142857142857,
+        "mean_consistent_but_wrong_rate": 0.44835164835164837,
+        "mean_cross_level_coverage": 0.6302197802197802,
+        "mean_overall_accuracy": 0.45384615384615384,
+        "mean_repeat_accepted_accuracy": 0.48768115942028983,
+        "mean_repeat_agreement": 0.9,
+        "mean_repeat_rejected_accuracy": 0.16666666666666666,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.1428571428571429,
+            0.6
+          ],
+          [
+            -0.393939393939394,
+            0.41666666666666663
+          ],
+          [
+            -0.125,
+            0.41666666666666663
+          ],
+          [
+            0.05555555555555558,
+            0.658119658119658
+          ],
+          [
+            -0.22499999999999998,
+            0.5
+          ]
+        ]
+      },
+      "operational_consequence_high": {
+        "between_run_Delta_AB_sd": 0.0020327890704543673,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            -0.07797979797979794,
+            0.6666666666666666
+          ],
+          "draws": 10000,
+          "estimable_draws": 9986,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 85,
+        "eligible_items_per_run": [
+          17,
+          17,
+          17,
+          17,
+          17
+        ],
+        "expert_records": 6,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.34909090909090906,
+        "mean_accuracy_when_consistent": 0.5890909090909091,
+        "mean_accuracy_when_inconsistent": 0.24,
+        "mean_consistent_but_wrong_rate": 0.41090909090909095,
+        "mean_cross_level_coverage": 0.7089285714285715,
+        "mean_overall_accuracy": 0.4117647058823529,
+        "mean_repeat_accepted_accuracy": 0.5487179487179488,
+        "mean_repeat_agreement": 0.7529411764705882,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            -0.11111111111111105,
+            0.6666666666666666
+          ],
+          [
+            -0.11111111111111105,
+            0.6666666666666666
+          ],
+          [
+            0.047619047619047616,
+            0.6666666666666666
+          ],
+          [
+            -0.11111111111111105,
+            0.6666666666666666
+          ],
+          [
+            -0.11111111111111105,
+            0.6666666666666666
+          ]
+        ]
+      },
+      "operational_consequence_not_high": {
+        "between_run_Delta_AB_sd": 0.164487899809252,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            0.02950419549490756,
+            0.6417748917748918
+          ],
+          "draws": 10000,
+          "estimable_draws": 10000,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 155,
+        "eligible_items_per_run": [
+          31,
+          31,
+          31,
+          31,
+          31
+        ],
+        "expert_records": 9,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.35163249031670085,
+        "mean_accuracy_when_consistent": 0.6900668337510443,
+        "mean_accuracy_when_inconsistent": 0.3384343434343434,
+        "mean_consistent_but_wrong_rate": 0.30993316624895567,
+        "mean_cross_level_coverage": 0.67357910906298,
+        "mean_overall_accuracy": 0.5612903225806452,
+        "mean_repeat_accepted_accuracy": 0.5829540352120997,
+        "mean_repeat_agreement": 0.9419354838709678,
+        "mean_repeat_rejected_accuracy": 0.17777777777777778,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.38333333333333336,
+            0.8
+          ],
+          [
+            -0.23157894736842105,
+            0.5272727272727273
+          ],
+          [
+            -0.021645021645021578,
+            0.5606060606060607
+          ],
+          [
+            0.20300751879699247,
+            0.7181818181818183
+          ],
+          [
+            -0.07486631016042777,
+            0.6397058823529411
+          ]
+        ]
+      },
+      "specificity_required_high": {
+        "between_run_Delta_AB_sd": 0.1175372303145175,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            0.042549019607843144,
+            0.6609803921568627
+          ],
+          "draws": 10000,
+          "estimable_draws": 10000,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 135,
+        "eligible_items_per_run": [
+          27,
+          27,
+          27,
+          27,
+          27
+        ],
+        "expert_records": 10,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.3628664799253035,
+        "mean_accuracy_when_consistent": 0.5655648926237162,
+        "mean_accuracy_when_inconsistent": 0.20269841269841268,
+        "mean_consistent_but_wrong_rate": 0.4344351073762838,
+        "mean_cross_level_coverage": 0.6720267558528428,
+        "mean_overall_accuracy": 0.4222222222222222,
+        "mean_repeat_accepted_accuracy": 0.49523809523809526,
+        "mean_repeat_agreement": 0.8222222222222222,
+        "mean_repeat_rejected_accuracy": 0.06190476190476191,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.3055555555555556,
+            0.7647058823529411
+          ],
+          [
+            -0.2222222222222222,
+            0.5909090909090909
+          ],
+          [
+            0.015873015873015872,
+            0.631578947368421
+          ],
+          [
+            0.09999999999999998,
+            0.6875
+          ],
+          [
+            0.008928571428571452,
+            0.6875
+          ]
+        ]
+      },
+      "specificity_required_medium": {
+        "between_run_Delta_AB_sd": 0.0611625093831128,
+        "crossed_Delta_AB_uncertainty": {
+          "ci95": [
+            0.0,
+            0.6388278388278389
+          ],
+          "draws": 10000,
+          "estimable_draws": 9994,
+          "method": "crossed_run_and_record_group_bootstrap",
+          "seed": 4005
+        },
+        "eligible_item_run_observations": 105,
+        "eligible_items_per_run": [
+          21,
+          21,
+          21,
+          21,
+          21
+        ],
+        "expert_records": 5,
+        "interpretation": "secondary/exploratory; repeated item-run observations are not independent",
+        "mean_Delta_AB": 0.31912087912087916,
+        "mean_accuracy_when_consistent": 0.7648351648351649,
+        "mean_accuracy_when_inconsistent": 0.44571428571428573,
+        "mean_consistent_but_wrong_rate": 0.23516483516483516,
+        "mean_cross_level_coverage": 0.7017543859649122,
+        "mean_overall_accuracy": 0.6190476190476191,
+        "mean_repeat_accepted_accuracy": 0.6574937343358396,
+        "mean_repeat_agreement": 0.9428571428571428,
+        "mean_repeat_rejected_accuracy": 0.0,
+        "within_run_Delta_AB_ci95": [
+          [
+            0.0,
+            0.7142857142857143
+          ],
+          [
+            -0.04761904761904767,
+            0.6263736263736264
+          ],
+          [
+            -0.015384615384615385,
+            0.6263736263736264
+          ],
+          [
+            0.0,
+            0.7142857142857143
+          ],
+          [
+            -0.04761904761904767,
+            0.6263736263736264
+          ]
+        ]
+      }
+    }
+  },
+  "high_consequence_interpretation": "Performance conditional on expert-rated operational consequence of short maintenance text; not measured plant or safety risk.",
+  "method_comparison_interpretation": "Negative MethodGap means repeated-question agreement produced a larger accuracy separation; it does not establish a better, safer, stronger, or superior screen.",
+  "models": {
+    "azure_astra": {
+      "between_run_Delta_AB_sd": 0.05373452485996049,
+      "crossed_Delta_AB_uncertainty": {
+        "ci95": [
+          0.03761072766854527,
+          0.26338838569179124
+        ],
+        "draws": 10000,
+        "estimable_draws": 10000,
+        "method": "crossed_run_and_record_group_bootstrap",
+        "seed": 4005
+      },
+      "estimable_runs": 5,
+      "invalid_output_counts": {},
+      "label": "Astra",
+      "mean_Delta_AB": 0.1519343438671087,
+      "mean_Delta_AC": 0.4177301793678219,
+      "mean_MethodGap": -0.23926992863961774,
+      "mean_accuracy_when_consistent": 0.7469909717535885,
+      "mean_accuracy_when_inconsistent": 0.5950566278864798,
+      "mean_cross_level_consistency": 0.8117401357499814,
+      "mean_overall_A_accuracy": 0.7142857142857143,
+      "mean_repeat_agreement": 0.9349544072948328,
+      "mean_valid_A_coverage": 1.0,
+      "positive_Delta_AB_runs": 5,
+      "replication_rule_satisfied": true,
+      "role": "prespecified heterogeneity/stability comparison",
+      "runs": [
+        {
+          "Delta_AB": 0.1781092074448416,
+          "Delta_AB_ci95": [
+            0.054827420572291286,
+            0.30121908742598397
+          ],
+          "Delta_AC": 0.34423008217220435,
+          "MethodGap": -0.11750976361625165,
+          "accuracy_when_agreeing": 0.7331189710610932,
+          "accuracy_when_consistent": 0.7518796992481203,
+          "accuracy_when_disagreeing": 0.3888888888888889,
+          "accuracy_when_inconsistent": 0.5737704918032787,
+          "common_valid_ABC_items": 327,
+          "consistent_but_wrong_rate": 0.24812030075187969,
+          "cross_level_consistency": 0.8134556574923547,
+          "high_consequence_CBW": {
+            "denominator": 13,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 3,
+            "rate": 0.23076923076923078
+          },
+          "invalid_outputs": {},
+          "overall_A_accuracy": 0.7142857142857143,
+          "repeat_agreement": 0.9452887537993921,
+          "replicate": 1,
+          "run_id": "exp004-astra-r1",
+          "terminal_failures": 0,
+          "valid_AB_items": 327,
+          "valid_AC_items": 329,
+          "valid_A_coverage": 1.0,
+          "valid_A_items": 329
+        },
+        {
+          "Delta_AB": 0.12141008258350794,
+          "Delta_AB_ci95": [
+            0.0012820512820513885,
+            0.2355011400812928
+          ],
+          "Delta_AC": 0.3194973343488195,
+          "MethodGap": -0.16283084150890131,
+          "accuracy_when_agreeing": 0.7425742574257426,
+          "accuracy_when_consistent": 0.7443609022556391,
+          "accuracy_when_disagreeing": 0.4230769230769231,
+          "accuracy_when_inconsistent": 0.6229508196721312,
+          "common_valid_ABC_items": 327,
+          "consistent_but_wrong_rate": 0.2556390977443609,
+          "cross_level_consistency": 0.8134556574923547,
+          "high_consequence_CBW": {
+            "denominator": 15,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 4,
+            "rate": 0.26666666666666666
+          },
+          "invalid_outputs": {},
+          "overall_A_accuracy": 0.7173252279635258,
+          "repeat_agreement": 0.9209726443768997,
+          "replicate": 2,
+          "run_id": "exp004-astra-r2",
+          "terminal_failures": 0,
+          "valid_AB_items": 327,
+          "valid_AC_items": 329,
+          "valid_A_coverage": 1.0,
+          "valid_A_items": 329
+        },
+        {
+          "Delta_AB": 0.07490636704119857,
+          "Delta_AB_ci95": [
+            -0.053737176355642347,
+            0.1994002998500749
+          ],
+          "Delta_AC": 0.35387638442300823,
+          "MethodGap": -0.23035890627069855,
+          "accuracy_when_agreeing": 0.7427652733118971,
+          "accuracy_when_consistent": 0.7415730337078652,
+          "accuracy_when_disagreeing": 0.3888888888888889,
+          "accuracy_when_inconsistent": 0.6666666666666666,
+          "common_valid_ABC_items": 327,
+          "consistent_but_wrong_rate": 0.25842696629213485,
+          "cross_level_consistency": 0.8165137614678899,
+          "high_consequence_CBW": {
+            "denominator": 14,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 4,
+            "rate": 0.2857142857142857
+          },
+          "invalid_outputs": {},
+          "overall_A_accuracy": 0.723404255319149,
+          "repeat_agreement": 0.9452887537993921,
+          "replicate": 3,
+          "run_id": "exp004-astra-r3",
+          "terminal_failures": 0,
+          "valid_AB_items": 327,
+          "valid_AC_items": 329,
+          "valid_A_coverage": 1.0,
+          "valid_A_items": 329
+        },
+        {
+          "Delta_AB": 0.1740718198417529,
+          "Delta_AB_ci95": [
+            0.04820913257511461,
+            0.28885077186963976
+          ],
+          "Delta_AC": 0.4443365695792881,
+          "MethodGap": -0.2751138479106901,
+          "accuracy_when_agreeing": 0.7443365695792881,
+          "accuracy_when_consistent": 0.7547169811320755,
+          "accuracy_when_disagreeing": 0.3,
+          "accuracy_when_inconsistent": 0.5806451612903226,
+          "common_valid_ABC_items": 327,
+          "consistent_but_wrong_rate": 0.24528301886792453,
+          "cross_level_consistency": 0.8103975535168195,
+          "high_consequence_CBW": {
+            "denominator": 13,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 3,
+            "rate": 0.23076923076923078
+          },
+          "invalid_outputs": {},
+          "overall_A_accuracy": 0.7173252279635258,
+          "repeat_agreement": 0.939209726443769,
+          "replicate": 4,
+          "run_id": "exp004-astra-r4",
+          "terminal_failures": 0,
+          "valid_AB_items": 327,
+          "valid_AC_items": 329,
+          "valid_A_coverage": 1.0,
+          "valid_A_items": 329
+        },
+        {
+          "Delta_AB": 0.21117424242424243,
+          "Delta_AB_ci95": [
+            0.07682425488180877,
+            0.337291280148423
+          ],
+          "Delta_AC": 0.6267105263157895,
+          "MethodGap": -0.41053628389154706,
+          "accuracy_when_agreeing": 0.7467105263157895,
+          "accuracy_when_consistent": 0.7424242424242424,
+          "accuracy_when_disagreeing": 0.12,
+          "accuracy_when_inconsistent": 0.53125,
+          "common_valid_ABC_items": 328,
+          "consistent_but_wrong_rate": 0.25757575757575757,
+          "cross_level_consistency": 0.8048780487804879,
+          "high_consequence_CBW": {
+            "denominator": 14,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 4,
+            "rate": 0.2857142857142857
+          },
+          "invalid_outputs": {},
+          "overall_A_accuracy": 0.6990881458966566,
+          "repeat_agreement": 0.9240121580547113,
+          "replicate": 5,
+          "run_id": "exp004-astra-r5",
+          "terminal_failures": 0,
+          "valid_AB_items": 328,
+          "valid_AC_items": 329,
+          "valid_A_coverage": 1.0,
+          "valid_A_items": 329
+        }
+      ],
+      "terminal_failures": 0
+    },
+    "ollama_gemma": {
+      "between_run_Delta_AB_sd": 0.01583009007838616,
+      "crossed_Delta_AB_uncertainty": {
+        "ci95": [
+          0.09952684159286698,
+          0.31993168757278956
+        ],
+        "draws": 10000,
+        "estimable_draws": 10000,
+        "method": "crossed_run_and_record_group_bootstrap",
+        "seed": 4005
+      },
+      "estimable_runs": 5,
+      "invalid_output_counts": {
+        "invalid_label": 25
+      },
+      "label": "Gemma 4 31B",
+      "mean_Delta_AB": 0.20928975087926177,
+      "mean_Delta_AC": 0.5333953344183523,
+      "mean_MethodGap": -0.3151716460431636,
+      "mean_accuracy_when_consistent": 0.6500968644223535,
+      "mean_accuracy_when_inconsistent": 0.44080711354309166,
+      "mean_cross_level_consistency": 0.7195944056969777,
+      "mean_overall_A_accuracy": 0.541033434650456,
+      "mean_repeat_agreement": 0.8525,
+      "mean_valid_A_coverage": 0.972644376899696,
+      "positive_Delta_AB_runs": 5,
+      "replication_rule_satisfied": true,
+      "role": "primary confirmatory panel model",
+      "runs": [
+        {
+          "Delta_AB": 0.19253393665158375,
+          "Delta_AB_ci95": [
+            0.07251124312919877,
+            0.30934242181234967
+          ],
+          "Delta_AC": 0.5395256916996047,
+          "MethodGap": -0.3355076734795786,
+          "accuracy_when_agreeing": 0.6304347826086957,
+          "accuracy_when_consistent": 0.6425339366515838,
+          "accuracy_when_disagreeing": 0.09090909090909091,
+          "accuracy_when_inconsistent": 0.45,
+          "common_valid_ABC_items": 301,
+          "consistent_but_wrong_rate": 0.3574660633484163,
+          "cross_level_consistency": 0.7342192691029901,
+          "high_consequence_CBW": {
+            "denominator": 11,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 6,
+            "rate": 0.5454545454545454
+          },
+          "invalid_outputs": {
+            "invalid_label": 5
+          },
+          "overall_A_accuracy": 0.541033434650456,
+          "repeat_agreement": 0.8625,
+          "replicate": 1,
+          "run_id": "exp004-gemma-r1",
+          "terminal_failures": 0,
+          "valid_AB_items": 301,
+          "valid_AC_items": 320,
+          "valid_A_coverage": 0.9726443768996961,
+          "valid_A_items": 320
+        },
+        {
+          "Delta_AB": 0.20071723538361225,
+          "Delta_AB_ci95": [
+            0.08298653610771112,
+            0.3146149625022864
+          ],
+          "Delta_AC": 0.5110294117647058,
+          "MethodGap": -0.301693371285733,
+          "accuracy_when_agreeing": 0.6360294117647058,
+          "accuracy_when_consistent": 0.6542056074766355,
+          "accuracy_when_disagreeing": 0.125,
+          "accuracy_when_inconsistent": 0.45348837209302323,
+          "common_valid_ABC_items": 300,
+          "consistent_but_wrong_rate": 0.34579439252336447,
+          "cross_level_consistency": 0.7133333333333334,
+          "high_consequence_CBW": {
+            "denominator": 11,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 6,
+            "rate": 0.5454545454545454
+          },
+          "invalid_outputs": {
+            "invalid_label": 5
+          },
+          "overall_A_accuracy": 0.5440729483282675,
+          "repeat_agreement": 0.85,
+          "replicate": 2,
+          "run_id": "exp004-gemma-r2",
+          "terminal_failures": 0,
+          "valid_AB_items": 300,
+          "valid_AC_items": 320,
+          "valid_A_coverage": 0.9726443768996961,
+          "valid_A_items": 320
+        },
+        {
+          "Delta_AB": 0.2262401734887503,
+          "Delta_AB_ci95": [
+            0.11840888066604993,
+            0.33002824695912836
+          ],
+          "Delta_AC": 0.5526960784313725,
+          "MethodGap": -0.31848190708238683,
+          "accuracy_when_agreeing": 0.6360294117647058,
+          "accuracy_when_consistent": 0.6497695852534562,
+          "accuracy_when_disagreeing": 0.08333333333333333,
+          "accuracy_when_inconsistent": 0.4235294117647059,
+          "common_valid_ABC_items": 302,
+          "consistent_but_wrong_rate": 0.35023041474654376,
+          "cross_level_consistency": 0.7185430463576159,
+          "high_consequence_CBW": {
+            "denominator": 11,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 6,
+            "rate": 0.5454545454545454
+          },
+          "invalid_outputs": {
+            "invalid_label": 5
+          },
+          "overall_A_accuracy": 0.5379939209726444,
+          "repeat_agreement": 0.85,
+          "replicate": 3,
+          "run_id": "exp004-gemma-r3",
+          "terminal_failures": 0,
+          "valid_AB_items": 302,
+          "valid_AC_items": 320,
+          "valid_A_coverage": 0.9726443768996961,
+          "valid_A_items": 320
+        },
+        {
+          "Delta_AB": 0.20071723538361225,
+          "Delta_AB_ci95": [
+            0.08298653610771112,
+            0.3146149625022864
+          ],
+          "Delta_AC": 0.5110294117647058,
+          "MethodGap": -0.301693371285733,
+          "accuracy_when_agreeing": 0.6360294117647058,
+          "accuracy_when_consistent": 0.6542056074766355,
+          "accuracy_when_disagreeing": 0.125,
+          "accuracy_when_inconsistent": 0.45348837209302323,
+          "common_valid_ABC_items": 300,
+          "consistent_but_wrong_rate": 0.34579439252336447,
+          "cross_level_consistency": 0.7133333333333334,
+          "high_consequence_CBW": {
+            "denominator": 11,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 6,
+            "rate": 0.5454545454545454
+          },
+          "invalid_outputs": {
+            "invalid_label": 5
+          },
+          "overall_A_accuracy": 0.5440729483282675,
+          "repeat_agreement": 0.85,
+          "replicate": 4,
+          "run_id": "exp004-gemma-r4",
+          "terminal_failures": 0,
+          "valid_AB_items": 300,
+          "valid_AC_items": 320,
+          "valid_A_coverage": 0.9726443768996961,
+          "valid_A_items": 320
+        },
+        {
+          "Delta_AB": 0.2262401734887503,
+          "Delta_AB_ci95": [
+            0.11840888066604993,
+            0.33002824695912836
+          ],
+          "Delta_AC": 0.5526960784313725,
+          "MethodGap": -0.31848190708238683,
+          "accuracy_when_agreeing": 0.6360294117647058,
+          "accuracy_when_consistent": 0.6497695852534562,
+          "accuracy_when_disagreeing": 0.08333333333333333,
+          "accuracy_when_inconsistent": 0.4235294117647059,
+          "common_valid_ABC_items": 302,
+          "consistent_but_wrong_rate": 0.35023041474654376,
+          "cross_level_consistency": 0.7185430463576159,
+          "high_consequence_CBW": {
+            "denominator": 11,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 6,
+            "rate": 0.5454545454545454
+          },
+          "invalid_outputs": {
+            "invalid_label": 5
+          },
+          "overall_A_accuracy": 0.5379939209726444,
+          "repeat_agreement": 0.85,
+          "replicate": 5,
+          "run_id": "exp004-gemma-r5",
+          "terminal_failures": 0,
+          "valid_AB_items": 302,
+          "valid_AC_items": 320,
+          "valid_A_coverage": 0.9726443768996961,
+          "valid_A_items": 320
+        }
+      ],
+      "terminal_failures": 0
+    },
+    "ollama_qwen": {
+      "between_run_Delta_AB_sd": 0.030205906188363846,
+      "crossed_Delta_AB_uncertainty": {
+        "ci95": [
+          0.18517802782236453,
+          0.4156902194812412
+        ],
+        "draws": 10000,
+        "estimable_draws": 10000,
+        "method": "crossed_run_and_record_group_bootstrap",
+        "seed": 4005
+      },
+      "estimable_runs": 5,
+      "invalid_output_counts": {
+        "invalid_label": 85,
+        "truncated": 1
+      },
+      "label": "Qwen 3.5 122B",
+      "mean_Delta_AB": 0.30273346370998977,
+      "mean_Delta_AC": 0.4583358132641351,
+      "mean_MethodGap": -0.14650309873024844,
+      "mean_accuracy_when_consistent": 0.6397755564372866,
+      "mean_accuracy_when_inconsistent": 0.33704209272729674,
+      "mean_cross_level_consistency": 0.612646595900247,
+      "mean_overall_A_accuracy": 0.4340425531914893,
+      "mean_repeat_agreement": 0.7975567621330333,
+      "mean_valid_A_coverage": 0.9118541033434651,
+      "positive_Delta_AB_runs": 5,
+      "replication_rule_satisfied": true,
+      "role": "primary confirmatory panel model",
+      "runs": [
+        {
+          "Delta_AB": 0.33566511836140805,
+          "Delta_AB_ci95": [
+            0.21782608695652173,
+            0.4551073519843851
+          ],
+          "Delta_AC": 0.4178165584415584,
+          "MethodGap": -0.09806623976456036,
+          "accuracy_when_agreeing": 0.5584415584415584,
+          "accuracy_when_consistent": 0.6347305389221557,
+          "accuracy_when_disagreeing": 0.140625,
+          "accuracy_when_inconsistent": 0.29906542056074764,
+          "common_valid_ABC_items": 265,
+          "consistent_but_wrong_rate": 0.3652694610778443,
+          "cross_level_consistency": 0.6094890510948905,
+          "high_consequence_CBW": {
+            "denominator": 10,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 4,
+            "rate": 0.4
+          },
+          "invalid_outputs": {
+            "invalid_label": 15
+          },
+          "overall_A_accuracy": 0.4316109422492401,
+          "repeat_agreement": 0.7830508474576271,
+          "replicate": 1,
+          "run_id": "exp004-qwen-r1",
+          "terminal_failures": 0,
+          "valid_AB_items": 274,
+          "valid_AC_items": 295,
+          "valid_A_coverage": 0.9270516717325228,
+          "valid_A_items": 305
+        },
+        {
+          "Delta_AB": 0.2892405063291139,
+          "Delta_AB_ci95": [
+            0.16296296296296298,
+            0.4159539286121564
+          ],
+          "Delta_AC": 0.43864554209381795,
+          "MethodGap": -0.12865340483354587,
+          "accuracy_when_agreeing": 0.5765765765765766,
+          "accuracy_when_consistent": 0.6392405063291139,
+          "accuracy_when_disagreeing": 0.13793103448275862,
+          "accuracy_when_inconsistent": 0.35,
+          "common_valid_ABC_items": 251,
+          "consistent_but_wrong_rate": 0.36075949367088606,
+          "cross_level_consistency": 0.6124031007751938,
+          "high_consequence_CBW": {
+            "denominator": 10,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 4,
+            "rate": 0.4
+          },
+          "invalid_outputs": {
+            "invalid_label": 21
+          },
+          "overall_A_accuracy": 0.41641337386018235,
+          "repeat_agreement": 0.7928571428571428,
+          "replicate": 2,
+          "run_id": "exp004-qwen-r2",
+          "terminal_failures": 0,
+          "valid_AB_items": 258,
+          "valid_AC_items": 280,
+          "valid_A_coverage": 0.8723404255319149,
+          "valid_A_items": 287
+        },
+        {
+          "Delta_AB": 0.2579831932773109,
+          "Delta_AB_ci95": [
+            0.13781943979466577,
+            0.37863569784473744
+          ],
+          "Delta_AC": 0.46174242424242423,
+          "MethodGap": -0.18572332570598155,
+          "accuracy_when_agreeing": 0.5708333333333333,
+          "accuracy_when_consistent": 0.6294117647058823,
+          "accuracy_when_disagreeing": 0.10909090909090909,
+          "accuracy_when_inconsistent": 0.37142857142857144,
+          "common_valid_ABC_items": 267,
+          "consistent_but_wrong_rate": 0.37058823529411766,
+          "cross_level_consistency": 0.6181818181818182,
+          "high_consequence_CBW": {
+            "denominator": 11,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 5,
+            "rate": 0.45454545454545453
+          },
+          "invalid_outputs": {
+            "invalid_label": 16
+          },
+          "overall_A_accuracy": 0.44680851063829785,
+          "repeat_agreement": 0.8135593220338984,
+          "replicate": 3,
+          "run_id": "exp004-qwen-r3",
+          "terminal_failures": 0,
+          "valid_AB_items": 275,
+          "valid_AC_items": 295,
+          "valid_A_coverage": 0.9240121580547113,
+          "valid_A_items": 304
+        },
+        {
+          "Delta_AB": 0.3208714362560517,
+          "Delta_AB_ci95": [
+            0.19977239809642044,
+            0.43795432283342783
+          ],
+          "Delta_AC": 0.485,
+          "MethodGap": -0.15535006572742427,
+          "accuracy_when_agreeing": 0.5822222222222222,
+          "accuracy_when_consistent": 0.6390532544378699,
+          "accuracy_when_disagreeing": 0.09722222222222222,
+          "accuracy_when_inconsistent": 0.3181818181818182,
+          "common_valid_ABC_items": 269,
+          "consistent_but_wrong_rate": 0.3609467455621302,
+          "cross_level_consistency": 0.6057347670250897,
+          "high_consequence_CBW": {
+            "denominator": 10,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 4,
+            "rate": 0.4
+          },
+          "invalid_outputs": {
+            "invalid_label": 11
+          },
+          "overall_A_accuracy": 0.43465045592705165,
+          "repeat_agreement": 0.7575757575757576,
+          "replicate": 4,
+          "run_id": "exp004-qwen-r4",
+          "terminal_failures": 0,
+          "valid_AB_items": 279,
+          "valid_AC_items": 297,
+          "valid_A_coverage": 0.9331306990881459,
+          "valid_A_items": 307
+        },
+        {
+          "Delta_AB": 0.3099070643260645,
+          "Delta_AB_ci95": [
+            0.18255141820137116,
+            0.4332334549244398
+          ],
+          "Delta_AC": 0.4884745415428747,
+          "MethodGap": -0.1647224576197302,
+          "accuracy_when_agreeing": 0.5814977973568282,
+          "accuracy_when_consistent": 0.656441717791411,
+          "accuracy_when_disagreeing": 0.09302325581395349,
+          "accuracy_when_inconsistent": 0.3465346534653465,
+          "common_valid_ABC_items": 241,
+          "consistent_but_wrong_rate": 0.34355828220858897,
+          "cross_level_consistency": 0.6174242424242424,
+          "high_consequence_CBW": {
+            "denominator": 10,
+            "interpretation": "performance conditional on expert-rated consequence; not measured plant risk",
+            "numerator": 4,
+            "rate": 0.4
+          },
+          "invalid_outputs": {
+            "invalid_label": 22,
+            "truncated": 1
+          },
+          "overall_A_accuracy": 0.44072948328267475,
+          "repeat_agreement": 0.8407407407407408,
+          "replicate": 5,
+          "run_id": "exp004-qwen-r5",
+          "terminal_failures": 0,
+          "valid_AB_items": 264,
+          "valid_AC_items": 270,
+          "valid_A_coverage": 0.9027355623100304,
+          "valid_A_items": 297
+        }
+      ],
+      "terminal_failures": 0
+    }
+  },
+  "primary_outcome": {
+    "interpretation": "supported",
+    "panel_level_replication": true,
+    "rule": "Each local model: >=4/5 estimable, >=4/5 Delta_AB>0, crossed-bootstrap mean-Delta_AB CI wholly >0. Panel requires both local models."
+  },
+  "schema_version": 1
+}

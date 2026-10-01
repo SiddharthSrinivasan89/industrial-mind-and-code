@@ -1,0 +1,637 @@
+{
+  "astra_usage": {
+    "calculated_cost_usd": 44.47475,
+    "input_tokens": 3389175,
+    "input_usd_per_million": 10.0,
+    "output_tokens": 211660,
+    "output_usd_per_million": 50.0,
+    "pricing_checked_at": "2026-09-12",
+    "pricing_source": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+    "scope_note": "Usage-bearing successful Responses API attempts; all transient failures carried no response usage.",
+    "total_tokens": 3600835
+  },
+  "attempt_statuses": {
+    "success": 4860,
+    "transient_failure": 45
+  },
+  "attempts": 4905,
+  "candidate_lock_sha256": "b2fa450f6dfd00b6816006e7c322b9e5060d225d442ab474fb2be3f2b706ef1a",
+  "elapsed_seconds": 39301.764421,
+  "local_gpu_evidence": {
+    "ollama_gemma": {
+      "checks": 1620,
+      "checks_showing_100_percent_gpu": 1620
+    },
+    "ollama_qwen": {
+      "checks": 1620,
+      "checks_showing_100_percent_gpu": 1620
+    }
+  },
+  "logical_observations": 4860,
+  "model_identities": {
+    "azure_astra": {
+      "configurations": [
+        {
+          "account": "redacted_public_release",
+          "deployed_model_version": "2026-09-03",
+          "deployment": "gpt-6-astra",
+          "endpoint": "redacted_public_release",
+          "max_output_tokens": 2048,
+          "price_checked": "2026-09-12",
+          "price_source": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+          "price_usd_per_million": {
+            "input": 10.0,
+            "output": 50.0
+          },
+          "provider": "azure_openai_responses",
+          "reasoning_effort": "medium",
+          "resource_group": "redacted_public_release",
+          "seed": null,
+          "sku": "GlobalStandard",
+          "temperature": null,
+          "token_resource": "https://ai.azure.com"
+        },
+        {
+          "account": "redacted_public_release",
+          "deployed_model_version": "2026-09-03",
+          "deployment": "gpt-6-astra",
+          "endpoint": "redacted_public_release",
+          "max_output_tokens": 2048,
+          "price_checked": "2026-09-12",
+          "price_source": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+          "price_usd_per_million": {
+            "input": 10.0,
+            "output": 50.0
+          },
+          "provider": "azure_openai_responses",
+          "reasoning_effort": "medium",
+          "resource_group": "redacted_public_release",
+          "seed": null,
+          "sku": "GlobalStandard",
+          "temperature": null,
+          "token_resource": "https://ai.azure.com"
+        },
+        {
+          "account": "redacted_public_release",
+          "deployed_model_version": "2026-09-03",
+          "deployment": "gpt-6-astra",
+          "endpoint": "redacted_public_release",
+          "max_output_tokens": 2048,
+          "price_checked": "2026-09-12",
+          "price_source": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+          "price_usd_per_million": {
+            "input": 10.0,
+            "output": 50.0
+          },
+          "provider": "azure_openai_responses",
+          "reasoning_effort": "medium",
+          "resource_group": "redacted_public_release",
+          "seed": null,
+          "sku": "GlobalStandard",
+          "temperature": null,
+          "token_resource": "https://ai.azure.com"
+        },
+        {
+          "account": "redacted_public_release",
+          "deployed_model_version": "2026-09-03",
+          "deployment": "gpt-6-astra",
+          "endpoint": "redacted_public_release",
+          "max_output_tokens": 2048,
+          "price_checked": "2026-09-12",
+          "price_source": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+          "price_usd_per_million": {
+            "input": 10.0,
+            "output": 50.0
+          },
+          "provider": "azure_openai_responses",
+          "reasoning_effort": "medium",
+          "resource_group": "redacted_public_release",
+          "seed": null,
+          "sku": "GlobalStandard",
+          "temperature": null,
+          "token_resource": "https://ai.azure.com"
+        },
+        {
+          "account": "redacted_public_release",
+          "deployed_model_version": "2026-09-03",
+          "deployment": "gpt-6-astra",
+          "endpoint": "redacted_public_release",
+          "max_output_tokens": 2048,
+          "price_checked": "2026-09-12",
+          "price_source": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+          "price_usd_per_million": {
+            "input": 10.0,
+            "output": 50.0
+          },
+          "provider": "azure_openai_responses",
+          "reasoning_effort": "medium",
+          "resource_group": "redacted_public_release",
+          "seed": null,
+          "sku": "GlobalStandard",
+          "temperature": null,
+          "token_resource": "https://ai.azure.com"
+        }
+      ],
+      "identity": {
+        "deployment": "gpt-6-astra",
+        "deployment_state": "Running",
+        "provisioning_state": "Succeeded",
+        "sku": "GlobalStandard",
+        "version": "2026-09-03"
+      }
+    },
+    "ollama_gemma": {
+      "configurations": [
+        {
+          "concurrency": 1,
+          "digest": "6316f0629137b426c9d9b853ffc4c8209589f30ee39aebede6285096c0ff47e7",
+          "endpoint": "redacted_public_release",
+          "format": "json",
+          "keep_alive": "10m",
+          "model": "gemma4:31b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4101,
+            "temperature": 0.2
+          },
+          "parameter_size": "31.3B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "6316f0629137b426c9d9b853ffc4c8209589f30ee39aebede6285096c0ff47e7",
+          "endpoint": "redacted_public_release",
+          "format": "json",
+          "keep_alive": "10m",
+          "model": "gemma4:31b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4102,
+            "temperature": 0.2
+          },
+          "parameter_size": "31.3B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "6316f0629137b426c9d9b853ffc4c8209589f30ee39aebede6285096c0ff47e7",
+          "endpoint": "redacted_public_release",
+          "format": "json",
+          "keep_alive": "10m",
+          "model": "gemma4:31b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4103,
+            "temperature": 0.2
+          },
+          "parameter_size": "31.3B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "6316f0629137b426c9d9b853ffc4c8209589f30ee39aebede6285096c0ff47e7",
+          "endpoint": "redacted_public_release",
+          "format": "json",
+          "keep_alive": "10m",
+          "model": "gemma4:31b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4104,
+            "temperature": 0.2
+          },
+          "parameter_size": "31.3B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "6316f0629137b426c9d9b853ffc4c8209589f30ee39aebede6285096c0ff47e7",
+          "endpoint": "redacted_public_release",
+          "format": "json",
+          "keep_alive": "10m",
+          "model": "gemma4:31b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4105,
+            "temperature": 0.2
+          },
+          "parameter_size": "31.3B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        }
+      ],
+      "identity": {
+        "digest": "6316f0629137b426c9d9b853ffc4c8209589f30ee39aebede6285096c0ff47e7",
+        "model": "gemma4:31b"
+      }
+    },
+    "ollama_qwen": {
+      "configurations": [
+        {
+          "concurrency": 1,
+          "digest": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37",
+          "endpoint": "redacted_public_release",
+          "format": null,
+          "keep_alive": "10m",
+          "model": "qwen3.5:122b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4101,
+            "temperature": 0.2
+          },
+          "parameter_size": "125.1B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37",
+          "endpoint": "redacted_public_release",
+          "format": null,
+          "keep_alive": "10m",
+          "model": "qwen3.5:122b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4102,
+            "temperature": 0.2
+          },
+          "parameter_size": "125.1B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37",
+          "endpoint": "redacted_public_release",
+          "format": null,
+          "keep_alive": "10m",
+          "model": "qwen3.5:122b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4103,
+            "temperature": 0.2
+          },
+          "parameter_size": "125.1B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37",
+          "endpoint": "redacted_public_release",
+          "format": null,
+          "keep_alive": "10m",
+          "model": "qwen3.5:122b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4104,
+            "temperature": 0.2
+          },
+          "parameter_size": "125.1B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        },
+        {
+          "concurrency": 1,
+          "digest": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37",
+          "endpoint": "redacted_public_release",
+          "format": null,
+          "keep_alive": "10m",
+          "model": "qwen3.5:122b",
+          "ollama_version": "0.32.5",
+          "options": {
+            "num_ctx": 32768,
+            "num_predict": 2048,
+            "seed": 4105,
+            "temperature": 0.2
+          },
+          "parameter_size": "125.1B",
+          "provider": "ollama_generate",
+          "quantization": "Q4_K_M",
+          "think": false
+        }
+      ],
+      "identity": {
+        "digest": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37",
+        "model": "qwen3.5:122b"
+      }
+    }
+  },
+  "per_run": [
+    {
+      "attempt_statuses": {
+        "success": 324,
+        "transient_failure": 14
+      },
+      "attempts": 338,
+      "attempts_sha256": "a61df02339ff5f84f67c857210676ab6ec2dbc0dedc37deafa3bb3384610656f",
+      "duration_seconds": 2934.14099,
+      "finished_at": "2026-09-12T09:46:45.387583+00:00",
+      "logical_observations": 324,
+      "model_key": "azure_astra",
+      "replicate": 1,
+      "responses_sha256": "a898760bf40033871264f73fcdfbadabb65c479d9eaf30d9792053d768395c7d",
+      "run_id": "exp004-astra-r1",
+      "score_sha256": "ea71a1dbc36d52d9c5aab60b1c17ad9df369d2098cc7ef80dcc3a75b3b70efe0",
+      "started_at": "2026-09-12T08:57:51.246593+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324,
+        "transient_failure": 7
+      },
+      "attempts": 331,
+      "attempts_sha256": "3a81f1f88ce2fbeee1a360de2969b90725766f7bc71f225bbb38a7fd79917370",
+      "duration_seconds": 2748.507309,
+      "finished_at": "2026-09-12T10:32:35.436381+00:00",
+      "logical_observations": 324,
+      "model_key": "azure_astra",
+      "replicate": 2,
+      "responses_sha256": "4b38321439cd8a21a5be8bf764a994846299ef8f17d71f2e0d350113b3b8523c",
+      "run_id": "exp004-astra-r2",
+      "score_sha256": "8f5cda35ddd4527034348d93a344734baba1d251cbd7d16481b41dd085a74dae",
+      "started_at": "2026-09-12T09:46:46.929072+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324,
+        "transient_failure": 10
+      },
+      "attempts": 334,
+      "attempts_sha256": "552954c1196d67c039fe263fecbe95cadfecc0dae926130f205a437c46fc93a4",
+      "duration_seconds": 2562.14427,
+      "finished_at": "2026-09-12T11:15:18.533066+00:00",
+      "logical_observations": 324,
+      "model_key": "azure_astra",
+      "replicate": 3,
+      "responses_sha256": "1d5a886d0a0a17e4da9a2baf88bfb13318c0b49cd5ceebc17b21c42514779971",
+      "run_id": "exp004-astra-r3",
+      "score_sha256": "e7ca4b34bf5f3421d95559acdd7b88d9e886a8af18eb7f2e6e0ded51dd745b62",
+      "started_at": "2026-09-12T10:32:36.388796+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324,
+        "transient_failure": 6
+      },
+      "attempts": 330,
+      "attempts_sha256": "196034b775cc4af28a03c87a00ed876395a86006b45db46b393492ddddf3f26a",
+      "duration_seconds": 2422.961468,
+      "finished_at": "2026-09-12T11:55:43.560805+00:00",
+      "logical_observations": 324,
+      "model_key": "azure_astra",
+      "replicate": 4,
+      "responses_sha256": "e0e0f35458a645fb49df103173553929850e833508809424c44e4afa20693da5",
+      "run_id": "exp004-astra-r4",
+      "score_sha256": "3c124f35fc0ecc9fdd17609d4e04c271b8b748670d10687db4918bf627a43544",
+      "started_at": "2026-09-12T11:15:20.599337+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324,
+        "transient_failure": 8
+      },
+      "attempts": 332,
+      "attempts_sha256": "520b5973319b5e82f19890413bc30e1e540ee498bcf16078b043222a61579966",
+      "duration_seconds": 3144.54571,
+      "finished_at": "2026-09-12T12:48:09.115898+00:00",
+      "logical_observations": 324,
+      "model_key": "azure_astra",
+      "replicate": 5,
+      "responses_sha256": "b9c2a46a8988e5446dfa5198fce2d0291aa87b51b11d30642235ef89708c6ce5",
+      "run_id": "exp004-astra-r5",
+      "score_sha256": "192f841dc1c6a369e95de5e76a6bb3ca9defc61b4572137975ee5e7c1a204151",
+      "started_at": "2026-09-12T11:55:44.570188+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "bf6aec5f6a2a49db7801aa2ce44be0fe6ae5c9f6613ac637de567adfaab9ad46",
+      "duration_seconds": 1708.486469,
+      "finished_at": "2026-09-12T13:16:37.732305+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_qwen",
+      "replicate": 1,
+      "responses_sha256": "b79f8557343a7ddb808198cd742e6700fccc7b233584cf90979e8921beb84e5c",
+      "run_id": "exp004-qwen-r1",
+      "score_sha256": "3bf406577346259ba86724b5394ffc117aa96d0dc155f9e8568b696a9f92b02f",
+      "started_at": "2026-09-12T12:48:09.245836+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "7295dbf2d8734fb8a8549fe78badc6019aeaa08c2e81ad29dd14d33422d52af0",
+      "duration_seconds": 1689.870809,
+      "finished_at": "2026-09-12T13:44:47.744274+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_qwen",
+      "replicate": 2,
+      "responses_sha256": "3f63f32f0598209be43b6667b8687638c61eb3c5904f4a193a3d24c45306f276",
+      "run_id": "exp004-qwen-r2",
+      "score_sha256": "12df8e8f05d75e74dd72d1bc682856d51d80a391fbd6bfd2c1ad43e5de4cb741",
+      "started_at": "2026-09-12T13:16:37.873465+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "c1cc3dcaa6909f398d7d3a4174d28c85b2419618a7e6295308dc3d4565e7a2fd",
+      "duration_seconds": 1695.587566,
+      "finished_at": "2026-09-12T14:13:03.476205+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_qwen",
+      "replicate": 3,
+      "responses_sha256": "666ce7c75ee9612f7d175788717483b6d5f96f02fcdc8e86ec972c070b4df42d",
+      "run_id": "exp004-qwen-r3",
+      "score_sha256": "d38fd4d80b9514a29ed70e25877795a7e27136ae09752bd2bf38b757badb837b",
+      "started_at": "2026-09-12T13:44:47.888639+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "4b90845eb0ca2151db2fbd7aba3372cf29b6c32180fddf2f3112ce9283ad6f92",
+      "duration_seconds": 1690.570648,
+      "finished_at": "2026-09-12T14:41:14.201283+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_qwen",
+      "replicate": 4,
+      "responses_sha256": "1ae5eac67c4feb3e6e46897ed81e64dd9f2a9f2f60922b345e6a1c5317f00abd",
+      "run_id": "exp004-qwen-r4",
+      "score_sha256": "2170e5c88bd8ff12fcebbe85f796b56d5ffa7a2ab791af0c11a7790298d0ef60",
+      "started_at": "2026-09-12T14:13:03.630635+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "d4a532a6382c81579bd98531725e2b239319c4de2585b6b48357f5735047ac39",
+      "duration_seconds": 1761.343528,
+      "finished_at": "2026-09-12T15:10:35.700880+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_qwen",
+      "replicate": 5,
+      "responses_sha256": "72e8790577d884f3bf4e0c7abe421ecda964c330e6df47b49309dd2c84609eba",
+      "run_id": "exp004-qwen-r5",
+      "score_sha256": "2fa9114321ccec55166b0d96b907547c2a3182948548d5cfec6b8f5b34120f56",
+      "started_at": "2026-09-12T14:41:14.357352+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "771c9c7a8eaeb30b53902b2a94cb946a1d35028eb7a3f25bb28fde31d171621c",
+      "duration_seconds": 3410.990282,
+      "finished_at": "2026-09-12T16:07:26.849165+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_gemma",
+      "replicate": 1,
+      "responses_sha256": "58fa2840eec32e66e5e29d245d9658b8055026392a456af3406c867dea5ff210",
+      "run_id": "exp004-gemma-r1",
+      "score_sha256": "ef6c2254e933a94655a87008dbf44a2af009bd0644a895c2a71bb6e30d648ead",
+      "started_at": "2026-09-12T15:10:35.858883+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "95702393c23916d3805653f773a1f58d3501f6ff70c035ad252970ee1eeeb1db",
+      "duration_seconds": 3384.160162,
+      "finished_at": "2026-09-12T17:03:51.154636+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_gemma",
+      "replicate": 2,
+      "responses_sha256": "9710f4e21657bc4fbd257f10e223b450b8dcd1b777636d38b3b1f8480100514a",
+      "run_id": "exp004-gemma-r2",
+      "score_sha256": "94b756b3cf2c67c94daaf9a328c0c5ec7ba94f3d51536586ad6c9af9ab7eb765",
+      "started_at": "2026-09-12T16:07:26.994474+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "04ae5e95c563f9068dad932089d6e1ccccfca5701d10a950e16ebdae0568bac6",
+      "duration_seconds": 3403.060456,
+      "finished_at": "2026-09-12T18:00:34.363129+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_gemma",
+      "replicate": 3,
+      "responses_sha256": "1aa96dc6d7319cc1b700c49a685e1fc1313aef54b446cf1d9287621bf9fe4047",
+      "run_id": "exp004-gemma-r3",
+      "score_sha256": "c0cb5fbc27c0a491fc1d1df72d0843a8e8413a5f79e487d959426d01e1bd82e2",
+      "started_at": "2026-09-12T17:03:51.302673+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "7969a80fc699c37517b621abc7e539ba6064b1c7dbd1d494729dd7fc24adee26",
+      "duration_seconds": 3354.860182,
+      "finished_at": "2026-09-12T18:56:29.380755+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_gemma",
+      "replicate": 4,
+      "responses_sha256": "9384397ece85844cde01e8f568e21b2c455cfdd57f7e44378017dba36af51202",
+      "run_id": "exp004-gemma-r4",
+      "score_sha256": "94b756b3cf2c67c94daaf9a328c0c5ec7ba94f3d51536586ad6c9af9ab7eb765",
+      "started_at": "2026-09-12T18:00:34.520573+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    },
+    {
+      "attempt_statuses": {
+        "success": 324
+      },
+      "attempts": 324,
+      "attempts_sha256": "6b3f5919eef9a6a92d3dc29d64d5ed5c25db21c44c6a3968ef7e1ba3e7251af0",
+      "duration_seconds": 3383.464102,
+      "finished_at": "2026-09-12T19:52:53.011014+00:00",
+      "logical_observations": 324,
+      "model_key": "ollama_gemma",
+      "replicate": 5,
+      "responses_sha256": "7ea42a15c92a1f9bfca73615bcbeb074daa984d9d9def738086c572d8ecbf79e",
+      "run_id": "exp004-gemma-r5",
+      "score_sha256": "c0cb5fbc27c0a491fc1d1df72d0843a8e8413a5f79e487d959426d01e1bd82e2",
+      "started_at": "2026-09-12T18:56:29.546912+00:00",
+      "terminal_failures": 0,
+      "unique_logical_observations": 324
+    }
+  ],
+  "production_finished_at": "2026-09-12T19:52:53.011014+00:00",
+  "production_started_at": "2026-09-12T08:57:51.246593+00:00",
+  "run_count": 15,
+  "schema_version": 1,
+  "terminal_failures": 0,
+  "transient_error_types": {
+    "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>": 13,
+    "URLError: <urlopen error [Errno 111] Connection refused>": 32
+  },
+  "unique_logical_observations_within_runs": 4860
+}

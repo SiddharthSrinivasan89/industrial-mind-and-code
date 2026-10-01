@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment": "IMC-EXP-004",
+  "public_release_date": "2026-10-01",
+  "source_revision": "81858a42301d862016f4ecc36a0ed3d60495c323",
+  "source_final_result_lock_sha256": "7219db6ad9d37ef2f8e6ad8f8d11467b1e2ad79deb100934935b5f8a17a28e20",
+  "source_result_candidate_lock_sha256": "cf3bf5789ade3ecbfb8e82d058c6912eae1fc2d58bda334e71b6eadc0ba0846e",
+  "source_expert_ledger_lock_sha256": "4dfe06b92c15ee92a44637014dd96a9d998f013f3d98c3dd38059cefba501ea2",
+  "exp003_final_lock_sha256": "2d3590d523de9b3cccc49de88dcced8387234f983535157efc0f9e1d133913a1",
+  "maintie_source_commit": "825e7710e4129598da997276a38b3cb40b200bc2",
+  "maintie_evaluation_input_sha256": "9834301509ed841a0a6772cc1a28e79ed4a1e46bc23eaa949d65a373c53ff6f9",
+  "maintie_gold_sha256": "b0f3c4e00a5da52e603c86f2f92086824a5aca21bba83e68edad4cb02904aaf6",
+  "artifacts": {
+    "DESIGN.md": "4c488276685b51b2e15e2925da1201226143725f2bb51f8f2ccf63a1e29dbc69",
+    "run-config.json": "162989eeb0f0d9476834ddf5867ea13e370d33746404f76f88034c08024d6d80",
+    "results/analysis/aggregate.json": "b48c6332c11a12f87efe4d845c3606dffffbff262152c1c03b284b42d0c75d56",
+    "results/analysis/detailed-analysis.json": "10540f173c8415d5d0a38acf31a125531899194e961f9eaf7150a54eeda24044",
+    "results/analysis/operations.json": "4354e36f3eb55aa21d259d55f61b575c5e427f70b6b91f9d7715aec259f5975e",
+    "src/audit_results.py": "6f7c6988335a58f9f09cd6650c8ae471ba2d62b0db5d1be567a247db1245b5fd",
+    "src/build_result_analysis.py": "2412a9c11e7324c5308ecc3b4e03e893db404598f2dc6cfd9eed9cfb54588c42",
+    "src/score.py": "cf4a8ef11eda9bc739a15ef7ffab9e56fd0aa027798ab03c35826206d5e2af5c"
+  },
+  "public_derivatives": {
+    "run-config.json": {
+      "source_sha256": "a57dc7f2e3470ed16af812b8506d08c02318152a4266f932172b09c62ebaff4a",
+      "transformation": "account, endpoint, and resource_group values replaced with redacted_public_release"
+    },
+    "results/analysis/aggregate.json": {
+      "source_sha256": "d1c4f071b1cbc12d28c57b9dc70268471a4b665be1671d641efad4c0251077fe",
+      "transformation": "expert_rationale_raw, expert_rationale_normalized, and annotation_provenance fields recursively removed"
+    },
+    "results/analysis/operations.json": {
+      "source_sha256": "ce2b956b16211871eed29475185d4d2061aa379a01382bb7f6bb48bd8d02a89b",
+      "transformation": "account, endpoint, and resource_group values replaced with redacted_public_release"
+    }
+  },
+  "omitted_from_public_release": [
+    "raw provider responses and request headers",
+    "encrypted provider reasoning payloads",
+    "human annotation transcript and raw expert rationale",
+    "credentials and private execution environment details",
+    "internal Maker and Checker working records"
+  ]
+}
