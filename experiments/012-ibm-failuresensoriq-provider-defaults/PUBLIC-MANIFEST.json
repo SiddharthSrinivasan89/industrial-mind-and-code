@@ -1,0 +1,11 @@
+{
+  "files": {
+    "README.md": "a8d3ab290cf02378a6209b059685b2eb2872dd0705f6eae67c3629d26af65337",
+    "analysis.json": "7de6aeb108957a1d8c444f7c83c3d89f79d0cc82539087f6cc88cfeeb6511e77",
+    "item-scores.json": "6b11fbc4a379e240859be1a8999965f09383033548bab5465a2b13ca8ce9d22d",
+    "provenance.json": "8da488c50381b1686a499c6ac3cad1bdf0c8676e0738c370685b2c5391ea8a13",
+    "reproduce.py": "b61cfdbaebbae503ced95c992f07d026faf4e5758646bb2cd89043f3edcff7fa",
+    "responses.jsonl": "91cda99baedffb211b16c114f4d03d89669416a6db395db6cfdb25977aea0a92"
+  },
+  "projection_source_lock_sha256": "8332ac4a055eb5aeb253a85ed036924604cafd605bc0e2e734736e7bf380812c"
+}

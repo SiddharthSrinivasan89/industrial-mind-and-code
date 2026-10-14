@@ -1,0 +1,979 @@
+{
+  "all_completed_secondary": {
+    "gemini-3.1-pro-preview": {
+      "accuracy": 0.5470588235294118,
+      "correct": 93,
+      "outcomes": {
+        "correct": 93,
+        "multiple_selection": 8,
+        "wrong_single": 67,
+        "zero_selection": 2
+      },
+      "total": 170
+    },
+    "gemini-3.8-flash": {
+      "accuracy": 0.550561797752809,
+      "correct": 98,
+      "outcomes": {
+        "correct": 98,
+        "multiple_selection": 6,
+        "wrong_single": 74
+      },
+      "total": 178
+    },
+    "gemini-4-argon": {
+      "accuracy": 0.4406779661016949,
+      "correct": 78,
+      "outcomes": {
+        "correct": 78,
+        "multiple_selection": 63,
+        "wrong_single": 35,
+        "zero_selection": 1
+      },
+      "total": 177
+    },
+    "gpt-6.1-sol": {
+      "accuracy": 0.4971751412429379,
+      "correct": 88,
+      "outcomes": {
+        "correct": 88,
+        "multiple_selection": 35,
+        "wrong_single": 53,
+        "zero_selection": 1
+      },
+      "total": 177
+    }
+  },
+  "asset_clusters": 4,
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261014,
+  "by_asset": {
+    "aero gas turbine": {
+      "gemini-3.1-pro-preview": {
+        "accuracy": 0.49206349206349204,
+        "correct": 31,
+        "outcomes": {
+          "correct": 31,
+          "multiple_selection": 3,
+          "wrong_single": 28,
+          "zero_selection": 1
+        },
+        "total": 63
+      },
+      "gemini-3.8-flash": {
+        "accuracy": 0.49206349206349204,
+        "correct": 31,
+        "outcomes": {
+          "correct": 31,
+          "multiple_selection": 3,
+          "wrong_single": 29
+        },
+        "total": 63
+      },
+      "gemini-4-argon": {
+        "accuracy": 0.36507936507936506,
+        "correct": 23,
+        "outcomes": {
+          "correct": 23,
+          "multiple_selection": 27,
+          "wrong_single": 12,
+          "zero_selection": 1
+        },
+        "total": 63
+      },
+      "gpt-6.1-sol": {
+        "accuracy": 0.42857142857142855,
+        "correct": 27,
+        "outcomes": {
+          "correct": 27,
+          "multiple_selection": 13,
+          "wrong_single": 22,
+          "zero_selection": 1
+        },
+        "total": 63
+      }
+    },
+    "electric motor": {
+      "gemini-3.1-pro-preview": {
+        "accuracy": 0.5,
+        "correct": 19,
+        "outcomes": {
+          "correct": 19,
+          "multiple_selection": 3,
+          "wrong_single": 16
+        },
+        "total": 38
+      },
+      "gemini-3.8-flash": {
+        "accuracy": 0.6052631578947368,
+        "correct": 23,
+        "outcomes": {
+          "correct": 23,
+          "multiple_selection": 1,
+          "wrong_single": 14
+        },
+        "total": 38
+      },
+      "gemini-4-argon": {
+        "accuracy": 0.39473684210526316,
+        "correct": 15,
+        "outcomes": {
+          "correct": 15,
+          "multiple_selection": 18,
+          "wrong_single": 5
+        },
+        "total": 38
+      },
+      "gpt-6.1-sol": {
+        "accuracy": 0.4473684210526316,
+        "correct": 17,
+        "outcomes": {
+          "correct": 17,
+          "multiple_selection": 11,
+          "wrong_single": 10
+        },
+        "total": 38
+      }
+    },
+    "industrial gas turbine": {
+      "gemini-3.1-pro-preview": {
+        "accuracy": 0.4642857142857143,
+        "correct": 13,
+        "outcomes": {
+          "correct": 13,
+          "multiple_selection": 2,
+          "wrong_single": 12,
+          "zero_selection": 1
+        },
+        "total": 28
+      },
+      "gemini-3.8-flash": {
+        "accuracy": 0.42857142857142855,
+        "correct": 12,
+        "outcomes": {
+          "correct": 12,
+          "multiple_selection": 2,
+          "wrong_single": 14
+        },
+        "total": 28
+      },
+      "gemini-4-argon": {
+        "accuracy": 0.39285714285714285,
+        "correct": 11,
+        "outcomes": {
+          "correct": 11,
+          "multiple_selection": 10,
+          "wrong_single": 7
+        },
+        "total": 28
+      },
+      "gpt-6.1-sol": {
+        "accuracy": 0.4642857142857143,
+        "correct": 13,
+        "outcomes": {
+          "correct": 13,
+          "multiple_selection": 9,
+          "wrong_single": 6
+        },
+        "total": 28
+      }
+    },
+    "steam turbine": {
+      "gemini-3.1-pro-preview": {
+        "accuracy": 0.7317073170731707,
+        "correct": 30,
+        "outcomes": {
+          "correct": 30,
+          "wrong_single": 11
+        },
+        "total": 41
+      },
+      "gemini-3.8-flash": {
+        "accuracy": 0.6341463414634146,
+        "correct": 26,
+        "outcomes": {
+          "correct": 26,
+          "wrong_single": 15
+        },
+        "total": 41
+      },
+      "gemini-4-argon": {
+        "accuracy": 0.5853658536585366,
+        "correct": 24,
+        "outcomes": {
+          "correct": 24,
+          "multiple_selection": 8,
+          "wrong_single": 9
+        },
+        "total": 41
+      },
+      "gpt-6.1-sol": {
+        "accuracy": 0.6341463414634146,
+        "correct": 26,
+        "outcomes": {
+          "correct": 26,
+          "wrong_single": 15
+        },
+        "total": 41
+      }
+    }
+  },
+  "classification": "POSTHOC EXPLORATORY closure at702; full2667 and512 targets incomplete; further inference stopped",
+  "completed_evaluations": 702,
+  "experiment": "IMC-EXP-012",
+  "historical_truncated_unfinished_attempt": {
+    "billing": "UNKNOWN",
+    "fresh_completion": "Preserved as separate new task; historical attempt unchanged",
+    "model": "gemini-3.1-pro-preview",
+    "partial_body": "UNAVAILABLE",
+    "partial_bytes_reported": 15951,
+    "question_id": 147,
+    "scored": false
+  },
+  "http_attempts_all": 719,
+  "latency_definition": "Successful-provider-turn sum, errors/backoff excluded; operations on unequal all-completed secondary sets, not intrinsic model speed",
+  "membership_sha256": "500f1ffc8541954ba299e5492278f30d3a077c9ab94b044df38d46f654ed4595",
+  "native_format_errors": 0,
+  "operations_all_completed": {
+    "gemini-3.1-pro-preview": {
+      "attempts_in_completed_tasks": 170,
+      "completed_questions": 170,
+      "latency_mean_seconds": 56.2699741239502,
+      "latency_median_seconds": 39.37700786453206,
+      "latency_p95_seconds": 141.5575514039956,
+      "successful_list_cost_usd": 2.7328659999999987,
+      "successful_tokens": {
+        "cached": 0,
+        "input": 26411,
+        "output_including_reasoning": 223337,
+        "reasoning": 194618
+      },
+      "successful_turns": 170
+    },
+    "gemini-3.8-flash": {
+      "attempts_in_completed_tasks": 178,
+      "completed_questions": 178,
+      "latency_mean_seconds": 12.299874535425936,
+      "latency_median_seconds": 10.67792643950088,
+      "latency_p95_seconds": 25.0619775330415,
+      "successful_list_cost_usd": 0.5440785,
+      "successful_tokens": {
+        "cached": 0,
+        "input": 27688,
+        "output_including_reasoning": 139550,
+        "reasoning": 113134
+      },
+      "successful_turns": 178
+    },
+    "gemini-4-argon": {
+      "attempts_in_completed_tasks": 177,
+      "completed_questions": 177,
+      "latency_mean_seconds": 17.4323346493108,
+      "latency_median_seconds": 11.653513961995486,
+      "latency_p95_seconds": 46.109485879016574,
+      "successful_list_cost_usd": 0.5157300000000004,
+      "successful_tokens": {
+        "cached": 0,
+        "input": 33185,
+        "output_including_reasoning": 44936,
+        "reasoning": 3036
+      },
+      "successful_turns": 177
+    },
+    "gpt-6.1-sol": {
+      "attempts_in_completed_tasks": 185,
+      "completed_questions": 177,
+      "latency_mean_seconds": 26.990344042644775,
+      "latency_median_seconds": 18.627276962972246,
+      "latency_p95_seconds": 68.85839267598931,
+      "successful_list_cost_usd": 0.37011000000000016,
+      "successful_tokens": {
+        "cached": 0,
+        "input": 27245,
+        "output_including_reasoning": 31562,
+        "reasoning": 12448
+      },
+      "successful_turns": 177
+    }
+  },
+  "paired_differences": [
+    {
+      "a": "gemini-3.8-flash",
+      "a_only_correct": 7,
+      "b": "gemini-3.1-pro-preview",
+      "b_only_correct": 8,
+      "descriptive_asset_resampling_95_interval": [
+        -0.07246376811594203,
+        0.06779661016949153
+      ],
+      "difference": -0.0058823529411764705
+    },
+    {
+      "a": "gemini-3.8-flash",
+      "a_only_correct": 23,
+      "b": "gemini-4-argon",
+      "b_only_correct": 4,
+      "descriptive_asset_resampling_95_interval": [
+        0.043478260869565216,
+        0.176056338028169
+      ],
+      "difference": 0.11176470588235295
+    },
+    {
+      "a": "gemini-3.8-flash",
+      "a_only_correct": 15,
+      "b": "gpt-6.1-sol",
+      "b_only_correct": 6,
+      "descriptive_asset_resampling_95_interval": [
+        -0.014492753623188406,
+        0.11971830985915492
+      ],
+      "difference": 0.052941176470588235
+    },
+    {
+      "a": "gemini-3.1-pro-preview",
+      "a_only_correct": 22,
+      "b": "gemini-4-argon",
+      "b_only_correct": 2,
+      "descriptive_asset_resampling_95_interval": [
+        0.09090909090909091,
+        0.13664596273291926
+      ],
+      "difference": 0.11764705882352941
+    },
+    {
+      "a": "gemini-3.1-pro-preview",
+      "a_only_correct": 16,
+      "b": "gpt-6.1-sol",
+      "b_only_correct": 6,
+      "descriptive_asset_resampling_95_interval": [
+        0.027210884353741496,
+        0.08602150537634409
+      ],
+      "difference": 0.058823529411764705
+    },
+    {
+      "a": "gemini-4-argon",
+      "a_only_correct": 4,
+      "b": "gpt-6.1-sol",
+      "b_only_correct": 14,
+      "descriptive_asset_resampling_95_interval": [
+        -0.06593406593406594,
+        -0.05063291139240506
+      ],
+      "difference": -0.058823529411764705
+    }
+  ],
+  "primary_scores": {
+    "gemini-3.1-pro-preview": {
+      "accuracy": 0.5470588235294118,
+      "correct": 93,
+      "outcomes": {
+        "correct": 93,
+        "multiple_selection": 8,
+        "wrong_single": 67,
+        "zero_selection": 2
+      },
+      "total": 170
+    },
+    "gemini-3.8-flash": {
+      "accuracy": 0.5411764705882353,
+      "correct": 92,
+      "outcomes": {
+        "correct": 92,
+        "multiple_selection": 6,
+        "wrong_single": 72
+      },
+      "total": 170
+    },
+    "gemini-4-argon": {
+      "accuracy": 0.4294117647058823,
+      "correct": 73,
+      "outcomes": {
+        "correct": 73,
+        "multiple_selection": 63,
+        "wrong_single": 33,
+        "zero_selection": 1
+      },
+      "total": 170
+    },
+    "gpt-6.1-sol": {
+      "accuracy": 0.48823529411764705,
+      "correct": 83,
+      "outcomes": {
+        "correct": 83,
+        "multiple_selection": 33,
+        "wrong_single": 53,
+        "zero_selection": 1
+      },
+      "total": 170
+    }
+  },
+  "prior165_result_lock_sha256": "1d5b429dce6a1d0a58a158fa8c162619290ed428b5ff39d6618073f1845804da",
+  "production_candidate_sha256": "00ea683b214276a674145040ba4595e8e60916d1b46bcc5631475efa6804bfb1",
+  "production_preservation_sha256": "8240e033e0b895eafdcd29fa679e5180bf7169a1192d7c50c43dc22a99614e9c",
+  "quota_attempts_unscored": 8,
+  "recorded_operational_errors": {
+    "408": 8,
+    "429": 8
+  },
+  "shared_questions_per_model": 170,
+  "source_run_ids": [
+    "ibm-original-defaults-20261014",
+    "ibm-original-defaults-512-20261014"
+  ],
+  "successful_generation_list_cost_usd": 4.162784499999999,
+  "uncertainty_limitation": "Only four asset classes: descriptive sensitivity ranges, not reliable population/confirmatory confidence intervals; convenience completion bias and template dependence remain",
+  "unshared_completed_records": [
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": false,
+      "gold": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": 170,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "wrong_single",
+      "prediction": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 171,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": false,
+      "gold": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": 172,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "wrong_single",
+      "prediction": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 173,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "id": 174,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "id": 175,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": 176,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "id": 177,
+      "model": "gemini-3.8-flash",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": false,
+      "gold": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": 170,
+      "model": "gemini-4-argon",
+      "options": 5,
+      "outcome": "wrong_single",
+      "prediction": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 171,
+      "model": "gemini-4-argon",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": false,
+      "gold": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": 172,
+      "model": "gemini-4-argon",
+      "options": 5,
+      "outcome": "wrong_single",
+      "prediction": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 173,
+      "model": "gemini-4-argon",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "id": 174,
+      "model": "gemini-4-argon",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "id": 175,
+      "model": "gemini-4-argon",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": 176,
+      "model": "gemini-4-argon",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": 170,
+      "model": "gpt-6.1-sol",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 171,
+      "model": "gpt-6.1-sol",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": false,
+      "gold": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": 172,
+      "model": "gpt-6.1-sol",
+      "options": 5,
+      "outcome": "multiple_selection",
+      "prediction": [
+        true,
+        false,
+        true,
+        false,
+        true
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 173,
+      "model": "gpt-6.1-sol",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "id": 174,
+      "model": "gpt-6.1-sol",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": true,
+      "gold": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "id": 175,
+      "model": "gpt-6.1-sol",
+      "options": 5,
+      "outcome": "correct",
+      "prediction": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    },
+    {
+      "asset_name": "industrial gas turbine",
+      "correct": false,
+      "gold": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "id": 176,
+      "model": "gpt-6.1-sol",
+      "options": 5,
+      "outcome": "multiple_selection",
+      "prediction": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "relevancy": "relevant_sensors_for_failure_mode",
+      "shared": false,
+      "successful_turns": 1
+    }
+  ]
+}

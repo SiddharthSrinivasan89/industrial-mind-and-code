@@ -45,6 +45,7 @@ of whether independently consistent classifications are more likely to be correc
 | `failuresensoriq-v1-reasoning-effect` | Diagnosis | Best 4B local model reached 51.8% on 2,667 questions — assistance, not autonomy; sampling settings and serving health moved results as much as model choice. |
 | `pdm-component-attribution-v1-azure` | Diagnosis | On simulated maintenance telemetry, a trained classifier (0.995 macro-F1) and a one-line recent-error rule (0.923) beat every LLM; models reached 0.86–0.91 only when given the training-period history, and never exceeded the rule. |
 | `004-maintie-operational-reliability` | Maintenance classification | Cross-level consistency repeatedly marked more accurate subsets across five new runs per model, but consistent mistakes remained common. |
+| `012-ibm-failuresensoriq-provider-defaults` | Diagnosis | On 170 matched questions at provider defaults, Pro93/170 and Flash92/170 differed by one answer; multiple selections materially affected strict accuracy. |
 
 ## Repository layout
 
